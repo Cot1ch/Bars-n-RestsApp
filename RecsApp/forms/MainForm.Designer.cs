@@ -37,13 +37,13 @@
             this.textBoxEstRating = new System.Windows.Forms.TextBox();
             this.textBoxEstAddress = new System.Windows.Forms.TextBox();
             this.textBoxEstDescription = new System.Windows.Forms.TextBox();
-            this.btnStarred = new System.Windows.Forms.Button();
             this.labelLink = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
             this.labelType = new System.Windows.Forms.Label();
             this.labelRating = new System.Windows.Forms.Label();
             this.labelAddress = new System.Windows.Forms.Label();
             this.linkLabelToWebSite = new System.Windows.Forms.LinkLabel();
+            this.checkBoxStarred = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEstImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,6 +75,7 @@
             this.btnPrevImage.TabIndex = 2;
             this.btnPrevImage.Text = "<";
             this.btnPrevImage.UseVisualStyleBackColor = true;
+            this.btnPrevImage.Click += new System.EventHandler(this.btnPrevImage_Click);
             // 
             // btnNextImage
             // 
@@ -84,6 +85,7 @@
             this.btnNextImage.TabIndex = 3;
             this.btnNextImage.Text = ">";
             this.btnNextImage.UseVisualStyleBackColor = true;
+            this.btnNextImage.Click += new System.EventHandler(this.btnNextImage_Click);
             // 
             // textBoxEstName
             // 
@@ -139,17 +141,6 @@
             this.textBoxEstDescription.Name = "textBoxEstDescription";
             this.textBoxEstDescription.Size = new System.Drawing.Size(580, 146);
             this.textBoxEstDescription.TabIndex = 8;
-            // 
-            // btnStarred
-            // 
-            this.btnStarred.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStarred.Location = new System.Drawing.Point(795, 27);
-            this.btnStarred.Name = "btnStarred";
-            this.btnStarred.Size = new System.Drawing.Size(75, 40);
-            this.btnStarred.TabIndex = 10;
-            this.btnStarred.Text = "Избр";
-            this.btnStarred.UseVisualStyleBackColor = true;
-            this.btnStarred.Click += new System.EventHandler(this.btnStarred_Click);
             // 
             // labelLink
             // 
@@ -210,19 +201,30 @@
             this.linkLabelToWebSite.TabStop = true;
             this.linkLabelToWebSite.Text = "тут могла быть ссылка, но ее нет";
             // 
+            // checkBoxStarred
+            // 
+            this.checkBoxStarred.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBoxStarred.AutoSize = true;
+            this.checkBoxStarred.Location = new System.Drawing.Point(767, 27);
+            this.checkBoxStarred.Name = "checkBoxStarred";
+            this.checkBoxStarred.Size = new System.Drawing.Size(103, 20);
+            this.checkBoxStarred.TabIndex = 18;
+            this.checkBoxStarred.Text = "Избранное";
+            this.checkBoxStarred.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(882, 603);
+            this.Controls.Add(this.checkBoxStarred);
             this.Controls.Add(this.linkLabelToWebSite);
             this.Controls.Add(this.labelAddress);
             this.Controls.Add(this.labelRating);
             this.Controls.Add(this.labelType);
             this.Controls.Add(this.labelName);
             this.Controls.Add(this.labelLink);
-            this.Controls.Add(this.btnStarred);
             this.Controls.Add(this.textBoxEstDescription);
             this.Controls.Add(this.textBoxEstAddress);
             this.Controls.Add(this.textBoxEstRating);
@@ -235,6 +237,7 @@
             this.MinimumSize = new System.Drawing.Size(900, 650);
             this.Name = "MainForm";
             this.Text = "MainForm";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEstImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -252,12 +255,12 @@
         private System.Windows.Forms.TextBox textBoxEstRating;
         private System.Windows.Forms.TextBox textBoxEstAddress;
         private System.Windows.Forms.TextBox textBoxEstDescription;
-        private System.Windows.Forms.Button btnStarred;
         private System.Windows.Forms.Label labelLink;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.Label labelType;
         private System.Windows.Forms.Label labelRating;
         private System.Windows.Forms.Label labelAddress;
         private System.Windows.Forms.LinkLabel linkLabelToWebSite;
+        private System.Windows.Forms.CheckBox checkBoxStarred;
     }
 }

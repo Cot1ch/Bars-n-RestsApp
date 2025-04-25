@@ -13,7 +13,6 @@ namespace RecsApp
         [Column("Name")]
         public string Name { get; set; }
         public string Description { get; set; }
-        public bool Starred { get; set; } = false;
         public int Category { get; set; }
         public int Type { get; set; }
         public double Rating { get; set; }
