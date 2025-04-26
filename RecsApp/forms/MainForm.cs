@@ -15,20 +15,58 @@ namespace RecsApp
         {
             InitializeComponent();
 
-            //using (var db = new AppDbContext())
-            //{
-            //    db.Database.Delete();
-            //    db.Categories.Add(new EstCategory() { Id = 1, Title = "Вдвоём" });
-            //    db.Categories.Add(new EstCategory() { Id = 2, Title = "хз" });
-            //    db.Types.Add(new EstType() { Id = 1, Title = "Ресторан" });
-            //    db.Establishments.Add(new Establishment() { Name = "Кыстыбый", Description = "ub", Address = "Пушкина, 2", Rating = 5.0, Link = "", Category = 1, Type = 1 });
-            //    db.Establishments.Add(new Establishment() { Name = "Пташка", Description = "uщсгниу", Address = "Университетская хз сколько", Rating = 5.1, Link = "", Category = 2, Type = 1 });
-            //    db.SaveChanges();
-            //}
+            //пилотное добавление для показа
+            using (var db = new AppDbContext())
+            {
+                // Фейковое добавление
+                db.Database.Delete();
+                Guid.TryParse("b971c917-d3ec-4428-b4e5-4d47ea2f163a", out Guid guidCat1);
+                Guid.TryParse("ca6c2aa9-4f66-4a51-9bbd-62e775c9d472", out Guid guidCat2);
+                db.Categories.Add(new EstCategory() { Id = guidCat1, Title = "Вдвоём" });
+                db.Categories.Add(new EstCategory() { Id = guidCat2, Title = "хз" });
+                Guid.TryParse("23bbf4c5-0f19-4bfb-aed9-975a40dd9bfc", out Guid guidType1);
+                db.Types.Add(new EstType() { Id = guidType1, Title = "Ресторан" });
+                db.Establishments.Add(new Establishment() { Name = "Кыстыбый", Description = "ub", Address = "Пушкина, 2", Rating = 5.0, Link = "", Category = guidCat2, Type = guidType1 });
+                db.Establishments.Add(new Establishment() { Name = "Пташка", Description = "uщсгниу", Address = "Университетская хз сколько", Rating = 5.1, Link = "", Category = guidCat1, Type = guidType1 });
+                db.SaveChanges();
+            }
 
             using (var db = new AppDbContext())
             {
-                listBoxEstablishments.DataSource = db.Establishments.ToList();
+                // переписать с костылей (СЕВА НЕ ЗАБУДЬ ПОЛУЧИШЬ ЖЕ)
+                Guid.TryParse("b971c917-d3ec-4428-b4e5-4d47ea2f163a", out Guid guidCat1);
+                Guid.TryParse("ca6c2aa9-4f66-4a51-9bbd-62e775c9d472", out Guid guidCat2); 
+                Guid.TryParse("23bbf4c5-0f19-4bfb-aed9-975a40dd9bfc", out Guid guidType1);
+
+                var ests = new List<Establishment>();
+                
+                List<Guid> types = new List<Guid>() 
+                {
+                    guidType1,
+                    Guid.NewGuid()
+
+                };
+                List<Guid> categs = new List<Guid>() 
+                {
+                    guidCat1,
+                    guidCat2
+                };
+
+                if (types.Count != 0 || categs.Count != 0)
+                {
+                    ests = (
+                        from est in db.Establishments
+                        where types.Contains(est.Type)
+                        where categs.Contains(est.Category)
+                        select est).ToList();
+                }
+                else
+                {
+                    ests = db.Establishments.ToList();
+                }
+                // вот до сюда переписать
+
+                listBoxEstablishments.DataSource = ests;
                 listBoxEstablishments.DisplayMember = "Name";
                 listBoxEstablishments.ValueMember = "Id";
             }
@@ -41,6 +79,7 @@ namespace RecsApp
 
         public void LoadMainForm(Establishment est)
         {
+
             using (var db = new AppDbContext())
             {
                 this.textBoxEstName.Text = est.Name;
@@ -61,7 +100,10 @@ namespace RecsApp
 
         public void ShowImage()
         {
-            pictureBoxEstImage.ImageLocation = $"{Directory.GetCurrentDirectory()}\\..\\..\\images\\{paths[imageInd]}";
+            if (paths != null)
+            {
+                pictureBoxEstImage.ImageLocation = $"{Directory.GetCurrentDirectory()}\\..\\..\\images\\{paths[imageInd]}";
+            }
             return;
         }
 
@@ -75,6 +117,11 @@ namespace RecsApp
         {
             imageInd = (imageInd + 1) % paths.Count;
             ShowImage();
+        }
+
+        private void btnAccount_Click(object sender, EventArgs e)
+        {
+            new AccountForm().Show();
         }
     }
 }

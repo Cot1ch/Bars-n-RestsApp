@@ -1,4 +1,4 @@
-﻿namespace RecsApp.forms
+﻿namespace RecsApp
 {
     partial class AccountForm
     {
@@ -38,7 +38,7 @@
             this.checkedListBoxCategory = new System.Windows.Forms.CheckedListBox();
             this.checkedListBoxType = new System.Windows.Forms.CheckedListBox();
             this.buttonAccExit = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnSaveChanges = new System.Windows.Forms.Button();
             this.listBoxStarredEsts = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
@@ -63,7 +63,7 @@
             // labelCategory
             // 
             this.labelCategory.AutoSize = true;
-            this.labelCategory.Location = new System.Drawing.Point(56, 194);
+            this.labelCategory.Location = new System.Drawing.Point(56, 302);
             this.labelCategory.Name = "labelCategory";
             this.labelCategory.Size = new System.Drawing.Size(75, 16);
             this.labelCategory.TabIndex = 2;
@@ -72,7 +72,7 @@
             // labelType
             // 
             this.labelType.AutoSize = true;
-            this.labelType.Location = new System.Drawing.Point(56, 318);
+            this.labelType.Location = new System.Drawing.Point(56, 194);
             this.labelType.Name = "labelType";
             this.labelType.Size = new System.Drawing.Size(32, 16);
             this.labelType.TabIndex = 3;
@@ -106,21 +106,22 @@
             // checkedListBoxCategory
             // 
             this.checkedListBoxCategory.FormattingEnabled = true;
-            this.checkedListBoxCategory.Location = new System.Drawing.Point(59, 213);
+            this.checkedListBoxCategory.Location = new System.Drawing.Point(59, 321);
             this.checkedListBoxCategory.Name = "checkedListBoxCategory";
-            this.checkedListBoxCategory.Size = new System.Drawing.Size(287, 89);
+            this.checkedListBoxCategory.Size = new System.Drawing.Size(287, 174);
             this.checkedListBoxCategory.TabIndex = 7;
             // 
             // checkedListBoxType
             // 
             this.checkedListBoxType.FormattingEnabled = true;
-            this.checkedListBoxType.Location = new System.Drawing.Point(59, 340);
+            this.checkedListBoxType.Location = new System.Drawing.Point(59, 216);
             this.checkedListBoxType.Name = "checkedListBoxType";
-            this.checkedListBoxType.Size = new System.Drawing.Size(287, 157);
+            this.checkedListBoxType.Size = new System.Drawing.Size(287, 72);
             this.checkedListBoxType.TabIndex = 8;
             // 
             // buttonAccExit
             // 
+            this.buttonAccExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAccExit.Location = new System.Drawing.Point(722, 27);
             this.buttonAccExit.Name = "buttonAccExit";
             this.buttonAccExit.Size = new System.Drawing.Size(96, 43);
@@ -128,17 +129,22 @@
             this.buttonAccExit.Text = "Выйти из аккаунта";
             this.buttonAccExit.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnSaveChanges
             // 
-            this.button2.Location = new System.Drawing.Point(722, 523);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(96, 43);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Сохранить изменения";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnSaveChanges.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveChanges.Location = new System.Drawing.Point(722, 523);
+            this.btnSaveChanges.Name = "btnSaveChanges";
+            this.btnSaveChanges.Size = new System.Drawing.Size(96, 43);
+            this.btnSaveChanges.TabIndex = 10;
+            this.btnSaveChanges.Text = "Сохранить изменения";
+            this.btnSaveChanges.UseVisualStyleBackColor = true;
+            this.btnSaveChanges.Click += new System.EventHandler(this.btnSaveChanges_Click);
             // 
             // listBoxStarredEsts
             // 
+            this.listBoxStarredEsts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxStarredEsts.FormattingEnabled = true;
             this.listBoxStarredEsts.ItemHeight = 16;
             this.listBoxStarredEsts.Location = new System.Drawing.Point(444, 93);
@@ -153,7 +159,7 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(882, 603);
             this.Controls.Add(this.listBoxStarredEsts);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnSaveChanges);
             this.Controls.Add(this.buttonAccExit);
             this.Controls.Add(this.checkedListBoxType);
             this.Controls.Add(this.checkedListBoxCategory);
@@ -164,6 +170,7 @@
             this.Controls.Add(this.labelCategory);
             this.Controls.Add(this.labelLogin);
             this.Controls.Add(this.labelName);
+            this.MinimumSize = new System.Drawing.Size(900, 650);
             this.Name = "AccountForm";
             this.Text = "AccountForm";
             this.ResumeLayout(false);
@@ -183,7 +190,7 @@
         private System.Windows.Forms.CheckedListBox checkedListBoxCategory;
         private System.Windows.Forms.CheckedListBox checkedListBoxType;
         private System.Windows.Forms.Button buttonAccExit;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnSaveChanges;
         private System.Windows.Forms.ListBox listBoxStarredEsts;
     }
 }

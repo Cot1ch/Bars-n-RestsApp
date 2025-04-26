@@ -13,8 +13,8 @@ namespace RecsApp
         [Column("Name")]
         public string Name { get; set; }
         public string Description { get; set; }
-        public int Category { get; set; }
-        public int Type { get; set; }
+        public Guid Category { get; set; }
+        public Guid Type { get; set; }
         public double Rating { get; set; }
         public string Address { get; set; }
         public string Link { get; set; }

@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Windows.Forms;
 
-namespace RecsApp.forms
+namespace RecsApp
 {
     public partial class AccountForm : Form
     {
@@ -20,6 +20,14 @@ namespace RecsApp.forms
                     this.checkedListBoxCategory.Items.Add(item.Title);
                 }
             }
+        }
+
+        private void btnSaveChanges_Click(object sender, System.EventArgs e)
+        {
+            // написать сохранение в аккаунт
+
+
+            this.Close();
         }
     }
 }
