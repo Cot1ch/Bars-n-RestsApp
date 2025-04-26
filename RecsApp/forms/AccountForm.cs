@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Linq;
+using System.Windows.Forms;
 
 namespace RecsApp.forms
 {
@@ -7,6 +8,18 @@ namespace RecsApp.forms
         public AccountForm()
         {
             InitializeComponent();
+
+            using (var db = new AppDbContext())
+            {
+                foreach (var item in db.Types.ToList())
+                {
+                    this.checkedListBoxType.Items.Add(item.Title);
+                }
+                foreach (var item in db.Categories.ToList())
+                {
+                    this.checkedListBoxCategory.Items.Add(item.Title);
+                }
+            }
         }
     }
 }
