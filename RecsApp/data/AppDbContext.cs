@@ -9,5 +9,6 @@ namespace RecsApp
         public DbSet<Establishment> Establishments { get; set; }
         public DbSet<EstCategory> Categories { get; set; }
         public DbSet<EstType> Types { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
