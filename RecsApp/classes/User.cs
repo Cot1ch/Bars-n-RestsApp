@@ -10,9 +10,11 @@ namespace RecsApp
 {
     public class User
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
+        public Guid user_Id { get; set; }
+        public string name { get; set; }
+        public string username { get; set; }
+        public string password_hash { get; set; }
+        public Guid type_id { get; set; }
+        public Guid categoty_id { get; set; }
     }
 }
