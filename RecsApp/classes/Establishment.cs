@@ -13,7 +13,7 @@ namespace RecsApp
         [Column("Name")]
         public string Name { get; set; }
         public string Description { get; set; }
-        public Guid Category { get; set; }
+        public List<Guid> Category { get; set; }
         public Guid Type { get; set; }
         public double Rating { get; set; }
         public string Address { get; set; }
@@ -22,6 +22,18 @@ namespace RecsApp
         public Establishment()
         {
             Id = Guid.NewGuid();
+        }
+        public Establishment(string name, string description, List<Guid> category, Guid type, double rating, string address, string link, List<string> pathsToPhoto)
+        {
+            Id = Guid.NewGuid();
+            Name = name;
+            Description = description;
+            Category = category;
+            Type = type;
+            Rating = rating;
+            Address = address;
+            Link = link;
+            PathsToPhoto = pathsToPhoto;
         }
     }
 }

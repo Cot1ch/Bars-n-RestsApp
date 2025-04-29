@@ -29,5 +29,10 @@ namespace RecsApp
 
             this.Close();
         }
+
+        private void AccountForm_Load(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

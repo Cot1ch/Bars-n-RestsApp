@@ -173,6 +173,7 @@
             this.MinimumSize = new System.Drawing.Size(900, 650);
             this.Name = "AccountForm";
             this.Text = "AccountForm";
+            this.Load += new System.EventHandler(this.AccountForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

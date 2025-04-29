@@ -94,10 +94,10 @@
             this.textBoxEstName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxEstName.BackColor = System.Drawing.SystemColors.Window;
-            this.textBoxEstName.Location = new System.Drawing.Point(671, 144);
+            this.textBoxEstName.Location = new System.Drawing.Point(592, 80);
             this.textBoxEstName.Name = "textBoxEstName";
             this.textBoxEstName.ReadOnly = true;
-            this.textBoxEstName.Size = new System.Drawing.Size(199, 22);
+            this.textBoxEstName.Size = new System.Drawing.Size(278, 22);
             this.textBoxEstName.TabIndex = 4;
             // 
             // textBoxEstType
@@ -105,10 +105,10 @@
             this.textBoxEstType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxEstType.BackColor = System.Drawing.SystemColors.Window;
-            this.textBoxEstType.Location = new System.Drawing.Point(671, 172);
+            this.textBoxEstType.Location = new System.Drawing.Point(630, 108);
             this.textBoxEstType.Name = "textBoxEstType";
             this.textBoxEstType.ReadOnly = true;
-            this.textBoxEstType.Size = new System.Drawing.Size(199, 22);
+            this.textBoxEstType.Size = new System.Drawing.Size(240, 22);
             this.textBoxEstType.TabIndex = 5;
             // 
             // textBoxEstRating
@@ -116,10 +116,10 @@
             this.textBoxEstRating.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxEstRating.BackColor = System.Drawing.SystemColors.Window;
-            this.textBoxEstRating.Location = new System.Drawing.Point(671, 200);
+            this.textBoxEstRating.Location = new System.Drawing.Point(651, 136);
             this.textBoxEstRating.Name = "textBoxEstRating";
             this.textBoxEstRating.ReadOnly = true;
-            this.textBoxEstRating.Size = new System.Drawing.Size(199, 22);
+            this.textBoxEstRating.Size = new System.Drawing.Size(67, 22);
             this.textBoxEstRating.TabIndex = 6;
             // 
             // textBoxEstAddress
@@ -127,7 +127,7 @@
             this.textBoxEstAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxEstAddress.BackColor = System.Drawing.SystemColors.Window;
-            this.textBoxEstAddress.Location = new System.Drawing.Point(671, 228);
+            this.textBoxEstAddress.Location = new System.Drawing.Point(651, 167);
             this.textBoxEstAddress.Name = "textBoxEstAddress";
             this.textBoxEstAddress.ReadOnly = true;
             this.textBoxEstAddress.Size = new System.Drawing.Size(199, 22);
@@ -157,7 +157,7 @@
             // labelName
             // 
             this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(592, 150);
+            this.labelName.Location = new System.Drawing.Point(592, 61);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(73, 16);
             this.labelName.TabIndex = 12;
@@ -166,7 +166,7 @@
             // labelType
             // 
             this.labelType.AutoSize = true;
-            this.labelType.Location = new System.Drawing.Point(592, 178);
+            this.labelType.Location = new System.Drawing.Point(592, 111);
             this.labelType.Name = "labelType";
             this.labelType.Size = new System.Drawing.Size(32, 16);
             this.labelType.TabIndex = 13;
@@ -175,7 +175,7 @@
             // labelRating
             // 
             this.labelRating.AutoSize = true;
-            this.labelRating.Location = new System.Drawing.Point(592, 206);
+            this.labelRating.Location = new System.Drawing.Point(589, 139);
             this.labelRating.Name = "labelRating";
             this.labelRating.Size = new System.Drawing.Size(56, 16);
             this.labelRating.TabIndex = 14;
@@ -184,7 +184,7 @@
             // labelAddress
             // 
             this.labelAddress.AutoSize = true;
-            this.labelAddress.Location = new System.Drawing.Point(592, 234);
+            this.labelAddress.Location = new System.Drawing.Point(592, 170);
             this.labelAddress.Name = "labelAddress";
             this.labelAddress.Size = new System.Drawing.Size(47, 16);
             this.labelAddress.TabIndex = 15;
@@ -202,12 +202,13 @@
             this.linkLabelToWebSite.TabIndex = 17;
             this.linkLabelToWebSite.TabStop = true;
             this.linkLabelToWebSite.Text = "тут могла быть ссылка, но ее нет";
+            this.linkLabelToWebSite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelToWebSite_LinkClicked);
             // 
             // checkBoxStarred
             // 
             this.checkBoxStarred.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxStarred.AutoSize = true;
-            this.checkBoxStarred.Location = new System.Drawing.Point(768, 89);
+            this.checkBoxStarred.Location = new System.Drawing.Point(592, 30);
             this.checkBoxStarred.Name = "checkBoxStarred";
             this.checkBoxStarred.Size = new System.Drawing.Size(103, 20);
             this.checkBoxStarred.TabIndex = 18;
