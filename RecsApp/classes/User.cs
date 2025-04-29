@@ -17,5 +17,7 @@ namespace RecsApp
         public string password_hash { get; set; }
         public List<Guid> type_id { get; set; }
         public List<Guid> categoty_id { get; set; }
+        public List<Guid> food_id { get; set; }
+        public List<Guid> average_check {  get; set; }
     }
 }
