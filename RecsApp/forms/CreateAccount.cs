@@ -21,12 +21,10 @@ namespace RecsApp.forms
 
         private void buttonCreate_Click(object sender, EventArgs e)
         {
-            // Получаем данные из TextBox-ов
             string name = richTextBoxCreateName.Text.Trim();
             string login = richTextBoxCreateLogin.Text.Trim();
             string password = richTextBoxCreatePassword.Text.Trim();
 
-            // Проверяем валидность данных
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Пожалуйста, заполните все поля.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -37,7 +35,6 @@ namespace RecsApp.forms
             {
                 using (var db = new AppDbContext())
                 {
-                    // Проверяем, существует ли уже пользователь с таким логином
                     if (db.Users.Any(u => u.username == login))
                     {
                         MessageBox.Show("Логин уже занят. Пожалуйста, выберите другой логин.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -49,16 +46,14 @@ namespace RecsApp.forms
                     {
                         name = name,
                         username = login,
-                        password_hash = password // В реальном проекте используйте хэширование паролей
+                        password_hash = password
                     };
 
-                    // Добавляем пользователя в базу данных
                     db.Users.Add(newUser);
                     db.SaveChanges();
 
                     MessageBox.Show("Аккаунт успешно создан.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Очищаем TextBox-ы после успешного создания аккаунта
                     richTextBoxCreateName.Clear();
                     richTextBoxCreateLogin.Clear();
                     richTextBoxCreatePassword.Clear();
