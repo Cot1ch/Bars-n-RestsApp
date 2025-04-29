@@ -10,11 +10,12 @@ namespace RecsApp
 {
     public class User
     {
-        public Guid user_Id { get; set; }
+        [Key]
+        public Guid user_Id { get; set; } = Guid.NewGuid();
         public string name { get; set; }
         public string username { get; set; }
         public string password_hash { get; set; }
-        public Guid type_id { get; set; }
-        public Guid categoty_id { get; set; }
+        public List<Guid> type_id { get; set; }
+        public List<Guid> categoty_id { get; set; }
     }
 }

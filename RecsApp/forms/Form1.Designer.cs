@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.buttonCreateAccount = new System.Windows.Forms.Button();
             this.buttonEntryAccount = new System.Windows.Forms.Button();
@@ -36,21 +37,25 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(190, 108);
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Verdana", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.label1.Location = new System.Drawing.Point(171, 147);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(221, 37);
+            this.label1.Size = new System.Drawing.Size(554, 78);
             this.label1.TabIndex = 0;
             this.label1.Text = "Место для вас";
             // 
             // buttonCreateAccount
             // 
-            this.buttonCreateAccount.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.buttonCreateAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.buttonCreateAccount.FlatAppearance.BorderSize = 0;
             this.buttonCreateAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCreateAccount.Location = new System.Drawing.Point(227, 164);
+            this.buttonCreateAccount.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonCreateAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
+            this.buttonCreateAccount.Location = new System.Drawing.Point(351, 269);
             this.buttonCreateAccount.Name = "buttonCreateAccount";
-            this.buttonCreateAccount.Size = new System.Drawing.Size(141, 42);
+            this.buttonCreateAccount.Size = new System.Drawing.Size(190, 42);
             this.buttonCreateAccount.TabIndex = 1;
             this.buttonCreateAccount.Text = "Создать аккаунт";
             this.buttonCreateAccount.UseVisualStyleBackColor = false;
@@ -59,12 +64,14 @@
             // 
             // buttonEntryAccount
             // 
-            this.buttonEntryAccount.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.buttonEntryAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.buttonEntryAccount.FlatAppearance.BorderSize = 0;
             this.buttonEntryAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonEntryAccount.Location = new System.Drawing.Point(227, 213);
+            this.buttonEntryAccount.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonEntryAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
+            this.buttonEntryAccount.Location = new System.Drawing.Point(351, 331);
             this.buttonEntryAccount.Name = "buttonEntryAccount";
-            this.buttonEntryAccount.Size = new System.Drawing.Size(141, 42);
+            this.buttonEntryAccount.Size = new System.Drawing.Size(190, 42);
             this.buttonEntryAccount.TabIndex = 2;
             this.buttonEntryAccount.Text = "Вход";
             this.buttonEntryAccount.UseVisualStyleBackColor = false;
@@ -75,7 +82,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(884, 611);
             this.Controls.Add(this.buttonEntryAccount);
             this.Controls.Add(this.buttonCreateAccount);
             this.Controls.Add(this.label1);

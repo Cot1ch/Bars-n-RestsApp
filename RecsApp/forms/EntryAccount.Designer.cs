@@ -28,67 +28,73 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EntryAccount));
             this.label1 = new System.Windows.Forms.Label();
-            this.richTextBoxEntryLogin = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.richTextBoxEntryPassword = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.buttonEntry = new System.Windows.Forms.Button();
             this.buttonBFEA = new System.Windows.Forms.Button();
+            this.richTextBoxEntryLogin = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(270, 102);
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Verdana", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.label1.Location = new System.Drawing.Point(226, 186);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(231, 37);
+            this.label1.Size = new System.Drawing.Size(445, 59);
             this.label1.TabIndex = 0;
             this.label1.Text = "Вход в аккаунт";
-            // 
-            // richTextBoxEntryLogin
-            // 
-            this.richTextBoxEntryLogin.Location = new System.Drawing.Point(314, 177);
-            this.richTextBoxEntryLogin.Name = "richTextBoxEntryLogin";
-            this.richTextBoxEntryLogin.Size = new System.Drawing.Size(140, 33);
-            this.richTextBoxEntryLogin.TabIndex = 1;
-            this.richTextBoxEntryLogin.Text = "";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(311, 161);
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.label2.Location = new System.Drawing.Point(293, 269);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 13);
+            this.label2.Size = new System.Drawing.Size(128, 18);
             this.label2.TabIndex = 2;
             this.label2.Text = "Введите логин";
             // 
             // richTextBoxEntryPassword
             // 
-            this.richTextBoxEntryPassword.Location = new System.Drawing.Point(314, 251);
+            this.richTextBoxEntryPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.richTextBoxEntryPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxEntryPassword.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.richTextBoxEntryPassword.Location = new System.Drawing.Point(308, 363);
             this.richTextBoxEntryPassword.Name = "richTextBoxEntryPassword";
-            this.richTextBoxEntryPassword.Size = new System.Drawing.Size(140, 33);
+            this.richTextBoxEntryPassword.Size = new System.Drawing.Size(250, 37);
             this.richTextBoxEntryPassword.TabIndex = 3;
             this.richTextBoxEntryPassword.Text = "";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(311, 235);
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.label3.Location = new System.Drawing.Point(293, 342);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 13);
+            this.label3.Size = new System.Drawing.Size(142, 18);
             this.label3.TabIndex = 4;
             this.label3.Text = "Введите пароль";
             // 
             // buttonEntry
             // 
-            this.buttonEntry.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.buttonEntry.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.buttonEntry.FlatAppearance.BorderSize = 0;
             this.buttonEntry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonEntry.Location = new System.Drawing.Point(343, 308);
+            this.buttonEntry.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonEntry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
+            this.buttonEntry.Location = new System.Drawing.Point(370, 428);
             this.buttonEntry.Name = "buttonEntry";
-            this.buttonEntry.Size = new System.Drawing.Size(75, 32);
+            this.buttonEntry.Size = new System.Drawing.Size(134, 24);
             this.buttonEntry.TabIndex = 5;
             this.buttonEntry.Text = "Войти";
             this.buttonEntry.UseVisualStyleBackColor = false;
@@ -97,9 +103,11 @@
             // 
             // buttonBFEA
             // 
-            this.buttonBFEA.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.buttonBFEA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.buttonBFEA.FlatAppearance.BorderSize = 0;
             this.buttonBFEA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonBFEA.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.buttonBFEA.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
             this.buttonBFEA.Location = new System.Drawing.Point(13, 13);
             this.buttonBFEA.Name = "buttonBFEA";
             this.buttonBFEA.Size = new System.Drawing.Size(75, 23);
@@ -107,12 +115,26 @@
             this.buttonBFEA.Text = "Назад";
             this.buttonBFEA.UseVisualStyleBackColor = false;
             this.buttonBFEA.Click += new System.EventHandler(this.buttonBFEA_Click);
+            this.buttonBFEA.Paint += new System.Windows.Forms.PaintEventHandler(this.buttonBFEA_Paint);
+            // 
+            // richTextBoxEntryLogin
+            // 
+            this.richTextBoxEntryLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.richTextBoxEntryLogin.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxEntryLogin.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.richTextBoxEntryLogin.Location = new System.Drawing.Point(308, 290);
+            this.richTextBoxEntryLogin.Name = "richTextBoxEntryLogin";
+            this.richTextBoxEntryLogin.Size = new System.Drawing.Size(250, 37);
+            this.richTextBoxEntryLogin.TabIndex = 1;
+            this.richTextBoxEntryLogin.Text = "";
             // 
             // EntryAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(884, 611);
             this.Controls.Add(this.buttonBFEA);
             this.Controls.Add(this.buttonEntry);
             this.Controls.Add(this.label3);
@@ -130,11 +152,11 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RichTextBox richTextBoxEntryLogin;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox richTextBoxEntryPassword;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonEntry;
         private System.Windows.Forms.Button buttonBFEA;
+        private System.Windows.Forms.RichTextBox richTextBoxEntryLogin;
     }
 }
