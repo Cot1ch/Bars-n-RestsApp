@@ -27,7 +27,7 @@ namespace RecsApp
             Button button = sender as Button;
             if (button != null)
             {
-                int cornerRadius = 17;
+                int cornerRadius = 5;
                 GraphicsPath path = new GraphicsPath();
                 int width = button.Width;
                 int height = button.Height;
@@ -47,7 +47,7 @@ namespace RecsApp
             Button button = sender as Button;
             if (button != null)
             {
-                int cornerRadius = 17;
+                int cornerRadius = 5;
                 GraphicsPath path = new GraphicsPath();
                 int width = button.Width;
                 int height = button.Height;
