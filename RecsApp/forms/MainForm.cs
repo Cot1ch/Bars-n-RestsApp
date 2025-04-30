@@ -9,35 +9,13 @@ namespace RecsApp
 {
     public partial class MainForm : Form
     {
-        private int imageInd = 0;
-        private List<string> paths;
 
-        public MainForm(User user)
+
+        public MainForm()
         {
             new AppDbContext().Database.Delete();
 
             InitializeComponent();
-            AddTypesToDB();
-            AddCategoryesToDB();
-            AddEstablishmentsToDB();
-
-            using (var db = new AppDbContext())
-            {
-                var ests = db.Establishments.ToList();
-
-                //if (types.Count != 0 || categs.Count != 0)
-                //{
-                //    ests = (
-                //        from est in db.Establishments
-                //        where types.Contains(est.Type)
-                //        where categs.Contains(est.Category)
-                //        select est).ToList();
-                //}
-
-                listBoxEstablishments.DataSource = ests;
-                listBoxEstablishments.DisplayMember = "Name";
-                listBoxEstablishments.ValueMember = "Id";
-            }
         }
 
         public void AddTypesToDB()
@@ -174,61 +152,67 @@ namespace RecsApp
             }
         }       
 
-        private void listBoxEstablishments_SelectedIndexChanged(object sender, EventArgs e)
+        public void ShowInfoForm(Guid id)
         {
-            LoadMainForm((Establishment)this.listBoxEstablishments.Items[this.listBoxEstablishments.SelectedIndex]);
-        }
-
-        public void LoadMainForm(Establishment est)
-        {
-
-            using (var db = new AppDbContext())
-            {
-                this.textBoxEstName.Text = est.Name;
-                this.textBoxEstDescription.Text = est.Description;
-                this.textBoxEstType.Text = db.Types.Find(est.Type).Title;
-                this.textBoxEstRating.Text = $"{est.Rating:F1}";
-                this.textBoxEstAddress.Text = est.Address.ToString();
-                this.linkLabelToWebSite.Text = (est.Link != string.Empty) ? est.Link : "тут могла быть ссылка, но её нет";
-
-                paths = est.PathsToPhoto.Count == 0 ? new List<string>() { "notfound.png" } : est.PathsToPhoto;
-            }
+            new InfoForm(id).Show();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            ShowImage();
-        }
+            AddTypesToDB();
+            AddCategoryesToDB();
+            AddEstablishmentsToDB();
 
-        public void ShowImage()
+            LoadForm();
+            SetdgvEstablishments();
+
+        }
+        public void LoadForm()
         {
-            if (paths != null)
+            using (var db = new AppDbContext())
             {
-                pictureBoxEstImage.ImageLocation = $"{Directory.GetCurrentDirectory()}\\..\\..\\images\\{paths[imageInd]}";
+                var ests = db.Establishments.ToList();
+
+                //if (types.Count != 0 || categs.Count != 0)
+                //{
+                //    ests = (
+                //        from est in db.Establishments
+                //        where types.Contains(est.Type)
+                //        where categs.Contains(est.Category)
+                //        select est).ToList();
+                //}
+
+                dgvEstablishments.DataSource = ests;
             }
-            return;
+            for (int i = 0; i < dgvEstablishments.Rows.Count; i++)
+            {
+                dgvEstablishments.Rows[i].DefaultCellStyle.BackColor =
+                    System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+                dgvEstablishments.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
+                dgvEstablishments.Rows[i].DefaultCellStyle.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            }
         }
-
-        private void btnPrevImage_Click(object sender, EventArgs e)
+        private void SetdgvEstablishments()
         {
-            imageInd = (imageInd - 1 + paths.Count) % paths.Count;
-            ShowImage();
+            dgvEstablishments.Columns[0].Visible = false;
+            dgvEstablishments.Columns[2].Visible = false;
+            dgvEstablishments.Columns[5].Visible = false;
+            dgvEstablishments.Columns[6].Visible = false;
+            dgvEstablishments.RowHeadersVisible = false;
+            dgvEstablishments.EnableHeadersVisualStyles = false;
+            dgvEstablishments.ColumnHeadersDefaultCellStyle.BackColor =
+                    System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));    
+            dgvEstablishments.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Verdana", 8, System.Drawing.FontStyle.Bold);
+            dgvEstablishments.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
         }
-
-        private void btnNextImage_Click(object sender, EventArgs e)
-        {
-            imageInd = (imageInd + 1) % paths.Count;
-            ShowImage();
-        }
-
         private void btnAccount_Click(object sender, EventArgs e)
         {
             new AccountForm().Show();
         }
 
-        private void linkLabelToWebSite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void dgvEstablishments_DoubleClick(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(this.linkLabelToWebSite.Text);
+            ShowInfoForm((Guid)this.dgvEstablishments.CurrentRow.Cells[0].Value);
         }
     }
 }

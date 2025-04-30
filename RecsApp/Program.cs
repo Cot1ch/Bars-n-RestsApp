@@ -13,7 +13,7 @@ namespace RecsApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm(new User()));
+            Application.Run(new MainForm());
         }
     }
 }

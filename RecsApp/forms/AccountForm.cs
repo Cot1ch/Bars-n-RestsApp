@@ -34,5 +34,10 @@ namespace RecsApp
         {
 
         }
+
+        private void labelKitchen_Click(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }
