@@ -10,5 +10,7 @@ namespace RecsApp
         public DbSet<EstCategory> Categories { get; set; }
         public DbSet<EstType> Types { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<EstFood> Foods { get; set; }
+        public DbSet<EstAverageCheck> AverageChecks { get; set; }
     }
 }

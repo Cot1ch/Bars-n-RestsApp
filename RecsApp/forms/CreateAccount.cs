@@ -57,6 +57,9 @@ namespace RecsApp.forms
                     richTextBoxCreateName.Clear();
                     richTextBoxCreateLogin.Clear();
                     richTextBoxCreatePassword.Clear();
+
+                    new MainForm().Show();
+                    this.Close();
                 }
             }
             catch (Exception ex)

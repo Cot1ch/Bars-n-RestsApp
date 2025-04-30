@@ -20,7 +20,8 @@ namespace RecsApp.forms
 
         private void buttonEntry_Click(object sender, EventArgs e)
         {
-
+            new MainForm().Show();
+            this.Close();
         }
 
         private void buttonEntry_Paint(object sender, PaintEventArgs e)

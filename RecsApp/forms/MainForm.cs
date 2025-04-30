@@ -67,7 +67,54 @@ namespace RecsApp
                 db.SaveChanges();
             }
         }
+        public void AddFoodToDB()
+        {
+            string path = $"{Directory.GetCurrentDirectory()}..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
+            if (!File.Exists(path))
+            {
+                MessageBox.Show("Файл не найден!\nОбратитесь к администратору");
+                return;
+            }
 
+            var wb = new XLWorkbook(path);
+            var ws = wb.Worksheet("Кухня").RowsUsed();
+
+            using (var db = new AppDbContext())
+            {
+                foreach (var row in ws)
+                {
+                    if (Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidFood) && db.Categories.Find(guidFood) == null)
+                    {
+                        db.Foods.Add(new EstFood() { Id = guidFood, Title = row.Cell(1).Value.ToString() });
+                    }
+                }
+                db.SaveChanges();
+            }
+        }
+        public void AddAveragesToDB()
+        {
+            string path = $"{Directory.GetCurrentDirectory()}..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
+            if (!File.Exists(path))
+            {
+                MessageBox.Show("Файл не найден!\nОбратитесь к администратору");
+                return;
+            }
+
+            var wb = new XLWorkbook(path);
+            var ws = wb.Worksheet("Средний чек").RowsUsed();
+
+            using (var db = new AppDbContext())
+            {
+                foreach (var row in ws)
+                {
+                    if (Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidAv) && db.Categories.Find(guidAv) == null)
+                    {
+                        db.AverageChecks.Add(new EstAverageCheck() { Id = guidAv, Title = row.Cell(1).Value.ToString() });
+                    }
+                }
+                db.SaveChanges();
+            }
+        }
         public void AddEstablishmentsToDB()
         {
             string path = $"{Directory.GetCurrentDirectory()}..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
@@ -161,6 +208,8 @@ namespace RecsApp
         {
             AddTypesToDB();
             AddCategoryesToDB();
+            AddFoodToDB();
+            AddAveragesToDB();
             AddEstablishmentsToDB();
 
             LoadForm();

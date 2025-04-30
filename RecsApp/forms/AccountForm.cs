@@ -19,6 +19,14 @@ namespace RecsApp
                 {
                     this.checkedListBoxCategory.Items.Add(item.Title);
                 }
+                foreach (var item in db.Foods.ToList())
+                {
+                    this.checkedListBoxFood.Items.Add(item.Title);
+                }
+                foreach (var item in db.AverageChecks.ToList())
+                {
+                    this.checkedListBoxAverage.Items.Add(item.Title);
+                }
             }
         }
 
@@ -31,11 +39,6 @@ namespace RecsApp
         }
 
         private void AccountForm_Load(object sender, System.EventArgs e)
-        {
-
-        }
-
-        private void labelKitchen_Click(object sender, System.EventArgs e)
         {
 
         }

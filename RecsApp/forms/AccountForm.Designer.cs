@@ -40,10 +40,10 @@
             this.btnSaveChanges = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.checkedListBoxAverage = new System.Windows.Forms.CheckedListBox();
-            this.labelKitchen = new System.Windows.Forms.Label();
+            this.labelFood = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.checkBoxRating = new System.Windows.Forms.CheckBox();
-            this.checkedListBoxKitchen = new System.Windows.Forms.CheckedListBox();
+            this.checkedListBoxFood = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
             // 
             // labelName
@@ -182,17 +182,16 @@
             this.checkedListBoxAverage.Size = new System.Drawing.Size(400, 88);
             this.checkedListBoxAverage.TabIndex = 12;
             // 
-            // labelKitchen
+            // labelFood
             // 
-            this.labelKitchen.AutoSize = true;
-            this.labelKitchen.Font = new System.Drawing.Font("Verdana", 9F);
-            this.labelKitchen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelKitchen.Location = new System.Drawing.Point(446, 313);
-            this.labelKitchen.Name = "labelKitchen";
-            this.labelKitchen.Size = new System.Drawing.Size(54, 18);
-            this.labelKitchen.TabIndex = 14;
-            this.labelKitchen.Text = "Кухня";
-            this.labelKitchen.Click += new System.EventHandler(this.labelKitchen_Click);
+            this.labelFood.AutoSize = true;
+            this.labelFood.Font = new System.Drawing.Font("Verdana", 9F);
+            this.labelFood.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.labelFood.Location = new System.Drawing.Point(446, 313);
+            this.labelFood.Name = "labelFood";
+            this.labelFood.Size = new System.Drawing.Size(54, 18);
+            this.labelFood.TabIndex = 14;
+            this.labelFood.Text = "Кухня";
             // 
             // label2
             // 
@@ -217,16 +216,16 @@
             this.checkBoxRating.Text = "Заведения с рейтингом 4.5 и выше";
             this.checkBoxRating.UseVisualStyleBackColor = true;
             // 
-            // checkedListBoxKitchen
+            // checkedListBoxFood
             // 
-            this.checkedListBoxKitchen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.checkedListBoxKitchen.Font = new System.Drawing.Font("Verdana", 9F);
-            this.checkedListBoxKitchen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.checkedListBoxKitchen.FormattingEnabled = true;
-            this.checkedListBoxKitchen.Location = new System.Drawing.Point(446, 334);
-            this.checkedListBoxKitchen.Name = "checkedListBoxKitchen";
-            this.checkedListBoxKitchen.Size = new System.Drawing.Size(400, 130);
-            this.checkedListBoxKitchen.TabIndex = 13;
+            this.checkedListBoxFood.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.checkedListBoxFood.Font = new System.Drawing.Font("Verdana", 9F);
+            this.checkedListBoxFood.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
+            this.checkedListBoxFood.FormattingEnabled = true;
+            this.checkedListBoxFood.Location = new System.Drawing.Point(446, 334);
+            this.checkedListBoxFood.Name = "checkedListBoxFood";
+            this.checkedListBoxFood.Size = new System.Drawing.Size(400, 130);
+            this.checkedListBoxFood.TabIndex = 13;
             // 
             // AccountForm
             // 
@@ -236,8 +235,8 @@
             this.ClientSize = new System.Drawing.Size(882, 603);
             this.Controls.Add(this.checkBoxRating);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.labelKitchen);
-            this.Controls.Add(this.checkedListBoxKitchen);
+            this.Controls.Add(this.labelFood);
+            this.Controls.Add(this.checkedListBoxFood);
             this.Controls.Add(this.checkedListBoxAverage);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSaveChanges);
@@ -273,9 +272,9 @@
         private System.Windows.Forms.Button btnSaveChanges;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckedListBox checkedListBoxAverage;
-        private System.Windows.Forms.Label labelKitchen;
+        private System.Windows.Forms.Label labelFood;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBoxRating;
-        private System.Windows.Forms.CheckedListBox checkedListBoxKitchen;
+        private System.Windows.Forms.CheckedListBox checkedListBoxFood;
     }
 }

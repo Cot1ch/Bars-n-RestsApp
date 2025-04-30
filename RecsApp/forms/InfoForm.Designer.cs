@@ -43,9 +43,9 @@
             this.btnNextImage = new System.Windows.Forms.Button();
             this.btnPrevImage = new System.Windows.Forms.Button();
             this.pictureBoxEstImage = new System.Windows.Forms.PictureBox();
-            this.labelKitchen = new System.Windows.Forms.Label();
+            this.labelFood = new System.Windows.Forms.Label();
             this.labelAverageCheck = new System.Windows.Forms.Label();
-            this.textBoxKitchen = new System.Windows.Forms.TextBox();
+            this.textBoxFood = new System.Windows.Forms.TextBox();
             this.textBoxAverageCheck = new System.Windows.Forms.TextBox();
             this.labelDescription = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEstImage)).BeginInit();
@@ -192,10 +192,10 @@
             this.textBoxEstType.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxEstType.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxEstType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.textBoxEstType.Location = new System.Drawing.Point(625, 101);
+            this.textBoxEstType.Location = new System.Drawing.Point(641, 101);
             this.textBoxEstType.Name = "textBoxEstType";
             this.textBoxEstType.ReadOnly = true;
-            this.textBoxEstType.Size = new System.Drawing.Size(238, 16);
+            this.textBoxEstType.Size = new System.Drawing.Size(222, 16);
             this.textBoxEstType.TabIndex = 23;
             // 
             // textBoxEstName
@@ -245,17 +245,17 @@
             this.pictureBoxEstImage.TabIndex = 19;
             this.pictureBoxEstImage.TabStop = false;
             // 
-            // labelKitchen
+            // labelFood
             // 
-            this.labelKitchen.AutoSize = true;
-            this.labelKitchen.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Bold);
-            this.labelKitchen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelKitchen.Location = new System.Drawing.Point(497, 185);
-            this.labelKitchen.Name = "labelKitchen";
-            this.labelKitchen.Size = new System.Drawing.Size(52, 16);
-            this.labelKitchen.TabIndex = 34;
-            this.labelKitchen.Text = "Кухня";
-            this.labelKitchen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelFood.AutoSize = true;
+            this.labelFood.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Bold);
+            this.labelFood.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.labelFood.Location = new System.Drawing.Point(497, 185);
+            this.labelFood.Name = "labelFood";
+            this.labelFood.Size = new System.Drawing.Size(52, 16);
+            this.labelFood.TabIndex = 34;
+            this.labelFood.Text = "Кухня";
+            this.labelFood.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelAverageCheck
             // 
@@ -269,17 +269,17 @@
             this.labelAverageCheck.Text = "Средний чек";
             this.labelAverageCheck.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBoxKitchen
+            // textBoxFood
             // 
-            this.textBoxKitchen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.textBoxKitchen.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxKitchen.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxKitchen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.textBoxKitchen.Location = new System.Drawing.Point(562, 186);
-            this.textBoxKitchen.Name = "textBoxKitchen";
-            this.textBoxKitchen.ReadOnly = true;
-            this.textBoxKitchen.Size = new System.Drawing.Size(301, 16);
-            this.textBoxKitchen.TabIndex = 36;
+            this.textBoxFood.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.textBoxFood.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxFood.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxFood.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
+            this.textBoxFood.Location = new System.Drawing.Point(562, 186);
+            this.textBoxFood.Name = "textBoxFood";
+            this.textBoxFood.ReadOnly = true;
+            this.textBoxFood.Size = new System.Drawing.Size(301, 16);
+            this.textBoxFood.TabIndex = 36;
             // 
             // textBoxAverageCheck
             // 
@@ -287,7 +287,7 @@
             this.textBoxAverageCheck.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxAverageCheck.Font = new System.Drawing.Font("Verdana", 10F);
             this.textBoxAverageCheck.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(26)))), ((int)(((byte)(29)))));
-            this.textBoxAverageCheck.Location = new System.Drawing.Point(606, 208);
+            this.textBoxAverageCheck.Location = new System.Drawing.Point(625, 207);
             this.textBoxAverageCheck.Name = "textBoxAverageCheck";
             this.textBoxAverageCheck.ReadOnly = true;
             this.textBoxAverageCheck.Size = new System.Drawing.Size(88, 21);
@@ -313,9 +313,9 @@
             this.ClientSize = new System.Drawing.Size(882, 603);
             this.Controls.Add(this.labelDescription);
             this.Controls.Add(this.textBoxAverageCheck);
-            this.Controls.Add(this.textBoxKitchen);
+            this.Controls.Add(this.textBoxFood);
             this.Controls.Add(this.labelAverageCheck);
-            this.Controls.Add(this.labelKitchen);
+            this.Controls.Add(this.labelFood);
             this.Controls.Add(this.checkBoxStarred);
             this.Controls.Add(this.linkLabelToWebSite);
             this.Controls.Add(this.labelAddress);
@@ -357,9 +357,9 @@
         private System.Windows.Forms.Button btnNextImage;
         private System.Windows.Forms.Button btnPrevImage;
         private System.Windows.Forms.PictureBox pictureBoxEstImage;
-        private System.Windows.Forms.Label labelKitchen;
+        private System.Windows.Forms.Label labelFood;
         private System.Windows.Forms.Label labelAverageCheck;
-        private System.Windows.Forms.TextBox textBoxKitchen;
+        private System.Windows.Forms.TextBox textBoxFood;
         private System.Windows.Forms.TextBox textBoxAverageCheck;
         private System.Windows.Forms.Label labelDescription;
     }

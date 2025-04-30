@@ -96,7 +96,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes\Establishment.cs" />
+    <Compile Include="classes\EstAverageCheck.cs" />
     <Compile Include="classes\EstCategory.cs" />
+    <Compile Include="classes\EstFood.cs" />
     <Compile Include="classes\EstType.cs" />
     <Compile Include="classes\User.cs" />
     <Compile Include="data\AppDbContext.cs" />
