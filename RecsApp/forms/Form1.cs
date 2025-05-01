@@ -21,9 +21,11 @@ namespace RecsApp
 
         private void buttonCreateAccount_Click(object sender, EventArgs e)
         {
+            this.Hide();
             CreateAccount createAccount = new CreateAccount();
 
-            createAccount.ShowDialog();
+            createAccount.FormClosed += (s, args) => this.Show();
+            createAccount.Show();
         }
 
         private void buttonCreateAccount_Paint(object sender, PaintEventArgs e)
@@ -68,9 +70,11 @@ namespace RecsApp
 
         private void buttonEntryAccount_Click(object sender, EventArgs e)
         {
+            this.Hide();
             EntryAccount entryAccount = new EntryAccount();
 
-            entryAccount.ShowDialog();
+            entryAccount.FormClosed += (s, args) => this.Show();
+            entryAccount.Show();
         }
     }
 }

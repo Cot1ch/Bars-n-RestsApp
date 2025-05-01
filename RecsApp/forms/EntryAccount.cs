@@ -20,8 +20,38 @@ namespace RecsApp.forms
 
         private void buttonEntry_Click(object sender, EventArgs e)
         {
-            new MainForm().Show();
-            this.Close();
+            string login = richTextBoxEntryLogin.Text.Trim();
+            string password = richTextBoxEntryPassword.Text.Trim();
+
+            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Пожалуйста, заполните все поля.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                using (var db = new AppDbContext())
+                {
+                    var user = db.Users.FirstOrDefault(u => u.username == login && u.password_hash == password);
+
+                    if (user != null)
+                    {
+                        MessageBox.Show($"Добро пожаловать, {user.username}!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MainForm mainForm = new MainForm(); 
+                        mainForm.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Неверный логин или пароль.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void buttonEntry_Paint(object sender, PaintEventArgs e)

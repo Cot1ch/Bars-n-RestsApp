@@ -41,7 +41,6 @@ namespace RecsApp.forms
                         return;
                     }
 
-                    // Создаем нового пользователя
                     var newUser = new User
                     {
                         name = name,
