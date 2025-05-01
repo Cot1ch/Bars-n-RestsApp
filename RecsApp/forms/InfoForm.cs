@@ -28,6 +28,7 @@ namespace RecsApp
             {
                 this.textBoxEstName.Text = est.Name;
                 this.textBoxEstDescription.Text = est.Description;
+
                 this.textBoxEstType.Text = db.Types.Find(est.Type).Title;
                 this.textBoxEstRating.Text = $"{est.Rating:F1}";
                 this.textBoxEstAddress.Text = est.Address.ToString();
@@ -60,11 +61,6 @@ namespace RecsApp
         private void linkLabelToWebSite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start(this.linkLabelToWebSite.Text);
-        }
-
-        private void textBoxEstRating_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

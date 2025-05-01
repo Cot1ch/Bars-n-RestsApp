@@ -9,13 +9,10 @@ namespace RecsApp
     {
         [Key]
         public Guid Id { get; set; }
-        [DisplayName("Название")]
         public string Name { get; set; }
         public string Description { get; set; }
         public List<Guid> Category { get; set; }
-        [DisplayName("Тип")]
         public Guid Type { get; set; }
-        [DisplayName("Рейтинг")]
         public double Rating { get; set; }
         public string Address { get; set; }
         public string Link { get; set; }

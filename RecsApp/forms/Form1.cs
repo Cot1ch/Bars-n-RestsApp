@@ -12,6 +12,10 @@ namespace RecsApp
     {
         public Form1()
         {
+            using (var db = new AppDbContext())
+            {
+                db.Database.Delete();
+            }
             InitializeComponent();
         }
 

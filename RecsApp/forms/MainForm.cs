@@ -9,12 +9,8 @@ namespace RecsApp
 {
     public partial class MainForm : Form
     {
-
-
         public MainForm()
         {
-            new AppDbContext().Database.Delete();
-
             InitializeComponent();
         }
 
@@ -32,6 +28,7 @@ namespace RecsApp
 
             using (var db = new AppDbContext())
             {
+                db.Database.Delete();
                 foreach (var row in ws)
                 {
                     if (Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidType) && db.Types.Find(guidType) == null)
@@ -40,7 +37,7 @@ namespace RecsApp
                     }
                 }
                 db.SaveChanges();
-            }            
+            }
         }
 
         public void AddCategoryesToDB()
@@ -63,6 +60,7 @@ namespace RecsApp
                     {
                         db.Categories.Add(new EstCategory() { Id = guidCat, Title = row.Cell(1).Value.ToString() });
                     }
+
                 }
                 db.SaveChanges();
             }
@@ -210,11 +208,11 @@ namespace RecsApp
             AddCategoryesToDB();
             AddFoodToDB();
             AddAveragesToDB();
+
             AddEstablishmentsToDB();
 
             LoadForm();
             SetdgvEstablishments();
-
         }
         public void LoadForm()
         {
@@ -231,7 +229,11 @@ namespace RecsApp
                 //        select est).ToList();
                 //}
 
-                dgvEstablishments.DataSource = ests;
+                var finalEsts = from e in ests
+                           join t in db.Types on e.Type equals t.Id
+                           select new { e.Id, Название = e.Name, Тип = t.Title, Рейтинг = e.Rating };
+
+                dgvEstablishments.DataSource = finalEsts.ToList();
             }
             for (int i = 0; i < dgvEstablishments.Rows.Count; i++)
             {
@@ -244,9 +246,6 @@ namespace RecsApp
         private void SetdgvEstablishments()
         {
             dgvEstablishments.Columns[0].Visible = false;
-            dgvEstablishments.Columns[2].Visible = false;
-            dgvEstablishments.Columns[5].Visible = false;
-            dgvEstablishments.Columns[6].Visible = false;
             dgvEstablishments.RowHeadersVisible = false;
             dgvEstablishments.EnableHeadersVisualStyles = false;
             dgvEstablishments.ColumnHeadersDefaultCellStyle.BackColor =

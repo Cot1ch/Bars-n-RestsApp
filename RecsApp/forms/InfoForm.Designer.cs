@@ -78,6 +78,7 @@
             this.linkLabelToWebSite.TabIndex = 32;
             this.linkLabelToWebSite.TabStop = true;
             this.linkLabelToWebSite.Text = "ссылка отсутствует";
+            this.linkLabelToWebSite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelToWebSite_LinkClicked);
             // 
             // labelAddress
             // 
@@ -182,7 +183,6 @@
             this.textBoxEstRating.ReadOnly = true;
             this.textBoxEstRating.Size = new System.Drawing.Size(55, 21);
             this.textBoxEstRating.TabIndex = 24;
-            this.textBoxEstRating.TextChanged += new System.EventHandler(this.textBoxEstRating_TextChanged);
             // 
             // textBoxEstType
             // 
