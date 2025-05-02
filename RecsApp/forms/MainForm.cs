@@ -10,6 +10,7 @@ namespace RecsApp
     public partial class MainForm : Form
     {
         public Guid userId;
+        public List<Guid> typeIds;
         public MainForm(Guid usId)
         {
             InitializeComponent();
@@ -32,6 +33,7 @@ namespace RecsApp
             using (var db = new AppDbContext())
             {
                 var user = db.Users.Find(userId);
+                user.type_id = this.typeIds;
                 var ests = db.Establishments.ToList();
 
                 if (user.type_id != null && user.type_id.Count != 0)
@@ -39,7 +41,6 @@ namespace RecsApp
                     ests = (
                         from est in db.Establishments
                         where user.type_id.Contains(est.Type)
-                        //where est.Category.Any(x => user.categoty_id.Contains(x))
                         select est).ToList();
                 }
 

@@ -1,8 +1,7 @@
-﻿using DocumentFormat.OpenXml.Drawing.Charts;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace RecsApp
 {
@@ -41,8 +40,7 @@ namespace RecsApp
         {
             using (var db = new AppDbContext())
             {
-
-                var user = db.Users.FirstOrDefault();
+                var user = db.Users.Find(userId);
                 foreach (var checkedItem in this.checkedListBoxType.CheckedItems)
                 {
                     var types = (from t in db.Types
@@ -54,9 +52,11 @@ namespace RecsApp
                         user.type_id.Add(types[0].Id);                        
                     }
                 }
+                user.name = this.textBoxName.Text;
+                mainForm.typeIds = user.type_id;
                 db.SaveChanges();
             }
-
+            mainForm.LoadForm();
             this.Close();
         }
 
@@ -78,8 +78,8 @@ namespace RecsApp
                 {
                     return;
                 }
-                
-                foreach (var type in user.type_id.ToList())
+                user.type_id = this.mainForm.typeIds == null? new List<Guid>() : this.mainForm.typeIds;
+                foreach (var type in user.type_id)
                 {
                     checkedListBoxType.SetItemChecked(this.checkedListBoxType.Items.IndexOf(db.Types.Find(type).Title), true);
                 }
