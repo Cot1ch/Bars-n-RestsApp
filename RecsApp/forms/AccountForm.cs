@@ -12,28 +12,8 @@ namespace RecsApp
         public AccountForm(Guid usId, MainForm mainForm)
         {
             InitializeComponent();
-            userId = usId;
+            this.userId = usId;
             this.mainForm = mainForm;
-
-            using (var db = new AppDbContext())
-            {
-                foreach (var item in db.Types.ToList())
-                {
-                    this.checkedListBoxType.Items.Add(item.Title);
-                }
-                foreach (var item in db.Categories.ToList())
-                {
-                    this.checkedListBoxCategory.Items.Add(item.Title);
-                }
-                foreach (var item in db.Foods.ToList())
-                {
-                    this.checkedListBoxFood.Items.Add(item.Title);
-                }
-                foreach (var item in db.AverageChecks.ToList())
-                {
-                    this.checkedListBoxAverage.Items.Add(item.Title);
-                }
-            }
         }
 
         private void btnSaveChanges_Click(object sender, EventArgs e)
@@ -63,7 +43,24 @@ namespace RecsApp
         private void AccountForm_Load(object sender, EventArgs e)
         {
             using (var db = new AppDbContext())
-            { 
+            {
+                foreach (var item in db.Types.ToList())
+                {
+                    this.checkedListBoxType.Items.Add(item.Title);
+                }
+                foreach (var item in db.Categories.ToList())
+                {
+                    this.checkedListBoxCategory.Items.Add(item.Title);
+                }
+                foreach (var item in db.Foods.ToList())
+                {
+                    this.checkedListBoxFood.Items.Add(item.Title);
+                }
+                foreach (var item in db.AverageChecks.ToList())
+                {
+                    this.checkedListBoxAverage.Items.Add(item.Title);
+                }
+ 
                 if (db.Users.Find(userId) == null)
                 {
                     MessageBox.Show("Ошибка! Данные аккаунта пусты");

@@ -28,6 +28,9 @@ namespace RecsApp
             LoadForm();
             SetdgvEstablishments();
         }
+        /// <summary>
+        /// Метод прогружает datagrid со всеми заведениями, подхоядзими под выбранные пункты анкеты
+        /// </summary>
         public void LoadForm()
         {
             using (var db = new AppDbContext())
@@ -58,6 +61,9 @@ namespace RecsApp
                 dgvEstablishments.Rows[i].DefaultCellStyle.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             }
         }
+        /// <summary>
+        /// Метод загружает типы заведений из Excel файла
+        /// </summary>
         public void AddTypesToDB()
         {
             string path = $"{Directory.GetCurrentDirectory()}..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
@@ -82,7 +88,9 @@ namespace RecsApp
                 db.SaveChanges();
             }
         }
-
+        /// <summary>
+        /// Метод загружает ккатегории заведений из Excel файла
+        /// </summary>
         public void AddCategoryesToDB()
         {
             string path = $"{Directory.GetCurrentDirectory()}..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
@@ -108,6 +116,9 @@ namespace RecsApp
                 db.SaveChanges();
             }
         }
+        /// <summary>
+        /// Метод загружает кухни заведений из Excel файла
+        /// </summary>
         public void AddFoodToDB()
         {
             string path = $"{Directory.GetCurrentDirectory()}..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
@@ -132,6 +143,9 @@ namespace RecsApp
                 db.SaveChanges();
             }
         }
+        /// <summary>
+        /// Метод загружает средние чеки заведений из Excel файла
+        /// </summary>
         public void AddAveragesToDB()
         {
             string path = $"{Directory.GetCurrentDirectory()}..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
@@ -156,6 +170,9 @@ namespace RecsApp
                 db.SaveChanges();
             }
         }
+        /// <summary>
+        /// Метод загружает заведения из Excel файла
+        /// </summary>
         public void AddEstablishmentsToDB()
         {
             string path = $"{Directory.GetCurrentDirectory()}..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
@@ -227,6 +244,9 @@ namespace RecsApp
                 db.SaveChanges();
             }
         }
+        /// <summary>
+        /// Метод переводит string в Guid 
+        /// </summary>
         public Guid GetGuidFromString(string strGuid)
         {
             if (Guid.TryParse(strGuid, out Guid guid))
@@ -237,7 +257,10 @@ namespace RecsApp
             {
                 return Guid.Empty;
             }
-        }       
+        }
+        /// <summary>
+        /// Метод настраивает datagridview
+        /// </summary>
         private void SetdgvEstablishments()
         {
             dgvEstablishments.Columns[0].Visible = false;
@@ -256,6 +279,9 @@ namespace RecsApp
         {
             ShowInfoForm((Guid)this.dgvEstablishments.CurrentRow.Cells[0].Value);
         }
+        /// <summary>
+        /// Метод вызывает форму с подробной информацией о заведении
+        /// </summary>
         public void ShowInfoForm(Guid id)
         {
             new InfoForm(id, this.userId).Show();

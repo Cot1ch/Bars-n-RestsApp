@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using System.Drawing;
@@ -68,6 +66,7 @@ namespace RecsApp
             EntryAccount entryAccount = new EntryAccount();
 
             entryAccount.ShowDialog();
+            this.Hide();
         }
     }
 }

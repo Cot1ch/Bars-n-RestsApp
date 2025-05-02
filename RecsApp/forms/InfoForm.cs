@@ -21,7 +21,9 @@ namespace RecsApp
             LoadInfoForm();
             ShowImage();
         }
-
+        /// <summary>
+        /// Метод заполняет текстовые поля, поля ссылки и изображений заведения для отображения информации о нём
+        /// </summary>
         public void LoadInfoForm()
         {
             using (var db = new AppDbContext())
@@ -37,7 +39,9 @@ namespace RecsApp
                 paths = est.PathsToPhoto.Count == 0 ? new List<string>() { "notfound.png" } : est.PathsToPhoto;
             }
         }
-
+        /// <summary>
+        /// Метод передает в picturebox путь к изображению
+        /// </summary>
         public void ShowImage()
         {
             if (paths != null)
