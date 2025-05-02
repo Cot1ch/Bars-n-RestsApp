@@ -249,6 +249,8 @@
             this.Controls.Add(this.labelCategory);
             this.Controls.Add(this.labelLogin);
             this.Controls.Add(this.labelName);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(900, 650);
             this.MinimumSize = new System.Drawing.Size(900, 650);
             this.Name = "AccountForm";
             this.Text = "AccountForm";

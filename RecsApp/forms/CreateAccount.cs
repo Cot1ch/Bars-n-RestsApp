@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace RecsApp.forms
 {
     public partial class CreateAccount : Form
     {
+        private Guid userId;
         public CreateAccount()
         {
             InitializeComponent();
@@ -44,23 +39,25 @@ namespace RecsApp.forms
                     // Создаем нового пользователя
                     var newUser = new User
                     {
+                        user_Id = Guid.NewGuid(),
                         name = name,
                         username = login,
                         password_hash = password
                     };
-
+                    userId = newUser.user_Id;
                     db.Users.Add(newUser);
                     db.SaveChanges();
-
-                    MessageBox.Show("Аккаунт успешно создан.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    richTextBoxCreateName.Clear();
-                    richTextBoxCreateLogin.Clear();
-                    richTextBoxCreatePassword.Clear();
-
-                    new MainForm().Show();
-                    this.Close();
                 }
+
+                MessageBox.Show("Аккаунт успешно создан.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                richTextBoxCreateName.Clear();
+                richTextBoxCreateLogin.Clear();
+                richTextBoxCreatePassword.Clear();
+
+
+                new MainForm(this.userId).Show();
+                this.Close();
             }
             catch (Exception ex)
             {

@@ -16,5 +16,13 @@ namespace RecsApp
         public List<Guid> categoty_id { get; set; }
         public List<Guid> food_id { get; set; }
         public List<Guid> average_check {  get; set; }
+
+        public User()
+        {
+            type_id = new List<Guid>();
+            categoty_id = new List<Guid>();
+            food_id = new List<Guid>();
+            average_check = new List<Guid>();
+        }
     }
 }

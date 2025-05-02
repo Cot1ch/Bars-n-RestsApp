@@ -20,7 +20,7 @@ namespace RecsApp.forms
 
         private void buttonEntry_Click(object sender, EventArgs e)
         {
-            new MainForm().Show();
+            //new MainForm().Show();
             this.Close();
         }
 
@@ -67,6 +67,11 @@ namespace RecsApp.forms
 
                 button.Region = new Region(path);
             }
+        }
+
+        private void EntryAccount_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -12,10 +12,6 @@ namespace RecsApp
     {
         public Form1()
         {
-            using (var db = new AppDbContext())
-            {
-                db.Database.Delete();
-            }
             InitializeComponent();
         }
 
@@ -24,6 +20,7 @@ namespace RecsApp
             CreateAccount createAccount = new CreateAccount();
 
             createAccount.ShowDialog();
+            this.Hide();
         }
 
         private void buttonCreateAccount_Paint(object sender, PaintEventArgs e)

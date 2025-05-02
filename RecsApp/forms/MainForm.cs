@@ -9,11 +9,54 @@ namespace RecsApp
 {
     public partial class MainForm : Form
     {
-        public MainForm()
+        private Guid userId;
+        public MainForm(Guid usId)
         {
             InitializeComponent();
+            userId = usId;
         }
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            AddTypesToDB();
+            AddCategoryesToDB();
+            AddFoodToDB();
+            AddAveragesToDB();
 
+            AddEstablishmentsToDB();
+
+            LoadForm();
+            SetdgvEstablishments();
+        }
+        public void LoadForm()
+        {
+            using (var db = new AppDbContext())
+            {
+                var user = db.Users.Find(userId);
+                var ests = db.Establishments.ToList();
+
+                if (user.type_id != null && user.type_id.Count != 0)
+                {
+                    ests = (
+                        from est in db.Establishments
+                        where user.type_id.Contains(est.Type)
+                        //where est.Category.Any(x => user.categoty_id.Contains(x))
+                        select est).ToList();
+                }
+
+                var finalEsts = from e in ests
+                                join t in db.Types on e.Type equals t.Id
+                                select new { e.Id, Название = e.Name, Тип = t.Title, Рейтинг = e.Rating };
+
+                dgvEstablishments.DataSource = finalEsts.ToList();
+            }
+            for (int i = 0; i < dgvEstablishments.Rows.Count; i++)
+            {
+                dgvEstablishments.Rows[i].DefaultCellStyle.BackColor =
+                    System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+                dgvEstablishments.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
+                dgvEstablishments.Rows[i].DefaultCellStyle.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            }
+        }
         public void AddTypesToDB()
         {
             string path = $"{Directory.GetCurrentDirectory()}..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
@@ -28,7 +71,6 @@ namespace RecsApp
 
             using (var db = new AppDbContext())
             {
-                db.Database.Delete();
                 foreach (var row in ws)
                 {
                     if (Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidType) && db.Types.Find(guidType) == null)
@@ -81,7 +123,7 @@ namespace RecsApp
             {
                 foreach (var row in ws)
                 {
-                    if (Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidFood) && db.Categories.Find(guidFood) == null)
+                    if (Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidFood) && db.Foods.Find(guidFood) == null)
                     {
                         db.Foods.Add(new EstFood() { Id = guidFood, Title = row.Cell(1).Value.ToString() });
                     }
@@ -105,7 +147,7 @@ namespace RecsApp
             {
                 foreach (var row in ws)
                 {
-                    if (Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidAv) && db.Categories.Find(guidAv) == null)
+                    if (Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidAv) && db.AverageChecks.Find(guidAv) == null)
                     {
                         db.AverageChecks.Add(new EstAverageCheck() { Id = guidAv, Title = row.Cell(1).Value.ToString() });
                     }
@@ -184,7 +226,6 @@ namespace RecsApp
                 db.SaveChanges();
             }
         }
-
         public Guid GetGuidFromString(string strGuid)
         {
             if (Guid.TryParse(strGuid, out Guid guid))
@@ -196,53 +237,6 @@ namespace RecsApp
                 return Guid.Empty;
             }
         }       
-
-        public void ShowInfoForm(Guid id)
-        {
-            new InfoForm(id).Show();
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            AddTypesToDB();
-            AddCategoryesToDB();
-            AddFoodToDB();
-            AddAveragesToDB();
-
-            AddEstablishmentsToDB();
-
-            LoadForm();
-            SetdgvEstablishments();
-        }
-        public void LoadForm()
-        {
-            using (var db = new AppDbContext())
-            {
-                var ests = db.Establishments.ToList();
-
-                //if (types.Count != 0 || categs.Count != 0)
-                //{
-                //    ests = (
-                //        from est in db.Establishments
-                //        where types.Contains(est.Type)
-                //        where categs.Contains(est.Category)
-                //        select est).ToList();
-                //}
-
-                var finalEsts = from e in ests
-                           join t in db.Types on e.Type equals t.Id
-                           select new { e.Id, Название = e.Name, Тип = t.Title, Рейтинг = e.Rating };
-
-                dgvEstablishments.DataSource = finalEsts.ToList();
-            }
-            for (int i = 0; i < dgvEstablishments.Rows.Count; i++)
-            {
-                dgvEstablishments.Rows[i].DefaultCellStyle.BackColor =
-                    System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-                dgvEstablishments.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-                dgvEstablishments.Rows[i].DefaultCellStyle.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            }
-        }
         private void SetdgvEstablishments()
         {
             dgvEstablishments.Columns[0].Visible = false;
@@ -255,12 +249,15 @@ namespace RecsApp
         }
         private void btnAccount_Click(object sender, EventArgs e)
         {
-            new AccountForm().Show();
+            new AccountForm(this.userId).Show();
         }
-
         private void dgvEstablishments_DoubleClick(object sender, EventArgs e)
         {
             ShowInfoForm((Guid)this.dgvEstablishments.CurrentRow.Cells[0].Value);
+        }
+        public void ShowInfoForm(Guid id)
+        {
+            new InfoForm(id, this.userId).Show();
         }
     }
 }

@@ -10,7 +10,7 @@ namespace RecsApp
         private Establishment est;
         private int imageInd = 0;
         private List<string> paths;
-        public InfoForm(Guid EstId)
+        public InfoForm(Guid EstId, Guid userId)
         {
             InitializeComponent();
             est = new AppDbContext().Establishments.Find(EstId);
