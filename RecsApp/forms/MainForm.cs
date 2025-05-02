@@ -9,7 +9,7 @@ namespace RecsApp
 {
     public partial class MainForm : Form
     {
-        private Guid userId;
+        public Guid userId;
         public MainForm(Guid usId)
         {
             InitializeComponent();
@@ -249,7 +249,7 @@ namespace RecsApp
         }
         private void btnAccount_Click(object sender, EventArgs e)
         {
-            new AccountForm(this.userId).Show();
+            new AccountForm(this.userId, this).Show();
         }
         private void dgvEstablishments_DoubleClick(object sender, EventArgs e)
         {

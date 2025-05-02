@@ -9,10 +9,12 @@ namespace RecsApp
     public partial class AccountForm : Form
     {
         private Guid userId;
-        public AccountForm(Guid usId)
+        private MainForm mainForm;
+        public AccountForm(Guid usId, MainForm mainForm)
         {
             InitializeComponent();
             userId = usId;
+            this.mainForm = mainForm;
 
             using (var db = new AppDbContext())
             {
@@ -40,7 +42,7 @@ namespace RecsApp
             using (var db = new AppDbContext())
             {
 
-                var user = db.Users.Find(userId);
+                var user = db.Users.FirstOrDefault();
                 foreach (var checkedItem in this.checkedListBoxType.CheckedItems)
                 {
                     var types = (from t in db.Types
@@ -49,14 +51,12 @@ namespace RecsApp
 
                     if (types.Count != 0)
                     {
-                        user.type_id.Add(types[0].Id);
+                        user.type_id.Add(types[0].Id);                        
                     }
                 }
-                db.Users.Remove(db.Users.Find(userId));
-                db.Dispose();
-                db.Users.Add(user);
                 db.SaveChanges();
             }
+
             this.Close();
         }
 
@@ -78,10 +78,10 @@ namespace RecsApp
                 {
                     return;
                 }
-
+                
                 foreach (var type in user.type_id.ToList())
                 {
-                    checkedListBoxType.SetItemChecked(this.checkedListBoxType.Items.IndexOf(db.Types.Find(type).Title) ,true);
+                    checkedListBoxType.SetItemChecked(this.checkedListBoxType.Items.IndexOf(db.Types.Find(type).Title), true);
                 }
             }
         }
