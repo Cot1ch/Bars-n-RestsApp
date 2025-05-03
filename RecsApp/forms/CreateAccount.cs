@@ -36,7 +36,6 @@ namespace RecsApp.forms
                         return;
                     }
 
-                    // Создаем нового пользователя
                     var newUser = new User
                     {
                         user_Id = Guid.NewGuid(),
@@ -54,7 +53,6 @@ namespace RecsApp.forms
                 richTextBoxCreateName.Clear();
                 richTextBoxCreateLogin.Clear();
                 richTextBoxCreatePassword.Clear();
-
 
                 new MainForm(this.userId).Show();
                 this.Close();
