@@ -155,6 +155,7 @@
             this.textBoxEstDescription.ReadOnly = true;
             this.textBoxEstDescription.Size = new System.Drawing.Size(363, 304);
             this.textBoxEstDescription.TabIndex = 26;
+            this.textBoxEstDescription.TabStop = false;
             // 
             // textBoxEstAddress
             // 
@@ -169,6 +170,7 @@
             this.textBoxEstAddress.ReadOnly = true;
             this.textBoxEstAddress.Size = new System.Drawing.Size(363, 16);
             this.textBoxEstAddress.TabIndex = 25;
+            this.textBoxEstAddress.TabStop = false;
             // 
             // textBoxEstRating
             // 
@@ -183,6 +185,7 @@
             this.textBoxEstRating.ReadOnly = true;
             this.textBoxEstRating.Size = new System.Drawing.Size(55, 21);
             this.textBoxEstRating.TabIndex = 24;
+            this.textBoxEstRating.TabStop = false;
             // 
             // textBoxEstType
             // 
@@ -197,6 +200,7 @@
             this.textBoxEstType.ReadOnly = true;
             this.textBoxEstType.Size = new System.Drawing.Size(222, 16);
             this.textBoxEstType.TabIndex = 23;
+            this.textBoxEstType.TabStop = false;
             // 
             // textBoxEstName
             // 
@@ -211,6 +215,7 @@
             this.textBoxEstName.ReadOnly = true;
             this.textBoxEstName.Size = new System.Drawing.Size(363, 16);
             this.textBoxEstName.TabIndex = 22;
+            this.textBoxEstName.TabStop = false;
             // 
             // btnNextImage
             // 
@@ -223,6 +228,7 @@
             this.btnNextImage.TabIndex = 21;
             this.btnNextImage.Text = ">";
             this.btnNextImage.UseVisualStyleBackColor = false;
+            this.btnNextImage.Click += new System.EventHandler(this.btnNextImage_Click);
             // 
             // btnPrevImage
             // 
@@ -235,6 +241,7 @@
             this.btnPrevImage.TabIndex = 20;
             this.btnPrevImage.Text = "<";
             this.btnPrevImage.UseVisualStyleBackColor = false;
+            this.btnPrevImage.Click += new System.EventHandler(this.btnPrevImage_Click);
             // 
             // pictureBoxEstImage
             // 
@@ -280,6 +287,7 @@
             this.textBoxFood.ReadOnly = true;
             this.textBoxFood.Size = new System.Drawing.Size(301, 16);
             this.textBoxFood.TabIndex = 36;
+            this.textBoxFood.TabStop = false;
             // 
             // textBoxAverageCheck
             // 
@@ -292,6 +300,7 @@
             this.textBoxAverageCheck.ReadOnly = true;
             this.textBoxAverageCheck.Size = new System.Drawing.Size(88, 21);
             this.textBoxAverageCheck.TabIndex = 37;
+            this.textBoxAverageCheck.TabStop = false;
             // 
             // labelDescription
             // 
@@ -331,9 +340,11 @@
             this.Controls.Add(this.btnNextImage);
             this.Controls.Add(this.btnPrevImage);
             this.Controls.Add(this.pictureBoxEstImage);
+            this.KeyPreview = true;
             this.Name = "InfoForm";
             this.Text = "InfoForm";
             this.Load += new System.EventHandler(this.InfoForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InfoForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEstImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

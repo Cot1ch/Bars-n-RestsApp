@@ -48,23 +48,50 @@ namespace RecsApp
             {
                 pictureBoxEstImage.ImageLocation = $"{Directory.GetCurrentDirectory()}\\..\\..\\images\\{paths[imageInd]}";
             }
-            return;
         }
 
         private void btnPrevImage_Click(object sender, EventArgs e)
+        {
+            PrevImage();
+        }
+
+        private void btnNextImage_Click(object sender, EventArgs e)
+        {
+            NextImage();
+        }
+        private void linkLabelToWebSite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(this.linkLabelToWebSite.Text);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Ссылка отсутствует");
+            }
+        }
+
+        private void NextImage()
+        {
+            imageInd = (imageInd + 1) % paths.Count;
+            ShowImage();
+        }
+        private void PrevImage()
         {
             imageInd = (imageInd - 1 + paths.Count) % paths.Count;
             ShowImage();
         }
 
-        private void btnNextImage_Click(object sender, EventArgs e)
+        private void InfoForm_KeyDown(object sender, KeyEventArgs e)
         {
-            imageInd = (imageInd + 1) % paths.Count;
-            ShowImage();
-        }
-        private void linkLabelToWebSite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start(this.linkLabelToWebSite.Text);
+            if (e.KeyCode == Keys.Left)
+            {
+                PrevImage();
+            }
+            if (e.KeyCode == Keys.Right)
+            {
+                NextImage();
+            }
         }
     }
 }
