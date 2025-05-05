@@ -24,5 +24,15 @@ namespace RecsApp
             food_id = new List<Guid>();
             average_check = new List<Guid>();
         }
+        public void AddType(Guid type)
+        {
+            using (var db = new AppDbContext())
+            {
+                if (db.Types.Find(type) != null)
+                {
+                    this.type_id.Add(type);
+                }
+            }
+        }
     }
 }

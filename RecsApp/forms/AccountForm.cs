@@ -29,11 +29,13 @@ namespace RecsApp
 
                     if (types.Count != 0)
                     {
-                        user.type_id.Add(types[0].Id);                        
+                        user.AddType(types[0].Id);                        
                     }
                 }
                 user.name = this.textBoxName.Text;
+                //
                 mainForm.typeIds = user.type_id;
+                //
                 db.SaveChanges();
             }
             mainForm.LoadForm();
@@ -75,7 +77,9 @@ namespace RecsApp
                 {
                     return;
                 }
+                //
                 user.type_id = this.mainForm.typeIds == null? new List<Guid>() : this.mainForm.typeIds;
+                //
                 foreach (var type in user.type_id)
                 {
                     checkedListBoxType.SetItemChecked(this.checkedListBoxType.Items.IndexOf(db.Types.Find(type).Title), true);

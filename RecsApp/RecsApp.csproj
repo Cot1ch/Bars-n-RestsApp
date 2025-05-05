@@ -95,6 +95,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="classes\AddFromExcel.cs" />
     <Compile Include="classes\Establishment.cs" />
     <Compile Include="classes\EstAverageCheck.cs" />
     <Compile Include="classes\EstCategory.cs" />
