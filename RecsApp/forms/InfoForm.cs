@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
+using System.Data.Entity;
 
 namespace RecsApp
 {
@@ -13,7 +15,12 @@ namespace RecsApp
         public InfoForm(Guid EstId, Guid userId)
         {
             InitializeComponent();
-            est = new AppDbContext().Establishments.Find(EstId);
+            using (var db = new AppDbContext()) 
+            {
+                est = (from e in db.Establishments.Include(e => e.Type).Include(e => e.Categories).Include(e => e.Foods).Include(e => e.Averages)
+                       where e.Id == EstId
+                      select e).First();
+            }
         }
 
         private void InfoForm_Load(object sender, EventArgs e)
@@ -31,7 +38,7 @@ namespace RecsApp
                 this.textBoxEstName.Text = est.Name;
                 this.textBoxEstDescription.Text = est.Description;
 
-                this.textBoxEstType.Text = db.Types.Find(est.Type).Title;
+                this.textBoxEstType.Text = est.Type.Title;
                 this.textBoxEstRating.Text = $"{est.Rating:F1}";
                 this.textBoxEstAddress.Text = est.Address.ToString();
                 this.linkLabelToWebSite.Text = (est.Link != string.Empty) ? est.Link : "ссылка отсутствует";

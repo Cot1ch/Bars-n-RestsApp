@@ -11,6 +11,7 @@ namespace RecsApp
 
         public EstType()
         {
+            Id = Guid.NewGuid();
         }
     }
 }

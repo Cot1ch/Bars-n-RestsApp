@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Data.Entity;
 
 namespace RecsApp
 {
     public partial class MainForm : Form
     {
         public Guid userId;
-        public List<Guid> typeIds;
         public MainForm(Guid usId)
         {
             InitializeComponent();
@@ -33,22 +33,47 @@ namespace RecsApp
         {
             using (var db = new AppDbContext())
             {
-                var user = db.Users.Find(userId);
-                //
-                user.type_id = this.typeIds;
-                //
+                var user =
+                    (from u in db.Users.Include(u => u.est_types).Include(u => u.est_categories)
+                    where u.user_Id == userId
+                    select u).First();
                 var ests = db.Establishments.ToList();
-
-                if (user.type_id != null && user.type_id.Count != 0)
+                var types = user.est_types.Select(t => t.Id).ToList();
+                var categories = user.est_categories.Select(c => c.Id).ToList();
+                var foods = user.est_foods.Select(f => f.Id).ToList();
+                var averages = user.est_averages.Select(a => a.Id).ToList();
+                
+                if (user.est_types != null && user.est_types.Count != 0)
                 {
                     ests = (
-                        from est in db.Establishments
-                        where user.type_id.Contains(est.Type)
+                        from est in db.Establishments.Include(e => e.Type).Include(e => e.Categories).Include(e => e.Foods).Include(e => e.Averages)
+                        where types.Contains(est.Type.Id)
+                        select est).ToList();
+                }
+                if (user.est_categories != null && user.est_categories.Count != 0)
+                {
+                    ests = (
+                        from est in db.Establishments.Include(e => e.Type).Include(e => e.Categories).Include(e => e.Foods).Include(e => e.Averages)
+                        where est.Categories.Select(cat => cat.Id).Any(c => categories.Contains(c))
+                        select est).ToList();
+                }
+                if (user.est_foods != null && user.est_foods.Count != 0)
+                {
+                    ests = (
+                        from est in db.Establishments.Include(e => e.Type).Include(e => e.Categories).Include(e => e.Foods).Include(e => e.Averages)
+                        where est.Foods.Any(f => user.est_foods.Contains(f))
+                        select est).ToList();
+                }
+                if (user.est_averages != null && user.est_averages.Count != 0)
+                {
+                    ests = (
+                        from est in db.Establishments.Include(e => e.Type).Include(e => e.Categories).Include(e => e.Foods).Include(e => e.Averages)
+                        where est.Averages.Any(f => user.est_averages.Contains(f))
                         select est).ToList();
                 }
 
                 var finalEsts = from e in ests
-                                join t in db.Types on e.Type equals t.Id
+                                join t in db.Types on e.Type equals t
                                 select new { e.Id, Название = e.Name, Тип = t.Title, Рейтинг = e.Rating };
 
                 dgvEstablishments.DataSource = finalEsts.ToList();

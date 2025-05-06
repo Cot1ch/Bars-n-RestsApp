@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using System.Data.Entity;
 using System.Collections.Generic;
 
 namespace RecsApp
@@ -20,7 +21,12 @@ namespace RecsApp
         {
             using (var db = new AppDbContext())
             {
-                var user = db.Users.Find(userId);
+                var user = (
+                    from u in db.Users.Include(u => u.est_types).Include(u => u.est_categories).Include(u => u.est_foods).Include(u => u.est_averages)
+                    where u.user_Id == userId
+                    select u).First();
+
+                user.est_types = new List<EstType>();
                 foreach (var checkedItem in this.checkedListBoxType.CheckedItems)
                 {
                     var types = (from t in db.Types
@@ -29,13 +35,42 @@ namespace RecsApp
 
                     if (types.Count != 0)
                     {
-                        user.AddType(types[0].Id);                        
+                        user.est_types.Add(types.First());                        
                     }
                 }
+
+                user.est_categories = new List<EstCategory>();
+                foreach (var checkedItem in this.checkedListBoxCategory.CheckedItems)
+                {
+                    var categories = (from c in db.Categories
+                                      where c.Title == checkedItem.ToString()
+                                      select c).ToList();
+
+
+                    user.est_categories.Add(categories.First());
+                }
+
+                user.est_foods = new List<EstFood>();
+                foreach (var checkedItem in this.checkedListBoxFood.CheckedItems)
+                {
+                    var food = (from f in db.Foods
+                                where f.Title == checkedItem.ToString()
+                                select f).ToList();
+
+
+                    user.est_foods.Add(food.First());
+                }
+
+                user.est_averages = new List<EstAverageCheck>();
+                foreach (var checkedItem in this.checkedListBoxAverage.CheckedItems)
+                {
+                    var averages = (from ac in db.AverageChecks
+                                    where ac.Title == checkedItem.ToString()
+                                    select ac).ToList();
+
+                    user.est_averages.Add(averages.First());
+                }
                 user.name = this.textBoxName.Text;
-                //
-                mainForm.typeIds = user.type_id;
-                //
                 db.SaveChanges();
             }
             mainForm.LoadForm();
@@ -73,16 +108,26 @@ namespace RecsApp
                 this.textBoxName.Text = user.name;
                 this.textBox2.Text = user.username;
 
-                if (user.type_id == null)
+                if (user.est_types == null)
                 {
                     return;
                 }
-                //
-                user.type_id = this.mainForm.typeIds == null? new List<Guid>() : this.mainForm.typeIds;
-                //
-                foreach (var type in user.type_id)
+
+                foreach (var type in user.est_types)
                 {
-                    checkedListBoxType.SetItemChecked(this.checkedListBoxType.Items.IndexOf(db.Types.Find(type).Title), true);
+                    checkedListBoxType.SetItemChecked(this.checkedListBoxType.Items.IndexOf(type.Title), true);
+                }
+                foreach (var cat in user.est_categories)
+                {
+                    checkedListBoxCategory.SetItemChecked(this.checkedListBoxCategory.Items.IndexOf(cat.Title), true);
+                }
+                foreach (var food in user.est_foods)
+                {
+                    checkedListBoxType.SetItemChecked(this.checkedListBoxFood.Items.IndexOf(food.Title), true);
+                }
+                foreach (var average in user.est_averages)
+                {
+                    checkedListBoxAverage.SetItemChecked(this.checkedListBoxAverage.Items.IndexOf(average.Title), true);
                 }
             }
         }

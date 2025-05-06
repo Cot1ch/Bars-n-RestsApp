@@ -41,7 +41,7 @@ namespace RecsApp
             }
         }
         /// <summary>
-        /// Метод загружает ккатегории заведений из Excel файла
+        /// Метод загружает категории заведений из Excel файла
         /// </summary>
         public static void AddCategoryesToDB()
         {
@@ -155,7 +155,7 @@ namespace RecsApp
                     string name = row.Cell(1).Value.ToString();
                     string description = row.Cell(2).Value.ToString();
                     Guid type = GetTypeFromTable(wb, row.Cell(3).Value.ToString());
-                    List<Guid> categories = GetSmthFromTable(wb, "Категории", row.Cell(4).Value.ToString());
+                    List<Guid> Categories = GetSmthFromTable(wb, "Категории", row.Cell(4).Value.ToString());
                     string address = row.Cell(5).Value.ToString();
                     double rating = double.TryParse(row.Cell(6).Value.ToString().Replace('.', ','), out double rat) ? rat : 0;
                     if (rating > 5)
@@ -170,7 +170,7 @@ namespace RecsApp
                     List<string> pathsToPhoto = row.Cell(8).Value.ToString().Split(';').ToList();
 
                     if (string.IsNullOrWhiteSpace(name) || string.IsNullOrEmpty(description) ||
-                        type == Guid.Empty || categories.Count == 0 || categories.Any(x => x == Guid.Empty) || string.IsNullOrEmpty(address))
+                        type == Guid.Empty || Categories.Count == 0 || Categories.Any(x => x == Guid.Empty) || string.IsNullOrEmpty(address))
                     {
                         IsEmpty = true;
                     }
@@ -185,8 +185,33 @@ namespace RecsApp
                     {
                         continue;
                     }
+                    List<Guid> food = GetSmthFromTable(wb, "Кухня", row.Cell(4).Value.ToString());
+                    List<Guid> averages = GetSmthFromTable(wb, "Средний чек", row.Cell(4).Value.ToString());
 
-                    db.Establishments.Add(new Establishment(name, description, categories, type, rating, address, link, pathsToPhoto));
+                    var e = new Establishment()
+                    {
+                        Name = name,
+                        Description = description,
+                        Type = db.Types.Find(type),
+                        Address = address,
+                        Rating = rating,
+                        Link = link,
+                        PathsToPhoto = pathsToPhoto
+                    };
+                    foreach (var c in Categories)
+                    {
+                        e.Categories.Add(db.Categories.Find(c));
+                    }
+                    foreach (var f in food)
+                    {
+                        e.Foods.Add(db.Foods.Find(f));
+                    }
+                    foreach (var a in averages)
+                    {
+                        e.Averages.Add(db.AverageChecks.Find(a));
+                    }
+                    db.Establishments.Add(e);
+
                 }
                 if (IsEmpty)
                 {
