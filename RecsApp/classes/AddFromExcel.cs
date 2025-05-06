@@ -9,6 +9,9 @@ namespace RecsApp
 {
     public static class AddFromExcel
     {
+        /// <summary>
+        /// Метод загружает типы заведений из Excel файла
+        /// </summary>
         public static void AddTypesToDB()
         {
             string path = $"{Directory.GetCurrentDirectory()}..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
@@ -25,6 +28,10 @@ namespace RecsApp
             {
                 foreach (var row in ws)
                 {
+                    if (row.RowNumber() == 1)
+                    {
+                        continue;
+                    }
                     if (Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidType) && db.Types.Find(guidType) == null)
                     {
                         db.Types.Add(new EstType() { Id = guidType, Title = row.Cell(1).Value.ToString() });
@@ -196,9 +203,9 @@ namespace RecsApp
                 {
                     continue;
                 }
-                if (row.Cell(2).Value.ToString() == type && new AppDbContext().Types.Find(GetGuidFromString(row.Cell(1).Value.ToString())) != null)
+                if (row.Cell(1).Value.ToString() == type && new AppDbContext().Types.Find(GetGuidFromString(row.Cell(2).Value.ToString())) != null)
                 {
-                    return GetGuidFromString(row.Cell(1).Value.ToString());
+                    return GetGuidFromString(row.Cell(2).Value.ToString());
                 }
             }
 

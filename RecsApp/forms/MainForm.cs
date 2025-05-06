@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using ClosedXML.Excel;
-using DocumentFormat.OpenXml.Office2016.Presentation.Command;
 
 namespace RecsApp
 {
@@ -64,9 +61,6 @@ namespace RecsApp
                 dgvEstablishments.Rows[i].DefaultCellStyle.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             }
         }
-        /// <summary>
-        /// Метод загружает типы заведений из Excel файла
-        /// </summary>
 
         /// <summary>
         /// Метод настраивает datagridview
