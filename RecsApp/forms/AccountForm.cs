@@ -124,7 +124,7 @@ namespace RecsApp
                 }
                 foreach (var food in user.est_foods)
                 {
-                    checkedListBoxType.SetItemChecked(this.checkedListBoxFood.Items.IndexOf(food.Title), true);
+                    checkedListBoxFood.SetItemChecked(this.checkedListBoxFood.Items.IndexOf(food.Title), true);
                 }
                 foreach (var average in user.est_averages)
                 {

@@ -40,7 +40,7 @@ namespace RecsApp
                     (from u in db.Users.Include(u => u.est_types).Include(u => u.est_categories)
                     where u.user_Id == userId
                     select u).First();
-                var ests = db.Establishments.ToList();
+                var ests = db.Establishments.Include(e => e.Type).Include(e => e.Categories).Include(e => e.Foods).Include(e => e.Averages).ToList();
                 var types = user.est_types.Select(t => t.Id).ToList();
                 var categories = user.est_categories.Select(c => c.Id).ToList();
                 var foods = user.est_foods.Select(f => f.Id).ToList();
@@ -49,28 +49,28 @@ namespace RecsApp
                 if (user.est_types != null && user.est_types.Count != 0)
                 {
                     ests = (
-                        from est in db.Establishments.Include(e => e.Type).Include(e => e.Categories).Include(e => e.Foods).Include(e => e.Averages)
+                        from est in ests
                         where types.Contains(est.Type.Id)
                         select est).ToList();
                 }
                 if (user.est_categories != null && user.est_categories.Count != 0)
                 {
                     ests = (
-                        from est in db.Establishments.Include(e => e.Type).Include(e => e.Categories).Include(e => e.Foods).Include(e => e.Averages)
+                        from est in ests
                         where est.Categories.Select(cat => cat.Id).Any(c => categories.Contains(c))
                         select est).ToList();
                 }
                 if (user.est_foods != null && user.est_foods.Count != 0)
                 {
                     ests = (
-                        from est in db.Establishments.Include(e => e.Type).Include(e => e.Categories).Include(e => e.Foods).Include(e => e.Averages)
+                        from est in ests
                         where est.Foods.Any(f => user.est_foods.Contains(f))
                         select est).ToList();
                 }
                 if (user.est_averages != null && user.est_averages.Count != 0)
                 {
                     ests = (
-                        from est in db.Establishments.Include(e => e.Type).Include(e => e.Categories).Include(e => e.Foods).Include(e => e.Averages)
+                        from est in ests
                         where est.Averages.Any(f => user.est_averages.Contains(f))
                         select est).ToList();
                 }
