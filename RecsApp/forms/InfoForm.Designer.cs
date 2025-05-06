@@ -226,6 +226,7 @@
             this.btnNextImage.Name = "btnNextImage";
             this.btnNextImage.Size = new System.Drawing.Size(40, 40);
             this.btnNextImage.TabIndex = 21;
+            this.btnNextImage.TabStop = false;
             this.btnNextImage.Text = ">";
             this.btnNextImage.UseVisualStyleBackColor = false;
             this.btnNextImage.Click += new System.EventHandler(this.btnNextImage_Click);
@@ -239,6 +240,7 @@
             this.btnPrevImage.Name = "btnPrevImage";
             this.btnPrevImage.Size = new System.Drawing.Size(40, 40);
             this.btnPrevImage.TabIndex = 20;
+            this.btnPrevImage.TabStop = false;
             this.btnPrevImage.Text = "<";
             this.btnPrevImage.UseVisualStyleBackColor = false;
             this.btnPrevImage.Click += new System.EventHandler(this.btnPrevImage_Click);

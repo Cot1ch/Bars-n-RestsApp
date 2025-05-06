@@ -71,6 +71,7 @@ namespace RecsApp
                     user.est_averages.Add(averages.First());
                 }
                 user.name = this.textBoxName.Text;
+                mainForm.IsRatingMore4nHalf = this.checkBoxRating.Checked;
                 db.SaveChanges();
             }
             mainForm.LoadForm();

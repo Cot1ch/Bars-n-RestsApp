@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using System.Data.Entity;
+using DocumentFormat.OpenXml.Presentation;
 
 namespace RecsApp
 {
     public partial class MainForm : Form
     {
         public Guid userId;
+        public bool IsRatingMore4nHalf = false;
+        
         public MainForm(Guid usId)
         {
             InitializeComponent();
@@ -69,6 +72,13 @@ namespace RecsApp
                     ests = (
                         from est in db.Establishments.Include(e => e.Type).Include(e => e.Categories).Include(e => e.Foods).Include(e => e.Averages)
                         where est.Averages.Any(f => user.est_averages.Contains(f))
+                        select est).ToList();
+                }
+                if (IsRatingMore4nHalf)
+                {
+                    ests = (
+                        from est in ests
+                        where est.Rating >= 4.5
                         select est).ToList();
                 }
 
