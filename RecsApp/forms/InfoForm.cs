@@ -12,7 +12,7 @@ namespace RecsApp
         private Establishment est;
         private int imageInd = 0;
         private List<string> paths;
-        public InfoForm(Guid EstId, Guid userId)
+        public InfoForm(Guid EstId)
         {
             InitializeComponent();
             using (var db = new AppDbContext()) 
@@ -37,7 +37,7 @@ namespace RecsApp
             {
                 this.textBoxEstName.Text = est.Name;
                 this.textBoxEstDescription.Text = est.Description;
-
+                this.textBoxFood.Text = string.Join(";", est.Foods.Select(f => f.Title).ToList());
                 this.textBoxEstType.Text = est.Type.Title;
                 this.textBoxEstRating.Text = $"{est.Rating:F1}";
                 this.textBoxEstAddress.Text = est.Address.ToString();
@@ -72,9 +72,9 @@ namespace RecsApp
             {
                 System.Diagnostics.Process.Start(this.linkLabelToWebSite.Text);
             }
-            catch (Exception exception)
+            catch 
             {
-                MessageBox.Show(exception.Message, "Ссылка отсутствует");
+                MessageBox.Show("Приносим свои извинения\nУ данного заведения отсутствует сайт :(", "Ссылка отсутствует", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

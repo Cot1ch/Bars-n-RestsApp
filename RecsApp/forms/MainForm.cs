@@ -37,15 +37,15 @@ namespace RecsApp
             using (var db = new AppDbContext())
             {
                 var user =
-                    (from u in db.Users.Include(u => u.est_types).Include(u => u.est_categories)
-                    where u.user_Id == userId
+                    (from u in db.Users.Include(u => u.est_types).Include(u => u.est_categories).Include(u => u.est_foods).Include(u => u.est_averages)
+                     where u.user_Id == userId
                     select u).First();
                 var ests = db.Establishments.Include(e => e.Type).Include(e => e.Categories).Include(e => e.Foods).Include(e => e.Averages).ToList();
                 var types = user.est_types.Select(t => t.Id).ToList();
                 var categories = user.est_categories.Select(c => c.Id).ToList();
                 var foods = user.est_foods.Select(f => f.Id).ToList();
-                var averages = user.est_averages.Select(a => a.Id).ToList();
-                
+                var averages = user.est_averages.Select(a => a.Id).ToList();                
+
                 if (user.est_types != null && user.est_types.Count != 0)
                 {
                     ests = (
@@ -64,7 +64,7 @@ namespace RecsApp
                 {
                     ests = (
                         from est in ests
-                        where est.Foods.Any(f => user.est_foods.Contains(f))
+                        where est.Foods.Select(food => food.Id).Any(c => foods.Contains(c))
                         select est).ToList();
                 }
                 if (user.est_averages != null && user.est_averages.Count != 0)
@@ -123,7 +123,7 @@ namespace RecsApp
         /// </summary>
         public void ShowInfoForm(Guid id)
         {
-            new InfoForm(id, this.userId).Show();
+            new InfoForm(id).Show();
         }
     }
 }

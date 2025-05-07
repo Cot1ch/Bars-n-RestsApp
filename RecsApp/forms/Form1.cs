@@ -18,7 +18,7 @@ namespace RecsApp
             CreateAccount createAccount = new CreateAccount();
 
             createAccount.ShowDialog();
-            this.Hide();
+            this.MinimizeBox = true;
         }
 
         private void buttonCreateAccount_Paint(object sender, PaintEventArgs e)
@@ -66,7 +66,7 @@ namespace RecsApp
             EntryAccount entryAccount = new EntryAccount();
 
             entryAccount.ShowDialog();
-            this.Hide();
+            this.MinimizeBox = true;
         }
     }
 }

@@ -168,6 +168,8 @@ namespace RecsApp
                     }
                     string link = row.Cell(7).Value.ToString();
                     List<string> pathsToPhoto = row.Cell(8).Value.ToString().Split(';').ToList();
+                    List<Guid> Food = GetSmthFromTable(wb, "Кухня", row.Cell(9).Value.ToString());
+                    List<Guid> Averages = GetSmthFromTable(wb, "Средний чек", row.Cell(10).Value.ToString());
 
                     if (string.IsNullOrWhiteSpace(name) || string.IsNullOrEmpty(description) ||
                         type == Guid.Empty || Categories.Count == 0 || Categories.Any(x => x == Guid.Empty) || string.IsNullOrEmpty(address))
@@ -185,8 +187,6 @@ namespace RecsApp
                     {
                         continue;
                     }
-                    List<Guid> food = GetSmthFromTable(wb, "Кухня", row.Cell(4).Value.ToString());
-                    List<Guid> averages = GetSmthFromTable(wb, "Средний чек", row.Cell(4).Value.ToString());
 
                     var e = new Establishment()
                     {
@@ -198,15 +198,16 @@ namespace RecsApp
                         Link = link,
                         PathsToPhoto = pathsToPhoto
                     };
+
                     foreach (var c in Categories)
                     {
                         e.Categories.Add(db.Categories.Find(c));
                     }
-                    foreach (var f in food)
+                    foreach (var f in Food)
                     {
                         e.Foods.Add(db.Foods.Find(f));
                     }
-                    foreach (var a in averages)
+                    foreach (var a in Averages)
                     {
                         e.Averages.Add(db.AverageChecks.Find(a));
                     }
@@ -261,7 +262,7 @@ namespace RecsApp
                 {
                     continue;
                 }
-                guids[row.Cell(1).Value.ToString()] = GetGuidFromString(row.Cell(2).Value.ToString());
+                guids[row.Cell(1).Value.ToString()] = GetGuidFromString(row.Cell(2).Value.ToString());                    
             }
 
             return guids;
