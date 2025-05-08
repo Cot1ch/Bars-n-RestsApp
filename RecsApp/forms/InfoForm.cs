@@ -47,7 +47,7 @@ namespace RecsApp
                 this.textBoxEstAddress.Text = est.Address.ToString();
                 this.linkLabelToWebSite.Text = (est.Link != string.Empty) ? est.Link : "ссылка отсутствует";
                 this.checkBoxStarred.Checked = db.Users.Find(userId).Favourite.Contains(this.est);
-                paths = est.PathsToPhoto.Count == 0 ? new List<string>() { "notfound.png" } : est.PathsToPhoto;
+                paths = est.PathsToPhoto == string.Empty ? new List<string>() { "notfound.png" } : est.PathsToPhoto.Split(';').ToList();
             }
         }
         /// <summary>
@@ -57,7 +57,14 @@ namespace RecsApp
         {
             if (paths != null)
             {
-                pictureBoxEstImage.ImageLocation = $"{Directory.GetCurrentDirectory()}\\..\\..\\images\\{paths[imageInd]}";
+                if (File.Exists($"{Directory.GetCurrentDirectory()}\\..\\..\\images\\{paths[imageInd]}"))
+                {
+                    pictureBoxEstImage.ImageLocation = $"{Directory.GetCurrentDirectory()}\\..\\..\\images\\{paths[imageInd]}";
+                }
+                else
+                {
+                    pictureBoxEstImage.ImageLocation = $"{Directory.GetCurrentDirectory()}\\..\\..\\images\\notfound.png";
+                }
             }
         }
 

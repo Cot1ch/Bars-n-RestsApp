@@ -27,24 +27,33 @@ namespace RecsApp
             AddFromExcel.AddEstablishmentsToDB();
 
             LoadForm();
-            SetdgvEstablishments();
         }
         /// <summary>
         /// Метод прогружает datagrid со всеми заведениями, подхоядзими под выбранные пункты анкеты
         /// </summary>
         public void LoadForm(bool showOnlyFavourite=false)
         {
+            SetdgvEstablishments(showOnlyFavourite);
+
+            SetdgvMayLike();
+        }
+
+        /// <summary>
+        /// Метод настраивает datagridview всех заведений
+        /// </summary>
+        private void SetdgvEstablishments(bool showOnlyFavourite)
+        {
             using (var db = new AppDbContext())
             {
                 var user =
-                    (from u in db.Users.Include(u => u.est_types).Include(u => u.est_categories).Include(u => u.est_foods).Include(u => u.est_averages).Include(u => u.Favourite)
+                    (from u in db.Users.Include(u => u.est_types).Include(u => u.est_categories).Include(u => u.est_foods).Include(u => u.est_averages).Include(u => u.Favourite).Include(u => u.Hidden)
                      where u.user_Id == userId
-                    select u).First();
+                     select u).First();
                 var ests = db.Establishments.Include(e => e.Type).Include(e => e.Categories).Include(e => e.Foods).Include(e => e.Averages).ToList();
                 var types = user.est_types.Select(t => t.Id).ToList();
                 var categories = user.est_categories.Select(c => c.Id).ToList();
                 var foods = user.est_foods.Select(f => f.Id).ToList();
-                var averages = user.est_averages.Select(a => a.Id).ToList();                
+                var averages = user.est_averages.Select(a => a.Id).ToList();
 
                 if (user.est_types != null && user.est_types.Count != 0)
                 {
@@ -107,13 +116,6 @@ namespace RecsApp
                 dgvEstablishments.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
                 dgvEstablishments.Rows[i].DefaultCellStyle.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             }
-        }
-
-        /// <summary>
-        /// Метод настраивает datagridview
-        /// </summary>
-        private void SetdgvEstablishments()
-        {
             dgvEstablishments.Columns[0].Visible = false;
             dgvEstablishments.RowHeadersVisible = false;
             dgvEstablishments.EnableHeadersVisualStyles = false;
@@ -121,6 +123,46 @@ namespace RecsApp
                     System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));    
             dgvEstablishments.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Verdana", 8, System.Drawing.FontStyle.Bold);
             dgvEstablishments.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
+        }
+        private void SetdgvMayLike()
+        {
+            using (var db = new AppDbContext())
+            {
+                var user =
+                    (from u in db.Users.Include(u => u.Hidden)
+                     where u.user_Id == userId
+                     select u).First();
+                var ests = db.Establishments.Include(e => e.Type).Include(e => e.Categories).Include(e => e.Foods).Include(e => e.Averages).ToList();
+                var simEsts = new List<string>(); 
+
+                foreach (var e in ests)
+                {
+                    foreach (var sim in e.Similar.Split(';'))
+                    {
+                        simEsts.Add(sim);
+                    }
+                }
+
+                var finalEsts = (
+                    from e in db.Establishments
+                    where simEsts.Contains(e.Name) && !user.Hidden.Select(establ => establ.Name).Contains(e.Name)
+                    select new { e.Id, Название = e.Name, Рейтинг = e.Rating }).ToList();
+                dgvMayLike.DataSource = finalEsts;
+                dgvMayLike.Columns[0].Visible = false;
+                dgvMayLike.RowHeadersVisible = false;
+                dgvMayLike.EnableHeadersVisualStyles = false;
+                dgvMayLike.ColumnHeadersDefaultCellStyle.BackColor =
+                        System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+                dgvMayLike.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Verdana", 8, System.Drawing.FontStyle.Bold);
+                dgvMayLike.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
+                for (int i = 0; i < dgvMayLike.Rows.Count; i++)
+                {
+                    dgvMayLike.Rows[i].DefaultCellStyle.BackColor =
+                        System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+                    dgvMayLike.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
+                    dgvMayLike.Rows[i].DefaultCellStyle.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                }
+            }
         }
         private void btnAccount_Click(object sender, EventArgs e)
         {
@@ -152,6 +194,12 @@ namespace RecsApp
             }
             Form form1 = Application.OpenForms[0];
             form1.Show();            
+        }
+
+        private void dgvMayLike_DoubleClick(object sender, EventArgs e)
+        {
+            ShowInfoForm((Guid)this.dgvMayLike.CurrentRow.Cells[0].Value);
+
         }
     }
 }

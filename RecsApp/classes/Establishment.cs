@@ -17,7 +17,9 @@ namespace RecsApp
         public double Rating { get; set; }
         public string Address { get; set; }
         public string Link { get; set; }
-        public List<string> PathsToPhoto { get; set; } = new List<string>();
+        public string PathsToPhoto { get; set; }
+        public string Similar { get; set; }
+        
         public ICollection<User> UsersF {  get; set; }
         public ICollection<User> UsersH {  get; set; }
         public Establishment()

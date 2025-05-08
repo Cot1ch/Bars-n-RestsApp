@@ -36,7 +36,10 @@
             this.radioBtnSortByName = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioBtnSortByRating = new System.Windows.Forms.RadioButton();
+            this.dgvMayLike = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEstablishments)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMayLike)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAccount
@@ -58,9 +61,8 @@
             // 
             // dgvEstablishments
             // 
-            this.dgvEstablishments.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvEstablishments.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dgvEstablishments.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvEstablishments.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.dgvEstablishments.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -70,7 +72,7 @@
             this.dgvEstablishments.ReadOnly = true;
             this.dgvEstablishments.RowHeadersWidth = 51;
             this.dgvEstablishments.RowTemplate.Height = 24;
-            this.dgvEstablishments.Size = new System.Drawing.Size(601, 540);
+            this.dgvEstablishments.Size = new System.Drawing.Size(483, 540);
             this.dgvEstablishments.TabIndex = 20;
             this.dgvEstablishments.DoubleClick += new System.EventHandler(this.dgvEstablishments_DoubleClick);
             // 
@@ -91,7 +93,7 @@
             this.labelSorting.AutoSize = true;
             this.labelSorting.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold);
             this.labelSorting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelSorting.Location = new System.Drawing.Point(662, 51);
+            this.labelSorting.Location = new System.Drawing.Point(511, 51);
             this.labelSorting.Name = "labelSorting";
             this.labelSorting.Size = new System.Drawing.Size(198, 18);
             this.labelSorting.TabIndex = 22;
@@ -117,7 +119,7 @@
             this.radioBtnSortByName.AutoSize = true;
             this.radioBtnSortByName.Font = new System.Drawing.Font("Verdana", 9F);
             this.radioBtnSortByName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.radioBtnSortByName.Location = new System.Drawing.Point(665, 90);
+            this.radioBtnSortByName.Location = new System.Drawing.Point(514, 90);
             this.radioBtnSortByName.Name = "radioBtnSortByName";
             this.radioBtnSortByName.Size = new System.Drawing.Size(130, 22);
             this.radioBtnSortByName.TabIndex = 24;
@@ -131,7 +133,7 @@
             this.radioButton2.AutoSize = true;
             this.radioButton2.Font = new System.Drawing.Font("Verdana", 9F);
             this.radioButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.radioButton2.Location = new System.Drawing.Point(665, 133);
+            this.radioButton2.Location = new System.Drawing.Point(514, 133);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(89, 22);
             this.radioButton2.TabIndex = 25;
@@ -146,7 +148,7 @@
             this.radioBtnSortByRating.AutoSize = true;
             this.radioBtnSortByRating.Font = new System.Drawing.Font("Verdana", 9F);
             this.radioBtnSortByRating.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.radioBtnSortByRating.Location = new System.Drawing.Point(665, 176);
+            this.radioBtnSortByRating.Location = new System.Drawing.Point(514, 176);
             this.radioBtnSortByRating.Name = "radioBtnSortByRating";
             this.radioBtnSortByRating.Size = new System.Drawing.Size(123, 22);
             this.radioBtnSortByRating.TabIndex = 26;
@@ -154,12 +156,43 @@
             this.radioBtnSortByRating.Text = "По рейтингу";
             this.radioBtnSortByRating.UseVisualStyleBackColor = true;
             // 
+            // dgvMayLike
+            // 
+            this.dgvMayLike.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvMayLike.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvMayLike.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.dgvMayLike.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvMayLike.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMayLike.Location = new System.Drawing.Point(514, 254);
+            this.dgvMayLike.Name = "dgvMayLike";
+            this.dgvMayLike.ReadOnly = true;
+            this.dgvMayLike.RowHeadersWidth = 51;
+            this.dgvMayLike.RowTemplate.Height = 24;
+            this.dgvMayLike.Size = new System.Drawing.Size(346, 294);
+            this.dgvMayLike.TabIndex = 27;
+            this.dgvMayLike.DoubleClick += new System.EventHandler(this.dgvMayLike_DoubleClick);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.label1.Location = new System.Drawing.Point(510, 221);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(254, 20);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Вам может понравиться:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(147)))), ((int)(((byte)(119)))));
             this.ClientSize = new System.Drawing.Size(882, 603);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dgvMayLike);
             this.Controls.Add(this.radioBtnSortByRating);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioBtnSortByName);
@@ -174,6 +207,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEstablishments)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMayLike)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,5 +222,7 @@
         private System.Windows.Forms.RadioButton radioBtnSortByName;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioBtnSortByRating;
+        private System.Windows.Forms.DataGridView dgvMayLike;
+        private System.Windows.Forms.Label label1;
     }
 }

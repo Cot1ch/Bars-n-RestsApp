@@ -167,9 +167,11 @@ namespace RecsApp
                         rating = 0;
                     }
                     string link = row.Cell(7).Value.ToString();
-                    List<string> pathsToPhoto = row.Cell(8).Value.ToString().Split(';').ToList();
+                    string pathsToPhoto = row.Cell(8).Value.ToString();
                     List<Guid> Food = GetSmthFromTable(wb, "Кухня", row.Cell(9).Value.ToString());
                     List<Guid> Averages = GetSmthFromTable(wb, "Средний чек", row.Cell(10).Value.ToString());
+                    string stringSimilar = row.Cell(11).Value.ToString();                   
+
 
                     if (string.IsNullOrWhiteSpace(name) || string.IsNullOrEmpty(description) ||
                         type == Guid.Empty || Categories.Count == 0 || Categories.Any(x => x == Guid.Empty) || string.IsNullOrEmpty(address))
@@ -196,7 +198,8 @@ namespace RecsApp
                         Address = address,
                         Rating = rating,
                         Link = link,
-                        PathsToPhoto = pathsToPhoto
+                        PathsToPhoto = pathsToPhoto,
+                        Similar = stringSimilar
                     };
 
                     foreach (var c in Categories)
