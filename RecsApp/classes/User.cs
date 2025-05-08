@@ -12,25 +12,21 @@ namespace RecsApp
         public string name { get; set; }
         public string username { get; set; }
         public string password_hash { get; set; }
-        //public List<Guid> type_id { get; set; }
-        //public List<Guid> categoty_id { get; set; }
-        //public List<Guid> food_id { get; set; }
-        //public List<Guid> average_check {  get; set; }
         public ICollection<EstType> est_types { get; set; }
         public ICollection<EstCategory> est_categories { get; set; }
         public ICollection<EstFood> est_foods { get; set; }
         public ICollection<EstAverageCheck> est_averages { get; set; }
+        public ICollection<Establishment> Favourite { get; set; }
+        public ICollection<Establishment> Hidden { get; set; }
 
         public User()
         {
-            //type_id = new List<Guid>();
-            //categoty_id = new List<Guid>();
-            //food_id = new List<Guid>();
-            //average_check = new List<Guid>();
             est_types = new List<EstType>();
             est_categories = new List<EstCategory>();
             est_foods = new List<EstFood>();
             est_averages = new List<EstAverageCheck>();
+            Favourite = new List<Establishment>();
+            Hidden = new List<Establishment>();
         }
     }
 }

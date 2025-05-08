@@ -48,6 +48,7 @@
             this.textBoxFood = new System.Windows.Forms.TextBox();
             this.textBoxAverageCheck = new System.Windows.Forms.TextBox();
             this.labelDescription = new System.Windows.Forms.Label();
+            this.btnHide = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEstImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,17 +65,18 @@
             this.checkBoxStarred.TabIndex = 33;
             this.checkBoxStarred.Text = "Нравится";
             this.checkBoxStarred.UseVisualStyleBackColor = false;
+            this.checkBoxStarred.CheckedChanged += new System.EventHandler(this.checkBoxStarred_CheckedChanged);
             // 
             // linkLabelToWebSite
             // 
             this.linkLabelToWebSite.ActiveLinkColor = System.Drawing.Color.DimGray;
             this.linkLabelToWebSite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.linkLabelToWebSite.AutoSize = true;
-            this.linkLabelToWebSite.Font = new System.Drawing.Font("Verdana", 6.5F);
+            this.linkLabelToWebSite.Font = new System.Drawing.Font("Verdana", 6.5F, System.Drawing.FontStyle.Bold);
             this.linkLabelToWebSite.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.linkLabelToWebSite.Location = new System.Drawing.Point(622, 566);
             this.linkLabelToWebSite.Name = "linkLabelToWebSite";
-            this.linkLabelToWebSite.Size = new System.Drawing.Size(120, 13);
+            this.linkLabelToWebSite.Size = new System.Drawing.Size(138, 13);
             this.linkLabelToWebSite.TabIndex = 32;
             this.linkLabelToWebSite.TabStop = true;
             this.linkLabelToWebSite.Text = "ссылка отсутствует";
@@ -132,11 +134,11 @@
             // 
             this.labelLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelLink.AutoSize = true;
-            this.labelLink.Font = new System.Drawing.Font("Verdana", 6.5F);
+            this.labelLink.Font = new System.Drawing.Font("Verdana", 6.5F, System.Drawing.FontStyle.Bold);
             this.labelLink.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.labelLink.Location = new System.Drawing.Point(497, 566);
             this.labelLink.Name = "labelLink";
-            this.labelLink.Size = new System.Drawing.Size(102, 13);
+            this.labelLink.Size = new System.Drawing.Size(111, 13);
             this.labelLink.TabIndex = 27;
             this.labelLink.Text = "Сайт заведения";
             // 
@@ -149,11 +151,11 @@
             this.textBoxEstDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxEstDescription.Font = new System.Drawing.Font("Verdana", 7.8F);
             this.textBoxEstDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.textBoxEstDescription.Location = new System.Drawing.Point(500, 248);
+            this.textBoxEstDescription.Location = new System.Drawing.Point(500, 271);
             this.textBoxEstDescription.Multiline = true;
             this.textBoxEstDescription.Name = "textBoxEstDescription";
             this.textBoxEstDescription.ReadOnly = true;
-            this.textBoxEstDescription.Size = new System.Drawing.Size(363, 304);
+            this.textBoxEstDescription.Size = new System.Drawing.Size(363, 281);
             this.textBoxEstDescription.TabIndex = 26;
             this.textBoxEstDescription.TabStop = false;
             // 
@@ -271,7 +273,7 @@
             this.labelAverageCheck.AutoSize = true;
             this.labelAverageCheck.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Bold);
             this.labelAverageCheck.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelAverageCheck.Location = new System.Drawing.Point(497, 207);
+            this.labelAverageCheck.Location = new System.Drawing.Point(497, 226);
             this.labelAverageCheck.Name = "labelAverageCheck";
             this.labelAverageCheck.Size = new System.Drawing.Size(99, 16);
             this.labelAverageCheck.TabIndex = 35;
@@ -280,14 +282,16 @@
             // 
             // textBoxFood
             // 
+            this.textBoxFood.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxFood.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.textBoxFood.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxFood.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxFood.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.textBoxFood.Location = new System.Drawing.Point(562, 186);
+            this.textBoxFood.Location = new System.Drawing.Point(562, 189);
+            this.textBoxFood.Multiline = true;
             this.textBoxFood.Name = "textBoxFood";
             this.textBoxFood.ReadOnly = true;
-            this.textBoxFood.Size = new System.Drawing.Size(301, 16);
+            this.textBoxFood.Size = new System.Drawing.Size(301, 31);
             this.textBoxFood.TabIndex = 36;
             this.textBoxFood.TabStop = false;
             // 
@@ -297,7 +301,7 @@
             this.textBoxAverageCheck.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxAverageCheck.Font = new System.Drawing.Font("Verdana", 10F);
             this.textBoxAverageCheck.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(26)))), ((int)(((byte)(29)))));
-            this.textBoxAverageCheck.Location = new System.Drawing.Point(625, 207);
+            this.textBoxAverageCheck.Location = new System.Drawing.Point(625, 226);
             this.textBoxAverageCheck.Name = "textBoxAverageCheck";
             this.textBoxAverageCheck.ReadOnly = true;
             this.textBoxAverageCheck.Size = new System.Drawing.Size(88, 21);
@@ -309,12 +313,28 @@
             this.labelDescription.AutoSize = true;
             this.labelDescription.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Bold);
             this.labelDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelDescription.Location = new System.Drawing.Point(497, 229);
+            this.labelDescription.Location = new System.Drawing.Point(497, 252);
             this.labelDescription.Name = "labelDescription";
             this.labelDescription.Size = new System.Drawing.Size(79, 16);
             this.labelDescription.TabIndex = 38;
             this.labelDescription.Text = "Описание";
             this.labelDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnHide
+            // 
+            this.btnHide.FlatAppearance.BorderSize = 0;
+            this.btnHide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHide.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold);
+            this.btnHide.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.btnHide.Location = new System.Drawing.Point(22, 22);
+            this.btnHide.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.btnHide.Name = "btnHide";
+            this.btnHide.Size = new System.Drawing.Size(90, 28);
+            this.btnHide.TabIndex = 39;
+            this.btnHide.Text = "Скрыть";
+            this.btnHide.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHide.UseVisualStyleBackColor = false;
+            this.btnHide.Click += new System.EventHandler(this.btnHide_Click);
             // 
             // InfoForm
             // 
@@ -322,6 +342,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(147)))), ((int)(((byte)(119)))));
             this.ClientSize = new System.Drawing.Size(882, 603);
+            this.Controls.Add(this.btnHide);
             this.Controls.Add(this.labelDescription);
             this.Controls.Add(this.textBoxAverageCheck);
             this.Controls.Add(this.textBoxFood);
@@ -343,6 +364,7 @@
             this.Controls.Add(this.btnPrevImage);
             this.Controls.Add(this.pictureBoxEstImage);
             this.KeyPreview = true;
+            this.MinimumSize = new System.Drawing.Size(900, 650);
             this.Name = "InfoForm";
             this.Text = "InfoForm";
             this.Load += new System.EventHandler(this.InfoForm_Load);
@@ -375,5 +397,6 @@
         private System.Windows.Forms.TextBox textBoxFood;
         private System.Windows.Forms.TextBox textBoxAverageCheck;
         private System.Windows.Forms.Label labelDescription;
+        private System.Windows.Forms.Button btnHide;
     }
 }

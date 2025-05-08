@@ -18,7 +18,8 @@ namespace RecsApp
             CreateAccount createAccount = new CreateAccount();
 
             createAccount.ShowDialog();
-            this.MinimizeBox = true;
+            this.Hide();
+            //this.WindowState = FormWindowState.Minimized;
         }
 
         private void buttonCreateAccount_Paint(object sender, PaintEventArgs e)

@@ -18,12 +18,16 @@ namespace RecsApp
         public string Address { get; set; }
         public string Link { get; set; }
         public List<string> PathsToPhoto { get; set; } = new List<string>();
+        public ICollection<User> UsersF {  get; set; }
+        public ICollection<User> UsersH {  get; set; }
         public Establishment()
         {
             Id = Guid.NewGuid();
             Categories = new List<EstCategory>();
             Foods = new List<EstFood>();
             Averages = new List<EstAverageCheck>();
+            UsersF = new List<User>();
+            UsersH = new List<User>();
         }
 
     }

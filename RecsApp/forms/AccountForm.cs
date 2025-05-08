@@ -19,6 +19,12 @@ namespace RecsApp
 
         private void btnSaveChanges_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(this.textBoxName.Text))
+            {
+                MessageBox.Show("Имя не может быть пустым");
+                return;
+            }
+
             using (var db = new AppDbContext())
             {
                 var user = (

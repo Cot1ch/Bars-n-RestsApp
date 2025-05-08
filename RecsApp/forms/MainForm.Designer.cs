@@ -109,6 +109,7 @@
             this.checkBoxFavorite.TabIndex = 23;
             this.checkBoxFavorite.Text = "Отобразить избранное";
             this.checkBoxFavorite.UseVisualStyleBackColor = true;
+            this.checkBoxFavorite.CheckedChanged += new System.EventHandler(this.checkBoxFavorite_CheckedChanged);
             // 
             // radioBtnSortByName
             // 
@@ -170,6 +171,7 @@
             this.MinimumSize = new System.Drawing.Size(900, 650);
             this.Name = "MainForm";
             this.Text = "MainForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEstablishments)).EndInit();
             this.ResumeLayout(false);

@@ -32,12 +32,12 @@ namespace RecsApp
         /// <summary>
         /// Метод прогружает datagrid со всеми заведениями, подхоядзими под выбранные пункты анкеты
         /// </summary>
-        public void LoadForm()
+        public void LoadForm(bool showOnlyFavourite=false)
         {
             using (var db = new AppDbContext())
             {
                 var user =
-                    (from u in db.Users.Include(u => u.est_types).Include(u => u.est_categories).Include(u => u.est_foods).Include(u => u.est_averages)
+                    (from u in db.Users.Include(u => u.est_types).Include(u => u.est_categories).Include(u => u.est_foods).Include(u => u.est_averages).Include(u => u.Favourite)
                      where u.user_Id == userId
                     select u).First();
                 var ests = db.Establishments.Include(e => e.Type).Include(e => e.Categories).Include(e => e.Foods).Include(e => e.Averages).ToList();
@@ -74,11 +74,23 @@ namespace RecsApp
                         where est.Averages.Any(f => user.est_averages.Contains(f))
                         select est).ToList();
                 }
+                ests = (
+                    from est in ests
+                    where !user.Hidden.Contains(est)
+                    select est).ToList();
+
                 if (IsRatingMore4nHalf)
                 {
                     ests = (
                         from est in ests
                         where est.Rating >= 4.5
+                        select est).ToList();
+                }
+                if (showOnlyFavourite)
+                {
+                    ests = (
+                        from est in ests
+                        where user.Favourite.Contains(est)
                         select est).ToList();
                 }
 
@@ -123,7 +135,23 @@ namespace RecsApp
         /// </summary>
         public void ShowInfoForm(Guid id)
         {
-            new InfoForm(id).Show();
+            new InfoForm(id, this.userId, this).Show();
+        }
+
+        private void checkBoxFavorite_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadForm(this.checkBoxFavorite.Checked);
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            int count = Application.OpenForms.Count;
+            for (int i = 1; i < count; i++)
+            {
+                Application.OpenForms[1].Close();
+            }
+            Form form1 = Application.OpenForms[0];
+            form1.Show();            
         }
     }
 }
