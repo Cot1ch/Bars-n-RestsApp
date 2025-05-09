@@ -30,7 +30,6 @@ namespace RecsApp.forms
             {
                 using (var db = new AppDbContext())
                 {
-                    //db.Database.Delete();
                     if (db.Users.Any(u => u.username == login))
                     {
                         MessageBox.Show("Логин уже занят. Пожалуйста, выберите другой логин.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);

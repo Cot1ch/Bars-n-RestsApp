@@ -19,11 +19,12 @@ namespace RecsApp
             InitializeComponent();
             this.userId = UserId;
             mainForm = main;
-            using (var db = new AppDbContext()) 
+            using (var db = new AppDbContext())
             {
                 est = (from e in db.Establishments.Include(e => e.Type).Include(e => e.Categories).Include(e => e.Foods).Include(e => e.Averages)
                        where e.Id == EstId
-                      select e).First();
+                       select e).First();
+                Visits();
             }
         }
 
@@ -83,7 +84,7 @@ namespace RecsApp
             {
                 System.Diagnostics.Process.Start(this.linkLabelToWebSite.Text);
             }
-            catch 
+            catch
             {
                 MessageBox.Show("Приносим свои извинения\nУ данного заведения отсутствует сайт :(", "Ссылка отсутствует", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -174,6 +175,29 @@ namespace RecsApp
                 mainForm.LoadForm();
                 this.Close();
             }
+        }
+        private void Visits()
+        {
+            using (var db = new AppDbContext())
+            {
+                db.Establishments.Attach(this.est);
+                if (this.est.CountVisits > long.MaxValue / 2)
+                {
+
+                    foreach (var e in db.Establishments)
+                    {
+                        e.CountVisits /= 10;
+                    }
+                    db.SaveChanges();
+                }
+                else
+                {
+                    est.CountVisits++;
+                }
+                db.SaveChanges();
+            }
+            this.mainForm.SortMode = "ы";
+            this.mainForm.LoadForm();
         }
     }
 }

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using System.Data.Entity;
-using DocumentFormat.OpenXml.Presentation;
 
 namespace RecsApp
 {
     public partial class MainForm : Form
     {
         public Guid userId;
-        public bool IsRatingMore4nHalf = false;
+        public bool IsRatingMore4nHalf;
+        public string SortMode="ы";
         
         public MainForm(Guid usId)
         {
@@ -29,19 +29,19 @@ namespace RecsApp
             LoadForm();
         }
         /// <summary>
-        /// Метод прогружает datagrid со всеми заведениями, подхоядзими под выбранные пункты анкеты
+        /// Метод прогружает datagrid со всеми заведениями, подходящими под выбранные пункты анкеты
         /// </summary>
         public void LoadForm(bool showOnlyFavourite=false)
         {
-            SetdgvEstablishments(showOnlyFavourite);
+            LoaddgvEstablishments(showOnlyFavourite);
 
-            SetdgvMayLike();
+            LoaddgvMayLike();
         }
 
         /// <summary>
         /// Метод настраивает datagridview всех заведений
         /// </summary>
-        private void SetdgvEstablishments(bool showOnlyFavourite)
+        private void LoaddgvEstablishments(bool showOnlyFavourite=false)
         {
             using (var db = new AppDbContext())
             {
@@ -102,13 +102,32 @@ namespace RecsApp
                         where user.Favourite.Contains(est)
                         select est).ToList();
                 }
+                switch (SortMode.ToLower())
+                {
+                    case "name":
+                        ests.Sort(new SortByName());
+                        break;
+                    case "type":
+                        ests.Sort(new SortByType());
+                        break;
+                    case "rating":
+                        ests.Sort(new SortByRating());
+                        break;
+                    default:
+                        ests.Sort(new SortByVisits());
+                        break;
+                }
 
                 var finalEsts = from e in ests
                                 join t in db.Types on e.Type equals t
                                 select new { e.Id, Название = e.Name, Тип = t.Title, Рейтинг = e.Rating };
-
+                
                 dgvEstablishments.DataSource = finalEsts.ToList();
             }
+            SetdgvEstablishments();
+        }
+        private void SetdgvEstablishments()
+        {
             for (int i = 0; i < dgvEstablishments.Rows.Count; i++)
             {
                 dgvEstablishments.Rows[i].DefaultCellStyle.BackColor =
@@ -120,11 +139,11 @@ namespace RecsApp
             dgvEstablishments.RowHeadersVisible = false;
             dgvEstablishments.EnableHeadersVisualStyles = false;
             dgvEstablishments.ColumnHeadersDefaultCellStyle.BackColor =
-                    System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));    
+                    System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             dgvEstablishments.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Verdana", 8, System.Drawing.FontStyle.Bold);
             dgvEstablishments.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
         }
-        private void SetdgvMayLike()
+        private void LoaddgvMayLike()
         {
             using (var db = new AppDbContext())
             {
@@ -148,20 +167,24 @@ namespace RecsApp
                     where simEsts.Contains(e.Name) && !user.Hidden.Select(establ => establ.Name).Contains(e.Name)
                     select new { e.Id, Название = e.Name, Рейтинг = e.Rating }).ToList();
                 dgvMayLike.DataSource = finalEsts;
-                dgvMayLike.Columns[0].Visible = false;
-                dgvMayLike.RowHeadersVisible = false;
-                dgvMayLike.EnableHeadersVisualStyles = false;
-                dgvMayLike.ColumnHeadersDefaultCellStyle.BackColor =
-                        System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-                dgvMayLike.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Verdana", 8, System.Drawing.FontStyle.Bold);
-                dgvMayLike.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-                for (int i = 0; i < dgvMayLike.Rows.Count; i++)
-                {
-                    dgvMayLike.Rows[i].DefaultCellStyle.BackColor =
-                        System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-                    dgvMayLike.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-                    dgvMayLike.Rows[i].DefaultCellStyle.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-                }
+            }
+            SetdgvMayLike();
+        }
+        private void SetdgvMayLike()
+        {
+            dgvMayLike.Columns[0].Visible = false;
+            dgvMayLike.RowHeadersVisible = false;
+            dgvMayLike.EnableHeadersVisualStyles = false;
+            dgvMayLike.ColumnHeadersDefaultCellStyle.BackColor =
+                    System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            dgvMayLike.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Verdana", 8, System.Drawing.FontStyle.Bold);
+            dgvMayLike.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
+            for (int i = 0; i < dgvMayLike.Rows.Count; i++)
+            {
+                dgvMayLike.Rows[i].DefaultCellStyle.BackColor =
+                    System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+                dgvMayLike.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
+                dgvMayLike.Rows[i].DefaultCellStyle.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             }
         }
         private void btnAccount_Click(object sender, EventArgs e)
@@ -200,6 +223,24 @@ namespace RecsApp
         {
             ShowInfoForm((Guid)this.dgvMayLike.CurrentRow.Cells[0].Value);
 
+        }
+
+        private void radioBtnSortByName_CheckedChanged(object sender, EventArgs e)
+        {
+            this.SortMode = "name";
+            LoaddgvEstablishments();
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            this.SortMode = "type";
+            LoaddgvEstablishments();
+        }
+
+        private void radioBtnSortByRating_CheckedChanged(object sender, EventArgs e)
+        {
+            this.SortMode = "rating";
+            LoaddgvEstablishments();
         }
     }
 }

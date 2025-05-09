@@ -34,7 +34,7 @@
             this.labelSorting = new System.Windows.Forms.Label();
             this.checkBoxFavorite = new System.Windows.Forms.CheckBox();
             this.radioBtnSortByName = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioBtnSortByType = new System.Windows.Forms.RadioButton();
             this.radioBtnSortByRating = new System.Windows.Forms.RadioButton();
             this.dgvMayLike = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
@@ -126,21 +126,23 @@
             this.radioBtnSortByName.TabStop = true;
             this.radioBtnSortByName.Text = "По названию";
             this.radioBtnSortByName.UseVisualStyleBackColor = true;
+            this.radioBtnSortByName.CheckedChanged += new System.EventHandler(this.radioBtnSortByName_CheckedChanged);
             // 
-            // radioButton2
+            // radioBtnSortByType
             // 
-            this.radioButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Verdana", 9F);
-            this.radioButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.radioButton2.Location = new System.Drawing.Point(525, 134);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(89, 22);
-            this.radioButton2.TabIndex = 25;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "По типу";
-            this.radioButton2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radioButton2.UseVisualStyleBackColor = false;
+            this.radioBtnSortByType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radioBtnSortByType.AutoSize = true;
+            this.radioBtnSortByType.Font = new System.Drawing.Font("Verdana", 9F);
+            this.radioBtnSortByType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.radioBtnSortByType.Location = new System.Drawing.Point(525, 134);
+            this.radioBtnSortByType.Name = "radioBtnSortByType";
+            this.radioBtnSortByType.Size = new System.Drawing.Size(89, 22);
+            this.radioBtnSortByType.TabIndex = 25;
+            this.radioBtnSortByType.TabStop = true;
+            this.radioBtnSortByType.Text = "По типу";
+            this.radioBtnSortByType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radioBtnSortByType.UseVisualStyleBackColor = false;
+            this.radioBtnSortByType.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // radioBtnSortByRating
             // 
@@ -155,6 +157,7 @@
             this.radioBtnSortByRating.TabStop = true;
             this.radioBtnSortByRating.Text = "По рейтингу";
             this.radioBtnSortByRating.UseVisualStyleBackColor = true;
+            this.radioBtnSortByRating.CheckedChanged += new System.EventHandler(this.radioBtnSortByRating_CheckedChanged);
             // 
             // dgvMayLike
             // 
@@ -194,7 +197,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvMayLike);
             this.Controls.Add(this.radioBtnSortByRating);
-            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioBtnSortByType);
             this.Controls.Add(this.radioBtnSortByName);
             this.Controls.Add(this.checkBoxFavorite);
             this.Controls.Add(this.labelSorting);
@@ -220,7 +223,7 @@
         private System.Windows.Forms.Label labelSorting;
         private System.Windows.Forms.CheckBox checkBoxFavorite;
         private System.Windows.Forms.RadioButton radioBtnSortByName;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioBtnSortByType;
         private System.Windows.Forms.RadioButton radioBtnSortByRating;
         private System.Windows.Forms.DataGridView dgvMayLike;
         private System.Windows.Forms.Label label1;
