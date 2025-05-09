@@ -365,7 +365,7 @@
             this.KeyPreview = true;
             this.MinimumSize = new System.Drawing.Size(1000, 700);
             this.Name = "InfoForm";
-            this.Text = "InfoForm";
+            this.Text = "Информация о заведении";
             this.Load += new System.EventHandler(this.InfoForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InfoForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEstImage)).EndInit();

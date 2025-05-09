@@ -224,7 +224,7 @@
             this.Controls.Add(this.btnAccount);
             this.MinimumSize = new System.Drawing.Size(900, 650);
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "Главная";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEstablishments)).EndInit();

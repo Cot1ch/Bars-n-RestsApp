@@ -146,6 +146,7 @@
             this.buttonAccExit.TabIndex = 9;
             this.buttonAccExit.Text = "Выйти из аккаунта";
             this.buttonAccExit.UseVisualStyleBackColor = false;
+            this.buttonAccExit.Click += new System.EventHandler(this.buttonAccExit_Click);
             // 
             // btnSaveChanges
             // 
@@ -212,9 +213,9 @@
             this.checkBoxRating.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.checkBoxRating.Location = new System.Drawing.Point(40, 474);
             this.checkBoxRating.Name = "checkBoxRating";
-            this.checkBoxRating.Size = new System.Drawing.Size(300, 22);
+            this.checkBoxRating.Size = new System.Drawing.Size(238, 22);
             this.checkBoxRating.TabIndex = 16;
-            this.checkBoxRating.Text = "Заведения с рейтингом 4.5 и выше";
+            this.checkBoxRating.Text = "Заведения с рейтингом 5.0";
             this.checkBoxRating.UseVisualStyleBackColor = true;
             // 
             // checkedListBoxFood
@@ -255,7 +256,7 @@
             this.MaximumSize = new System.Drawing.Size(1000, 700);
             this.MinimumSize = new System.Drawing.Size(1000, 700);
             this.Name = "AccountForm";
-            this.Text = "AccountForm";
+            this.Text = "Личный кабинет";
             this.Load += new System.EventHandler(this.AccountForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

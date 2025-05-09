@@ -9,7 +9,7 @@ namespace RecsApp
     public partial class MainForm : Form
     {
         public Guid userId;
-        public bool IsRatingMore4nHalf;
+        public bool IsRatingEqualsFive;
         public string SortMode="visits";
         
         public MainForm(Guid usId)
@@ -88,11 +88,11 @@ namespace RecsApp
                     where !user.Hidden.Contains(est)
                     select est).ToList();
 
-                if (IsRatingMore4nHalf)
+                if (IsRatingEqualsFive)
                 {
                     ests = (
                         from est in ests
-                        where est.Rating >= 4.5
+                        where est.Rating == 5.0
                         select est).ToList();
                 }
                 if (showOnlyFavourite)

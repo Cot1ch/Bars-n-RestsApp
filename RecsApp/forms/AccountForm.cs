@@ -77,7 +77,7 @@ namespace RecsApp
                     user.est_averages.Add(averages.First());
                 }
                 user.name = this.textBoxName.Text;
-                mainForm.IsRatingMore4nHalf = this.checkBoxRating.Checked;
+                mainForm.IsRatingEqualsFive = this.checkBoxRating.Checked;
                 db.SaveChanges();
             }
             mainForm.LoadForm();
@@ -137,6 +137,13 @@ namespace RecsApp
                     checkedListBoxAverage.SetItemChecked(this.checkedListBoxAverage.Items.IndexOf(average.Title), true);
                 }
             }
+        }
+
+        private void buttonAccExit_Click(object sender, EventArgs e)
+        {
+            this.userId = Guid.Empty;
+            this.mainForm.userId = Guid.Empty;
+            this.mainForm.Close();
         }
     }
 }

@@ -40,6 +40,7 @@ namespace RecsApp
         {
             using (var db = new AppDbContext())
             {
+                this.Text = est.Name;
                 this.textBoxEstName.Text = est.Name;
                 this.textBoxEstDescription.Text = est.Description;
                 this.textBoxFood.Text = string.Join("; ", est.Foods.Select(f => f.Title).ToList());
