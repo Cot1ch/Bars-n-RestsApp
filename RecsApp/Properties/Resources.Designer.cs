@@ -59,5 +59,25 @@ namespace RecsApp.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap eye_password_see_view_icon {
+            get {
+                object obj = ResourceManager.GetObject("eye_password_see_view_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap visible_password_security_protect_icon {
+            get {
+                object obj = ResourceManager.GetObject("visible_password_security_protect_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

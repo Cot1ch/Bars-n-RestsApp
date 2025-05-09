@@ -15,10 +15,10 @@ namespace RecsApp
 
         private void buttonCreateAccount_Click(object sender, EventArgs e)
         {
-            CreateAccount createAccount = new CreateAccount();
-
-            createAccount.ShowDialog();
             this.Hide();
+            CreateAccount createAccount = new CreateAccount();
+            createAccount.FormClosed += (s, args) => this.Show();
+            createAccount.ShowDialog();
             //this.WindowState = FormWindowState.Minimized;
         }
 
@@ -64,8 +64,9 @@ namespace RecsApp
 
         private void buttonEntryAccount_Click(object sender, EventArgs e)
         {
+            this.Hide();
             EntryAccount entryAccount = new EntryAccount();
-
+            entryAccount.FormClosed += (s, args) => this.Show();
             entryAccount.ShowDialog();
             this.MinimizeBox = true;
         }
