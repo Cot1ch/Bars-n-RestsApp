@@ -6,7 +6,7 @@ namespace RecsApp
     {
         public int Compare(Establishment a, Establishment b)
         {
-            return b.Name.CompareTo(a.Name);
+            return a.Name.CompareTo(b.Name);
         }
     }
 }

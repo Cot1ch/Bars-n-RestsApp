@@ -10,7 +10,7 @@ namespace RecsApp
     {
         public Guid userId;
         public bool IsRatingMore4nHalf;
-        public string SortMode="ы";
+        public string SortMode="visits";
         
         public MainForm(Guid usId)
         {
@@ -112,6 +112,9 @@ namespace RecsApp
                         break;
                     case "rating":
                         ests.Sort(new SortByRating());
+                        break;
+                    case "visits":
+                        ests.Sort(new SortByVisits());
                         break;
                     default:
                         ests.Sort(new SortByVisits());
@@ -240,6 +243,12 @@ namespace RecsApp
         private void radioBtnSortByRating_CheckedChanged(object sender, EventArgs e)
         {
             this.SortMode = "rating";
+            LoaddgvEstablishments();
+        }
+
+        private void radioBtnSortByVisits_CheckedChanged(object sender, EventArgs e)
+        {
+            this.SortMode = "visits";
             LoaddgvEstablishments();
         }
     }

@@ -176,8 +176,6 @@
             // 
             // textBoxEstRating
             // 
-            this.textBoxEstRating.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxEstRating.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(147)))), ((int)(((byte)(119)))));
             this.textBoxEstRating.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxEstRating.Font = new System.Drawing.Font("Verdana", 10F);
@@ -185,7 +183,7 @@
             this.textBoxEstRating.Location = new System.Drawing.Point(572, 120);
             this.textBoxEstRating.Name = "textBoxEstRating";
             this.textBoxEstRating.ReadOnly = true;
-            this.textBoxEstRating.Size = new System.Drawing.Size(155, 21);
+            this.textBoxEstRating.Size = new System.Drawing.Size(74, 21);
             this.textBoxEstRating.TabIndex = 24;
             this.textBoxEstRating.TabStop = false;
             // 
@@ -282,7 +280,8 @@
             // 
             // textBoxFood
             // 
-            this.textBoxFood.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxFood.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxFood.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.textBoxFood.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxFood.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -364,7 +363,7 @@
             this.Controls.Add(this.btnPrevImage);
             this.Controls.Add(this.pictureBoxEstImage);
             this.KeyPreview = true;
-            this.MinimumSize = new System.Drawing.Size(900, 650);
+            this.MinimumSize = new System.Drawing.Size(1000, 700);
             this.Name = "InfoForm";
             this.Text = "InfoForm";
             this.Load += new System.EventHandler(this.InfoForm_Load);

@@ -196,7 +196,7 @@ namespace RecsApp
                 }
                 db.SaveChanges();
             }
-            this.mainForm.SortMode = "ы";
+            this.mainForm.SortMode = "visits";
             this.mainForm.LoadForm();
         }
     }
