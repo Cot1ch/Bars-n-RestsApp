@@ -50,7 +50,7 @@
             this.btnAccount.FlatAppearance.BorderSize = 0;
             this.btnAccount.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold);
             this.btnAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.btnAccount.Location = new System.Drawing.Point(752, 12);
+            this.btnAccount.Location = new System.Drawing.Point(842, 12);
             this.btnAccount.Margin = new System.Windows.Forms.Padding(0);
             this.btnAccount.Name = "btnAccount";
             this.btnAccount.Size = new System.Drawing.Size(118, 36);
@@ -67,12 +67,12 @@
             this.dgvEstablishments.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.dgvEstablishments.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvEstablishments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEstablishments.Location = new System.Drawing.Point(16, 51);
+            this.dgvEstablishments.Location = new System.Drawing.Point(20, 51);
             this.dgvEstablishments.Name = "dgvEstablishments";
             this.dgvEstablishments.ReadOnly = true;
             this.dgvEstablishments.RowHeadersWidth = 51;
             this.dgvEstablishments.RowTemplate.Height = 24;
-            this.dgvEstablishments.Size = new System.Drawing.Size(483, 540);
+            this.dgvEstablishments.Size = new System.Drawing.Size(450, 590);
             this.dgvEstablishments.TabIndex = 20;
             this.dgvEstablishments.DoubleClick += new System.EventHandler(this.dgvEstablishments_DoubleClick);
             // 
@@ -93,7 +93,7 @@
             this.labelSorting.AutoSize = true;
             this.labelSorting.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold);
             this.labelSorting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelSorting.Location = new System.Drawing.Point(511, 51);
+            this.labelSorting.Location = new System.Drawing.Point(497, 51);
             this.labelSorting.Name = "labelSorting";
             this.labelSorting.Size = new System.Drawing.Size(198, 18);
             this.labelSorting.TabIndex = 22;
@@ -105,7 +105,7 @@
             this.checkBoxFavorite.AutoSize = true;
             this.checkBoxFavorite.Font = new System.Drawing.Font("Verdana", 9F);
             this.checkBoxFavorite.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.checkBoxFavorite.Location = new System.Drawing.Point(665, 569);
+            this.checkBoxFavorite.Location = new System.Drawing.Point(755, 619);
             this.checkBoxFavorite.Name = "checkBoxFavorite";
             this.checkBoxFavorite.Size = new System.Drawing.Size(205, 22);
             this.checkBoxFavorite.TabIndex = 23;
@@ -119,7 +119,7 @@
             this.radioBtnSortByName.AutoSize = true;
             this.radioBtnSortByName.Font = new System.Drawing.Font("Verdana", 9F);
             this.radioBtnSortByName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.radioBtnSortByName.Location = new System.Drawing.Point(514, 90);
+            this.radioBtnSortByName.Location = new System.Drawing.Point(525, 91);
             this.radioBtnSortByName.Name = "radioBtnSortByName";
             this.radioBtnSortByName.Size = new System.Drawing.Size(130, 22);
             this.radioBtnSortByName.TabIndex = 24;
@@ -133,7 +133,7 @@
             this.radioButton2.AutoSize = true;
             this.radioButton2.Font = new System.Drawing.Font("Verdana", 9F);
             this.radioButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.radioButton2.Location = new System.Drawing.Point(514, 133);
+            this.radioButton2.Location = new System.Drawing.Point(525, 134);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(89, 22);
             this.radioButton2.TabIndex = 25;
@@ -148,7 +148,7 @@
             this.radioBtnSortByRating.AutoSize = true;
             this.radioBtnSortByRating.Font = new System.Drawing.Font("Verdana", 9F);
             this.radioBtnSortByRating.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.radioBtnSortByRating.Location = new System.Drawing.Point(514, 176);
+            this.radioBtnSortByRating.Location = new System.Drawing.Point(525, 177);
             this.radioBtnSortByRating.Name = "radioBtnSortByRating";
             this.radioBtnSortByRating.Size = new System.Drawing.Size(123, 22);
             this.radioBtnSortByRating.TabIndex = 26;
@@ -165,12 +165,12 @@
             this.dgvMayLike.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.dgvMayLike.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvMayLike.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMayLike.Location = new System.Drawing.Point(514, 254);
+            this.dgvMayLike.Location = new System.Drawing.Point(500, 254);
             this.dgvMayLike.Name = "dgvMayLike";
             this.dgvMayLike.ReadOnly = true;
             this.dgvMayLike.RowHeadersWidth = 51;
             this.dgvMayLike.RowTemplate.Height = 24;
-            this.dgvMayLike.Size = new System.Drawing.Size(346, 294);
+            this.dgvMayLike.Size = new System.Drawing.Size(460, 344);
             this.dgvMayLike.TabIndex = 27;
             this.dgvMayLike.DoubleClick += new System.EventHandler(this.dgvMayLike_DoubleClick);
             // 
@@ -179,7 +179,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.label1.Location = new System.Drawing.Point(510, 221);
+            this.label1.Location = new System.Drawing.Point(496, 220);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(254, 20);
             this.label1.TabIndex = 28;
@@ -190,7 +190,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(147)))), ((int)(((byte)(119)))));
-            this.ClientSize = new System.Drawing.Size(882, 603);
+            this.ClientSize = new System.Drawing.Size(982, 653);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvMayLike);
             this.Controls.Add(this.radioBtnSortByRating);

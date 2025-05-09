@@ -119,7 +119,8 @@
             this.checkedListBoxCategory.FormattingEnabled = true;
             this.checkedListBoxCategory.Location = new System.Drawing.Point(40, 334);
             this.checkedListBoxCategory.Name = "checkedListBoxCategory";
-            this.checkedListBoxCategory.Size = new System.Drawing.Size(400, 130);
+            this.checkedListBoxCategory.Size = new System.Drawing.Size(420, 130);
+            this.checkedListBoxCategory.Sorted = true;
             this.checkedListBoxCategory.TabIndex = 7;
             // 
             // checkedListBoxType
@@ -130,7 +131,7 @@
             this.checkedListBoxType.FormattingEnabled = true;
             this.checkedListBoxType.Location = new System.Drawing.Point(40, 213);
             this.checkedListBoxType.Name = "checkedListBoxType";
-            this.checkedListBoxType.Size = new System.Drawing.Size(400, 88);
+            this.checkedListBoxType.Size = new System.Drawing.Size(420, 88);
             this.checkedListBoxType.TabIndex = 8;
             // 
             // buttonAccExit
@@ -139,7 +140,7 @@
             this.buttonAccExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.buttonAccExit.Font = new System.Drawing.Font("Verdana", 9F);
             this.buttonAccExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.buttonAccExit.Location = new System.Drawing.Point(627, 26);
+            this.buttonAccExit.Location = new System.Drawing.Point(721, 35);
             this.buttonAccExit.Name = "buttonAccExit";
             this.buttonAccExit.Size = new System.Drawing.Size(219, 30);
             this.buttonAccExit.TabIndex = 9;
@@ -152,7 +153,7 @@
             this.btnSaveChanges.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.btnSaveChanges.Font = new System.Drawing.Font("Verdana", 9F);
             this.btnSaveChanges.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.btnSaveChanges.Location = new System.Drawing.Point(627, 521);
+            this.btnSaveChanges.Location = new System.Drawing.Point(721, 592);
             this.btnSaveChanges.Name = "btnSaveChanges";
             this.btnSaveChanges.Size = new System.Drawing.Size(219, 30);
             this.btnSaveChanges.TabIndex = 10;
@@ -177,9 +178,9 @@
             this.checkedListBoxAverage.Font = new System.Drawing.Font("Verdana", 9F);
             this.checkedListBoxAverage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
             this.checkedListBoxAverage.FormattingEnabled = true;
-            this.checkedListBoxAverage.Location = new System.Drawing.Point(446, 213);
+            this.checkedListBoxAverage.Location = new System.Drawing.Point(520, 213);
             this.checkedListBoxAverage.Name = "checkedListBoxAverage";
-            this.checkedListBoxAverage.Size = new System.Drawing.Size(400, 88);
+            this.checkedListBoxAverage.Size = new System.Drawing.Size(420, 88);
             this.checkedListBoxAverage.TabIndex = 12;
             // 
             // labelFood
@@ -187,7 +188,7 @@
             this.labelFood.AutoSize = true;
             this.labelFood.Font = new System.Drawing.Font("Verdana", 9F);
             this.labelFood.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelFood.Location = new System.Drawing.Point(446, 313);
+            this.labelFood.Location = new System.Drawing.Point(517, 313);
             this.labelFood.Name = "labelFood";
             this.labelFood.Size = new System.Drawing.Size(54, 18);
             this.labelFood.TabIndex = 14;
@@ -198,7 +199,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Verdana", 9F);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.label2.Location = new System.Drawing.Point(446, 192);
+            this.label2.Location = new System.Drawing.Point(517, 192);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(105, 18);
             this.label2.TabIndex = 15;
@@ -222,9 +223,10 @@
             this.checkedListBoxFood.Font = new System.Drawing.Font("Verdana", 9F);
             this.checkedListBoxFood.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
             this.checkedListBoxFood.FormattingEnabled = true;
-            this.checkedListBoxFood.Location = new System.Drawing.Point(446, 334);
+            this.checkedListBoxFood.Location = new System.Drawing.Point(520, 334);
             this.checkedListBoxFood.Name = "checkedListBoxFood";
-            this.checkedListBoxFood.Size = new System.Drawing.Size(400, 130);
+            this.checkedListBoxFood.Size = new System.Drawing.Size(420, 130);
+            this.checkedListBoxFood.Sorted = true;
             this.checkedListBoxFood.TabIndex = 13;
             // 
             // AccountForm
@@ -232,7 +234,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(147)))), ((int)(((byte)(119)))));
-            this.ClientSize = new System.Drawing.Size(882, 603);
+            this.ClientSize = new System.Drawing.Size(982, 653);
             this.Controls.Add(this.checkBoxRating);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.labelFood);
@@ -250,8 +252,8 @@
             this.Controls.Add(this.labelLogin);
             this.Controls.Add(this.labelName);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(900, 650);
-            this.MinimumSize = new System.Drawing.Size(900, 650);
+            this.MaximumSize = new System.Drawing.Size(1000, 700);
+            this.MinimumSize = new System.Drawing.Size(1000, 700);
             this.Name = "AccountForm";
             this.Text = "AccountForm";
             this.Load += new System.EventHandler(this.AccountForm_Load);
