@@ -98,7 +98,7 @@ namespace RecsApp
         /// <summary>
         /// Метод загружает средние чеки заведений из Excel файла
         /// </summary>
-        public static void AddAveragesToDB()
+        public static void AddAverageToDB()
         {
             string path = $"{Directory.GetCurrentDirectory()}..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
             if (!File.Exists(path))
@@ -169,8 +169,8 @@ namespace RecsApp
                     string link = row.Cell(7).Value.ToString();
                     string pathsToPhoto = row.Cell(8).Value.ToString();
                     List<Guid> Food = GetSmthFromTable(wb, "Кухня", row.Cell(9).Value.ToString());
-                    List<Guid> Averages = GetSmthFromTable(wb, "Средний чек", row.Cell(10).Value.ToString());
-                    string stringSimilar = row.Cell(11).Value.ToString();                   
+                    List<Guid> Average = GetSmthFromTable(wb, "Средний чек", row.Cell(10).Value.ToString());
+                    string stringSimilar = row.Cell(11).Value.ToString();                  
 
 
                     if (string.IsNullOrWhiteSpace(name) || string.IsNullOrEmpty(description) ||
@@ -210,10 +210,9 @@ namespace RecsApp
                     {
                         e.Foods.Add(db.Foods.Find(f));
                     }
-                    foreach (var a in Averages)
-                    {
-                        e.Averages.Add(db.AverageChecks.Find(a));
-                    }
+                    e.Check = decimal.TryParse(row.Cell(10).Value.ToString(), out decimal ch) ? ch : 0m;
+                    e.Average = db.AverageChecks.Find(Average[0]);
+                    
                     db.Establishments.Add(e);
 
                 }
@@ -243,14 +242,39 @@ namespace RecsApp
         private static List<Guid> GetSmthFromTable(IXLWorkbook wb, string tableName, string str)
         {
             List<Guid> ret = new List<Guid>();
-
-            string[] spl = str.Split(';');
             var dict = FillDict(wb, tableName);
-            foreach (string smth in spl)
+            if (tableName != "Средний чек")
             {
-                if (dict.TryGetValue(smth, out Guid g))
+                string[] spl = str.Split(';');
+                foreach (string smth in spl)
                 {
-                    ret.Add(g);
+                    if (dict.TryGetValue(smth, out Guid g))
+                    {
+                        ret.Add(g);
+                    }
+                }
+            }
+            else
+            {
+                decimal check = decimal.TryParse(str, out decimal ch)? ch : 0m;
+                if (check > 0)
+                {
+                    if (check <= 1000)
+                    {
+                        ret.Add(dict["< 1000"]);
+                    }
+                    else if (1000 < check && check <= 3000)
+                    {
+                        ret.Add(dict["1000-3000"]);
+                    }
+                    else
+                    {
+                        ret.Add(dict["> 3000"]);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show($"Информация о чеке утеряна: {str}");
                 }
             }
 

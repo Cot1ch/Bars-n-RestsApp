@@ -22,9 +22,9 @@ namespace RecsApp
             AddFromExcel.AddTypesToDB();
             AddFromExcel.AddCategoryesToDB();
             AddFromExcel.AddFoodToDB();
-            AddFromExcel.AddAveragesToDB();
-
+            AddFromExcel.AddAverageToDB();
             AddFromExcel.AddEstablishmentsToDB();
+            this.radioBtnSortByVisits.Checked = true;
 
             LoadForm();
         }
@@ -46,14 +46,14 @@ namespace RecsApp
             using (var db = new AppDbContext())
             {
                 var user =
-                    (from u in db.Users.Include(u => u.est_types).Include(u => u.est_categories).Include(u => u.est_foods).Include(u => u.est_averages).Include(u => u.Favourite).Include(u => u.Hidden)
+                    (from u in db.Users.Include(u => u.est_types).Include(u => u.est_categories).Include(u => u.est_foods).Include(u => u.est_Average).Include(u => u.Favourite).Include(u => u.Hidden)
                      where u.user_Id == userId
                      select u).First();
-                var ests = db.Establishments.Include(e => e.Type).Include(e => e.Categories).Include(e => e.Foods).Include(e => e.Averages).ToList();
+                var ests = db.Establishments.Include(e => e.Type).Include(e => e.Categories).Include(e => e.Foods).Include(e => e.Average).ToList();
                 var types = user.est_types.Select(t => t.Id).ToList();
                 var categories = user.est_categories.Select(c => c.Id).ToList();
                 var foods = user.est_foods.Select(f => f.Id).ToList();
-                var averages = user.est_averages.Select(a => a.Id).ToList();
+                var Average = user.est_Average.Select(a => a.Id).ToList();
 
                 if (user.est_types != null && user.est_types.Count != 0)
                 {
@@ -76,11 +76,11 @@ namespace RecsApp
                         where est.Foods.Select(food => food.Id).Any(c => foods.Contains(c))
                         select est).ToList();
                 }
-                if (user.est_averages != null && user.est_averages.Count != 0)
+                if (user.est_Average != null && user.est_Average.Count != 0)
                 {
                     ests = (
                         from est in ests
-                        where est.Averages.Any(f => user.est_averages.Contains(f))
+                        where user.est_Average.Contains(est.Average)
                         select est).ToList();
                 }
                 ests = (
@@ -154,7 +154,7 @@ namespace RecsApp
                     (from u in db.Users.Include(u => u.Hidden)
                      where u.user_Id == userId
                      select u).First();
-                var ests = db.Establishments.Include(e => e.Type).Include(e => e.Categories).Include(e => e.Foods).Include(e => e.Averages).ToList();
+                var ests = db.Establishments.Include(e => e.Type).Include(e => e.Categories).Include(e => e.Foods).Include(e => e.Average).ToList();
                 var simEsts = new List<string>(); 
 
                 foreach (var e in ests)

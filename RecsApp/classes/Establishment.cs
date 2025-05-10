@@ -13,7 +13,9 @@ namespace RecsApp
         public EstType Type { get; set; }
         public ICollection<EstCategory> Categories { get; set; }
         public ICollection<EstFood> Foods { get; set; }
-        public ICollection<EstAverageCheck> Averages { get; set; }
+        public decimal Check { get; set; }
+        public Guid CheckId { get; set; }
+        public EstAverageCheck Average { get; set; }
         public double Rating { get; set; }
         public string Address { get; set; }
         public string Link { get; set; }
@@ -28,7 +30,6 @@ namespace RecsApp
             Id = Guid.NewGuid();
             Categories = new List<EstCategory>();
             Foods = new List<EstFood>();
-            Averages = new List<EstAverageCheck>();
             UsersF = new List<User>();
             UsersH = new List<User>();
         }

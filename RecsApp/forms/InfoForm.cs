@@ -21,7 +21,7 @@ namespace RecsApp
             mainForm = main;
             using (var db = new AppDbContext())
             {
-                est = (from e in db.Establishments.Include(e => e.Type).Include(e => e.Categories).Include(e => e.Foods).Include(e => e.Averages)
+                est = (from e in db.Establishments.Include(e => e.Type).Include(e => e.Categories).Include(e => e.Foods).Include(e => e.Average)
                        where e.Id == EstId
                        select e).First();
                 Visits();
@@ -40,16 +40,27 @@ namespace RecsApp
         {
             using (var db = new AppDbContext())
             {
-                this.Text = est.Name;
                 this.textBoxEstName.Text = est.Name;
                 this.textBoxEstDescription.Text = est.Description;
                 this.textBoxFood.Text = string.Join("; ", est.Foods.Select(f => f.Title).ToList());
                 this.textBoxEstType.Text = est.Type.Title;
+                this.textBoxAverageCheck.Text = $"{est.Check:F0} руб.";
                 this.textBoxEstRating.Text = $"{est.Rating:F1}";
                 this.textBoxEstAddress.Text = est.Address.ToString();
                 this.linkLabelToWebSite.Text = (est.Link != string.Empty) ? est.Link : "ссылка отсутствует";
                 this.checkBoxStarred.Checked = db.Users.Find(userId).Favourite.Contains(this.est);
                 paths = est.PathsToPhoto == string.Empty ? new List<string>() { "notfound.png" } : est.PathsToPhoto.Split(';').ToList();
+            }
+        }
+        private void linkLabelToWebSite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(this.linkLabelToWebSite.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Приносим свои извинения\nУ данного заведения отсутствует сайт :(", "Ссылка отсутствует", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         /// <summary>
@@ -79,17 +90,7 @@ namespace RecsApp
         {
             NextImage();
         }
-        private void linkLabelToWebSite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            try
-            {
-                System.Diagnostics.Process.Start(this.linkLabelToWebSite.Text);
-            }
-            catch
-            {
-                MessageBox.Show("Приносим свои извинения\nУ данного заведения отсутствует сайт :(", "Ссылка отсутствует", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
+
 
         private void NextImage()
         {
@@ -145,8 +146,15 @@ namespace RecsApp
                 {
                     if (user != null)
                     {
-                        user.Favourite.Remove(this.est);
-                        MessageBox.Show("Заведение удалено", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (user.Favourite.Contains(this.est))
+                        {
+                            user.Favourite.Remove(this.est);
+                            MessageBox.Show("Заведение удалено", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Нет в списке");
+                        }
                     }
                     else
                     {
@@ -156,7 +164,6 @@ namespace RecsApp
                 db.SaveChanges();
             }
         }
-
         private void btnHide_Click(object sender, EventArgs e)
         {
             var res = MessageBox.Show("Вы больше не увидите это событие\nПродолжить?", "Вы уверены?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
@@ -177,6 +184,9 @@ namespace RecsApp
                 this.Close();
             }
         }
+        /// <summary>
+        /// Метод избегает переполнения счетчика посещений
+        /// </summary>
         private void Visits()
         {
             using (var db = new AppDbContext())
@@ -197,7 +207,6 @@ namespace RecsApp
                 }
                 db.SaveChanges();
             }
-            this.mainForm.SortMode = "visits";
             this.mainForm.LoadForm();
         }
     }

@@ -15,7 +15,7 @@ namespace RecsApp
         public ICollection<EstType> est_types { get; set; }
         public ICollection<EstCategory> est_categories { get; set; }
         public ICollection<EstFood> est_foods { get; set; }
-        public ICollection<EstAverageCheck> est_averages { get; set; }
+        public ICollection<EstAverageCheck> est_Average { get; set; }
         public ICollection<Establishment> Favourite { get; set; }
         public ICollection<Establishment> Hidden { get; set; }
 
@@ -24,7 +24,7 @@ namespace RecsApp
             est_types = new List<EstType>();
             est_categories = new List<EstCategory>();
             est_foods = new List<EstFood>();
-            est_averages = new List<EstAverageCheck>();
+            est_Average = new List<EstAverageCheck>();
             Favourite = new List<Establishment>();
             Hidden = new List<Establishment>();
         }

@@ -29,7 +29,8 @@ namespace RecsApp
             EntryAccount entryAccount = new EntryAccount();
             entryAccount.FormClosed += (s, args) => this.Show();
             entryAccount.ShowDialog();
-            this.MinimizeBox = true;
+            //this.WindowState = FormWindowState.Minimized;
+
         }
     }
 }

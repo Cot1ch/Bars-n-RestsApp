@@ -28,7 +28,7 @@ namespace RecsApp
             using (var db = new AppDbContext())
             {
                 var user = (
-                    from u in db.Users.Include(u => u.est_types).Include(u => u.est_categories).Include(u => u.est_foods).Include(u => u.est_averages)
+                    from u in db.Users.Include(u => u.est_types).Include(u => u.est_categories).Include(u => u.est_foods).Include(u => u.est_Average)
                     where u.user_Id == userId
                     select u).First();
 
@@ -67,14 +67,14 @@ namespace RecsApp
                     user.est_foods.Add(food.First());
                 }
 
-                user.est_averages = new List<EstAverageCheck>();
+                user.est_Average = new List<EstAverageCheck>();
                 foreach (var checkedItem in this.checkedListBoxAverage.CheckedItems)
                 {
-                    var averages = (from ac in db.AverageChecks
+                    var Average = (from ac in db.AverageChecks
                                     where ac.Title == checkedItem.ToString()
                                     select ac).ToList();
 
-                    user.est_averages.Add(averages.First());
+                    user.est_Average.Add(Average.First());
                 }
                 user.name = this.textBoxName.Text;
                 mainForm.IsRatingEqualsFive = this.checkBoxRating.Checked;
@@ -132,7 +132,7 @@ namespace RecsApp
                 {
                     checkedListBoxFood.SetItemChecked(this.checkedListBoxFood.Items.IndexOf(food.Title), true);
                 }
-                foreach (var average in user.est_averages)
+                foreach (var average in user.est_Average)
                 {
                     checkedListBoxAverage.SetItemChecked(this.checkedListBoxAverage.Items.IndexOf(average.Title), true);
                 }

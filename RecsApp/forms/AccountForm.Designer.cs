@@ -182,6 +182,7 @@
             this.checkedListBoxAverage.Location = new System.Drawing.Point(520, 213);
             this.checkedListBoxAverage.Name = "checkedListBoxAverage";
             this.checkedListBoxAverage.Size = new System.Drawing.Size(420, 88);
+            this.checkedListBoxAverage.Sorted = true;
             this.checkedListBoxAverage.TabIndex = 12;
             // 
             // labelFood
