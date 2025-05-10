@@ -13,6 +13,7 @@ namespace RecsApp.forms
 {
     public partial class EntryAccount : Form
     {
+        private bool isPasswordEntryVisible = true; // Флаг для отслеживания видимости пароля
         public EntryAccount()
         {
             InitializeComponent();
@@ -20,6 +21,48 @@ namespace RecsApp.forms
 
         private void buttonEntry_Click(object sender, EventArgs e)
         {
+            string login = richTextBoxEntryLogin.Text.Trim();
+            string password = textBoxEntryPassword.Text.Trim();
+
+            // Проверяем, заполнены ли все поля
+            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Пожалуйста, заполните все поля.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                using (var db = new AppDbContext())
+                {
+                    // Ищем пользователя по логину
+                    var user = db.Users.FirstOrDefault(u => u.username == login);
+
+                    if (user == null)
+                    {
+                        MessageBox.Show("Неверный логин или пароль.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Сравниваем введенный пароль с хэшированным паролем
+                    if (password != user.password_hash)
+                    {
+                        MessageBox.Show("Неверный логин или пароль.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Если данные верны, разрешаем вход
+                    MessageBox.Show("Вход выполнен успешно.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Перейдите к основной форме приложения
+                    new MainForm(user.user_Id).Show(); // Открыть главную форму
+                    this.Hide(); // Скрыть форму входа
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             this.Close();
         }
 
@@ -71,6 +114,30 @@ namespace RecsApp.forms
         private void EntryAccount_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void pictureBoxShowEntryPassword_Click(object sender, EventArgs e)
+        {
+            // Переключаем видимость пароля
+            var textBoxEntryPassword = this.Controls["textBoxEntryPassword"] as TextBox;
+            if (textBoxEntryPassword != null)
+            {
+                if (isPasswordEntryVisible)
+                {
+                    // Скрыть пароль
+                    textBoxEntryPassword.UseSystemPasswordChar = true;
+                    pictureBoxShowEntryPassword.BackgroundImage = Properties.Resources.visible_password_security_protect_icon; // Изображение открытого глазика
+                }
+                else
+                {
+                    // Показать пароль
+                    textBoxEntryPassword.UseSystemPasswordChar = false;
+                    pictureBoxShowEntryPassword.BackgroundImage = Properties.Resources.eye_password_see_view_icon; // Изображение закрытого глазика
+                }
+
+                // Инвертируем флаг
+                isPasswordEntryVisible = !isPasswordEntryVisible;
+            }
         }
     }
 }
