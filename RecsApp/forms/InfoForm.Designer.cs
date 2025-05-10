@@ -63,7 +63,6 @@
             this.checkBoxStarred.Name = "checkBoxStarred";
             this.checkBoxStarred.Size = new System.Drawing.Size(108, 22);
             this.checkBoxStarred.TabIndex = 33;
-            this.checkBoxStarred.Text = "Нравится";
             this.checkBoxStarred.UseVisualStyleBackColor = false;
             this.checkBoxStarred.CheckedChanged += new System.EventHandler(this.checkBoxStarred_CheckedChanged);
             // 
@@ -79,7 +78,6 @@
             this.linkLabelToWebSite.Size = new System.Drawing.Size(138, 13);
             this.linkLabelToWebSite.TabIndex = 32;
             this.linkLabelToWebSite.TabStop = true;
-            this.linkLabelToWebSite.Text = "ссылка отсутствует";
             this.linkLabelToWebSite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelToWebSite_LinkClicked);
             // 
             // labelAddress
@@ -91,7 +89,6 @@
             this.labelAddress.Name = "labelAddress";
             this.labelAddress.Size = new System.Drawing.Size(53, 16);
             this.labelAddress.TabIndex = 31;
-            this.labelAddress.Text = "Адрес";
             this.labelAddress.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelRating
@@ -103,7 +100,6 @@
             this.labelRating.Name = "labelRating";
             this.labelRating.Size = new System.Drawing.Size(63, 16);
             this.labelRating.TabIndex = 30;
-            this.labelRating.Text = "Оценка";
             this.labelRating.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelType
@@ -115,7 +111,6 @@
             this.labelType.Name = "labelType";
             this.labelType.Size = new System.Drawing.Size(115, 16);
             this.labelType.TabIndex = 29;
-            this.labelType.Text = "Тип заведения";
             this.labelType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelName
@@ -127,7 +122,6 @@
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(79, 16);
             this.labelName.TabIndex = 28;
-            this.labelName.Text = "Название";
             this.labelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelLink
@@ -140,7 +134,6 @@
             this.labelLink.Name = "labelLink";
             this.labelLink.Size = new System.Drawing.Size(111, 13);
             this.labelLink.TabIndex = 27;
-            this.labelLink.Text = "Сайт заведения";
             // 
             // textBoxEstDescription
             // 
@@ -263,7 +256,6 @@
             this.labelFood.Name = "labelFood";
             this.labelFood.Size = new System.Drawing.Size(52, 16);
             this.labelFood.TabIndex = 34;
-            this.labelFood.Text = "Кухня";
             this.labelFood.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelAverageCheck
@@ -275,7 +267,6 @@
             this.labelAverageCheck.Name = "labelAverageCheck";
             this.labelAverageCheck.Size = new System.Drawing.Size(99, 16);
             this.labelAverageCheck.TabIndex = 35;
-            this.labelAverageCheck.Text = "Средний чек";
             this.labelAverageCheck.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // textBoxFood
@@ -316,7 +307,6 @@
             this.labelDescription.Name = "labelDescription";
             this.labelDescription.Size = new System.Drawing.Size(79, 16);
             this.labelDescription.TabIndex = 38;
-            this.labelDescription.Text = "Описание";
             this.labelDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnHide
@@ -330,7 +320,6 @@
             this.btnHide.Name = "btnHide";
             this.btnHide.Size = new System.Drawing.Size(90, 28);
             this.btnHide.TabIndex = 39;
-            this.btnHide.Text = "Скрыть";
             this.btnHide.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnHide.UseVisualStyleBackColor = false;
             this.btnHide.Click += new System.EventHandler(this.btnHide_Click);

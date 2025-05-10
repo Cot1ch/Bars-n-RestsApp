@@ -56,7 +56,6 @@
             this.btnAccount.Name = "btnAccount";
             this.btnAccount.Size = new System.Drawing.Size(118, 36);
             this.btnAccount.TabIndex = 19;
-            this.btnAccount.Text = "Аккаунт";
             this.btnAccount.UseVisualStyleBackColor = false;
             this.btnAccount.Click += new System.EventHandler(this.btnAccount_Click);
             // 
@@ -87,7 +86,6 @@
             this.labelEstsList.Name = "labelEstsList";
             this.labelEstsList.Size = new System.Drawing.Size(187, 20);
             this.labelEstsList.TabIndex = 21;
-            this.labelEstsList.Text = "Список заведений";
             // 
             // labelSorting
             // 
@@ -99,7 +97,6 @@
             this.labelSorting.Name = "labelSorting";
             this.labelSorting.Size = new System.Drawing.Size(198, 18);
             this.labelSorting.TabIndex = 22;
-            this.labelSorting.Text = "Сортировка заведений";
             // 
             // checkBoxFavorite
             // 
@@ -111,7 +108,6 @@
             this.checkBoxFavorite.Name = "checkBoxFavorite";
             this.checkBoxFavorite.Size = new System.Drawing.Size(205, 22);
             this.checkBoxFavorite.TabIndex = 23;
-            this.checkBoxFavorite.Text = "Отобразить избранное";
             this.checkBoxFavorite.UseVisualStyleBackColor = true;
             this.checkBoxFavorite.CheckedChanged += new System.EventHandler(this.checkBoxFavorite_CheckedChanged);
             // 
@@ -126,7 +122,6 @@
             this.radioBtnSortByName.Size = new System.Drawing.Size(130, 22);
             this.radioBtnSortByName.TabIndex = 24;
             this.radioBtnSortByName.TabStop = true;
-            this.radioBtnSortByName.Text = "По названию";
             this.radioBtnSortByName.UseVisualStyleBackColor = true;
             this.radioBtnSortByName.CheckedChanged += new System.EventHandler(this.radioBtnSortByName_CheckedChanged);
             // 
@@ -141,7 +136,6 @@
             this.radioBtnSortByType.Size = new System.Drawing.Size(89, 22);
             this.radioBtnSortByType.TabIndex = 25;
             this.radioBtnSortByType.TabStop = true;
-            this.radioBtnSortByType.Text = "По типу";
             this.radioBtnSortByType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioBtnSortByType.UseVisualStyleBackColor = false;
             this.radioBtnSortByType.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
@@ -157,7 +151,6 @@
             this.radioBtnSortByRating.Size = new System.Drawing.Size(123, 22);
             this.radioBtnSortByRating.TabIndex = 26;
             this.radioBtnSortByRating.TabStop = true;
-            this.radioBtnSortByRating.Text = "По рейтингу";
             this.radioBtnSortByRating.UseVisualStyleBackColor = true;
             this.radioBtnSortByRating.CheckedChanged += new System.EventHandler(this.radioBtnSortByRating_CheckedChanged);
             // 
@@ -188,7 +181,6 @@
             this.labelMayLike.Name = "labelMayLike";
             this.labelMayLike.Size = new System.Drawing.Size(254, 20);
             this.labelMayLike.TabIndex = 28;
-            this.labelMayLike.Text = "Вам может понравиться:";
             // 
             // radioBtnSortByVisits
             // 
@@ -201,7 +193,6 @@
             this.radioBtnSortByVisits.Size = new System.Drawing.Size(162, 22);
             this.radioBtnSortByVisits.TabIndex = 29;
             this.radioBtnSortByVisits.TabStop = true;
-            this.radioBtnSortByVisits.Text = "По популярности";
             this.radioBtnSortByVisits.UseVisualStyleBackColor = true;
             this.radioBtnSortByVisits.CheckedChanged += new System.EventHandler(this.radioBtnSortByVisits_CheckedChanged);
             // 
@@ -224,7 +215,6 @@
             this.Controls.Add(this.btnAccount);
             this.MinimumSize = new System.Drawing.Size(900, 650);
             this.Name = "MainForm";
-            this.Text = "Главная";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEstablishments)).EndInit();

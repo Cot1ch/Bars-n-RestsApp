@@ -4,15 +4,27 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RecsApp
 {
+    /// <summary>
+    /// Класс, описывающий средний чек заведения
+    /// </summary>
     public class EstAverageCheck
     {
+        /// <summary>
+        /// Уникальный идентификатор заведения
+        /// </summary>
         [Key]
         public Guid Id { get; set; }
+        /// <summary>
+        /// Значение среднего чека
+        /// </summary>
         public string Title { get; set; }
-        public ICollection<Establishment> ests { get; set; }
+        /// <summary>
+        /// Навигационное свойство на заведения с таким средним чеком
+        /// </summary>
+        public ICollection<Establishment> Ests { get; set; }
         public EstAverageCheck()
         {
-            ests = new List<Establishment>();
+            Ests = new List<Establishment>();
         }
     }
 }

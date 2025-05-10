@@ -1,16 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
 using System.Windows.Forms;
 using System.Data.Entity;
+using System.IO;
 
 namespace RecsApp
 {
+    /// <summary>
+    /// Форма со списками заведений
+    /// </summary>
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Идентификатор аккаунта пользователя
+        /// </summary>
         public Guid userId;
-        public bool IsRatingEqualsFive;
-        public string SortMode="visits";
+        /// <summary>
+        /// Поле для фиксирования запроса отображения только заведений с рейтингом 5.0
+        /// </summary>
+        public bool isRatingEqualsFive;
+        /// <summary>
+        /// Поле, задающее способ сортировки
+        /// </summary>
+        public string sortMode="visits";
         
         public MainForm(Guid usId)
         {
@@ -19,14 +33,38 @@ namespace RecsApp
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
-            AddFromExcel.AddTypesToDB();
-            AddFromExcel.AddCategoryesToDB();
-            AddFromExcel.AddFoodToDB();
-            AddFromExcel.AddAverageToDB();
+            AddFromExcel.AddTypesCatsFoodsChecksToDB();
             AddFromExcel.AddEstablishmentsToDB();
             this.radioBtnSortByVisits.Checked = true;
 
             LoadForm();
+
+            using (var res = new ResXResourceSet(
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\MainForm.resx"))
+            {
+                this.Text = res.GetString("MainFormText");
+                this.radioBtnSortByVisits.Text = res.GetString("radioBtnSortByVisitsText");
+                this.labelMayLike.Text = res.GetString("labelMayLikeText");
+                this.radioBtnSortByRating.Text = res.GetString("radioBtnSortByRatingText");
+                this.radioBtnSortByName.Text = res.GetString("radioBtnSortByNameText");
+                this.radioBtnSortByType.Text = res.GetString("radioBtnSortByTypeText");
+                this.checkBoxFavorite.Text = res.GetString("checkBoxFavoriteText");
+                this.labelSorting.Text = res.GetString("labelSortingText");
+                this.labelEstsList.Text = res.GetString("labelEstsListText");
+                this.btnAccount.Text = res.GetString("btnAccountText");
+
+                if (dgvEstablishments.Columns.Count > 0)
+                {
+                    dgvEstablishments.Columns[1].HeaderText = res.GetString("dgvEstablishmentsColumns1HeaderText");
+                    dgvEstablishments.Columns[2].HeaderText = res.GetString("dgvEstablishmentsColumns2HeaderText");
+                    dgvEstablishments.Columns[3].HeaderText = res.GetString("dgvEstablishmentsColumns3HeaderText");
+                }
+                if (dgvMayLike.Columns.Count > 0)
+                {
+                    dgvMayLike.Columns[1].HeaderText = res.GetString("dgvMayLikeColumns1HeaderText");
+                    dgvMayLike.Columns[2].HeaderText = res.GetString("dgvMayLikeColumns2HeaderText");
+                }
+            }
         }
         /// <summary>
         /// Метод прогружает datagrid со всеми заведениями, подходящими под выбранные пункты анкеты
@@ -41,19 +79,24 @@ namespace RecsApp
         /// <summary>
         /// Метод настраивает datagridview всех заведений
         /// </summary>
-        private void LoaddgvEstablishments(bool showOnlyFavourite=false)
+        private void LoaddgvEstablishments(bool showOnlyFavourite = false)
         {
             using (var db = new AppDbContext())
             {
                 var user =
-                    (from u in db.Users.Include(u => u.est_types).Include(u => u.est_categories).Include(u => u.est_foods).Include(u => u.est_Average).Include(u => u.Favourite).Include(u => u.Hidden)
+                    (from u in db.Users.
+                     Include(u => u.est_types).Include(u => u.est_categories).
+                     Include(u => u.est_foods).Include(u => u.est_Average).
+                     Include(u => u.Favourite).Include(u => u.Hidden)
                      where u.user_Id == userId
                      select u).First();
-                var ests = db.Establishments.Include(e => e.Type).Include(e => e.Categories).Include(e => e.Foods).Include(e => e.Average).ToList();
+                var ests = db.Establishments.
+                    Include(e => e.Type).Include(e => e.Categories).
+                    Include(e => e.Foods).Include(e => e.Average).ToList();
                 var types = user.est_types.Select(t => t.Id).ToList();
                 var categories = user.est_categories.Select(c => c.Id).ToList();
                 var foods = user.est_foods.Select(f => f.Id).ToList();
-                var Average = user.est_Average.Select(a => a.Id).ToList();
+                var average = user.est_Average.Select(a => a.Id).ToList();
 
                 if (user.est_types != null && user.est_types.Count != 0)
                 {
@@ -80,7 +123,7 @@ namespace RecsApp
                 {
                     ests = (
                         from est in ests
-                        where user.est_Average.Contains(est.Average)
+                        where average.Contains(est.Average.Id)
                         select est).ToList();
                 }
                 ests = (
@@ -88,7 +131,7 @@ namespace RecsApp
                     where !user.Hidden.Contains(est)
                     select est).ToList();
 
-                if (IsRatingEqualsFive)
+                if (isRatingEqualsFive)
                 {
                     ests = (
                         from est in ests
@@ -102,52 +145,65 @@ namespace RecsApp
                         where user.Favourite.Contains(est)
                         select est).ToList();
                 }
-                switch (SortMode.ToLower())
+
+                ests.Sort(new SortBySmth()
                 {
-                    case "name":
-                        ests.Sort(new SortByName());
-                        break;
-                    case "type":
-                        ests.Sort(new SortByType());
-                        break;
-                    case "rating":
-                        ests.Sort(new SortByRating());
-                        break;
-                    case "visits":
-                        ests.Sort(new SortByVisits());
-                        break;
-                    default:
-                        ests.Sort(new SortByVisits());
-                        break;
-                }
+                    SortMode = this.sortMode
+                });
 
                 var finalEsts = from e in ests
                                 join t in db.Types on e.Type equals t
-                                select new { e.Id, Название = e.Name, Тип = t.Title, Рейтинг = e.Rating };
-                
+                                select new
+                                {
+                                    e.Id,
+                                    Название = e.Name,
+                                    Тип = t.Title,
+                                    Рейтинг = e.Rating
+                                };
+
                 dgvEstablishments.DataSource = finalEsts.ToList();
             }
+
             SetdgvEstablishments();
         }
         /// <summary>
-        /// Настройка отображения dataGridView ех заведений: отображение заголовков, цвет текста и фона
+        /// Настройка отображения dataGridView всех заведений: отображение заголовков, 
+        /// цвет текста и фона
         /// </summary>
         private void SetdgvEstablishments()
         {
             for (int i = 0; i < dgvEstablishments.Rows.Count; i++)
             {
                 dgvEstablishments.Rows[i].DefaultCellStyle.BackColor =
-                    System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-                dgvEstablishments.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-                dgvEstablishments.Rows[i].DefaultCellStyle.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                    System.Drawing.Color.FromArgb(
+                        ((int)(((byte)(247)))), 
+                        ((int)(((byte)(246)))), 
+                        ((int)(((byte)(227))))
+                        );
+                dgvEstablishments.Rows[i].DefaultCellStyle.ForeColor = 
+                    System.Drawing.Color.FromArgb(
+                        ((int)(((byte)(103)))), 
+                        ((int)(((byte)(72)))), 
+                        ((int)(((byte)(49)))));
+                dgvEstablishments.Rows[i].DefaultCellStyle.Font = 
+                    new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, 
+                    System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             }
             dgvEstablishments.Columns[0].Visible = false;
             dgvEstablishments.RowHeadersVisible = false;
             dgvEstablishments.EnableHeadersVisualStyles = false;
             dgvEstablishments.ColumnHeadersDefaultCellStyle.BackColor =
-                    System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            dgvEstablishments.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Verdana", 8, System.Drawing.FontStyle.Bold);
-            dgvEstablishments.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
+                    System.Drawing.Color.FromArgb(
+                        ((int)(((byte)(247)))), 
+                        ((int)(((byte)(246)))), 
+                        ((int)(((byte)(227)))));
+            dgvEstablishments.ColumnHeadersDefaultCellStyle.Font = 
+                new System.Drawing.Font("Verdana", 8, System.Drawing.FontStyle.Bold);
+            dgvEstablishments.ColumnHeadersDefaultCellStyle.ForeColor = 
+                System.Drawing.Color.FromArgb(
+                        ((int)(((byte)(103)))), 
+                        ((int)(((byte)(72)))), 
+                        ((int)(((byte)(49)))));
         }
         /// <summary>
         /// Загрузка dataGridView с рекомендованными заведениями
@@ -160,7 +216,9 @@ namespace RecsApp
                     (from u in db.Users.Include(u => u.Hidden)
                      where u.user_Id == userId
                      select u).First();
-                var ests = db.Establishments.Include(e => e.Type).Include(e => e.Categories).Include(e => e.Foods).Include(e => e.Average).ToList();
+                var ests = db.Establishments.
+                    Include(e => e.Type).Include(e => e.Categories).
+                    Include(e => e.Foods).Include(e => e.Average).ToList();
                 var simEsts = new List<string>(); 
 
                 foreach (var e in ests)
@@ -173,14 +231,16 @@ namespace RecsApp
 
                 var finalEsts = (
                     from e in db.Establishments
-                    where simEsts.Contains(e.Name) && !user.Hidden.Select(establ => establ.Name).Contains(e.Name)
-                    select new { e.Id, Название = e.Name, Рейтинг = e.Rating }).ToList();
+                    where simEsts.Contains(e.Name) && 
+                    !user.Hidden.Select(establ => establ.Name).Contains(e.Name)
+                    select new { e.Id, e.Name, e.Rating }).ToList();
                 dgvMayLike.DataSource = finalEsts;
             }
             SetdgvMayLike();
         }
         /// <summary>
-        /// Настройка отображения dataGridView рекомендованных заведений: отображение заголовков, цвет текста и фона
+        /// Настройка отображения dataGridView рекомендованных заведений: 
+        /// отображение заголовков, цвет текста и фона
         /// </summary>
         private void SetdgvMayLike()
         {
@@ -188,15 +248,36 @@ namespace RecsApp
             dgvMayLike.RowHeadersVisible = false;
             dgvMayLike.EnableHeadersVisualStyles = false;
             dgvMayLike.ColumnHeadersDefaultCellStyle.BackColor =
-                    System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            dgvMayLike.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Verdana", 8, System.Drawing.FontStyle.Bold);
-            dgvMayLike.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
+                    System.Drawing.Color.FromArgb(
+                        ((int)(((byte)(247)))), 
+                        ((int)(((byte)(246)))), 
+                        ((int)(((byte)(227))))
+                        );
+            dgvMayLike.ColumnHeadersDefaultCellStyle.Font = 
+                new System.Drawing.Font("Verdana", 8, System.Drawing.FontStyle.Bold);
+            dgvMayLike.ColumnHeadersDefaultCellStyle.ForeColor = 
+                System.Drawing.Color.FromArgb(
+                        ((int)(((byte)(103)))), 
+                        ((int)(((byte)(72)))), 
+                        ((int)(((byte)(49))))
+                        );
             for (int i = 0; i < dgvMayLike.Rows.Count; i++)
             {
                 dgvMayLike.Rows[i].DefaultCellStyle.BackColor =
-                    System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-                dgvMayLike.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-                dgvMayLike.Rows[i].DefaultCellStyle.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                    System.Drawing.Color.FromArgb(
+                        ((int)(((byte)(247)))), 
+                        ((int)(((byte)(246)))), 
+                        ((int)(((byte)(227))))
+                        );
+                dgvMayLike.Rows[i].DefaultCellStyle.ForeColor = 
+                    System.Drawing.Color.FromArgb(
+                        ((int)(((byte)(103)))), 
+                        ((int)(((byte)(72)))), 
+                        ((int)(((byte)(49))))
+                        );
+                dgvMayLike.Rows[i].DefaultCellStyle.Font = 
+                    new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, 
+                    System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             }
         }
         private void btnAccount_Click(object sender, EventArgs e)
@@ -222,42 +303,41 @@ namespace RecsApp
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            int count = Application.OpenForms.Count;
+            var count = Application.OpenForms.Count;
             for (int i = 1; i < count; i++)
             {
                 Application.OpenForms[1].Close();
             }
-            Form form1 = Application.OpenForms[0];
+            var form1 = Application.OpenForms[0];
             form1.Show();            
         }
 
         private void dgvMayLike_DoubleClick(object sender, EventArgs e)
         {
             ShowInfoForm((Guid)this.dgvMayLike.CurrentRow.Cells[0].Value);
-
         }
 
         private void radioBtnSortByName_CheckedChanged(object sender, EventArgs e)
         {
-            this.SortMode = "name";
+            this.sortMode = "name";
             LoaddgvEstablishments();
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            this.SortMode = "type";
+            this.sortMode = "type";
             LoaddgvEstablishments();
         }
 
         private void radioBtnSortByRating_CheckedChanged(object sender, EventArgs e)
         {
-            this.SortMode = "rating";
+            this.sortMode = "rating";
             LoaddgvEstablishments();
         }
 
         private void radioBtnSortByVisits_CheckedChanged(object sender, EventArgs e)
         {
-            this.SortMode = "visits";
+            this.sortMode = "visits";
             LoaddgvEstablishments();
         }
     }

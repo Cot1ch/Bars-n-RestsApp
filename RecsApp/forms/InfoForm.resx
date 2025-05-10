@@ -117,4 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnHideText" xml:space="preserve">
+    <value>Скрыть</value>
+  </data>
+  <data name="checkBoxStarredText" xml:space="preserve">
+    <value>Нравится</value>
+  </data>
+  <data name="labelAddressText" xml:space="preserve">
+    <value>Адрес</value>
+  </data>
+  <data name="labelAverageCheckText" xml:space="preserve">
+    <value>Средний чек</value>
+  </data>
+  <data name="labelDescriptionText" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="labelFoodText" xml:space="preserve">
+    <value>Кухня</value>
+  </data>
+  <data name="labelLinkText" xml:space="preserve">
+    <value>Сайт заведения</value>
+  </data>
+  <data name="labelNameText" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="labelRatingText" xml:space="preserve">
+    <value>Оценка</value>
+  </data>
+  <data name="labelTypeText" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="linkLabelToWebSiteText" xml:space="preserve">
+    <value>ссылка отсутствует</value>
+  </data>
 </root>

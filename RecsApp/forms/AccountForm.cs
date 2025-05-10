@@ -6,9 +6,18 @@ using System.Collections.Generic;
 
 namespace RecsApp
 {
+    /// <summary>
+    /// Форма аккаунта с анкетой
+    /// </summary>
     public partial class AccountForm : Form
     {
+        /// <summary>
+        /// Идентификатор аккаунта пользователя
+        /// </summary>
         private Guid userId;
+        /// <summary>
+        /// Ссылка на главную форму
+        /// </summary>
         private MainForm mainForm;
         public AccountForm(Guid usId, MainForm mainForm)
         {
@@ -28,7 +37,9 @@ namespace RecsApp
             using (var db = new AppDbContext())
             {
                 var user = (
-                    from u in db.Users.Include(u => u.est_types).Include(u => u.est_categories).Include(u => u.est_foods).Include(u => u.est_Average)
+                    from u in db.Users.
+                    Include(u => u.est_types).Include(u => u.est_categories).
+                    Include(u => u.est_foods).Include(u => u.est_Average)
                     where u.user_Id == userId
                     select u).First();
 
@@ -77,7 +88,7 @@ namespace RecsApp
                     user.est_Average.Add(Average.First());
                 }
                 user.name = this.textBoxName.Text;
-                mainForm.IsRatingEqualsFive = this.checkBoxRating.Checked;
+                mainForm.isRatingEqualsFive = this.checkBoxRating.Checked;
                 db.SaveChanges();
             }
             mainForm.LoadForm();
@@ -111,7 +122,7 @@ namespace RecsApp
                     this.Close();
                     return;
                 }
-                User user = db.Users.Find(userId);
+                var user = db.Users.Find(userId);
                 this.textBoxName.Text = user.name;
                 this.textBox2.Text = user.username;
 
@@ -122,19 +133,23 @@ namespace RecsApp
 
                 foreach (var type in user.est_types)
                 {
-                    checkedListBoxType.SetItemChecked(this.checkedListBoxType.Items.IndexOf(type.Title), true);
+                    checkedListBoxType.SetItemChecked(
+                        this.checkedListBoxType.Items.IndexOf(type.Title), true);
                 }
                 foreach (var cat in user.est_categories)
                 {
-                    checkedListBoxCategory.SetItemChecked(this.checkedListBoxCategory.Items.IndexOf(cat.Title), true);
+                    checkedListBoxCategory.SetItemChecked(
+                        this.checkedListBoxCategory.Items.IndexOf(cat.Title), true);
                 }
                 foreach (var food in user.est_foods)
                 {
-                    checkedListBoxFood.SetItemChecked(this.checkedListBoxFood.Items.IndexOf(food.Title), true);
+                    checkedListBoxFood.SetItemChecked(
+                        this.checkedListBoxFood.Items.IndexOf(food.Title), true);
                 }
                 foreach (var average in user.est_Average)
                 {
-                    checkedListBoxAverage.SetItemChecked(this.checkedListBoxAverage.Items.IndexOf(average.Title), true);
+                    checkedListBoxAverage.SetItemChecked(
+                        this.checkedListBoxAverage.Items.IndexOf(average.Title), true);
                 }
             }
         }

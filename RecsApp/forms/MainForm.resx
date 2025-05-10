@@ -117,4 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnAccountText" xml:space="preserve">
+    <value>Аккаунт</value>
+  </data>
+  <data name="checkBoxFavoriteText" xml:space="preserve">
+    <value>Отобразить избранное</value>
+  </data>
+  <data name="dgvEstablishmentsColumns1HeaderText" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="dgvEstablishmentsColumns2HeaderText" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="dgvEstablishmentsColumns3HeaderText" xml:space="preserve">
+    <value>Рейтинг</value>
+  </data>
+  <data name="dgvMayLikeColumns1HeaderText" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="dgvMayLikeColumns2HeaderText" xml:space="preserve">
+    <value>Рейтинг</value>
+  </data>
+  <data name="labelEstsListText" xml:space="preserve">
+    <value>Список заведений</value>
+  </data>
+  <data name="labelMayLikeText" xml:space="preserve">
+    <value>Вам может понравиться:</value>
+  </data>
+  <data name="labelSortingText" xml:space="preserve">
+    <value>Сортировка заведений</value>
+  </data>
+  <data name="MainFormText" xml:space="preserve">
+    <value>Главная форма</value>
+  </data>
+  <data name="radioBtnSortByNameText" xml:space="preserve">
+    <value>По названию</value>
+  </data>
+  <data name="radioBtnSortByRatingText" xml:space="preserve">
+    <value>По рейтингу</value>
+  </data>
+  <data name="radioBtnSortByTypeText" xml:space="preserve">
+    <value>По типу</value>
+  </data>
+  <data name="radioBtnSortByVisitsText" xml:space="preserve">
+    <value>По популярности</value>
+  </data>
 </root>

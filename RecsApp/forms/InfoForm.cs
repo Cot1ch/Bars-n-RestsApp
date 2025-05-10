@@ -4,15 +4,34 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using System.Data.Entity;
+using System.Resources;
 
 namespace RecsApp
 {
+    /// <summary>
+    /// Форма с отображением информации о заведении
+    /// </summary>
     public partial class InfoForm : Form
     {
+        /// <summary>
+        /// Заведение, информацию о котором отображает форма
+        /// </summary>
         private Establishment est;
+        /// <summary>
+        /// Счетчик индекса отображаемого изображения
+        /// </summary>
         private int imageInd = 0;
+        /// <summary>
+        /// Коллекция путей к изображениям заведения
+        /// </summary>
         private List<string> paths;
+        /// <summary>
+        /// Идентификатор аккаунта пользователя
+        /// </summary>
         private Guid userId;
+        /// <summary>
+        /// Ссылка на главную форму
+        /// </summary>
         private MainForm mainForm;
         public InfoForm(Guid EstId, Guid UserId, MainForm main)
         {
@@ -21,20 +40,39 @@ namespace RecsApp
             mainForm = main;
             using (var db = new AppDbContext())
             {
-                est = (from e in db.Establishments.Include(e => e.Type).Include(e => e.Categories).Include(e => e.Foods).Include(e => e.Average)
+                est = (from e in db.Establishments.
+                       Include(e => e.Type).Include(e => e.Categories).
+                       Include(e => e.Foods).Include(e => e.Average)
                        where e.Id == EstId
                        select e).First();
                 Visits();
             }
+
         }
 
         private void InfoForm_Load(object sender, EventArgs e)
         {
             LoadInfoForm();
             ShowImage();
+            using (var res = new ResXResourceSet(
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\MainForm.resx"))
+            {
+                this.checkBoxStarred.Text = res.GetString("checkBoxStarredText");
+                this.linkLabelToWebSite.Text = res.GetString("linkLabelToWebSiteText");
+                this.labelAddress.Text = res.GetString("labelAddressText");
+                this.labelRating.Text = res.GetString("labelRatingText");
+                this.labelType.Text = res.GetString("labelTypeText");
+                this.labelName.Text = res.GetString("labelNameText");
+                this.labelFood.Text = res.GetString("labelFoodText");
+                this.labelLink.Text = res.GetString("labelLinkText");
+                this.labelAverageCheck.Text = res.GetString("labelAverageCheckText");
+                this.labelDescription.Text = res.GetString("labelDescriptionText");
+                this.btnHide.Text = res.GetString("btnHideText");
+            }
         }
         /// <summary>
-        /// Метод заполняет текстовые поля, поля ссылки и изображений заведения для отображения информации о нём
+        /// Метод заполняет текстовые поля, поля ссылки и изображений заведения 
+        /// для отображения информации о нём
         /// </summary>
         public void LoadInfoForm()
         {
@@ -47,9 +85,11 @@ namespace RecsApp
                 this.textBoxAverageCheck.Text = $"{est.Check:F0} руб.";
                 this.textBoxEstRating.Text = $"{est.Rating:F1}";
                 this.textBoxEstAddress.Text = est.Address.ToString();
-                this.linkLabelToWebSite.Text = (est.Link != string.Empty) ? est.Link : "ссылка отсутствует";
+                this.linkLabelToWebSite.Text = 
+                    (est.Link != string.Empty) ? est.Link : "ссылка отсутствует";
                 this.checkBoxStarred.Checked = db.Users.Find(userId).Favourite.Contains(this.est);
-                paths = est.PathsToPhoto == string.Empty ? new List<string>() { "notfound.png" } : est.PathsToPhoto.Split(';').ToList();
+                paths = est.PathsToPhoto == string.Empty ? 
+                    new List<string>() { "notfound.png" } : est.PathsToPhoto.Split(';').ToList();
             }
         }
         private void linkLabelToWebSite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -60,7 +100,8 @@ namespace RecsApp
             }
             catch
             {
-                MessageBox.Show("Приносим свои извинения\nУ данного заведения отсутствует сайт :(", "Ссылка отсутствует", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Приносим свои извинения\nУ данного заведения отсутствует сайт :(", 
+                    "Ссылка отсутствует", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         /// <summary>
@@ -72,11 +113,13 @@ namespace RecsApp
             {
                 if (File.Exists($"{Directory.GetCurrentDirectory()}\\..\\..\\images\\{paths[imageInd]}"))
                 {
-                    pictureBoxEstImage.ImageLocation = $"{Directory.GetCurrentDirectory()}\\..\\..\\images\\{paths[imageInd]}";
+                    pictureBoxEstImage.ImageLocation = 
+                        $"{Directory.GetCurrentDirectory()}\\..\\..\\images\\{paths[imageInd]}";
                 }
                 else
                 {
-                    pictureBoxEstImage.ImageLocation = $"{Directory.GetCurrentDirectory()}\\..\\..\\images\\notfound.png";
+                    pictureBoxEstImage.ImageLocation = 
+                        $"{Directory.GetCurrentDirectory()}\\..\\..\\images\\notfound.png";
                 }
             }
         }
@@ -133,16 +176,19 @@ namespace RecsApp
                         if (!user.Favourite.Contains(this.est))
                         {
                             user.Favourite.Add(this.est);
-                            MessageBox.Show("Заведение добавлено", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Заведение добавлено", "Успешно", 
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
-                            MessageBox.Show("Заведение уже добавлено в избранное", "Уже добавлено", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("Заведение уже добавлено в избранное", "Уже добавлено", 
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Доступ к аккаунту потерян", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Доступ к аккаунту потерян", "Ошибка", 
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
@@ -152,16 +198,19 @@ namespace RecsApp
                         if (user.Favourite.Contains(this.est))
                         {
                             user.Favourite.Remove(this.est);
-                            MessageBox.Show("Заведение удалено", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Заведение удалено", "Успешно", 
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
-                            MessageBox.Show("Заведение отсутствует в избранном", "Не найдено", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("Заведение отсутствует в избранном", "Не найдено", 
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Доступ к аккаунту потерян", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Доступ к аккаунту потерян", "Ошибка", 
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 db.SaveChanges();
@@ -169,7 +218,8 @@ namespace RecsApp
         }
         private void btnHide_Click(object sender, EventArgs e)
         {
-            var res = MessageBox.Show("Вы больше не увидите это событие\nПродолжить?", "Вы уверены?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            var res = MessageBox.Show("Вы больше не увидите это событие\nПродолжить?", "Вы уверены?", 
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (res == DialogResult.OK)
             {

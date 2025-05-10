@@ -4,16 +4,28 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RecsApp
 {
+    /// <summary>
+    /// Класс, лписывающий категорию заведения
+    /// </summary>
     public class EstCategory
     {
+        /// <summary>
+        /// Уникальный идентификатор категории заведения
+        /// </summary>
         [Key]
         public Guid Id { get; set; }
+        /// <summary>
+        /// Название категории заведения
+        /// </summary>
         public string Title { get; set; }
-        public ICollection<Establishment> ests { get; set; }
+        /// <summary>
+        /// Навигационное свойство на заведения с этой категорией
+        /// </summary>
+        public ICollection<Establishment> Ests { get; set; }
 
         public EstCategory()
         {
-            ests = new List<Establishment>();
+            Ests = new List<Establishment>();
         }
     }
 }

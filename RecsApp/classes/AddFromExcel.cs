@@ -7,116 +7,84 @@ using ClosedXML.Excel;
 
 namespace RecsApp
 {
+    /// <summary>
+    /// Класс, записывающий данные о заведениях с Excel в базу данных
+    /// </summary>
     public static class AddFromExcel
     {
         /// <summary>
-        /// Метод загружает типы заведений из Excel файла
+        /// Метод загружает типы, категории, кухни и чеки заведений из Excel файла в базу данных
         /// </summary>
-        public static void AddTypesToDB()
+        public static void AddTypesCatsFoodsChecksToDB()
         {
-            string path = $"{Directory.GetCurrentDirectory()}..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
+            var path = $"{Directory.GetCurrentDirectory()}..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
             if (!File.Exists(path))
             {
-                MessageBox.Show("Файл не найден!\nОбратитесь к администратору", "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Файл не найден!\nОбратитесь к администратору", 
+                    "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             var wb = new XLWorkbook(path);
-            var ws = wb.Worksheet("Типы").RowsUsed();
+            List<string> sheets = new List<string>() { 
+                "Типы",
+                "Категории", 
+                "Кухня",
+                "Средний чек"
+            };
 
             using (var db = new AppDbContext())
             {
-                foreach (var row in ws)
+                foreach (var sheet in sheets) 
                 {
-                    if (row.RowNumber() == 1)
+                    var ws = wb.Worksheet(sheet).RowsUsed();
+
+                    foreach (var row in ws)
                     {
-                        continue;
-                    }
-                    if (Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidType) && db.Types.Find(guidType) == null)
-                    {
-                        db.Types.Add(new EstType() { Id = guidType, Title = row.Cell(1).Value.ToString() });
-                    }
-                }
-                db.SaveChanges();
-            }
-        }
-        /// <summary>
-        /// Метод загружает категории заведений из Excel файла
-        /// </summary>
-        public static void AddCategoryesToDB()
-        {
-            string path = $"{Directory.GetCurrentDirectory()}..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
-            if (!File.Exists(path))
-            {
-                MessageBox.Show("Файл не найден!\nОбратитесь к администратору", "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            var wb = new XLWorkbook(path);
-            var ws = wb.Worksheet("Категории").RowsUsed();
-
-            using (var db = new AppDbContext())
-            {
-                foreach (var row in ws)
-                {
-                    if (Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidCat) && db.Categories.Find(guidCat) == null)
-                    {
-                        db.Categories.Add(new EstCategory() { Id = guidCat, Title = row.Cell(1).Value.ToString() });
-                    }
-
-                }
-                db.SaveChanges();
-            }
-        }
-        /// <summary>
-        /// Метод загружает кухни заведений из Excel файла
-        /// </summary>
-        public static void AddFoodToDB()
-        {
-            string path = $"{Directory.GetCurrentDirectory()}..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
-            if (!File.Exists(path))
-            {
-                MessageBox.Show("Файл не найден!\nОбратитесь к администратору", "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            var wb = new XLWorkbook(path);
-            var ws = wb.Worksheet("Кухня").RowsUsed();
-
-            using (var db = new AppDbContext())
-            {
-                foreach (var row in ws)
-                {
-                    if (Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidFood) && db.Foods.Find(guidFood) == null)
-                    {
-                        db.Foods.Add(new EstFood() { Id = guidFood, Title = row.Cell(1).Value.ToString() });
-                    }
-                }
-                db.SaveChanges();
-            }
-        }
-        /// <summary>
-        /// Метод загружает средние чеки заведений из Excel файла
-        /// </summary>
-        public static void AddAverageToDB()
-        {
-            string path = $"{Directory.GetCurrentDirectory()}..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
-            if (!File.Exists(path))
-            {
-                MessageBox.Show("Файл не найден!\nОбратитесь к администратору", "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            var wb = new XLWorkbook(path);
-            var ws = wb.Worksheet("Средний чек").RowsUsed();
-
-            using (var db = new AppDbContext())
-            {
-                foreach (var row in ws)
-                {
-                    if (Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidAv) && db.AverageChecks.Find(guidAv) == null)
-                    {
-                        db.AverageChecks.Add(new EstAverageCheck() { Id = guidAv, Title = row.Cell(1).Value.ToString() });
+                        if (row.RowNumber() == 1)
+                        {
+                            continue;
+                        }
+                        if (sheet == "Типы" 
+                            && Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidType) 
+                            && db.Types.Find(guidType) == null)
+                        {
+                            db.Types.Add(new EstType() 
+                            { 
+                                Id = guidType, 
+                                Title = row.Cell(1).Value.ToString() 
+                            });
+                        }
+                        else if (sheet == "Категории"
+                            && Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidCat) 
+                            && db.Categories.Find(guidCat) == null)
+                        {
+                            db.Categories.Add(new EstCategory() 
+                            { 
+                                Id = guidCat, 
+                                Title = row.Cell(1).Value.ToString() 
+                            });
+                        }
+                        else if (sheet == "Кухня"
+                            && Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidFood) 
+                            && db.Foods.Find(guidFood) == null)
+                        {
+                            db.Foods.Add(new EstFood() 
+                            { 
+                                Id = guidFood, 
+                                Title = row.Cell(1).Value.ToString() 
+                            });
+                        }
+                        else if (sheet == "Средний чек"
+                            && Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidAv) 
+                            && db.AverageChecks.Find(guidAv) == null)
+                        {
+                            db.AverageChecks.Add(new EstAverageCheck() 
+                            { 
+                                Id = guidAv, 
+                                Title = row.Cell(1).Value.ToString() 
+                            });
+                        }
                     }
                 }
                 db.SaveChanges();
@@ -127,10 +95,12 @@ namespace RecsApp
         /// </summary>
         public static void AddEstablishmentsToDB()
         {
-            string path = $"{Directory.GetCurrentDirectory()}..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
+            var path = $"{Directory.GetCurrentDirectory()}" +
+                $"..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
             if (!File.Exists(path))
             {
-                MessageBox.Show("Файл не найден!\nОбратитесь к администратору", "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Файл не найден!\nОбратитесь к администратору", 
+                    "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -145,19 +115,21 @@ namespace RecsApp
 
             using (var db = new AppDbContext())
             {
-                bool IsEmpty = false;
+                var IsEmpty = false;
                 foreach (var row in ws)
                 {
                     if (row.RowNumber() == 1)
                     {
                         continue;
                     }
-                    string name = row.Cell(1).Value.ToString();
-                    string description = row.Cell(2).Value.ToString();
-                    Guid type = GetTypeFromTable(wb, row.Cell(3).Value.ToString());
-                    List<Guid> Categories = GetSmthFromTable(wb, "Категории", row.Cell(4).Value.ToString());
-                    string address = row.Cell(5).Value.ToString();
-                    double rating = double.TryParse(row.Cell(6).Value.ToString().Replace('.', ','), out double rat) ? rat : 0;
+                    var name = row.Cell(1).Value.ToString();
+                    var description = row.Cell(2).Value.ToString();
+                    var type = GetTypeFromTable(wb, row.Cell(3).Value.ToString());
+                    var categories = GetSmthFromTable(wb, "Категории", row.Cell(4).Value.ToString());
+                    var address = row.Cell(5).Value.ToString();
+                    var rating = double.TryParse(
+                        row.Cell(6).Value.ToString().Replace('.', ','), 
+                        out double rat) ? rat : 0;
                     if (rating > 5)
                     {
                         rating = 5;
@@ -166,15 +138,19 @@ namespace RecsApp
                     {
                         rating = 0;
                     }
-                    string link = row.Cell(7).Value.ToString();
-                    string pathsToPhoto = row.Cell(8).Value.ToString();
-                    List<Guid> Food = GetSmthFromTable(wb, "Кухня", row.Cell(9).Value.ToString());
-                    List<Guid> Average = GetSmthFromTable(wb, "Средний чек", row.Cell(10).Value.ToString());
-                    string stringSimilar = row.Cell(11).Value.ToString();                  
+                    var link = row.Cell(7).Value.ToString();
+                    var pathsToPhoto = row.Cell(8).Value.ToString();
+                    var food = GetSmthFromTable(wb, "Кухня", row.Cell(9).Value.ToString());
+                    var average = GetSmthFromTable(wb, "Средний чек", row.Cell(10).Value.ToString());
+                    var stringSimilar = row.Cell(11).Value.ToString();                  
 
 
                     if (string.IsNullOrWhiteSpace(name) || string.IsNullOrEmpty(description) ||
-                        type == Guid.Empty || Categories.Count == 0 || Categories.Any(x => x == Guid.Empty) || string.IsNullOrEmpty(address))
+                        type == Guid.Empty || 
+                        categories.Count == 0 || categories.Any(c => c == Guid.Empty)
+                        || food.Count == 0 || food.Any(f => f == Guid.Empty)
+                        || average.Count == 0 || average.Any(a => a == Guid.Empty)
+                        || string.IsNullOrEmpty(address))
                     {
                         IsEmpty = true;
                     }
@@ -190,7 +166,7 @@ namespace RecsApp
                         continue;
                     }
 
-                    var e = new Establishment()
+                    var establishment = new Establishment()
                     {
                         Name = name,
                         Description = description,
@@ -202,23 +178,26 @@ namespace RecsApp
                         Similar = stringSimilar
                     };
 
-                    foreach (var c in Categories)
+                    foreach (var c in categories)
                     {
-                        e.Categories.Add(db.Categories.Find(c));
+                        establishment.Categories.Add(db.Categories.Find(c));
                     }
-                    foreach (var f in Food)
+                    foreach (var f in food)
                     {
-                        e.Foods.Add(db.Foods.Find(f));
+                        establishment.Foods.Add(db.Foods.Find(f));
                     }
-                    e.Check = decimal.TryParse(row.Cell(10).Value.ToString(), out decimal ch) ? ch : 0m;
-                    e.Average = db.AverageChecks.Find(Average[0]);
+                    establishment.Check = decimal.TryParse(row.Cell(10).Value.ToString(), 
+                        out decimal ch) ? ch : 0m;
+                    establishment.Average = db.AverageChecks.Find(average[0]);
                     
-                    db.Establishments.Add(e);
+                    db.Establishments.Add(establishment);
 
                 }
                 if (IsEmpty)
                 {
-                    MessageBox.Show("Отображенные данные будут не полными!\nОбратитесь к администратору", "Часть данных утеряна", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Отображенные данные будут не полными!\n" +
+                        "Обратитесь к администратору", "Часть данных утеряна", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 db.SaveChanges();
             }
@@ -237,7 +216,9 @@ namespace RecsApp
                 {
                     continue;
                 }
-                if (row.Cell(1).Value.ToString() == type && new AppDbContext().Types.Find(GetGuidFromString(row.Cell(2).Value.ToString())) != null)
+                if (row.Cell(1).Value.ToString() == type 
+                    && new AppDbContext().Types.Find(
+                        GetGuidFromString(row.Cell(2).Value.ToString())) != null)
                 {
                     return GetGuidFromString(row.Cell(2).Value.ToString());
                 }
@@ -254,11 +235,11 @@ namespace RecsApp
         /// <returns></returns>
         private static List<Guid> GetSmthFromTable(IXLWorkbook wb, string tableName, string str)
         {
-            List<Guid> ret = new List<Guid>();
+            var ret = new List<Guid>();
             var dict = FillDict(wb, tableName);
             if (tableName != "Средний чек")
             {
-                string[] spl = str.Split(';');
+                var spl = str.Split(';');
                 foreach (string smth in spl)
                 {
                     if (dict.TryGetValue(smth, out Guid g))
@@ -269,25 +250,34 @@ namespace RecsApp
             }
             else
             {
-                decimal check = decimal.TryParse(str, out decimal ch)? ch : 0m;
-                if (check > 0)
+                var check = decimal.TryParse(str, out decimal ch)? ch : 0m;
+                try
                 {
-                    if (check <= 1000)
+                    if (check > 0)
                     {
-                        ret.Add(dict["до 1000 рублей"]);
-                    }
-                    else if (1000 < check && check <= 3000)
-                    {
-                        ret.Add(dict["от 1000 до 3000 рублей"]);
+                        if (check <= 1000)
+                        {
+                            ret.Add(dict["до 1000 рублей"]);
+                        }
+                        else if (1000 < check && check <= 3000)
+                        {
+                            ret.Add(dict["от 1000 до 3000 рублей"]);
+                        }
+                        else
+                        {
+                            ret.Add(dict["от 3000 рублей"]);
+                        }
                     }
                     else
                     {
-                        ret.Add(dict["от 3000 рублей"]);
+                        MessageBox.Show($"Информация о чеке утеряна: {str}", 
+                            "Информация утеряна", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
-                else
+                catch (Exception exception)
                 {
-                    MessageBox.Show($"Информация о чеке утеряна: {str}", "Информация утеряна", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(exception.Message, "Ошибка", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -301,7 +291,7 @@ namespace RecsApp
         /// <returns></returns>
         private static Dictionary<string, Guid> FillDict(IXLWorkbook wb, string tableName)
         {
-            Dictionary<string, Guid> guids = new Dictionary<string, Guid>();
+            var guids = new Dictionary<string, Guid>();
             foreach (var row in wb.Worksheet(tableName).RowsUsed())
             {
                 if (row.RowNumber() == 1)
@@ -316,16 +306,14 @@ namespace RecsApp
         /// <summary>
         /// Метод переводит string в Guid 
         /// </summary>
-        public static Guid GetGuidFromString(string strGuid)
+        private static Guid GetGuidFromString(string strGuid)
         {
             if (Guid.TryParse(strGuid, out Guid guid))
             {
                 return guid;
             }
-            else
-            {
-                return Guid.Empty;
-            }
+            return Guid.Empty;
+            
         }
     }
 }
