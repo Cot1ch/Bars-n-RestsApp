@@ -55,8 +55,9 @@ namespace RecsApp
             LoadInfoForm();
             ShowImage();
             using (var res = new ResXResourceSet(
-                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\MainForm.resx"))
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\InfoForm.resx"))
             {
+                this.Text = res.GetString("InfoFormText");
                 this.checkBoxStarred.Text = res.GetString("checkBoxStarredText");
                 this.linkLabelToWebSite.Text = res.GetString("linkLabelToWebSiteText");
                 this.labelAddress.Text = res.GetString("labelAddressText");
@@ -76,17 +77,19 @@ namespace RecsApp
         /// </summary>
         public void LoadInfoForm()
         {
-            using (var db = new AppDbContext())
+            using (var res = new ResXResourceSet(
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\InfoForm.resx"))
+                using (var db = new AppDbContext())
             {
                 this.textBoxEstName.Text = est.Name;
                 this.textBoxEstDescription.Text = est.Description;
                 this.textBoxFood.Text = string.Join("; ", est.Foods.Select(f => f.Title).ToList());
                 this.textBoxEstType.Text = est.Type.Title;
-                this.textBoxAverageCheck.Text = $"{est.Check:F0} руб.";
+                this.textBoxAverageCheck.Text = $"{est.Check:F0} {res.GetString("Currency")}";
                 this.textBoxEstRating.Text = $"{est.Rating:F1}";
                 this.textBoxEstAddress.Text = est.Address.ToString();
                 this.linkLabelToWebSite.Text = 
-                    (est.Link != string.Empty) ? est.Link : "ссылка отсутствует";
+                    (est.Link != string.Empty) ? est.Link : res.GetString("linkLabelToWebSiteText");
                 this.checkBoxStarred.Checked = db.Users.Find(userId).Favourite.Contains(this.est);
                 paths = est.PathsToPhoto == string.Empty ? 
                     new List<string>() { "notfound.png" } : est.PathsToPhoto.Split(';').ToList();
@@ -100,8 +103,13 @@ namespace RecsApp
             }
             catch
             {
-                MessageBox.Show("Приносим свои извинения\nУ данного заведения отсутствует сайт :(", 
-                    "Ссылка отсутствует", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                using (var res = new ResXResourceSet(
+                    $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\InfoForm.resx"))
+                {
+                    MessageBox.Show(res.GetString("WebSiteDoesntExists"),
+                    res.GetString("linkLabelToWebSiteText"), 
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
         /// <summary>
@@ -111,7 +119,8 @@ namespace RecsApp
         {
             if (paths != null)
             {
-                if (File.Exists($"{Directory.GetCurrentDirectory()}\\..\\..\\images\\{paths[imageInd]}"))
+                if (File.Exists(
+                    $"{Directory.GetCurrentDirectory()}\\..\\..\\images\\{paths[imageInd]}"))
                 {
                     pictureBoxEstImage.ImageLocation = 
                         $"{Directory.GetCurrentDirectory()}\\..\\..\\images\\{paths[imageInd]}";
@@ -163,6 +172,8 @@ namespace RecsApp
         }
         private void checkBoxStarred_CheckedChanged(object sender, EventArgs e)
         {
+            using (var res = new ResXResourceSet(
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\InfoForm.resx"))
             using (var db = new AppDbContext())
             {
                 var user = (from u in db.Users
@@ -176,18 +187,20 @@ namespace RecsApp
                         if (!user.Favourite.Contains(this.est))
                         {
                             user.Favourite.Add(this.est);
-                            MessageBox.Show("Заведение добавлено", "Успешно", 
+                            MessageBox.Show(res.GetString("EstablishmentAdded"), 
+                                res.GetString("Succsess"), 
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
-                            MessageBox.Show("Заведение уже добавлено в избранное", "Уже добавлено", 
+                            MessageBox.Show(res.GetString("EstablishmentAlreadyInFavorite"),
+                                res.GetString("AlreadyAdd"), 
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Доступ к аккаунту потерян", "Ошибка", 
+                        MessageBox.Show(res.GetString("AccsessDenied"), res.GetString("Error"), 
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
@@ -198,18 +211,20 @@ namespace RecsApp
                         if (user.Favourite.Contains(this.est))
                         {
                             user.Favourite.Remove(this.est);
-                            MessageBox.Show("Заведение удалено", "Успешно", 
+                            MessageBox.Show(res.GetString("EstablishmentDeleted"),
+                                res.GetString("Succsess"),
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
-                            MessageBox.Show("Заведение отсутствует в избранном", "Не найдено", 
+                            MessageBox.Show(res.GetString("EstablishmentNotInFavourite"),
+                                res.GetString("NotFound"), 
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Доступ к аккаунту потерян", "Ошибка", 
+                        MessageBox.Show(res.GetString("AccsessDenied"), res.GetString("Error"),
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
@@ -218,23 +233,28 @@ namespace RecsApp
         }
         private void btnHide_Click(object sender, EventArgs e)
         {
-            var res = MessageBox.Show("Вы больше не увидите это событие\nПродолжить?", "Вы уверены?", 
+            using (var res = new ResXResourceSet(
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\InfoForm.resx"))
+            { 
+                var result = MessageBox.Show(res.GetString("HideEstablishment"),
+                res.GetString("AreUSure"), 
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-            if (res == DialogResult.OK)
-            {
-                using (var db = new AppDbContext())
+                if (result == DialogResult.OK)
                 {
-                    var user = (from u in db.Users.Include(u => u.Hidden)
-                                where u.user_Id == this.userId
-                                select u).First();
-                    db.Establishments.Attach(this.est);
-                    user.Hidden.Add(this.est);
-                    db.SaveChanges();
+                    using (var db = new AppDbContext())
+                    {
+                        var user = (from u in db.Users.Include(u => u.Hidden)
+                                    where u.user_Id == this.userId
+                                    select u).First();
+                        db.Establishments.Attach(this.est);
+                        user.Hidden.Add(this.est);
+                        db.SaveChanges();
 
+                    }
+                    mainForm.LoadForm();
+                    this.Close();
                 }
-                mainForm.LoadForm();
-                this.Close();
             }
         }
         /// <summary>

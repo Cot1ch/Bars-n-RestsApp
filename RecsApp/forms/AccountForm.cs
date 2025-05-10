@@ -3,6 +3,8 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Data.Entity;
 using System.Collections.Generic;
+using System.IO;
+using System.Resources;
 
 namespace RecsApp
 {
@@ -28,10 +30,15 @@ namespace RecsApp
 
         private void btnSaveChanges_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(this.textBoxName.Text))
+            using (var res = new ResXResourceSet(
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\AccountForm.resx"))
             {
-                MessageBox.Show("Имя не может быть пустым");
-                return;
+                if (string.IsNullOrEmpty(this.textBoxName.Text))
+                {
+                    MessageBox.Show(res.GetString("NameIsEmpty"), res.GetString("Error"),
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
 
             using (var db = new AppDbContext())
@@ -97,6 +104,8 @@ namespace RecsApp
 
         private void AccountForm_Load(object sender, EventArgs e)
         {
+            using (var res = new ResXResourceSet(
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\AccountForm.resx"))
             using (var db = new AppDbContext())
             {
                 foreach (var item in db.Types.ToList())
@@ -118,13 +127,14 @@ namespace RecsApp
  
                 if (db.Users.Find(userId) == null)
                 {
-                    MessageBox.Show("Ошибка! Данные аккаунта пусты");
+                    MessageBox.Show(res.GetString("AccessDenied"), res.GetString("Error"),
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                     this.Close();
                     return;
                 }
                 var user = db.Users.Find(userId);
                 this.textBoxName.Text = user.name;
-                this.textBox2.Text = user.username;
+                this.textBoxLogin.Text = user.username;
 
                 if (user.est_types == null)
                 {
@@ -151,6 +161,19 @@ namespace RecsApp
                     checkedListBoxAverage.SetItemChecked(
                         this.checkedListBoxAverage.Items.IndexOf(average.Title), true);
                 }
+
+                this.Text = res.GetString("labelAccountText");
+                this.labelName.Text = res.GetString("labelNameText");
+                this.labelLogin.Text = res.GetString("labelLoginText");
+                this.labelCategory.Text = res.GetString("labelCategoryText");
+                this.labelType.Text = res.GetString("labelTypeText");
+                this.buttonAccExit.Text = res.GetString("buttonAccExitText");
+                this.btnSaveChanges.Text = res.GetString("btnSaveChangesText");
+                this.labelAccount.Text = res.GetString("labelAccountText");
+                this.labelFood.Text = res.GetString("labelFoodText");
+                this.labelAverage.Text = res.GetString("labelAverageText");
+                this.checkBoxRating.Text = res.GetString("checkBoxRatingText");
+
             }
         }
 

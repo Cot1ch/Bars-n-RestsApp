@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Resources;
 using System.Windows.Forms;
 using ClosedXML.Excel;
 
@@ -17,77 +18,84 @@ namespace RecsApp
         /// </summary>
         public static void AddTypesCatsFoodsChecksToDB()
         {
-            var path = $"{Directory.GetCurrentDirectory()}..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
-            if (!File.Exists(path))
+            using (var res = new ResXResourceSet(
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resource1.resx"))
             {
-                MessageBox.Show("Файл не найден!\nОбратитесь к администратору", 
-                    "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            var wb = new XLWorkbook(path);
-            List<string> sheets = new List<string>() { 
-                "Типы",
-                "Категории", 
-                "Кухня",
-                "Средний чек"
-            };
-
-            using (var db = new AppDbContext())
-            {
-                foreach (var sheet in sheets) 
+                var path = $"{Directory.GetCurrentDirectory()}" +
+                       $"..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
+                if (!File.Exists(path))
                 {
-                    var ws = wb.Worksheet(sheet).RowsUsed();
+                    MessageBox.Show(res.GetString("ContactAdmin"),
+                        res.GetString("FileDoesntExist"), 
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-                    foreach (var row in ws)
+                var wb = new XLWorkbook(path);
+                List<string> sheets = new List<string>() 
+                {
+                    "Типы",
+                    "Категории",
+                    "Кухня",
+                    "Средний чек"
+                };
+
+                using (var db = new AppDbContext())
+                {
+                    foreach (var sheet in sheets)
                     {
-                        if (row.RowNumber() == 1)
+                        var ws = wb.Worksheet(sheet).RowsUsed();
+
+                        foreach (var row in ws)
                         {
-                            continue;
-                        }
-                        if (sheet == "Типы" 
-                            && Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidType) 
-                            && db.Types.Find(guidType) == null)
-                        {
-                            db.Types.Add(new EstType() 
-                            { 
-                                Id = guidType, 
-                                Title = row.Cell(1).Value.ToString() 
-                            });
-                        }
-                        else if (sheet == "Категории"
-                            && Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidCat) 
-                            && db.Categories.Find(guidCat) == null)
-                        {
-                            db.Categories.Add(new EstCategory() 
-                            { 
-                                Id = guidCat, 
-                                Title = row.Cell(1).Value.ToString() 
-                            });
-                        }
-                        else if (sheet == "Кухня"
-                            && Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidFood) 
-                            && db.Foods.Find(guidFood) == null)
-                        {
-                            db.Foods.Add(new EstFood() 
-                            { 
-                                Id = guidFood, 
-                                Title = row.Cell(1).Value.ToString() 
-                            });
-                        }
-                        else if (sheet == "Средний чек"
-                            && Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidAv) 
-                            && db.AverageChecks.Find(guidAv) == null)
-                        {
-                            db.AverageChecks.Add(new EstAverageCheck() 
-                            { 
-                                Id = guidAv, 
-                                Title = row.Cell(1).Value.ToString() 
-                            });
+                            if (row.RowNumber() == 1)
+                            {
+                                continue;
+                            }
+                            if (sheet == "Типы"
+                                && Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidType)
+                                && db.Types.Find(guidType) == null)
+                            {
+                                db.Types.Add(new EstType()
+                                {
+                                    Id = guidType,
+                                    Title = row.Cell(1).Value.ToString()
+                                });
+                            }
+                            else if (sheet == "Категории"
+                                && Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidCat)
+                                && db.Categories.Find(guidCat) == null)
+                            {
+                                db.Categories.Add(new EstCategory()
+                                {
+                                    Id = guidCat,
+                                    Title = row.Cell(1).Value.ToString()
+                                });
+                            }
+                            else if (sheet == "Кухня"
+                                && Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidFood)
+                                && db.Foods.Find(guidFood) == null)
+                            {
+                                db.Foods.Add(new EstFood()
+                                {
+                                    Id = guidFood,
+                                    Title = row.Cell(1).Value.ToString()
+                                });
+                            }
+                            else if (sheet == "Средний чек"
+                                && Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidAv)
+                                && db.AverageChecks.Find(guidAv) == null)
+                            {
+                                db.AverageChecks.Add(new EstAverageCheck()
+                                {
+                                    Id = guidAv,
+                                    Title = row.Cell(1).Value.ToString()
+                                });
+                            }
                         }
                     }
+                    db.SaveChanges();
                 }
-                db.SaveChanges();
             }
         }
         /// <summary>
@@ -95,111 +103,120 @@ namespace RecsApp
         /// </summary>
         public static void AddEstablishmentsToDB()
         {
-            var path = $"{Directory.GetCurrentDirectory()}" +
-                $"..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
-            if (!File.Exists(path))
+            using (var res = new ResXResourceSet(
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resource1.resx"))
             {
-                MessageBox.Show("Файл не найден!\nОбратитесь к администратору", 
-                    "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
 
-            var wb = new XLWorkbook(path);
+                var path = $"{Directory.GetCurrentDirectory()}" +
+                       $"..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
 
-            if (!wb.TryGetWorksheet("Заведения", out IXLWorksheet works))
-            {
-                MessageBox.Show("Лист 'Заведения' не найден!\nОбратитесь к администратору");
-                return;
-            }
-            var ws = works.RowsUsed();
-
-            using (var db = new AppDbContext())
-            {
-                var IsEmpty = false;
-                foreach (var row in ws)
+                if (!File.Exists(path))
                 {
-                    if (row.RowNumber() == 1)
-                    {
-                        continue;
-                    }
-                    var name = row.Cell(1).Value.ToString();
-                    var description = row.Cell(2).Value.ToString();
-                    var type = GetTypeFromTable(wb, row.Cell(3).Value.ToString());
-                    var categories = GetSmthFromTable(wb, "Категории", row.Cell(4).Value.ToString());
-                    var address = row.Cell(5).Value.ToString();
-                    var rating = double.TryParse(
-                        row.Cell(6).Value.ToString().Replace('.', ','), 
-                        out double rat) ? rat : 0;
-                    if (rating > 5)
-                    {
-                        rating = 5;
-                    }
-                    else if (rating < 0)
-                    {
-                        rating = 0;
-                    }
-                    var link = row.Cell(7).Value.ToString();
-                    var pathsToPhoto = row.Cell(8).Value.ToString();
-                    var food = GetSmthFromTable(wb, "Кухня", row.Cell(9).Value.ToString());
-                    var average = GetSmthFromTable(wb, "Средний чек", row.Cell(10).Value.ToString());
-                    var stringSimilar = row.Cell(11).Value.ToString();                  
-
-
-                    if (string.IsNullOrWhiteSpace(name) || string.IsNullOrEmpty(description) ||
-                        type == Guid.Empty || 
-                        categories.Count == 0 || categories.Any(c => c == Guid.Empty)
-                        || food.Count == 0 || food.Any(f => f == Guid.Empty)
-                        || average.Count == 0 || average.Any(a => a == Guid.Empty)
-                        || string.IsNullOrEmpty(address))
-                    {
-                        IsEmpty = true;
-                    }
-
-                    if ((from est in db.Establishments
-                         where est.Name == name
-                         select est).Count() != 0
-                         &&
-                        (from est in db.Establishments
-                         where est.Address == address
-                         select est).Count() != 0)
-                    {
-                        continue;
-                    }
-
-                    var establishment = new Establishment()
-                    {
-                        Name = name,
-                        Description = description,
-                        Type = db.Types.Find(type),
-                        Address = address,
-                        Rating = rating,
-                        Link = link,
-                        PathsToPhoto = pathsToPhoto,
-                        Similar = stringSimilar
-                    };
-
-                    foreach (var c in categories)
-                    {
-                        establishment.Categories.Add(db.Categories.Find(c));
-                    }
-                    foreach (var f in food)
-                    {
-                        establishment.Foods.Add(db.Foods.Find(f));
-                    }
-                    establishment.Check = decimal.TryParse(row.Cell(10).Value.ToString(), 
-                        out decimal ch) ? ch : 0m;
-                    establishment.Average = db.AverageChecks.Find(average[0]);
-                    
-                    db.Establishments.Add(establishment);
-
+                    MessageBox.Show(res.GetString("ContactAdmin"),
+                        res.GetString("FileDoesntExist"),
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
-                if (IsEmpty)
+
+                var wb = new XLWorkbook(path);
+
+                if (!wb.TryGetWorksheet("Заведения", out IXLWorksheet works))
                 {
-                    MessageBox.Show("Отображенные данные будут не полными!\n" +
-                        "Обратитесь к администратору", "Часть данных утеряна", 
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(res.GetString("ContactAdmin"),
+                        res.GetString("SheetDoesntFound"),
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
-                db.SaveChanges();
+                var ws = works.RowsUsed();
+
+                using (var db = new AppDbContext())
+                {
+                    var IsEmpty = false;
+                    foreach (var row in ws)
+                    {
+                        if (row.RowNumber() == 1)
+                        {
+                            continue;
+                        }
+                        var name = row.Cell(1).Value.ToString();
+                        var description = row.Cell(2).Value.ToString();
+                        var type = GetTypeFromTable(wb, row.Cell(3).Value.ToString());
+                        var categories = GetSmthFromTable(wb, "Категории", row.Cell(4).Value.ToString());
+                        var address = row.Cell(5).Value.ToString();
+                        var rating = double.TryParse(
+                            row.Cell(6).Value.ToString().Replace('.', ','),
+                            out double rat) ? rat : 0;
+                        if (rating > 5)
+                        {
+                            rating = 5;
+                        }
+                        else if (rating < 0)
+                        {
+                            rating = 0;
+                        }
+                        var link = row.Cell(7).Value.ToString();
+                        var pathsToPhoto = row.Cell(8).Value.ToString();
+                        var food = GetSmthFromTable(wb, "Кухня", row.Cell(9).Value.ToString());
+                        var average = GetSmthFromTable(wb, "Средний чек", row.Cell(10).Value.ToString());
+                        var stringSimilar = row.Cell(11).Value.ToString();
+
+
+                        if (string.IsNullOrWhiteSpace(name) || string.IsNullOrEmpty(description) ||
+                            type == Guid.Empty ||
+                            categories.Count == 0 || categories.Any(c => c == Guid.Empty)
+                            || food.Count == 0 || food.Any(f => f == Guid.Empty)
+                            || average.Count == 0 || average.Any(a => a == Guid.Empty)
+                            || string.IsNullOrEmpty(address))
+                        {
+                            IsEmpty = true;
+                        }
+
+                        if ((from est in db.Establishments
+                             where est.Name == name
+                             select est).Count() != 0
+                             &&
+                            (from est in db.Establishments
+                             where est.Address == address
+                             select est).Count() != 0)
+                        {
+                            continue;
+                        }
+
+                        var establishment = new Establishment()
+                        {
+                            Name = name,
+                            Description = description,
+                            Type = db.Types.Find(type),
+                            Address = address,
+                            Rating = rating,
+                            Link = link,
+                            PathsToPhoto = pathsToPhoto,
+                            Similar = stringSimilar
+                        };
+
+                        foreach (var c in categories)
+                        {
+                            establishment.Categories.Add(db.Categories.Find(c));
+                        }
+                        foreach (var f in food)
+                        {
+                            establishment.Foods.Add(db.Foods.Find(f));
+                        }
+                        establishment.Check = decimal.TryParse(row.Cell(10).Value.ToString(),
+                            out decimal ch) ? ch : 0m;
+                        establishment.Average = db.AverageChecks.Find(average[0]);
+
+                        db.Establishments.Add(establishment);
+
+                    }
+                    if (IsEmpty)
+                    {
+                        MessageBox.Show(res.GetString("DataDoesntFull") + "\n" +
+                            res.GetString("ContactAdmin"), res.GetString("DataLost"),
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    db.SaveChanges();
+                }
             }
         }
         /// <summary>
@@ -235,53 +252,59 @@ namespace RecsApp
         /// <returns></returns>
         private static List<Guid> GetSmthFromTable(IXLWorkbook wb, string tableName, string str)
         {
-            var ret = new List<Guid>();
-            var dict = FillDict(wb, tableName);
-            if (tableName != "Средний чек")
+            using (var res = new ResXResourceSet(
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resource1.resx"))
             {
-                var spl = str.Split(';');
-                foreach (string smth in spl)
+                var ret = new List<Guid>();
+                var dict = FillDict(wb, tableName);
+                if (tableName != "Средний чек")
                 {
-                    if (dict.TryGetValue(smth, out Guid g))
+                    var spl = str.Split(';');
+                    foreach (string smth in spl)
                     {
-                        ret.Add(g);
+                        if (dict.TryGetValue(smth, out Guid g))
+                        {
+                            ret.Add(g);
+                        }
                     }
                 }
-            }
-            else
-            {
-                var check = decimal.TryParse(str, out decimal ch)? ch : 0m;
-                try
+                else
                 {
-                    if (check > 0)
+                    var check = decimal.TryParse(str, out decimal ch) ? ch : 0m;
+                    try
                     {
-                        if (check <= 1000)
+                        if (check > 0)
                         {
-                            ret.Add(dict["до 1000 рублей"]);
-                        }
-                        else if (1000 < check && check <= 3000)
-                        {
-                            ret.Add(dict["от 1000 до 3000 рублей"]);
+                            if (check <= 1000)
+                            {
+                                ret.Add(dict["до 1000 рублей"]);
+                            }
+                            else if (1000 < check && check <= 3000)
+                            {
+                                ret.Add(dict["от 1000 до 3000 рублей"]);
+                            }
+                            else
+                            {
+                                ret.Add(dict["от 3000 рублей"]);
+                            }
                         }
                         else
                         {
-                            ret.Add(dict["от 3000 рублей"]);
+                            MessageBox.Show(res.GetString("DataLost") + 
+                                $":\n{check.GetType().Name} : {check}",
+                                res.GetString("DataLost"), 
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
-                    else
+                    catch (Exception exception)
                     {
-                        MessageBox.Show($"Информация о чеке утеряна: {str}", 
-                            "Информация утеряна", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(exception.Message, res.GetString("Error"),
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch (Exception exception)
-                {
-                    MessageBox.Show(exception.Message, "Ошибка", 
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
 
-            return ret;
+                return ret;
+            }
         }
         /// <summary>
         /// Метод возвращает словарь со названиями (категория/кухня/чек) и их guid

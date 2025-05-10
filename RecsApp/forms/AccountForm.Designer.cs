@@ -33,15 +33,15 @@
             this.labelCategory = new System.Windows.Forms.Label();
             this.labelType = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxLogin = new System.Windows.Forms.TextBox();
             this.checkedListBoxCategory = new System.Windows.Forms.CheckedListBox();
             this.checkedListBoxType = new System.Windows.Forms.CheckedListBox();
             this.buttonAccExit = new System.Windows.Forms.Button();
             this.btnSaveChanges = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelAccount = new System.Windows.Forms.Label();
             this.checkedListBoxAverage = new System.Windows.Forms.CheckedListBox();
             this.labelFood = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelAverage = new System.Windows.Forms.Label();
             this.checkBoxRating = new System.Windows.Forms.CheckBox();
             this.checkedListBoxFood = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
@@ -100,16 +100,16 @@
             this.textBoxName.Size = new System.Drawing.Size(287, 19);
             this.textBoxName.TabIndex = 5;
             // 
-            // textBox2
+            // textBoxLogin
             // 
-            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Font = new System.Drawing.Font("Verdana", 9F);
-            this.textBox2.Location = new System.Drawing.Point(40, 153);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(287, 19);
-            this.textBox2.TabIndex = 6;
+            this.textBoxLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.textBoxLogin.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxLogin.Font = new System.Drawing.Font("Verdana", 9F);
+            this.textBoxLogin.Location = new System.Drawing.Point(40, 153);
+            this.textBoxLogin.Name = "textBoxLogin";
+            this.textBoxLogin.ReadOnly = true;
+            this.textBoxLogin.Size = new System.Drawing.Size(287, 19);
+            this.textBoxLogin.TabIndex = 6;
             // 
             // checkedListBoxCategory
             // 
@@ -162,16 +162,16 @@
             this.btnSaveChanges.UseVisualStyleBackColor = false;
             this.btnSaveChanges.Click += new System.EventHandler(this.btnSaveChanges_Click);
             // 
-            // label1
+            // labelAccount
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.label1.Location = new System.Drawing.Point(35, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(203, 25);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Личный кабинет";
+            this.labelAccount.AutoSize = true;
+            this.labelAccount.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
+            this.labelAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.labelAccount.Location = new System.Drawing.Point(35, 40);
+            this.labelAccount.Name = "labelAccount";
+            this.labelAccount.Size = new System.Drawing.Size(203, 25);
+            this.labelAccount.TabIndex = 11;
+            this.labelAccount.Text = "Личный кабинет";
             // 
             // checkedListBoxAverage
             // 
@@ -196,16 +196,16 @@
             this.labelFood.TabIndex = 14;
             this.labelFood.Text = "Кухня";
             // 
-            // label2
+            // labelAverage
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Verdana", 9F);
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.label2.Location = new System.Drawing.Point(517, 192);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 18);
-            this.label2.TabIndex = 15;
-            this.label2.Text = "Средний чек";
+            this.labelAverage.AutoSize = true;
+            this.labelAverage.Font = new System.Drawing.Font("Verdana", 9F);
+            this.labelAverage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.labelAverage.Location = new System.Drawing.Point(517, 192);
+            this.labelAverage.Name = "labelAverage";
+            this.labelAverage.Size = new System.Drawing.Size(105, 18);
+            this.labelAverage.TabIndex = 15;
+            this.labelAverage.Text = "Средний чек";
             // 
             // checkBoxRating
             // 
@@ -238,16 +238,16 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(147)))), ((int)(((byte)(119)))));
             this.ClientSize = new System.Drawing.Size(982, 653);
             this.Controls.Add(this.checkBoxRating);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.labelAverage);
             this.Controls.Add(this.labelFood);
             this.Controls.Add(this.checkedListBoxFood);
             this.Controls.Add(this.checkedListBoxAverage);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelAccount);
             this.Controls.Add(this.btnSaveChanges);
             this.Controls.Add(this.buttonAccExit);
             this.Controls.Add(this.checkedListBoxType);
             this.Controls.Add(this.checkedListBoxCategory);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBoxLogin);
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.labelType);
             this.Controls.Add(this.labelCategory);
@@ -271,15 +271,15 @@
         private System.Windows.Forms.Label labelCategory;
         private System.Windows.Forms.Label labelType;
         private System.Windows.Forms.TextBox textBoxName;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBoxLogin;
         private System.Windows.Forms.CheckedListBox checkedListBoxCategory;
         private System.Windows.Forms.CheckedListBox checkedListBoxType;
         private System.Windows.Forms.Button buttonAccExit;
         private System.Windows.Forms.Button btnSaveChanges;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelAccount;
         private System.Windows.Forms.CheckedListBox checkedListBoxAverage;
         private System.Windows.Forms.Label labelFood;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelAverage;
         private System.Windows.Forms.CheckBox checkBoxRating;
         private System.Windows.Forms.CheckedListBox checkedListBoxFood;
     }
