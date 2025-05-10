@@ -60,7 +60,7 @@
             this.buttonCreateAccount.Text = "Создать аккаунт";
             this.buttonCreateAccount.UseVisualStyleBackColor = false;
             this.buttonCreateAccount.Click += new System.EventHandler(this.buttonCreateAccount_Click);
-            this.buttonCreateAccount.Paint += new System.Windows.Forms.PaintEventHandler(this.buttonCreateAccount_Paint);
+
             // 
             // buttonEntryAccount
             // 
@@ -76,7 +76,6 @@
             this.buttonEntryAccount.Text = "Вход";
             this.buttonEntryAccount.UseVisualStyleBackColor = false;
             this.buttonEntryAccount.Click += new System.EventHandler(this.buttonEntryAccount_Click);
-            this.buttonEntryAccount.Paint += new System.Windows.Forms.PaintEventHandler(this.buttonEntryAccount_Paint);
             // 
             // Form1
             // 

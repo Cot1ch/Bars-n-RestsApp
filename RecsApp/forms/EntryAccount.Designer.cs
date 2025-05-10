@@ -90,7 +90,6 @@
             this.buttonEntry.Text = "Войти";
             this.buttonEntry.UseVisualStyleBackColor = false;
             this.buttonEntry.Click += new System.EventHandler(this.buttonEntry_Click);
-            this.buttonEntry.Paint += new System.Windows.Forms.PaintEventHandler(this.buttonEntry_Paint);
             // 
             // buttonBFEA
             // 
@@ -106,7 +105,6 @@
             this.buttonBFEA.Text = "Назад";
             this.buttonBFEA.UseVisualStyleBackColor = false;
             this.buttonBFEA.Click += new System.EventHandler(this.buttonBFEA_Click);
-            this.buttonBFEA.Paint += new System.Windows.Forms.PaintEventHandler(this.buttonBFEA_Paint);
             // 
             // richTextBoxEntryLogin
             // 

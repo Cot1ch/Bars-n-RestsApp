@@ -13,7 +13,7 @@ namespace RecsApp.forms
 {
     public partial class EntryAccount : Form
     {
-        private bool isPasswordEntryVisible = true; // Флаг для отслеживания видимости пароля
+        private bool isPasswordEntryVisible = true;
         public EntryAccount()
         {
             InitializeComponent();
@@ -24,7 +24,6 @@ namespace RecsApp.forms
             string login = richTextBoxEntryLogin.Text.Trim();
             string password = textBoxEntryPassword.Text.Trim();
 
-            // Проверяем, заполнены ли все поля
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Пожалуйста, заполните все поля.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -35,7 +34,6 @@ namespace RecsApp.forms
             {
                 using (var db = new AppDbContext())
                 {
-                    // Ищем пользователя по логину
                     var user = db.Users.FirstOrDefault(u => u.username == login);
 
                     if (user == null)
@@ -44,19 +42,34 @@ namespace RecsApp.forms
                         return;
                     }
 
-                    // Сравниваем введенный пароль с хэшированным паролем
-                    if (password != user.password_hash)
+                    try
                     {
-                        MessageBox.Show("Неверный логин или пароль.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
+                        bool isPasswordValid = BCrypt.Net.BCrypt.Verify(password, user.password_hash);
+
+                        if (!isPasswordValid)
+                        {
+                            MessageBox.Show("Неверный логин или пароль.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        if (ex.Message.Contains("Invalid salt version"))
+                        {
+                            string newHashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
+                            user.password_hash = newHashedPassword;
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            throw; 
+                        }
                     }
 
-                    // Если данные верны, разрешаем вход
                     MessageBox.Show("Вход выполнен успешно.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Перейдите к основной форме приложения
-                    new MainForm(user.user_Id).Show(); // Открыть главную форму
-                    this.Hide(); // Скрыть форму входа
+                    this.Hide(); 
+                    new MainForm(user.user_Id).Show(); 
                 }
             }
             catch (Exception ex)
@@ -66,50 +79,12 @@ namespace RecsApp.forms
             this.Close();
         }
 
-        private void buttonEntry_Paint(object sender, PaintEventArgs e)
-        {
-            Button button = sender as Button;
-            if (button != null)
-            {
-                int cornerRadius = 5;
-                GraphicsPath path = new GraphicsPath();
-                int width = button.Width;
-                int height = button.Height;
-
-                path.AddArc(0, 0, cornerRadius * 2, cornerRadius * 2, 180, 90);
-                path.AddArc(width - cornerRadius * 2, 0, cornerRadius * 2, cornerRadius * 2, 270, 90);
-                path.AddArc(width - cornerRadius * 2, height - cornerRadius * 2, cornerRadius * 2, cornerRadius * 2, 0, 90);
-                path.AddArc(0, height - cornerRadius * 2, cornerRadius * 2, cornerRadius * 2, 90, 90);
-                path.CloseFigure();
-
-                button.Region = new Region(path);
-            }
-        }
 
         private void buttonBFEA_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void buttonBFEA_Paint(object sender, PaintEventArgs e)
-        {
-            Button button = sender as Button;
-            if (button != null)
-            {
-                int cornerRadius = 5;
-                GraphicsPath path = new GraphicsPath();
-                int width = button.Width;
-                int height = button.Height;
-
-                path.AddArc(0, 0, cornerRadius * 2, cornerRadius * 2, 180, 90);
-                path.AddArc(width - cornerRadius * 2, 0, cornerRadius * 2, cornerRadius * 2, 270, 90);
-                path.AddArc(width - cornerRadius * 2, height - cornerRadius * 2, cornerRadius * 2, cornerRadius * 2, 0, 90);
-                path.AddArc(0, height - cornerRadius * 2, cornerRadius * 2, cornerRadius * 2, 90, 90);
-                path.CloseFigure();
-
-                button.Region = new Region(path);
-            }
-        }
 
         private void EntryAccount_Load(object sender, EventArgs e)
         {
@@ -118,24 +93,20 @@ namespace RecsApp.forms
 
         private void pictureBoxShowEntryPassword_Click(object sender, EventArgs e)
         {
-            // Переключаем видимость пароля
             var textBoxEntryPassword = this.Controls["textBoxEntryPassword"] as TextBox;
             if (textBoxEntryPassword != null)
             {
                 if (isPasswordEntryVisible)
                 {
-                    // Скрыть пароль
                     textBoxEntryPassword.UseSystemPasswordChar = true;
-                    pictureBoxShowEntryPassword.BackgroundImage = Properties.Resources.visible_password_security_protect_icon; // Изображение открытого глазика
+                    pictureBoxShowEntryPassword.BackgroundImage = Properties.Resources.visible_password_security_protect_icon; 
                 }
                 else
                 {
-                    // Показать пароль
                     textBoxEntryPassword.UseSystemPasswordChar = false;
-                    pictureBoxShowEntryPassword.BackgroundImage = Properties.Resources.eye_password_see_view_icon; // Изображение закрытого глазика
+                    pictureBoxShowEntryPassword.BackgroundImage = Properties.Resources.eye_password_see_view_icon; 
                 }
 
-                // Инвертируем флаг
                 isPasswordEntryVisible = !isPasswordEntryVisible;
             }
         }
