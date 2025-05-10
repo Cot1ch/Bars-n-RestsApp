@@ -17,7 +17,7 @@ namespace RecsApp
             string path = $"{Directory.GetCurrentDirectory()}..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
             if (!File.Exists(path))
             {
-                MessageBox.Show("Файл не найден!\nОбратитесь к администратору");
+                MessageBox.Show("Файл не найден!\nОбратитесь к администратору", "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -48,7 +48,7 @@ namespace RecsApp
             string path = $"{Directory.GetCurrentDirectory()}..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
             if (!File.Exists(path))
             {
-                MessageBox.Show("Файл не найден!\nОбратитесь к администратору");
+                MessageBox.Show("Файл не найден!\nОбратитесь к администратору", "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -76,7 +76,7 @@ namespace RecsApp
             string path = $"{Directory.GetCurrentDirectory()}..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
             if (!File.Exists(path))
             {
-                MessageBox.Show("Файл не найден!\nОбратитесь к администратору");
+                MessageBox.Show("Файл не найден!\nОбратитесь к администратору", "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -103,7 +103,7 @@ namespace RecsApp
             string path = $"{Directory.GetCurrentDirectory()}..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
             if (!File.Exists(path))
             {
-                MessageBox.Show("Файл не найден!\nОбратитесь к администратору");
+                MessageBox.Show("Файл не найден!\nОбратитесь к администратору", "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -123,14 +123,14 @@ namespace RecsApp
             }
         }
         /// <summary>
-        /// Метод загружает заведения из Excel файла
+        /// Метод загружает информацию о заведениях из Excel файла
         /// </summary>
         public static void AddEstablishmentsToDB()
         {
             string path = $"{Directory.GetCurrentDirectory()}..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
             if (!File.Exists(path))
             {
-                MessageBox.Show("Файл не найден!\nОбратитесь к администратору");
+                MessageBox.Show("Файл не найден!\nОбратитесь к администратору", "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -218,11 +218,17 @@ namespace RecsApp
                 }
                 if (IsEmpty)
                 {
-                    MessageBox.Show("Часть данных утеряна, обратитесь к администратору");
+                    MessageBox.Show("Отображенные данные будут не полными!\nОбратитесь к администратору", "Часть данных утеряна", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 db.SaveChanges();
             }
         }
+        /// <summary>
+        /// Метод возвращает guid типа, считанный с файла
+        /// </summary>
+        /// <param name="wb"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
         private static Guid GetTypeFromTable(IXLWorkbook wb, string type)
         {
             foreach (var row in wb.Worksheet("Типы").RowsUsed())
@@ -239,6 +245,13 @@ namespace RecsApp
 
             return Guid.Empty;
         }
+        /// <summary>
+        /// Метод возвращает коллекцию guid = коллекция (категория/кухня/чек) заведения
+        /// </summary>
+        /// <param name="wb">Excel-книга</param>
+        /// <param name="tableName">Названия рабочего листа</param>
+        /// <param name="str">Строка (категория/кухня/чек) с разделителем (;)</param>
+        /// <returns></returns>
         private static List<Guid> GetSmthFromTable(IXLWorkbook wb, string tableName, string str)
         {
             List<Guid> ret = new List<Guid>();
@@ -261,25 +274,31 @@ namespace RecsApp
                 {
                     if (check <= 1000)
                     {
-                        ret.Add(dict["< 1000"]);
+                        ret.Add(dict["до 1000 рублей"]);
                     }
                     else if (1000 < check && check <= 3000)
                     {
-                        ret.Add(dict["1000-3000"]);
+                        ret.Add(dict["от 1000 до 3000 рублей"]);
                     }
                     else
                     {
-                        ret.Add(dict["> 3000"]);
+                        ret.Add(dict["от 3000 рублей"]);
                     }
                 }
                 else
                 {
-                    MessageBox.Show($"Информация о чеке утеряна: {str}");
+                    MessageBox.Show($"Информация о чеке утеряна: {str}", "Информация утеряна", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
 
             return ret;
         }
+        /// <summary>
+        /// Метод возвращает словарь со названиями (категория/кухня/чек) и их guid
+        /// </summary>
+        /// <param name="wb">Excel-книга</param>
+        /// <param name="tableName">Названия рабочего листа</param>
+        /// <returns></returns>
         private static Dictionary<string, Guid> FillDict(IXLWorkbook wb, string tableName)
         {
             Dictionary<string, Guid> guids = new Dictionary<string, Guid>();

@@ -300,7 +300,7 @@
             this.textBoxAverageCheck.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxAverageCheck.Font = new System.Drawing.Font("Verdana", 10F);
             this.textBoxAverageCheck.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(26)))), ((int)(((byte)(29)))));
-            this.textBoxAverageCheck.Location = new System.Drawing.Point(625, 226);
+            this.textBoxAverageCheck.Location = new System.Drawing.Point(625, 222);
             this.textBoxAverageCheck.Name = "textBoxAverageCheck";
             this.textBoxAverageCheck.ReadOnly = true;
             this.textBoxAverageCheck.Size = new System.Drawing.Size(88, 21);

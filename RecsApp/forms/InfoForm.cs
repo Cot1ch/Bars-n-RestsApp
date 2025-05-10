@@ -90,13 +90,17 @@ namespace RecsApp
         {
             NextImage();
         }
-
-
+        /// <summary>
+        /// Метод для отображения следующего изображения
+        /// </summary>
         private void NextImage()
         {
             imageInd = (imageInd + 1) % paths.Count;
             ShowImage();
         }
+        /// <summary>
+        /// Метод для отображения предыдущего изображения
+        /// </summary>
         private void PrevImage()
         {
             imageInd = (imageInd - 1 + paths.Count) % paths.Count;
@@ -114,7 +118,6 @@ namespace RecsApp
                 NextImage();
             }
         }
-
         private void checkBoxStarred_CheckedChanged(object sender, EventArgs e)
         {
             using (var db = new AppDbContext())
@@ -134,7 +137,7 @@ namespace RecsApp
                         }
                         else
                         {
-                            MessageBox.Show("Уже добавлено");
+                            MessageBox.Show("Заведение уже добавлено в избранное", "Уже добавлено", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                     else
@@ -153,7 +156,7 @@ namespace RecsApp
                         }
                         else
                         {
-                            MessageBox.Show("Нет в списке");
+                            MessageBox.Show("Заведение отсутствует в избранном", "Не найдено", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                     else

@@ -129,6 +129,9 @@ namespace RecsApp
             }
             SetdgvEstablishments();
         }
+        /// <summary>
+        /// Настройка отображения dataGridView ех заведений: отображение заголовков, цвет текста и фона
+        /// </summary>
         private void SetdgvEstablishments()
         {
             for (int i = 0; i < dgvEstablishments.Rows.Count; i++)
@@ -146,6 +149,9 @@ namespace RecsApp
             dgvEstablishments.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Verdana", 8, System.Drawing.FontStyle.Bold);
             dgvEstablishments.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
         }
+        /// <summary>
+        /// Загрузка dataGridView с рекомендованными заведениями
+        /// </summary>
         private void LoaddgvMayLike()
         {
             using (var db = new AppDbContext())
@@ -173,6 +179,9 @@ namespace RecsApp
             }
             SetdgvMayLike();
         }
+        /// <summary>
+        /// Настройка отображения dataGridView рекомендованных заведений: отображение заголовков, цвет текста и фона
+        /// </summary>
         private void SetdgvMayLike()
         {
             dgvMayLike.Columns[0].Visible = false;
