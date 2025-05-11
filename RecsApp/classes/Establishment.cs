@@ -39,10 +39,6 @@ namespace RecsApp
         /// </summary>
         public decimal Check { get; set; }
         /// <summary>
-        /// Навигационное свойство на чек заведения
-        /// </summary>
-        public Guid CheckId { get; set; }
-        /// <summary>
         /// Средний чек заведения
         /// </summary>
         public EstAverageCheck Average { get; set; }

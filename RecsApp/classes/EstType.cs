@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace RecsApp
@@ -17,8 +18,11 @@ namespace RecsApp
         /// Название типа
         /// </summary>
         public string Title { get; set; }
+        public ICollection<Establishment> Establishments { get; set; }
 
         public EstType()
-        { }
+        { 
+            Establishments = new List<Establishment>();
+        }
     }
 }
