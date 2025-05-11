@@ -242,16 +242,16 @@ namespace RecsApp
 
                 if (result == DialogResult.OK)
                 {
-                    using (var db = new AppDbContext())
-                    {
-                        var user = (from u in db.Users.Include(u => u.Hidden)
-                                    where u.user_Id == this.userId
-                                    select u).First();
-                        db.Establishments.Attach(this.est);
-                        user.Hidden.Add(this.est);
-                        db.SaveChanges();
+                    //using (var db = new AppDbContext())
+                    //{
+                    //    var user = (from u in db.Users.Include(u => u.Hidden)
+                    //                where u.user_Id == this.userId
+                    //                select u).First();
+                    //    db.Establishments.Attach(this.est);
+                    //    user.Hidden.Add(this.est);
+                    //    db.SaveChanges();
 
-                    }
+                    //}
                     mainForm.LoadForm();
                     this.Close();
                 }

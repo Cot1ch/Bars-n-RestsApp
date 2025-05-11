@@ -87,7 +87,7 @@ namespace RecsApp
                     (from u in db.Users.
                      Include(u => u.est_types).Include(u => u.est_categories).
                      Include(u => u.est_foods).Include(u => u.est_Average).
-                     Include(u => u.Favourite).Include(u => u.Hidden)
+                     Include(u => u.Favourite)
                      where u.user_Id == userId
                      select u).First();
                 var ests = db.Establishments.
@@ -126,10 +126,10 @@ namespace RecsApp
                         where average.Contains(est.Average.Id)
                         select est).ToList();
                 }
-                ests = (
-                    from est in ests
-                    where !user.Hidden.Contains(est)
-                    select est).ToList();
+                //ests = (
+                //    from est in ests
+                //    where !user.Hidden.Contains(est)
+                //    select est).ToList();
 
                 if (isRatingEqualsFive)
                 {
@@ -213,7 +213,7 @@ namespace RecsApp
             using (var db = new AppDbContext())
             {
                 var user =
-                    (from u in db.Users.Include(u => u.Hidden)
+                    (from u in db.Users
                      where u.user_Id == userId
                      select u).First();
                 var ests = db.Establishments.
@@ -221,18 +221,56 @@ namespace RecsApp
                     Include(e => e.Foods).Include(e => e.Average).ToList();
                 var simEsts = new List<string>(); 
 
-                foreach (var e in ests)
+                if (user.Favourite.Count < 5)
                 {
-                    foreach (var sim in e.Similar.Split(';'))
+                    foreach (var e in ests)
                     {
-                        simEsts.Add(sim);
+                        foreach (var sim in e.Similar.Split(';'))
+                        {
+                            if (!simEsts.Contains(sim))
+                            {
+                                simEsts.Add(sim);
+                            }
+                        }
                     }
                 }
+                else 
+                {
+                    var fEstablishments = (
+                        from e in ests
+                        where user.Favourite.Contains(e)
+                        select e).ToList();
+
+                    foreach (var establishment in fEstablishments)
+                    {
+                        foreach (var sim in establishment.Similar.Split(';'))
+                        {
+                            simEsts.Add(sim);
+                        }
+                    }
+
+                    if (user.Favourite.Count >= 7)
+                    {
+                        while (simEsts.Count > 10)
+                        {
+                            Random rnd = new Random();
+                            simEsts.RemoveAt(rnd.Next(simEsts.Count));
+                        }
+                    }
+                }                
+
+                var Ests = (
+                    from e in db.Establishments
+                    where simEsts.Contains(e.Name)
+                    select e).ToList();
+
+                Ests.Sort(new SortBySmth() 
+                { 
+                    SortMode = "visits" 
+                });
 
                 var finalEsts = (
-                    from e in db.Establishments
-                    where simEsts.Contains(e.Name) && 
-                    !user.Hidden.Select(establ => establ.Name).Contains(e.Name)
+                    from e in Ests.Take(10)
                     select new { e.Id, e.Name, e.Rating }).ToList();
                 dgvMayLike.DataSource = finalEsts;
             }
