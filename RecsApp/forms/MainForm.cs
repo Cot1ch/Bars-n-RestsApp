@@ -71,6 +71,10 @@ namespace RecsApp
         /// </summary>
         public void LoadForm(bool showOnlyFavourite=false)
         {
+            if (!showOnlyFavourite)
+            {
+                this.checkBoxFavorite.Checked = false;
+            }
             LoaddgvEstablishments(showOnlyFavourite);
 
             LoaddgvMayLike();
@@ -358,25 +362,25 @@ namespace RecsApp
         private void radioBtnSortByName_CheckedChanged(object sender, EventArgs e)
         {
             this.sortMode = "name";
-            LoaddgvEstablishments();
+            LoaddgvEstablishments(true);
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             this.sortMode = "type";
-            LoaddgvEstablishments();
+            LoaddgvEstablishments(true);
         }
 
         private void radioBtnSortByRating_CheckedChanged(object sender, EventArgs e)
         {
             this.sortMode = "rating";
-            LoaddgvEstablishments();
+            LoaddgvEstablishments(true);
         }
 
         private void radioBtnSortByVisits_CheckedChanged(object sender, EventArgs e)
         {
             this.sortMode = "visits";
-            LoaddgvEstablishments();
+            LoaddgvEstablishments(true);
         }
     }
 }

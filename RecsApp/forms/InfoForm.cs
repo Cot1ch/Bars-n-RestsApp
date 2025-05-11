@@ -179,7 +179,6 @@ namespace RecsApp
                 var user = (from u in db.Users
                             where u.user_Id == this.userId
                             select u).First();
-                db.Establishments.Attach(this.est);
                 if (this.checkBoxStarred.Checked)
                 {
                     if (user != null)

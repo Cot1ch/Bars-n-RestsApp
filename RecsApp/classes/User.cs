@@ -17,7 +17,7 @@ namespace RecsApp
         public ICollection<EstFood> est_foods { get; set; }
         public ICollection<EstAverageCheck> est_Average { get; set; }
         public ICollection<Establishment> Favourite { get; set; }
-        public ICollection<Establishment> Hidden { get; set; }
+        //public ICollection<Establishment> Hidden { get; set; }
 
         public User()
         {
@@ -26,7 +26,7 @@ namespace RecsApp
             est_foods = new List<EstFood>();
             est_Average = new List<EstAverageCheck>();
             Favourite = new List<Establishment>();
-            Hidden = new List<Establishment>();
+            //Hidden = new List<Establishment>();
         }
     }
 }
