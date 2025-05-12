@@ -49,44 +49,44 @@
             // labelName
             // 
             this.labelName.AutoSize = true;
-            this.labelName.Font = new System.Drawing.Font("Verdana", 9F);
+            this.labelName.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelName.Location = new System.Drawing.Point(37, 72);
+            this.labelName.Location = new System.Drawing.Point(37, 80);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(38, 18);
+            this.labelName.Size = new System.Drawing.Size(48, 22);
             this.labelName.TabIndex = 0;
             this.labelName.Text = "Имя";
             // 
             // labelLogin
             // 
             this.labelLogin.AutoSize = true;
-            this.labelLogin.Font = new System.Drawing.Font("Verdana", 9F);
+            this.labelLogin.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelLogin.Location = new System.Drawing.Point(37, 132);
+            this.labelLogin.Location = new System.Drawing.Point(37, 140);
             this.labelLogin.Name = "labelLogin";
-            this.labelLogin.Size = new System.Drawing.Size(54, 18);
+            this.labelLogin.Size = new System.Drawing.Size(65, 22);
             this.labelLogin.TabIndex = 1;
             this.labelLogin.Text = "Логин";
             // 
             // labelCategory
             // 
             this.labelCategory.AutoSize = true;
-            this.labelCategory.Font = new System.Drawing.Font("Verdana", 9F);
+            this.labelCategory.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelCategory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelCategory.Location = new System.Drawing.Point(37, 313);
+            this.labelCategory.Location = new System.Drawing.Point(37, 321);
             this.labelCategory.Name = "labelCategory";
-            this.labelCategory.Size = new System.Drawing.Size(87, 18);
+            this.labelCategory.Size = new System.Drawing.Size(106, 22);
             this.labelCategory.TabIndex = 2;
             this.labelCategory.Text = "Категория";
             // 
             // labelType
             // 
             this.labelType.AutoSize = true;
-            this.labelType.Font = new System.Drawing.Font("Verdana", 9F);
+            this.labelType.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelType.Location = new System.Drawing.Point(37, 192);
+            this.labelType.Location = new System.Drawing.Point(37, 200);
             this.labelType.Name = "labelType";
-            this.labelType.Size = new System.Drawing.Size(35, 18);
+            this.labelType.Size = new System.Drawing.Size(44, 22);
             this.labelType.TabIndex = 3;
             this.labelType.Text = "Тип";
             // 
@@ -94,53 +94,53 @@
             // 
             this.textBoxName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.textBoxName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxName.Font = new System.Drawing.Font("Verdana", 9F);
-            this.textBoxName.Location = new System.Drawing.Point(40, 93);
+            this.textBoxName.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxName.Location = new System.Drawing.Point(40, 105);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(287, 19);
+            this.textBoxName.Size = new System.Drawing.Size(287, 22);
             this.textBoxName.TabIndex = 5;
             // 
             // textBoxLogin
             // 
             this.textBoxLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.textBoxLogin.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxLogin.Font = new System.Drawing.Font("Verdana", 9F);
-            this.textBoxLogin.Location = new System.Drawing.Point(40, 153);
+            this.textBoxLogin.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxLogin.Location = new System.Drawing.Point(40, 165);
             this.textBoxLogin.Name = "textBoxLogin";
             this.textBoxLogin.ReadOnly = true;
-            this.textBoxLogin.Size = new System.Drawing.Size(287, 19);
+            this.textBoxLogin.Size = new System.Drawing.Size(287, 22);
             this.textBoxLogin.TabIndex = 6;
             // 
             // checkedListBoxCategory
             // 
             this.checkedListBoxCategory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.checkedListBoxCategory.Font = new System.Drawing.Font("Verdana", 9F);
+            this.checkedListBoxCategory.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkedListBoxCategory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
             this.checkedListBoxCategory.FormattingEnabled = true;
-            this.checkedListBoxCategory.Location = new System.Drawing.Point(40, 334);
+            this.checkedListBoxCategory.Location = new System.Drawing.Point(40, 346);
             this.checkedListBoxCategory.Name = "checkedListBoxCategory";
-            this.checkedListBoxCategory.Size = new System.Drawing.Size(420, 130);
+            this.checkedListBoxCategory.Size = new System.Drawing.Size(485, 220);
             this.checkedListBoxCategory.Sorted = true;
             this.checkedListBoxCategory.TabIndex = 7;
             // 
             // checkedListBoxType
             // 
             this.checkedListBoxType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.checkedListBoxType.Font = new System.Drawing.Font("Verdana", 9F);
+            this.checkedListBoxType.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkedListBoxType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
             this.checkedListBoxType.FormattingEnabled = true;
-            this.checkedListBoxType.Location = new System.Drawing.Point(40, 213);
+            this.checkedListBoxType.Location = new System.Drawing.Point(40, 225);
             this.checkedListBoxType.Name = "checkedListBoxType";
-            this.checkedListBoxType.Size = new System.Drawing.Size(420, 88);
+            this.checkedListBoxType.Size = new System.Drawing.Size(485, 88);
             this.checkedListBoxType.TabIndex = 8;
             // 
             // buttonAccExit
             // 
             this.buttonAccExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAccExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.buttonAccExit.Font = new System.Drawing.Font("Verdana", 9F);
+            this.buttonAccExit.Font = new System.Drawing.Font("Verdana", 10F);
             this.buttonAccExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.buttonAccExit.Location = new System.Drawing.Point(721, 35);
+            this.buttonAccExit.Location = new System.Drawing.Point(821, 35);
             this.buttonAccExit.Name = "buttonAccExit";
             this.buttonAccExit.Size = new System.Drawing.Size(219, 30);
             this.buttonAccExit.TabIndex = 9;
@@ -152,9 +152,9 @@
             // 
             this.btnSaveChanges.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSaveChanges.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.btnSaveChanges.Font = new System.Drawing.Font("Verdana", 9F);
+            this.btnSaveChanges.Font = new System.Drawing.Font("Verdana", 10F);
             this.btnSaveChanges.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.btnSaveChanges.Location = new System.Drawing.Point(721, 592);
+            this.btnSaveChanges.Location = new System.Drawing.Point(821, 692);
             this.btnSaveChanges.Name = "btnSaveChanges";
             this.btnSaveChanges.Size = new System.Drawing.Size(219, 30);
             this.btnSaveChanges.TabIndex = 10;
@@ -165,56 +165,56 @@
             // labelAccount
             // 
             this.labelAccount.AutoSize = true;
-            this.labelAccount.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
+            this.labelAccount.Font = new System.Drawing.Font("Verdana", 13F, System.Drawing.FontStyle.Bold);
             this.labelAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.labelAccount.Location = new System.Drawing.Point(35, 40);
             this.labelAccount.Name = "labelAccount";
-            this.labelAccount.Size = new System.Drawing.Size(203, 25);
+            this.labelAccount.Size = new System.Drawing.Size(227, 26);
             this.labelAccount.TabIndex = 11;
             this.labelAccount.Text = "Личный кабинет";
             // 
             // checkedListBoxAverage
             // 
             this.checkedListBoxAverage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.checkedListBoxAverage.Font = new System.Drawing.Font("Verdana", 9F);
+            this.checkedListBoxAverage.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkedListBoxAverage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
             this.checkedListBoxAverage.FormattingEnabled = true;
-            this.checkedListBoxAverage.Location = new System.Drawing.Point(520, 213);
+            this.checkedListBoxAverage.Location = new System.Drawing.Point(557, 225);
             this.checkedListBoxAverage.Name = "checkedListBoxAverage";
-            this.checkedListBoxAverage.Size = new System.Drawing.Size(420, 88);
+            this.checkedListBoxAverage.Size = new System.Drawing.Size(485, 88);
             this.checkedListBoxAverage.Sorted = true;
             this.checkedListBoxAverage.TabIndex = 12;
             // 
             // labelFood
             // 
             this.labelFood.AutoSize = true;
-            this.labelFood.Font = new System.Drawing.Font("Verdana", 9F);
+            this.labelFood.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelFood.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelFood.Location = new System.Drawing.Point(517, 313);
+            this.labelFood.Location = new System.Drawing.Point(554, 321);
             this.labelFood.Name = "labelFood";
-            this.labelFood.Size = new System.Drawing.Size(54, 18);
+            this.labelFood.Size = new System.Drawing.Size(66, 22);
             this.labelFood.TabIndex = 14;
             this.labelFood.Text = "Кухня";
             // 
             // labelAverage
             // 
             this.labelAverage.AutoSize = true;
-            this.labelAverage.Font = new System.Drawing.Font("Verdana", 9F);
+            this.labelAverage.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelAverage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelAverage.Location = new System.Drawing.Point(517, 192);
+            this.labelAverage.Location = new System.Drawing.Point(554, 200);
             this.labelAverage.Name = "labelAverage";
-            this.labelAverage.Size = new System.Drawing.Size(105, 18);
+            this.labelAverage.Size = new System.Drawing.Size(130, 22);
             this.labelAverage.TabIndex = 15;
             this.labelAverage.Text = "Средний чек";
             // 
             // checkBoxRating
             // 
             this.checkBoxRating.AutoSize = true;
-            this.checkBoxRating.Font = new System.Drawing.Font("Verdana", 9F);
+            this.checkBoxRating.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkBoxRating.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.checkBoxRating.Location = new System.Drawing.Point(40, 474);
+            this.checkBoxRating.Location = new System.Drawing.Point(40, 584);
             this.checkBoxRating.Name = "checkBoxRating";
-            this.checkBoxRating.Size = new System.Drawing.Size(238, 22);
+            this.checkBoxRating.Size = new System.Drawing.Size(287, 26);
             this.checkBoxRating.TabIndex = 16;
             this.checkBoxRating.Text = "Заведения с рейтингом 5.0";
             this.checkBoxRating.UseVisualStyleBackColor = true;
@@ -222,12 +222,13 @@
             // checkedListBoxFood
             // 
             this.checkedListBoxFood.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.checkedListBoxFood.Font = new System.Drawing.Font("Verdana", 9F);
+            this.checkedListBoxFood.Cursor = System.Windows.Forms.Cursors.Default;
+            this.checkedListBoxFood.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkedListBoxFood.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
             this.checkedListBoxFood.FormattingEnabled = true;
-            this.checkedListBoxFood.Location = new System.Drawing.Point(520, 334);
+            this.checkedListBoxFood.Location = new System.Drawing.Point(557, 346);
             this.checkedListBoxFood.Name = "checkedListBoxFood";
-            this.checkedListBoxFood.Size = new System.Drawing.Size(420, 130);
+            this.checkedListBoxFood.Size = new System.Drawing.Size(483, 220);
             this.checkedListBoxFood.Sorted = true;
             this.checkedListBoxFood.TabIndex = 13;
             // 
@@ -236,7 +237,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(147)))), ((int)(((byte)(119)))));
-            this.ClientSize = new System.Drawing.Size(982, 653);
+            this.ClientSize = new System.Drawing.Size(1082, 753);
             this.Controls.Add(this.checkBoxRating);
             this.Controls.Add(this.labelAverage);
             this.Controls.Add(this.labelFood);
@@ -254,8 +255,8 @@
             this.Controls.Add(this.labelLogin);
             this.Controls.Add(this.labelName);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1000, 700);
-            this.MinimumSize = new System.Drawing.Size(1000, 700);
+            this.MaximumSize = new System.Drawing.Size(1100, 800);
+            this.MinimumSize = new System.Drawing.Size(1100, 800);
             this.Name = "AccountForm";
             this.Text = "Личный кабинет";
             this.Load += new System.EventHandler(this.AccountForm_Load);

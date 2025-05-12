@@ -51,7 +51,7 @@
             this.btnAccount.FlatAppearance.BorderSize = 0;
             this.btnAccount.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold);
             this.btnAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.btnAccount.Location = new System.Drawing.Point(842, 12);
+            this.btnAccount.Location = new System.Drawing.Point(942, 12);
             this.btnAccount.Margin = new System.Windows.Forms.Padding(0);
             this.btnAccount.Name = "btnAccount";
             this.btnAccount.Size = new System.Drawing.Size(118, 36);
@@ -73,7 +73,7 @@
             this.dgvEstablishments.ReadOnly = true;
             this.dgvEstablishments.RowHeadersWidth = 51;
             this.dgvEstablishments.RowTemplate.Height = 24;
-            this.dgvEstablishments.Size = new System.Drawing.Size(500, 590);
+            this.dgvEstablishments.Size = new System.Drawing.Size(600, 690);
             this.dgvEstablishments.TabIndex = 20;
             this.dgvEstablishments.DoubleClick += new System.EventHandler(this.dgvEstablishments_DoubleClick);
             // 
@@ -84,7 +84,7 @@
             this.labelEstsList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.labelEstsList.Location = new System.Drawing.Point(16, 19);
             this.labelEstsList.Name = "labelEstsList";
-            this.labelEstsList.Size = new System.Drawing.Size(187, 20);
+            this.labelEstsList.Size = new System.Drawing.Size(0, 20);
             this.labelEstsList.TabIndex = 21;
             // 
             // labelSorting
@@ -93,9 +93,9 @@
             this.labelSorting.AutoSize = true;
             this.labelSorting.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold);
             this.labelSorting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelSorting.Location = new System.Drawing.Point(538, 50);
+            this.labelSorting.Location = new System.Drawing.Point(638, 50);
             this.labelSorting.Name = "labelSorting";
-            this.labelSorting.Size = new System.Drawing.Size(198, 18);
+            this.labelSorting.Size = new System.Drawing.Size(0, 18);
             this.labelSorting.TabIndex = 22;
             // 
             // checkBoxFavorite
@@ -104,9 +104,9 @@
             this.checkBoxFavorite.AutoSize = true;
             this.checkBoxFavorite.Font = new System.Drawing.Font("Verdana", 9F);
             this.checkBoxFavorite.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.checkBoxFavorite.Location = new System.Drawing.Point(755, 619);
+            this.checkBoxFavorite.Location = new System.Drawing.Point(1042, 724);
             this.checkBoxFavorite.Name = "checkBoxFavorite";
-            this.checkBoxFavorite.Size = new System.Drawing.Size(205, 22);
+            this.checkBoxFavorite.Size = new System.Drawing.Size(18, 17);
             this.checkBoxFavorite.TabIndex = 23;
             this.checkBoxFavorite.UseVisualStyleBackColor = true;
             this.checkBoxFavorite.CheckedChanged += new System.EventHandler(this.checkBoxFavorite_CheckedChanged);
@@ -117,9 +117,9 @@
             this.radioBtnSortByName.AutoSize = true;
             this.radioBtnSortByName.Font = new System.Drawing.Font("Verdana", 9F);
             this.radioBtnSortByName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.radioBtnSortByName.Location = new System.Drawing.Point(554, 118);
+            this.radioBtnSortByName.Location = new System.Drawing.Point(767, 118);
             this.radioBtnSortByName.Name = "radioBtnSortByName";
-            this.radioBtnSortByName.Size = new System.Drawing.Size(130, 22);
+            this.radioBtnSortByName.Size = new System.Drawing.Size(17, 16);
             this.radioBtnSortByName.TabIndex = 24;
             this.radioBtnSortByName.TabStop = true;
             this.radioBtnSortByName.UseVisualStyleBackColor = true;
@@ -131,9 +131,9 @@
             this.radioBtnSortByType.AutoSize = true;
             this.radioBtnSortByType.Font = new System.Drawing.Font("Verdana", 9F);
             this.radioBtnSortByType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.radioBtnSortByType.Location = new System.Drawing.Point(550, 174);
+            this.radioBtnSortByType.Location = new System.Drawing.Point(722, 174);
             this.radioBtnSortByType.Name = "radioBtnSortByType";
-            this.radioBtnSortByType.Size = new System.Drawing.Size(89, 22);
+            this.radioBtnSortByType.Size = new System.Drawing.Size(17, 16);
             this.radioBtnSortByType.TabIndex = 25;
             this.radioBtnSortByType.TabStop = true;
             this.radioBtnSortByType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -146,9 +146,9 @@
             this.radioBtnSortByRating.AutoSize = true;
             this.radioBtnSortByRating.Font = new System.Drawing.Font("Verdana", 9F);
             this.radioBtnSortByRating.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.radioBtnSortByRating.Location = new System.Drawing.Point(556, 146);
+            this.radioBtnSortByRating.Location = new System.Drawing.Point(762, 146);
             this.radioBtnSortByRating.Name = "radioBtnSortByRating";
-            this.radioBtnSortByRating.Size = new System.Drawing.Size(123, 22);
+            this.radioBtnSortByRating.Size = new System.Drawing.Size(17, 16);
             this.radioBtnSortByRating.TabIndex = 26;
             this.radioBtnSortByRating.TabStop = true;
             this.radioBtnSortByRating.UseVisualStyleBackColor = true;
@@ -162,12 +162,12 @@
             this.dgvMayLike.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.dgvMayLike.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvMayLike.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMayLike.Location = new System.Drawing.Point(541, 254);
+            this.dgvMayLike.Location = new System.Drawing.Point(641, 254);
             this.dgvMayLike.Name = "dgvMayLike";
             this.dgvMayLike.ReadOnly = true;
             this.dgvMayLike.RowHeadersWidth = 51;
             this.dgvMayLike.RowTemplate.Height = 24;
-            this.dgvMayLike.Size = new System.Drawing.Size(419, 344);
+            this.dgvMayLike.Size = new System.Drawing.Size(419, 444);
             this.dgvMayLike.TabIndex = 27;
             this.dgvMayLike.DoubleClick += new System.EventHandler(this.dgvMayLike_DoubleClick);
             // 
@@ -177,9 +177,9 @@
             this.labelMayLike.AutoSize = true;
             this.labelMayLike.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold);
             this.labelMayLike.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelMayLike.Location = new System.Drawing.Point(537, 219);
+            this.labelMayLike.Location = new System.Drawing.Point(637, 219);
             this.labelMayLike.Name = "labelMayLike";
-            this.labelMayLike.Size = new System.Drawing.Size(254, 20);
+            this.labelMayLike.Size = new System.Drawing.Size(0, 20);
             this.labelMayLike.TabIndex = 28;
             // 
             // radioBtnSortByVisits
@@ -188,9 +188,9 @@
             this.radioBtnSortByVisits.AutoSize = true;
             this.radioBtnSortByVisits.Font = new System.Drawing.Font("Verdana", 9F);
             this.radioBtnSortByVisits.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.radioBtnSortByVisits.Location = new System.Drawing.Point(556, 90);
+            this.radioBtnSortByVisits.Location = new System.Drawing.Point(801, 90);
             this.radioBtnSortByVisits.Name = "radioBtnSortByVisits";
-            this.radioBtnSortByVisits.Size = new System.Drawing.Size(162, 22);
+            this.radioBtnSortByVisits.Size = new System.Drawing.Size(17, 16);
             this.radioBtnSortByVisits.TabIndex = 29;
             this.radioBtnSortByVisits.TabStop = true;
             this.radioBtnSortByVisits.UseVisualStyleBackColor = true;
@@ -201,7 +201,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(147)))), ((int)(((byte)(119)))));
-            this.ClientSize = new System.Drawing.Size(982, 653);
+            this.ClientSize = new System.Drawing.Size(1082, 753);
             this.Controls.Add(this.radioBtnSortByVisits);
             this.Controls.Add(this.labelMayLike);
             this.Controls.Add(this.dgvMayLike);
@@ -213,7 +213,7 @@
             this.Controls.Add(this.labelEstsList);
             this.Controls.Add(this.dgvEstablishments);
             this.Controls.Add(this.btnAccount);
-            this.MinimumSize = new System.Drawing.Size(900, 650);
+            this.MinimumSize = new System.Drawing.Size(1100, 800);
             this.Name = "MainForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);

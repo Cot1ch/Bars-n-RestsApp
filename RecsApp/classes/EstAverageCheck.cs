@@ -22,9 +22,11 @@ namespace RecsApp
         /// Навигационное свойство на заведения с таким средним чеком
         /// </summary>
         public ICollection<Establishment> Ests { get; set; }
+        public ICollection<Questionnaire> Questionnaires { get; set; }
         public EstAverageCheck()
         {
             Ests = new List<Establishment>();
+            Questionnaires = new List<Questionnaire>();
         }
     }
 }

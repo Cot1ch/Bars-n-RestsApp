@@ -22,10 +22,13 @@ namespace RecsApp
         /// Навигационное свойство на заведения с этой категорией
         /// </summary>
         public ICollection<Establishment> Ests { get; set; }
+        public ICollection<Questionnaire> Questionnaires { get; set; }
+
 
         public EstCategory()
         {
             Ests = new List<Establishment>();
+            Questionnaires = new List<Questionnaire>();
         }
     }
 }

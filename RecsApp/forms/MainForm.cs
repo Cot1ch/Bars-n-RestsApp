@@ -55,9 +55,12 @@ namespace RecsApp
 
                 if (dgvEstablishments.Columns.Count > 0)
                 {
-                    dgvEstablishments.Columns[1].HeaderText = res.GetString("dgvEstablishmentsColumns1HeaderText");
-                    dgvEstablishments.Columns[2].HeaderText = res.GetString("dgvEstablishmentsColumns2HeaderText");
-                    dgvEstablishments.Columns[3].HeaderText = res.GetString("dgvEstablishmentsColumns3HeaderText");
+                    dgvEstablishments.Columns[1].HeaderText = 
+                        res.GetString("dgvEstablishmentsColumns1HeaderText");
+                    dgvEstablishments.Columns[2].HeaderText = 
+                        res.GetString("dgvEstablishmentsColumns2HeaderText");
+                    dgvEstablishments.Columns[3].HeaderText = 
+                        res.GetString("dgvEstablishmentsColumns3HeaderText");
                 }
                 if (dgvMayLike.Columns.Count > 0)
                 {
@@ -88,65 +91,78 @@ namespace RecsApp
             using (var db = new AppDbContext())
             {
                 var user =
-                    (from u in db.Users.
-                     Include(u => u.est_types).Include(u => u.est_categories).
-                     Include(u => u.est_foods).Include(u => u.est_Average).
-                     Include(u => u.Favourite)
+                    (from u in db.Users.Include(u => u.Favourite)
                      where u.user_Id == userId
                      select u).First();
                 var ests = db.Establishments.
                     Include(e => e.Type).Include(e => e.Categories).
                     Include(e => e.Foods).Include(e => e.Average).ToList();
-                var types = user.est_types.Select(t => t.Id).ToList();
-                var categories = user.est_categories.Select(c => c.Id).ToList();
-                var foods = user.est_foods.Select(f => f.Id).ToList();
-                var average = user.est_Average.Select(a => a.Id).ToList();
+                var questionnaire = db.Questionnaires
+                    .Include(quest => quest.Est_Types)
+                    .Include(quest => quest.Est_Categories)
+                    .Include(quest => quest.Est_Foods)
+                    .Include(quest => quest.Est_Average)
+                    .First(quest => quest.User.user_Id == this.userId);
+                    
 
-                if (user.est_types != null && user.est_types.Count != 0)
-                {
-                    ests = (
-                        from est in ests
-                        where types.Contains(est.Type.Id)
-                        select est).ToList();
-                }
-                if (user.est_categories != null && user.est_categories.Count != 0)
-                {
-                    ests = (
-                        from est in ests
-                        where est.Categories.Select(cat => cat.Id).Any(c => categories.Contains(c))
-                        select est).ToList();
-                }
-                if (user.est_foods != null && user.est_foods.Count != 0)
-                {
-                    ests = (
-                        from est in ests
-                        where est.Foods.Select(food => food.Id).Any(c => foods.Contains(c))
-                        select est).ToList();
-                }
-                if (user.est_Average != null && user.est_Average.Count != 0)
-                {
-                    ests = (
-                        from est in ests
-                        where average.Contains(est.Average.Id)
-                        select est).ToList();
-                }
-                //ests = (
-                //    from est in ests
-                //    where !user.Hidden.Contains(est)
-                //    select est).ToList();
 
+                if (questionnaire != null && !(
+                    questionnaire.Est_Average.Count == 0 && questionnaire.Est_Types.Count == 0 &&
+                    questionnaire.Est_Foods.Count == 0 && questionnaire.Est_Categories.Count == 0))
+                {
+                    var types = questionnaire.Est_Types.Select(t => t.Id).ToList();
+                    var categories = questionnaire.Est_Categories.Select(c => c.Id).ToList();
+                    var foods = questionnaire.Est_Foods.Select(f => f.Id).ToList();
+                    var average = questionnaire.Est_Average.Select(a => a.Id).ToList();
+
+                    if (types != null && types.Count != 0)
+                    {
+                        ests = (
+                            from est in ests
+                            where types.Contains(est.Type.Id)
+                            select est).ToList();
+                    }
+                    if (categories != null && categories.Count != 0)
+                    {
+                        ests = (
+                            from est in ests
+                            where est.Categories.Select(cat => cat.Id)
+                                .Any(c => categories.Contains(c))
+                            select est).ToList();
+                    }
+                    if (foods != null && foods.Count != 0)
+                    {
+                        ests = (
+                            from est in ests
+                            where est.Foods.Select(food => food.Id).Any(c => foods.Contains(c))
+                            select est).ToList();
+                    }
+                    if (average != null && average.Count != 0)
+                    {
+                        ests = (
+                            from est in ests
+                            where average.Contains(est.Average.Id)
+                            select est).ToList();
+                    }
+                    //ests = (
+                    //    from est in ests
+                    //    where !user.Hidden.Contains(est)
+                    //    select est).ToList();
+
+                    
+                    if (showOnlyFavourite)
+                    {
+                        ests = (
+                            from est in ests
+                            where user.Favourite.Contains(est)
+                            select est).ToList();
+                    }
+                }
                 if (isRatingEqualsFive)
                 {
                     ests = (
                         from est in ests
                         where est.Rating == 5.0
-                        select est).ToList();
-                }
-                if (showOnlyFavourite)
-                {
-                    ests = (
-                        from est in ests
-                        where user.Favourite.Contains(est)
                         select est).ToList();
                 }
 

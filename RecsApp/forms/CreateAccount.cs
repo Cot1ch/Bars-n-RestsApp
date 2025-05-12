@@ -76,7 +76,7 @@ namespace RecsApp.forms
             {
                 using (var db = new AppDbContext())
                 {
-                    //db.Database.Delete();
+                    db.Database.Delete();
                     if (db.Users.Any(u => u.username == login))
                     {
                         MessageBox.Show("Логин уже занят. Пожалуйста, выберите другой логин.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -92,9 +92,10 @@ namespace RecsApp.forms
                         username = login,
                         password_hash = password
                     };
-
+                    var questionnaire = new Questionnaire() { user_Id = newUser.user_Id };
                     userId = newUser.user_Id;
                     db.Users.Add(newUser);
+                    db.Questionnaires.Add(questionnaire);
                     db.SaveChanges();
 
                     MessageBox.Show("Аккаунт успешно создан.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);

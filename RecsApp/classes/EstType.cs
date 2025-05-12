@@ -19,10 +19,12 @@ namespace RecsApp
         /// </summary>
         public string Title { get; set; }
         public ICollection<Establishment> Establishments { get; set; }
+        public ICollection<Questionnaire> Questionnaires { get; set; }
 
         public EstType()
         { 
             Establishments = new List<Establishment>();
+            Questionnaires = new List<Questionnaire>();
         }
     }
 }

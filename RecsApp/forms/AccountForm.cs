@@ -43,38 +43,41 @@ namespace RecsApp
 
             using (var db = new AppDbContext())
             {
-                var user = (
-                    from u in db.Users.
-                    Include(u => u.est_types).Include(u => u.est_categories).
-                    Include(u => u.est_foods).Include(u => u.est_Average)
-                    where u.user_Id == userId
-                    select u).First();
+                var user = db.Users.Find(this.userId);
 
-                user.est_types = new List<EstType>();
+                var questionnaire = (
+                    db.Questionnaires.Count() != 0 &&
+                    db.Questionnaires.First(quest => quest.User.user_Id == this.userId) != null) ?
+                    db.Questionnaires
+                    .Include(quest => quest.Est_Types)
+                    .Include(quest => quest.Est_Categories)
+                    .Include(quest => quest.Est_Foods)
+                    .Include(quest => quest.Est_Average)
+                    .First(quest => quest.User.user_Id == this.userId) :
+                    new Questionnaire() { user_Id = this.userId };
+
+                questionnaire.Est_Types = new List<EstType>();
                 foreach (var checkedItem in this.checkedListBoxType.CheckedItems)
                 {
                     var types = (from t in db.Types
                                  where t.Title == checkedItem.ToString()
                                  select t).ToList();
 
-                    if (types.Count != 0)
-                    {
-                        user.est_types.Add(types.First());                        
-                    }
+
+                    questionnaire.Est_Types.Add(types.First());
                 }
 
-                user.est_categories = new List<EstCategory>();
+                questionnaire.Est_Categories = new List<EstCategory>();
                 foreach (var checkedItem in this.checkedListBoxCategory.CheckedItems)
                 {
                     var categories = (from c in db.Categories
                                       where c.Title == checkedItem.ToString()
                                       select c).ToList();
 
-
-                    user.est_categories.Add(categories.First());
+                    questionnaire.Est_Categories.Add(categories.First());
                 }
 
-                user.est_foods = new List<EstFood>();
+                questionnaire.Est_Foods = new List<EstFood>();
                 foreach (var checkedItem in this.checkedListBoxFood.CheckedItems)
                 {
                     var food = (from f in db.Foods
@@ -82,20 +85,22 @@ namespace RecsApp
                                 select f).ToList();
 
 
-                    user.est_foods.Add(food.First());
+                    questionnaire.Est_Foods.Add(food.First());
                 }
 
-                user.est_Average = new List<EstAverageCheck>();
+                questionnaire.Est_Average = new List<EstAverageCheck>();
                 foreach (var checkedItem in this.checkedListBoxAverage.CheckedItems)
                 {
                     var Average = (from ac in db.AverageChecks
                                     where ac.Title == checkedItem.ToString()
                                     select ac).ToList();
 
-                    user.est_Average.Add(Average.First());
+                    questionnaire.Est_Average.Add(Average.First());
                 }
+
                 user.name = this.textBoxName.Text;
                 mainForm.isRatingEqualsFive = this.checkBoxRating.Checked;
+                db.Entry(questionnaire).State = EntityState.Modified;
                 db.SaveChanges();
             }
             mainForm.LoadForm();
@@ -133,34 +138,41 @@ namespace RecsApp
                     return;
                 }
                 var user = db.Users.Find(userId);
+                var questionnaire = db.Questionnaires
+                    .Include(quest => quest.Est_Types)
+                    .Include(quest => quest.Est_Categories)
+                    .Include(quest => quest.Est_Foods)
+                    .Include(quest => quest.Est_Average)
+                    .First(quest => quest.User.user_Id == this.userId);
+
                 this.textBoxName.Text = user.name;
                 this.textBoxLogin.Text = user.username;
 
-                if (user.est_types == null)
+                if (questionnaire != null)
                 {
-                    return;
+                    foreach (var type in questionnaire.Est_Types)
+                    {
+                        checkedListBoxType.SetItemChecked(
+                            this.checkedListBoxType.Items.IndexOf(type.Title), true);
+                    }
+                    foreach (var cat in questionnaire.Est_Categories)
+                    {
+                        checkedListBoxCategory.SetItemChecked(
+                            this.checkedListBoxCategory.Items.IndexOf(cat.Title), true);
+                    }
+                    foreach (var food in questionnaire.Est_Foods)
+                    {
+                        checkedListBoxFood.SetItemChecked(
+                            this.checkedListBoxFood.Items.IndexOf(food.Title), true);
+                    }
+                    foreach (var average in questionnaire.Est_Average)
+                    {
+                        checkedListBoxAverage.SetItemChecked(
+                            this.checkedListBoxAverage.Items.IndexOf(average.Title), true);
+                    }
                 }
 
-                foreach (var type in user.est_types)
-                {
-                    checkedListBoxType.SetItemChecked(
-                        this.checkedListBoxType.Items.IndexOf(type.Title), true);
-                }
-                foreach (var cat in user.est_categories)
-                {
-                    checkedListBoxCategory.SetItemChecked(
-                        this.checkedListBoxCategory.Items.IndexOf(cat.Title), true);
-                }
-                foreach (var food in user.est_foods)
-                {
-                    checkedListBoxFood.SetItemChecked(
-                        this.checkedListBoxFood.Items.IndexOf(food.Title), true);
-                }
-                foreach (var average in user.est_Average)
-                {
-                    checkedListBoxAverage.SetItemChecked(
-                        this.checkedListBoxAverage.Items.IndexOf(average.Title), true);
-                }
+
 
                 this.Text = res.GetString("labelAccountText");
                 this.labelName.Text = res.GetString("labelNameText");

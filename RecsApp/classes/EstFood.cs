@@ -23,10 +23,13 @@ namespace RecsApp
         /// Навигационное свойство на заведения с этой кухней
         /// </summary>
         public ICollection<Establishment> Ests { get; set; }
+        public ICollection<Questionnaire> Questionnaires { get; set; }
+
 
         public EstFood()
         { 
             Ests = new List<Establishment>();
+            Questionnaires = new List<Questionnaire>();
         }
     }
 }

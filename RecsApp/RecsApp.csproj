@@ -104,6 +104,7 @@
     <Compile Include="classes\EstCategory.cs" />
     <Compile Include="classes\EstFood.cs" />
     <Compile Include="classes\EstType.cs" />
+    <Compile Include="classes\Questionnaire.cs" />
     <Compile Include="classes\SortBySmth.cs" />
     <Compile Include="classes\User.cs" />
     <Compile Include="data\AppDbContext.cs" />
