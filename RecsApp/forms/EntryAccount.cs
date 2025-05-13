@@ -46,7 +46,8 @@ namespace RecsApp.forms
 
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("Пожалуйста, заполните все поля.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Пожалуйста, заполните все поля.",
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -58,7 +59,8 @@ namespace RecsApp.forms
 
                     if (user == null)
                     {
-                        MessageBox.Show("Такого пользователя не существует.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Такого пользователя не существует.",
+                            "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
@@ -90,7 +92,8 @@ namespace RecsApp.forms
 
                     if (!isPasswordValid)
                     {
-                        MessageBox.Show("Пароль неверный.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Пароль неверный.",
+                            "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
@@ -100,7 +103,8 @@ namespace RecsApp.forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Произошла ошибка: {ex.Message}",
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -119,12 +123,14 @@ namespace RecsApp.forms
                 if (isPasswordEntryVisible)
                 {
                     textBoxEntryPassword.UseSystemPasswordChar = false;
-                    pictureBoxShowEntryPassword.BackgroundImage = Properties.Resources.visible_password_security_protect_icon; 
+                    pictureBoxShowEntryPassword.BackgroundImage =
+                        Properties.Resources.visible_password_security_protect_icon; 
                 }
                 else
                 {
                     textBoxEntryPassword.UseSystemPasswordChar = true;
-                    pictureBoxShowEntryPassword.BackgroundImage = Properties.Resources.eye_password_see_view_icon; 
+                    pictureBoxShowEntryPassword.BackgroundImage =
+                        Properties.Resources.eye_password_see_view_icon; 
                 }
 
                 isPasswordEntryVisible = !isPasswordEntryVisible;
