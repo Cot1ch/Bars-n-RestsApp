@@ -198,7 +198,7 @@ namespace RecsApp
                         {
                             user.Favourite.Add(establishment);
                             MessageBox.Show(res.GetString("EstablishmentAdded"), 
-                                res.GetString("Succsess"), 
+                                res.GetString("Succsess"),
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else

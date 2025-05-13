@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-    <data name="AccsessDenied" xml:space="preserve">
+  <data name="AccsessDenied" xml:space="preserve">
     <value>Доступ к аккаунту потерян</value>
   </data>
   <data name="AlreadyAdd" xml:space="preserve">
@@ -144,11 +144,11 @@
   <data name="EstablishmentAlreadyInFavorite" xml:space="preserve">
     <value>Заведение уже добавлено</value>
   </data>
-  <data name="EstadlishmentDeleted" xml:space="preserve">
+  <data name="EstablishmentDeleted" xml:space="preserve">
     <value>Заведение удалено</value>
   </data>
   <data name="HideEstablishment" xml:space="preserve">
-    <value>Вы больше не увидите это заведение!\nПродолжить?</value>
+    <value>Вы больше не увидите это заведение! Хотите продолжить?</value>
   </data>
   <data name="labelAddressText" xml:space="preserve">
     <value>Адрес</value>
