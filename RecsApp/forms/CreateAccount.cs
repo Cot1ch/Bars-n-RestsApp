@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using BCrypt.Net;
+using NLog;
 
 namespace RecsApp.forms
 {
@@ -13,6 +14,7 @@ namespace RecsApp.forms
     /// </summary>
     public partial class CreateAccount : Form
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         /// <summary>
         /// Идентификатор аккаунта пользователя
         /// </summary>
@@ -34,6 +36,7 @@ namespace RecsApp.forms
         private void pbShowPassword_Click(object sender, EventArgs e)
         {
             var textBoxCreatePassword = this.Controls["textBoxCreatePassword"] as TextBox;
+            logger.Trace("Нажата кнопка изменения видимости пароля");
             if (textBoxCreatePassword != null)
             {
                 if (isPasswordCreateVisible)
@@ -41,15 +44,21 @@ namespace RecsApp.forms
                     textBoxCreatePassword.UseSystemPasswordChar = false;
                     pbShowPassword.BackgroundImage =
                         Properties.Resources.visible_password_security_protect_icon;
+                    logger.Trace("Текущее состояние: видимый");
                 }
                 else
                 {
                     textBoxCreatePassword.UseSystemPasswordChar = true;
                     pbShowPassword.BackgroundImage =
-                        Properties.Resources.eye_password_see_view_icon; 
+                        Properties.Resources.eye_password_see_view_icon;
+                    logger.Trace("Текущее состояние: скрытый");
                 }
 
                 isPasswordCreateVisible = !isPasswordCreateVisible;
+            }
+            else
+            {
+                logger.Info("Поле пароля пусто");
             }
         }
 
@@ -60,10 +69,13 @@ namespace RecsApp.forms
             var password = textBoxCreatePassword.Text.Trim();
             var confirmPassword = textBoxConfirmPassword.Text.Trim();
 
+            logger.Trace("Попытка создания аккаунта");
+
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(login)
                 || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword))
             {
                 MessageBox.Show("Пожалуйста, заполните все поля.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                logger.Info("Не все поля заполнены");
                 return;
             }
 
@@ -71,6 +83,7 @@ namespace RecsApp.forms
             {
                 MessageBox.Show($"Логин должен содержать не менее 6 символов.",
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                logger.Info("Логин должен содержать не менее 6 символов");
                 return;
             }
 
@@ -78,6 +91,7 @@ namespace RecsApp.forms
             {
                 MessageBox.Show($"Пароль должен содержать не менее 6 символов.",
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                logger.Info("Пароль должен содержать не менее 6 символов");
                 return;
             }
 
@@ -85,6 +99,7 @@ namespace RecsApp.forms
             {
                 MessageBox.Show("Пароли не совпадают.",
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                logger.Info("Пароли не совпадают");
                 return;
             }
 
@@ -92,6 +107,7 @@ namespace RecsApp.forms
             {
                 MessageBox.Show("Логин должен состоять только из английских букв и цифр.",
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                logger.Info("Логин должен состоять только из английских букв и цифр.");
                 return;
             }
 
@@ -99,6 +115,7 @@ namespace RecsApp.forms
             {
                 MessageBox.Show("Пароль должен состоять только из английских букв и цифр.",
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                logger.Info("Пароль должен состоять только из английских букв и цифр.");
                 return;
             }
             try
@@ -117,6 +134,7 @@ namespace RecsApp.forms
                     {
                         MessageBox.Show("Логин уже занят. Пожалуйста, выберите другой логин.",
                             "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        logger.Info("Логин уже занят");
                         return;
                     }
 
@@ -138,6 +156,7 @@ namespace RecsApp.forms
 
                     MessageBox.Show("Аккаунт успешно создан.", "Успех",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    logger.Info("Аккаунта успешно создан");
 
                     richTextBoxCreateName.Clear();
                     richTextBoxCreateLogin.Clear();
@@ -152,6 +171,7 @@ namespace RecsApp.forms
             {
                 MessageBox.Show($"Произошла ошибка: {ex.Message}",
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                logger.Info($"Произошла ошибка: {ex.Message}");
             }
         }
         /// <summary>
@@ -172,22 +192,29 @@ namespace RecsApp.forms
         private void pbConfirmPassword_Click(object sender, EventArgs e)
         {
             var textBoxConfirmPassword = this.Controls["textBoxConfirmPassword"] as TextBox;
+            logger.Trace("Нажата кнопка изменения видимости пароля");
             if (textBoxConfirmPassword != null)
             {
                 if (isPasswordConfirmVisible)
                 {
                     textBoxConfirmPassword.UseSystemPasswordChar = false;
                     pbConfirmPassword.BackgroundImage =
-                        Properties.Resources.visible_password_security_protect_icon; 
+                        Properties.Resources.visible_password_security_protect_icon;
+                    logger.Trace("Текущее состояние: видимый");
                 }
                 else
                 {
                     textBoxConfirmPassword.UseSystemPasswordChar = true;
                     pbConfirmPassword.BackgroundImage =
-                        Properties.Resources.eye_password_see_view_icon; 
+                        Properties.Resources.eye_password_see_view_icon;
+                    logger.Trace("Текущее состояние: скрытый");
                 }
 
                 isPasswordConfirmVisible = !isPasswordConfirmVisible;
+            }
+            else
+            {
+                logger.Info("Поле пароля пусто");
             }
         }
     }

@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using System.Drawing;
 using RecsApp.forms;
+using NLog;
 
 namespace RecsApp
 {
@@ -11,9 +12,11 @@ namespace RecsApp
     /// </summary>
     public partial class FirstForm: Form
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         public FirstForm()
         {
             InitializeComponent();
+            logger.Trace("Форма FirstForm загружена");
         }
 
         private void buttonCreateAccount_Click(object sender, EventArgs e)
@@ -22,7 +25,7 @@ namespace RecsApp
             CreateAccount createAccount = new CreateAccount();
             createAccount.FormClosed += CreateAccount_FormClosed;
             createAccount.ShowDialog();
-            //this.WindowState = FormWindowState.Minimized;
+            logger.Trace("Форма регистрации закрыта");
         }
 
 
@@ -32,7 +35,6 @@ namespace RecsApp
             EntryAccount entryAccount = new EntryAccount();
             entryAccount.FormClosed += EntryAccount_FormClosed;
             entryAccount.ShowDialog();
-            //this.WindowState = FormWindowState.Minimized;
 
         }
         private void EntryAccount_FormClosed(object sender, FormClosedEventArgs e)

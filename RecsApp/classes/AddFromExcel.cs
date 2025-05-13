@@ -5,6 +5,7 @@ using System.Linq;
 using System.Resources;
 using System.Windows.Forms;
 using ClosedXML.Excel;
+using NLog;
 
 namespace RecsApp
 {
@@ -13,6 +14,7 @@ namespace RecsApp
     /// </summary>
     public static class AddFromExcel
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         public static string fileName { get; set; }
         /// <summary>
         /// Метод загружает типы, категории, кухни и чеки заведений из Excel файла в базу данных

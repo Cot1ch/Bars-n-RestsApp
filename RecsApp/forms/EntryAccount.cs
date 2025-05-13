@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,6 +17,7 @@ namespace RecsApp.forms
     /// </summary>
     public partial class EntryAccount : Form
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         /// <summary>
         /// Переменная для работы "глазика"
         /// </summary>

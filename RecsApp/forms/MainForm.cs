@@ -5,6 +5,7 @@ using System.Resources;
 using System.Windows.Forms;
 using System.Data.Entity;
 using System.IO;
+using NLog;
 
 namespace RecsApp
 {
@@ -13,6 +14,7 @@ namespace RecsApp
     /// </summary>
     public partial class MainForm : Form
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         /// <summary>
         /// Идентификатор аккаунта пользователя
         /// </summary>

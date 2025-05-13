@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Data.Entity;
 using System.Resources;
+using NLog;
 
 namespace RecsApp
 {
@@ -13,6 +14,7 @@ namespace RecsApp
     /// </summary>
     public partial class InfoForm : Form
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         /// <summary>
         /// Заведение, информацию о котором отображает форма
         /// </summary>
