@@ -6,9 +6,12 @@ using RecsApp.forms;
 
 namespace RecsApp
 {
-    public partial class Form1: Form
+    /// <summary>
+    /// Основная форма
+    /// </summary>
+    public partial class FirstForm: Form
     {
-        public Form1()
+        public FirstForm()
         {
             InitializeComponent();
         }
@@ -17,7 +20,7 @@ namespace RecsApp
         {
             this.Hide();
             CreateAccount createAccount = new CreateAccount();
-            createAccount.FormClosed += (s, args) => this.Show();
+            createAccount.FormClosed += CreateAccount_FormClosed;
             createAccount.ShowDialog();
             //this.WindowState = FormWindowState.Minimized;
         }
@@ -27,10 +30,19 @@ namespace RecsApp
         {
             this.Hide();
             EntryAccount entryAccount = new EntryAccount();
-            entryAccount.FormClosed += (s, args) => this.Show();
+            entryAccount.FormClosed += EntryAccount_FormClosed;
             entryAccount.ShowDialog();
             //this.WindowState = FormWindowState.Minimized;
 
+        }
+        private void EntryAccount_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Show();
+        }
+
+        private void CreateAccount_FormClosed(object sender, EventArgs e)
+        {
+            this.Show();
         }
     }
 }

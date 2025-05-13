@@ -11,18 +11,38 @@ using System.Windows.Forms;
 
 namespace RecsApp.forms
 {
+    /// <summary>
+    /// Форма входа в аккаунт
+    /// </summary>
     public partial class EntryAccount : Form
     {
+        /// <summary>
+        /// Переменная для работы "глазика"
+        /// </summary>
         private bool isPasswordEntryVisible = true;
         public EntryAccount()
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Метод для поиска пользователя по логину 
+        /// </summary>
+        private User GetUserByUsername(AppDbContext db, string username)
+        {
+            foreach (var user in db.Users)
+            {
+                if (user.username == username)
+                {
+                    return user;
+                }
+            }
+            return null;
+        }
 
         private void buttonEntry_Click(object sender, EventArgs e)
         {
-            string login = richTextBoxEntryLogin.Text.Trim();
-            string password = textBoxEntryPassword.Text.Trim();
+            var login = richTextBoxEntryLogin.Text.Trim();
+            var password = textBoxEntryPassword.Text.Trim();
 
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
             {
@@ -34,65 +54,54 @@ namespace RecsApp.forms
             {
                 using (var db = new AppDbContext())
                 {
-                    if (!db.Users.Any(user => user.username == "adminnn"))
-                    {
-                        var pass = "adminnn";
-                        var adminPassword = BCrypt.Net.BCrypt.HashPassword(pass);
-
-                        db.Users.Add(new User()
-                        {
-                            name = "admin",
-                            username = "adminnn",
-                            password_hash =  pass
-                        });
-                        db.SaveChanges();
-                    }
-                }
-                using (var db = new AppDbContext())
-                {
-                    var user = db.Users.FirstOrDefault(u => u.username == login);
+                    var user = GetUserByUsername(db, login);
 
                     if (user == null)
                     {
-                        MessageBox.Show("Неверный логин или пароль.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Такого пользователя не существует.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
+                    bool isPasswordValid = false;
+
                     try
                     {
-                        bool isPasswordValid = BCrypt.Net.BCrypt.Verify(password, user.password_hash);
-
-                        if (!isPasswordValid)
-                        {
-                            MessageBox.Show("Неверный логин или пароль.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
+                        // Проверяем пароль
+                        isPasswordValid = BCrypt.Net.BCrypt.Verify(password, user.password_hash);
                     }
                     catch (Exception ex)
                     {
+                        // Проверяем, является ли ошибка связанной с версией соли
                         if (ex.Message.Contains("Invalid salt version"))
                         {
+                            // Перехэшируем пароль
                             string newHashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
                             user.password_hash = newHashedPassword;
                             db.SaveChanges();
+
+                            // Повторно проверяем пароль
+                            isPasswordValid = BCrypt.Net.BCrypt.Verify(password, user.password_hash);
                         }
                         else
                         {
-                            throw;
+                            throw; 
                         }
                     }
 
-                    MessageBox.Show("Вход выполнен успешно.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (!isPasswordValid)
+                    {
+                        MessageBox.Show("Пароль неверный.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
 
-                    this.Hide();
-                    new MainForm(user.user_Id).Show();
+                    this.Hide(); 
+                    new MainForm(user.user_Id).Show(); 
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            this.Close();
         }
 
 
@@ -102,11 +111,6 @@ namespace RecsApp.forms
         }
 
 
-        private void EntryAccount_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void pictureBoxShowEntryPassword_Click(object sender, EventArgs e)
         {
             var textBoxEntryPassword = this.Controls["textBoxEntryPassword"] as TextBox;
@@ -114,12 +118,12 @@ namespace RecsApp.forms
             {
                 if (isPasswordEntryVisible)
                 {
-                    textBoxEntryPassword.UseSystemPasswordChar = true;
+                    textBoxEntryPassword.UseSystemPasswordChar = false;
                     pictureBoxShowEntryPassword.BackgroundImage = Properties.Resources.visible_password_security_protect_icon; 
                 }
                 else
                 {
-                    textBoxEntryPassword.UseSystemPasswordChar = false;
+                    textBoxEntryPassword.UseSystemPasswordChar = true;
                     pictureBoxShowEntryPassword.BackgroundImage = Properties.Resources.eye_password_see_view_icon; 
                 }
 
