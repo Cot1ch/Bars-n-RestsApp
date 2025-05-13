@@ -27,12 +27,17 @@ namespace RecsApp
         /// Поле, задающее способ сортировки
         /// </summary>
         public string sortMode="visits";
-        private string fileName = $"{Directory.GetCurrentDirectory()}..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
+        /// <summary>
+        /// Путь к файлу с заведениями
+        /// </summary>
+        private string fileName;
         
         public MainForm(Guid usId)
         {
             InitializeComponent();
             userId = usId;
+            this.fileName = $"{Directory.GetCurrentDirectory()}" +
+                $"..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -54,7 +59,7 @@ namespace RecsApp
                 }
             }
 
-                LoadForm();
+            LoadForm();
 
             using (var res = new ResXResourceSet(
                 $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\MainForm.resx"))
@@ -126,8 +131,10 @@ namespace RecsApp
                         .First(quest => quest.User.user_Id == this.userId);
 
                     if (questionnaire != null && !(
-                        questionnaire.Est_Average.Count == 0 && questionnaire.Est_Types.Count == 0 &&
-                        questionnaire.Est_Foods.Count == 0 && questionnaire.Est_Categories.Count == 0))
+                        questionnaire.Est_Average.Count == 0 && 
+                        questionnaire.Est_Types.Count == 0 &&
+                        questionnaire.Est_Foods.Count == 0 && 
+                        questionnaire.Est_Categories.Count == 0))
                     {
                         var types = questionnaire.Est_Types.Select(t => t.Id).ToList();
                         var categories = questionnaire.Est_Categories.Select(c => c.Id).ToList();
@@ -259,6 +266,10 @@ namespace RecsApp
                 var ests = db.Establishments.
                     Include(e => e.Type).Include(e => e.Categories).
                     Include(e => e.Foods).Include(e => e.Average).ToList();
+                ests.Sort(new SortBySmth()
+                {
+                    SortMode = "visits"
+                });
                 var simEsts = new List<string>();
 
                 if (user.Favourite.Count < 5)
@@ -306,6 +317,19 @@ namespace RecsApp
                     where !user.Hidden.Contains(est) && !user.Favourite.Contains(est)
                     select est).ToList();
 
+                if ((from est in ests
+                     where !user.Hidden.Contains(est) && !user.Favourite.Contains(est)
+                     select est).Count() >= 10)
+                {
+                    while (Ests.Count < 10)
+                    {
+                        Ests.Add((from est in Ests
+                                  where !(user.Hidden.Count > 0 && user.Hidden.Contains(est)) 
+                                  && !(user.Favourite.Count > 0 && user.Favourite.Contains(est))
+                                  && !Ests.Contains(est)
+                                  select est).ToList().First());
+                    }
+                }
                 Ests.Sort(new SortBySmth() 
                 { 
                     SortMode = "visits" 
@@ -400,25 +424,25 @@ namespace RecsApp
         private void radioBtnSortByName_CheckedChanged(object sender, EventArgs e)
         {
             this.sortMode = "name";
-            LoaddgvEstablishments();
+            LoaddgvEstablishments(this.checkBoxFavorite.Checked);
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             this.sortMode = "type";
-            LoaddgvEstablishments();
+            LoaddgvEstablishments(this.checkBoxFavorite.Checked);
         }
 
         private void radioBtnSortByRating_CheckedChanged(object sender, EventArgs e)
         {
             this.sortMode = "rating";
-            LoaddgvEstablishments();
+            LoaddgvEstablishments(this.checkBoxFavorite.Checked);
         }
 
         private void radioBtnSortByVisits_CheckedChanged(object sender, EventArgs e)
         {
             this.sortMode = "visits";
-            LoaddgvEstablishments();
+            LoaddgvEstablishments(this.checkBoxFavorite.Checked);
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -156,7 +156,7 @@ namespace RecsApp.forms
 
                     MessageBox.Show("Аккаунт успешно создан.", "Успех",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    logger.Info("Аккаунта успешно создан");
+                    logger.Info("Аккаунт успешно создан");
 
                     richTextBoxCreateName.Clear();
                     richTextBoxCreateLogin.Clear();
@@ -164,7 +164,9 @@ namespace RecsApp.forms
                     textBoxConfirmPassword.Clear(); 
 
                     new MainForm(this.userId).Show();
+                    logger.Trace("Отображена главная форма");
                     this.Hide();
+                    logger.Trace("Форма создания аккаунта закрыта");
                 }
             }
             catch (Exception ex)

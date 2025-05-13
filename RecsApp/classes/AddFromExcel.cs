@@ -15,6 +15,7 @@ namespace RecsApp
     public static class AddFromExcel
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
+        
         public static string fileName { get; set; }
         /// <summary>
         /// Метод загружает типы, категории, кухни и чеки заведений из Excel файла в базу данных
@@ -25,12 +26,13 @@ namespace RecsApp
                 $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resource1.resx"))
             {
                 var path = fileName;
-;
+;               logger.Info($"Имя файла с заведениями: {path}");
                 if (!File.Exists(path))
                 {
                     MessageBox.Show(res.GetString("ContactAdmin"),
                         res.GetString("FileDoesntExist"), 
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Error(res.GetString("FileDoesntExist") + $"| path={path}");
                     return;
                 }
 
@@ -64,6 +66,7 @@ namespace RecsApp
                                     Id = guidType,
                                     Title = row.Cell(1).Value.ToString()
                                 });
+                                logger.Info($"Добавлен тип '{row.Cell(1).Value}'");
                             }
                             else if (sheet == "Категории"
                                 && Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidCat)
@@ -74,6 +77,7 @@ namespace RecsApp
                                     Id = guidCat,
                                     Title = row.Cell(1).Value.ToString()
                                 });
+                                logger.Info($"Добавлена категория '{row.Cell(1).Value}'");
                             }
                             else if (sheet == "Кухня"
                                 && Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidFood)
@@ -84,6 +88,7 @@ namespace RecsApp
                                     Id = guidFood,
                                     Title = row.Cell(1).Value.ToString()
                                 });
+                                logger.Info($"Добавлена кухня '{row.Cell(1).Value}'");
                             }
                             else if (sheet == "Средний чек"
                                 && Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidAv)
@@ -94,10 +99,12 @@ namespace RecsApp
                                     Id = guidAv,
                                     Title = row.Cell(1).Value.ToString()
                                 });
+                                logger.Info($"Добавлен средний чек '{row.Cell(1).Value}'");
                             }
                         }
                     }
                     db.SaveChanges();
+                    logger.Info("Изменения сохранены");
                 }
             }
         }
@@ -111,12 +118,14 @@ namespace RecsApp
             {
 
                 var path = fileName;
+                logger.Info($"Имя файла с заведениями: {path}");
 
                 if (!File.Exists(path))
                 {
                     MessageBox.Show(res.GetString("ContactAdmin"),
                         res.GetString("FileDoesntExist"),
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Error(res.GetString("FileDoesntExist") + $"| path={path}");
                     return;
                 }
 
@@ -125,8 +134,9 @@ namespace RecsApp
                 if (!wb.TryGetWorksheet("Заведения", out IXLWorksheet works))
                 {
                     MessageBox.Show(res.GetString("ContactAdmin"),
-                        res.GetString("SheetDoesntFound"),
+                        res.GetString("SheetDoesntFound") + "| name='Заведения'",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Error(res.GetString("SheetDoesntFound") + "| name='Заведения'");
                     return;
                 }
                 var ws = works.RowsUsed();
@@ -207,15 +217,17 @@ namespace RecsApp
                         establishment.Check = decimal.TryParse(row.Cell(10).Value.ToString(),
                             out decimal ch) ? ch : 0m;
                         establishment.Average = db.AverageChecks.Find(average[0]);
-
+                        logger.Trace($" Поля заведения заполнены");
                         db.Establishments.Add(establishment);
-
+                        logger.Info($"Добавлено заведение '{establishment.Name}'");
                     }
                     if (IsEmpty)
                     {
                         MessageBox.Show(res.GetString("DataDoesntFull") + "\n" +
                             res.GetString("ContactAdmin"), res.GetString("DataLost"),
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        logger.Warn(res.GetString("DataDoesntFull") + "\n" +
+                            res.GetString("ContactAdmin"));
                     }
                     db.SaveChanges();
                 }
@@ -337,8 +349,7 @@ namespace RecsApp
             {
                 return guid;
             }
-            return Guid.Empty;
-            
+            return Guid.Empty;            
         }
     }
 }

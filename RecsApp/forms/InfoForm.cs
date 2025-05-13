@@ -19,6 +19,9 @@ namespace RecsApp
         /// Заведение, информацию о котором отображает форма
         /// </summary>
         private Establishment est;
+        /// <summary>
+        /// Идентификатор отображаемого заведения
+        /// </summary>
         private Guid estId;
         /// <summary>
         /// Счетчик индекса отображаемого изображения

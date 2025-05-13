@@ -31,18 +31,22 @@ namespace RecsApp.forms
         /// </summary>
         private User GetUserByUsername(AppDbContext db, string username)
         {
+            logger.Info("Начат поиск пользователя по имени в базе данных");
             foreach (var user in db.Users)
             {
                 if (user.username == username)
                 {
+                    logger.Info($"Пользователь {user.user_Id} {user.username} найден");
                     return user;
                 }
             }
+            logger.Warn($"Пользователь {username} не найден");
             return null;
         }
 
         private void buttonEntry_Click(object sender, EventArgs e)
         {
+            logger.Trace("Попытка входа в аккаунт");
             var login = richTextBoxEntryLogin.Text.Trim();
             var password = textBoxEntryPassword.Text.Trim();
 
@@ -50,6 +54,7 @@ namespace RecsApp.forms
             {
                 MessageBox.Show("Пожалуйста, заполните все поля.",
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                logger.Trace("Попытка не удалась: не все поля заполнены");
                 return;
             }
 
@@ -61,10 +66,12 @@ namespace RecsApp.forms
 
                     if (user == null)
                     {
-                        MessageBox.Show("Такого пользователя не существует.",
+                        MessageBox.Show("Такого пользователя не существует",
                             "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        logger.Error("Такого пользователя не существует");
                         return;
                     }
+                    logger.Trace($"Получен пользователь {user.username}");
 
                     bool isPasswordValid = false;
 
@@ -72,6 +79,7 @@ namespace RecsApp.forms
                     {
                         // Проверяем пароль
                         isPasswordValid = BCrypt.Net.BCrypt.Verify(password, user.password_hash);
+                        logger.Info("Проверка существования пароля");
                     }
                     catch (Exception ex)
                     {
@@ -96,17 +104,23 @@ namespace RecsApp.forms
                     {
                         MessageBox.Show("Пароль неверный.",
                             "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        logger.Error("Пароль неверный");
                         return;
                     }
 
-                    this.Hide(); 
-                    new MainForm(user.user_Id).Show(); 
+                    logger.Info($"Вход в аккаунт {user.username} успешно выполнен");
+                    this.Hide();
+                    logger.Trace("Форма скрыта");
+
+                    new MainForm(user.user_Id).Show();
+                    logger.Trace("Главная форма запущена");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Произошла ошибка: {ex.Message}",
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                logger.Error($"Произошла ошибка: {ex.Message}");
             }
         }
 
@@ -120,22 +134,29 @@ namespace RecsApp.forms
         private void pictureBoxShowEntryPassword_Click(object sender, EventArgs e)
         {
             var textBoxEntryPassword = this.Controls["textBoxEntryPassword"] as TextBox;
+            logger.Trace("Нажата кнопка изменения видимости пароля");
             if (textBoxEntryPassword != null)
             {
                 if (isPasswordEntryVisible)
                 {
                     textBoxEntryPassword.UseSystemPasswordChar = false;
                     pictureBoxShowEntryPassword.BackgroundImage =
-                        Properties.Resources.visible_password_security_protect_icon; 
+                        Properties.Resources.visible_password_security_protect_icon;
+                    logger.Trace("Текущее состояние: видимый");
                 }
                 else
                 {
                     textBoxEntryPassword.UseSystemPasswordChar = true;
                     pictureBoxShowEntryPassword.BackgroundImage =
-                        Properties.Resources.eye_password_see_view_icon; 
+                        Properties.Resources.eye_password_see_view_icon;
+                    logger.Trace("Текущее состояние: скрытый");
                 }
 
                 isPasswordEntryVisible = !isPasswordEntryVisible;
+            }
+            else
+            {
+                logger.Info("Поле пароля пусто");
             }
         }
     }
