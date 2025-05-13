@@ -161,7 +161,6 @@
             this.MaximizeBox = false;
             this.Name = "EntryAccount";
             this.Text = "Вход в аккаунт";
-            this.Load += new System.EventHandler(this.EntryAccount_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxShowEntryPassword)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

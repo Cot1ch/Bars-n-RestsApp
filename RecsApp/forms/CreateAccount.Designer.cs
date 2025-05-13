@@ -231,7 +231,6 @@
             this.MaximizeBox = false;
             this.Name = "CreateAccount";
             this.Text = "Создание аккаунта";
-            this.Load += new System.EventHandler(this.CreateAccount_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbShowPassword)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbConfirmPassword)).EndInit();
             this.ResumeLayout(false);

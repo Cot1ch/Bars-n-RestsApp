@@ -48,7 +48,12 @@ namespace RecsApp
 
         private void CreateAccount_FormClosed(object sender, EventArgs e)
         {
-            this.Show();
+            this.ShowDialog();
+        }
+
+        private void EntryAccount_FormClosed(object sender, EventArgs e)
+        {
+            this.ShowDialog();
         }
 
         private void FirstForm_Load(object sender, EventArgs e)
