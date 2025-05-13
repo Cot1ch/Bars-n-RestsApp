@@ -398,25 +398,25 @@ namespace RecsApp
         private void radioBtnSortByName_CheckedChanged(object sender, EventArgs e)
         {
             this.sortMode = "name";
-            LoaddgvEstablishments(true);
+            LoaddgvEstablishments();
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             this.sortMode = "type";
-            LoaddgvEstablishments(true);
+            LoaddgvEstablishments();
         }
 
         private void radioBtnSortByRating_CheckedChanged(object sender, EventArgs e)
         {
             this.sortMode = "rating";
-            LoaddgvEstablishments(true);
+            LoaddgvEstablishments();
         }
 
         private void radioBtnSortByVisits_CheckedChanged(object sender, EventArgs e)
         {
             this.sortMode = "visits";
-            LoaddgvEstablishments(true);
+            LoaddgvEstablishments();
         }
 
         private void button1_Click(object sender, EventArgs e)

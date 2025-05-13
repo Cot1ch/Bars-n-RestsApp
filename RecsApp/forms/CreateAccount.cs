@@ -97,7 +97,6 @@ namespace RecsApp.forms
             {
                 using (var db = new AppDbContext())
                 {
-                    //db.Database.Delete();
                     foreach (var user in db.Users)
                     {
                         if (user.username == login)
