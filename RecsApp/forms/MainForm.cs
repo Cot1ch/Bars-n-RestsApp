@@ -5,7 +5,6 @@ using System.Resources;
 using System.Windows.Forms;
 using System.Data.Entity;
 using System.IO;
-using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace RecsApp
 {
@@ -252,6 +251,7 @@ namespace RecsApp
                 var user =
                     (from u in db.Users
                      .Include(u => u.Favourite)
+                     .Include(u => u.Hidden)                     
                      where u.user_Id == userId
                      select u).First();
                 var ests = db.Establishments.
@@ -298,6 +298,11 @@ namespace RecsApp
                     from e in db.Establishments
                     where simEsts.Contains(e.Name)
                     select e).ToList();
+
+                Ests = (
+                    from est in Ests
+                    where !user.Hidden.Contains(est) && !user.Favourite.Contains(est)
+                    select est).ToList();
 
                 Ests.Sort(new SortBySmth() 
                 { 
