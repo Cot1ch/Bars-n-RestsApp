@@ -11,18 +11,38 @@ using System.Windows.Forms;
 
 namespace RecsApp.forms
 {
+    /// <summary>
+    /// Форма входа в аккаунт
+    /// </summary>
     public partial class EntryAccount : Form
     {
+        /// <summary>
+        /// Переменная для работы "глазика"
+        /// </summary>
         private bool isPasswordEntryVisible = true;
         public EntryAccount()
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Метод для поиска пользователя по логину 
+        /// </summary>
+        private User GetUserByUsername(AppDbContext db, string username)
+        {
+            foreach (var user in db.Users)
+            {
+                if (user.username == username)
+                {
+                    return user;
+                }
+            }
+            return null;
+        }
 
         private void buttonEntry_Click(object sender, EventArgs e)
         {
-            string login = richTextBoxEntryLogin.Text.Trim();
-            string password = textBoxEntryPassword.Text.Trim();
+            var login = richTextBoxEntryLogin.Text.Trim();
+            var password = textBoxEntryPassword.Text.Trim();
 
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
             {
@@ -34,49 +54,32 @@ namespace RecsApp.forms
             {
                 using (var db = new AppDbContext())
                 {
-                    var user = db.Users.FirstOrDefault(u => u.username == login);
+                    var user = GetUserByUsername(db, login);
 
                     if (user == null)
                     {
-                        MessageBox.Show("Неверный логин или пароль.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Такого пользователя не существует.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
-                    try
-                    {
-                        bool isPasswordValid = BCrypt.Net.BCrypt.Verify(password, user.password_hash);
+                    bool isPasswordValid = BCrypt.Net.BCrypt.Verify(password, user.password_hash);
 
-                        if (!isPasswordValid)
-                        {
-                            MessageBox.Show("Неверный логин или пароль.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
-                    }
-                    catch (Exception ex)
+                    if (!isPasswordValid)
                     {
-                        if (ex.Message.Contains("Invalid salt version"))
-                        {
-                            string newHashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
-                            user.password_hash = newHashedPassword;
-                            db.SaveChanges();
-                        }
-                        else
-                        {
-                            throw; 
-                        }
+                        MessageBox.Show("Пароль неверный.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
 
                     MessageBox.Show("Вход выполнен успешно.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     this.Hide(); 
-                    new MainForm(user.user_Id).Show(); 
+                    new MainForm(user.user_Id).Show();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            this.Close();
         }
 
 
@@ -86,11 +89,6 @@ namespace RecsApp.forms
         }
 
 
-        private void EntryAccount_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void pictureBoxShowEntryPassword_Click(object sender, EventArgs e)
         {
             var textBoxEntryPassword = this.Controls["textBoxEntryPassword"] as TextBox;
@@ -98,12 +96,12 @@ namespace RecsApp.forms
             {
                 if (isPasswordEntryVisible)
                 {
-                    textBoxEntryPassword.UseSystemPasswordChar = true;
+                    textBoxEntryPassword.UseSystemPasswordChar = false;
                     pictureBoxShowEntryPassword.BackgroundImage = Properties.Resources.visible_password_security_protect_icon; 
                 }
                 else
                 {
-                    textBoxEntryPassword.UseSystemPasswordChar = false;
+                    textBoxEntryPassword.UseSystemPasswordChar = true;
                     pictureBoxShowEntryPassword.BackgroundImage = Properties.Resources.eye_password_see_view_icon; 
                 }
 

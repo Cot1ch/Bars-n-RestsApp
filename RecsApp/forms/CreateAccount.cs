@@ -2,23 +2,34 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using BCrypt.Net;
 
 namespace RecsApp.forms
 {
+    /// <summary>
+    /// Форма создания аккаунта
+    /// </summary>
     public partial class CreateAccount : Form
     {
+        /// <summary>
+        /// Идентификатор аккаунта пользователя
+        /// </summary>
         private Guid userId;
+        /// <summary>
+        /// Переменные для работы "глазика"
+        /// </summary>
         private bool isPasswordCreateVisible = true;
         private bool isPasswordConfirmVisible = true;
-
+        /// <summary>
+        /// Переменная для проверки свободного логина
+        /// </summary>
+        bool isUsernameTaken = false;
         public CreateAccount()
         {
             InitializeComponent();
         }
-
-
 
         private void pbShowPassword_Click(object sender, EventArgs e)
         {
@@ -27,12 +38,12 @@ namespace RecsApp.forms
             {
                 if (isPasswordCreateVisible)
                 {
-                    textBoxCreatePassword.UseSystemPasswordChar = true;
+                    textBoxCreatePassword.UseSystemPasswordChar = false;
                     pbShowPassword.BackgroundImage = Properties.Resources.visible_password_security_protect_icon;
                 }
                 else
                 {
-                    textBoxCreatePassword.UseSystemPasswordChar = false;
+                    textBoxCreatePassword.UseSystemPasswordChar = true;
                     pbShowPassword.BackgroundImage = Properties.Resources.eye_password_see_view_icon; 
                 }
 
@@ -40,13 +51,12 @@ namespace RecsApp.forms
             }
         }
 
-
         private void buttonCreate_Click(object sender, EventArgs e)
         {
-            string name = richTextBoxCreateName.Text.Trim();
-            string login = richTextBoxCreateLogin.Text.Trim();
-            string password = textBoxCreatePassword.Text.Trim();
-            string confirmPassword = textBoxConfirmPassword.Text.Trim();
+            var name = richTextBoxCreateName.Text.Trim();
+            var login = richTextBoxCreateLogin.Text.Trim();
+            var password = textBoxCreatePassword.Text.Trim();
+            var confirmPassword = textBoxConfirmPassword.Text.Trim();
 
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword))
             {
@@ -54,13 +64,13 @@ namespace RecsApp.forms
                 return;
             }
 
-            if (login.Length <= 6)
+            if (login.Length < 6)
             {
                 MessageBox.Show($"Логин должен содержать не менее 6 символов.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (password.Length <= 6)
+            if (password.Length < 6)
             {
                 MessageBox.Show($"Пароль должен содержать не менее 6 символов.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -72,18 +82,37 @@ namespace RecsApp.forms
                 return;
             }
 
+            if (!IsValidLoginOrPassword(login))
+            {
+                MessageBox.Show("Логин должен состоять только из английских букв и цифр.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!IsValidLoginOrPassword(password))
+            {
+                MessageBox.Show("Пароль должен состоять только из английских букв и цифр.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             try
             {
                 using (var db = new AppDbContext())
                 {
                     //db.Database.Delete();
-                    if (db.Users.Any(u => u.username == login))
+                    foreach (var user in db.Users)
+                    {
+                        if (user.username == login)
+                        {
+                            isUsernameTaken = true;
+                            break;
+                        }
+                    }
+                    if (isUsernameTaken)
                     {
                         MessageBox.Show("Логин уже занят. Пожалуйста, выберите другой логин.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
-                    string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
+                    var hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
 
                     var newUser = new User
                     {
@@ -105,13 +134,21 @@ namespace RecsApp.forms
                     textBoxConfirmPassword.Clear(); 
 
                     new MainForm(this.userId).Show();
-                    this.Close();
+                    this.Hide();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        /// <summary>
+        /// Метод для проверки правильности пароля
+        /// </summary>
+        private bool IsValidLoginOrPassword(string input)
+        {
+            var pattern = @"^[a-zA-Z0-9]+$";
+            return Regex.IsMatch(input, pattern);
         }
 
 
@@ -127,12 +164,12 @@ namespace RecsApp.forms
             {
                 if (isPasswordConfirmVisible)
                 {
-                    textBoxConfirmPassword.UseSystemPasswordChar = true;
+                    textBoxConfirmPassword.UseSystemPasswordChar = false;
                     pbConfirmPassword.BackgroundImage = Properties.Resources.visible_password_security_protect_icon; 
                 }
                 else
                 {
-                    textBoxConfirmPassword.UseSystemPasswordChar = false;
+                    textBoxConfirmPassword.UseSystemPasswordChar = true;
                     pbConfirmPassword.BackgroundImage = Properties.Resources.eye_password_see_view_icon; 
                 }
 

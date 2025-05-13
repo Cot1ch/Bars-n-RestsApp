@@ -125,11 +125,11 @@
     <Compile Include="forms\EntryAccount.Designer.cs">
       <DependentUpon>EntryAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="forms\Form1.cs">
+    <Compile Include="forms\FirstForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="forms\FirstForm.Designer.cs">
+      <DependentUpon>FirstForm.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\InfoForm.cs">
       <SubType>Form</SubType>
@@ -154,8 +154,8 @@
     <EmbeddedResource Include="forms\EntryAccount.resx">
       <DependentUpon>EntryAccount.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="forms\FirstForm.resx">
+      <DependentUpon>FirstForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\InfoForm.resx">
       <DependentUpon>InfoForm.cs</DependentUpon>
