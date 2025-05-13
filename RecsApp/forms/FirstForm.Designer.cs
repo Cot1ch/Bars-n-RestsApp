@@ -57,7 +57,7 @@
             this.buttonCreateAccount.Name = "buttonCreateAccount";
             this.buttonCreateAccount.Size = new System.Drawing.Size(190, 42);
             this.buttonCreateAccount.TabIndex = 1;
-            this.buttonCreateAccount.Text = "Создать аккаунт";
+            this.buttonCreateAccount.Text = "Регистрация";
             this.buttonCreateAccount.UseVisualStyleBackColor = false;
             this.buttonCreateAccount.Click += new System.EventHandler(this.buttonCreateAccount_Click);
             // 

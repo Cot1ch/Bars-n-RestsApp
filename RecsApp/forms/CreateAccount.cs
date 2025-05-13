@@ -39,12 +39,14 @@ namespace RecsApp.forms
                 if (isPasswordCreateVisible)
                 {
                     textBoxCreatePassword.UseSystemPasswordChar = false;
-                    pbShowPassword.BackgroundImage = Properties.Resources.visible_password_security_protect_icon;
+                    pbShowPassword.BackgroundImage =
+                        Properties.Resources.visible_password_security_protect_icon;
                 }
                 else
                 {
                     textBoxCreatePassword.UseSystemPasswordChar = true;
-                    pbShowPassword.BackgroundImage = Properties.Resources.eye_password_see_view_icon; 
+                    pbShowPassword.BackgroundImage =
+                        Properties.Resources.eye_password_see_view_icon; 
                 }
 
                 isPasswordCreateVisible = !isPasswordCreateVisible;
@@ -58,7 +60,8 @@ namespace RecsApp.forms
             var password = textBoxCreatePassword.Text.Trim();
             var confirmPassword = textBoxConfirmPassword.Text.Trim();
 
-            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword))
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(login)
+                || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword))
             {
                 MessageBox.Show("Пожалуйста, заполните все поля.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -66,31 +69,36 @@ namespace RecsApp.forms
 
             if (login.Length < 6)
             {
-                MessageBox.Show($"Логин должен содержать не менее 6 символов.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Логин должен содержать не менее 6 символов.",
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (password.Length < 6)
             {
-                MessageBox.Show($"Пароль должен содержать не менее 6 символов.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Пароль должен содержать не менее 6 символов.",
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (password != confirmPassword)
             {
-                MessageBox.Show("Пароли не совпадают.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Пароли не совпадают.",
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (!IsValidLoginOrPassword(login))
             {
-                MessageBox.Show("Логин должен состоять только из английских букв и цифр.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Логин должен состоять только из английских букв и цифр.",
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (!IsValidLoginOrPassword(password))
             {
-                MessageBox.Show("Пароль должен состоять только из английских букв и цифр.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Пароль должен состоять только из английских букв и цифр.",
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             try
@@ -108,7 +116,8 @@ namespace RecsApp.forms
                     }
                     if (isUsernameTaken)
                     {
-                        MessageBox.Show("Логин уже занят. Пожалуйста, выберите другой логин.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Логин уже занят. Пожалуйста, выберите другой логин.",
+                            "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
@@ -128,7 +137,8 @@ namespace RecsApp.forms
                     db.Questionnaires.Add(questionnaire);
                     db.SaveChanges();
 
-                    MessageBox.Show("Аккаунт успешно создан.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Аккаунт успешно создан.", "Успех",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     richTextBoxCreateName.Clear();
                     richTextBoxCreateLogin.Clear();
@@ -141,7 +151,8 @@ namespace RecsApp.forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Произошла ошибка: {ex.Message}",
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         /// <summary>
@@ -167,12 +178,14 @@ namespace RecsApp.forms
                 if (isPasswordConfirmVisible)
                 {
                     textBoxConfirmPassword.UseSystemPasswordChar = false;
-                    pbConfirmPassword.BackgroundImage = Properties.Resources.visible_password_security_protect_icon; 
+                    pbConfirmPassword.BackgroundImage =
+                        Properties.Resources.visible_password_security_protect_icon; 
                 }
                 else
                 {
                     textBoxConfirmPassword.UseSystemPasswordChar = true;
-                    pbConfirmPassword.BackgroundImage = Properties.Resources.eye_password_see_view_icon; 
+                    pbConfirmPassword.BackgroundImage =
+                        Properties.Resources.eye_password_see_view_icon; 
                 }
 
                 isPasswordConfirmVisible = !isPasswordConfirmVisible;
