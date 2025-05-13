@@ -28,6 +28,7 @@ namespace RecsApp
             InitializeComponent();
             this.userId = usId;
             this.mainForm = mainForm;
+            logger.Trace("Форма аккаунта загружена");
         }
 
         private void btnSaveChanges_Click(object sender, EventArgs e)
@@ -39,6 +40,7 @@ namespace RecsApp
                 {
                     MessageBox.Show(res.GetString("NameIsEmpty"), res.GetString("Error"),
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Error(res.GetString("NameIsEmpty"));
                     return;
                 }
             }
@@ -46,6 +48,7 @@ namespace RecsApp
             using (var db = new AppDbContext())
             {
                 var user = db.Users.Find(this.userId);
+                logger.Trace($"Из базы данных получен пользователь {user.username}");
 
                 var questionnaire = (
                     db.Questionnaires.Count() != 0 &&
@@ -57,6 +60,7 @@ namespace RecsApp
                     .Include(quest => quest.Est_Average)
                     .First(quest => quest.User.user_Id == this.userId) :
                     new Questionnaire() { user_Id = this.userId };
+                logger.Trace("Из базы данных получена анкета");
 
                 questionnaire.Est_Types = new List<EstType>();
                 foreach (var checkedItem in this.checkedListBoxType.CheckedItems)
@@ -68,6 +72,7 @@ namespace RecsApp
 
                     questionnaire.Est_Types.Add(types.First());
                 }
+                logger.Info("Типы анкеты обновлены");
 
                 questionnaire.Est_Categories = new List<EstCategory>();
                 foreach (var checkedItem in this.checkedListBoxCategory.CheckedItems)
@@ -78,6 +83,7 @@ namespace RecsApp
 
                     questionnaire.Est_Categories.Add(categories.First());
                 }
+                logger.Info("Категории анкеты обновлены");
 
                 questionnaire.Est_Foods = new List<EstFood>();
                 foreach (var checkedItem in this.checkedListBoxFood.CheckedItems)
@@ -89,6 +95,7 @@ namespace RecsApp
 
                     questionnaire.Est_Foods.Add(food.First());
                 }
+                logger.Info("Кухни анкеты обновлены");
 
                 questionnaire.Est_Average = new List<EstAverageCheck>();
                 foreach (var checkedItem in this.checkedListBoxAverage.CheckedItems)
@@ -99,14 +106,19 @@ namespace RecsApp
 
                     questionnaire.Est_Average.Add(Average.First());
                 }
+                logger.Info("Средние чеки анкеты обновлены");
 
                 user.name = this.textBoxName.Text;
+                logger.Info($"Имя пользователя обновлено -> {user.name}");
                 mainForm.isRatingEqualsFive = this.checkBoxRating.Checked;
                 db.Entry(questionnaire).State = EntityState.Modified;
                 db.SaveChanges();
+                logger.Info("База данных обновлена");
             }
+            logger.Info("Главная форма обновлена");
             mainForm.LoadForm();
             this.Close();
+            logger.Trace("Форма закрыта");
         }
 
         private void AccountForm_Load(object sender, EventArgs e)
@@ -119,36 +131,45 @@ namespace RecsApp
                 {
                     this.checkedListBoxType.Items.Add(item.Title);
                 }
+                logger.Info("Чекбокслисты типов заполнены");
                 foreach (var item in db.Categories.ToList())
                 {
                     this.checkedListBoxCategory.Items.Add(item.Title);
                 }
+                logger.Info("Чекбокслисты категорий заполнены");
                 foreach (var item in db.Foods.ToList())
                 {
                     this.checkedListBoxFood.Items.Add(item.Title);
                 }
+                logger.Info("Чекбокслисты кухонь заполнены");
                 foreach (var item in db.AverageChecks.ToList())
                 {
                     this.checkedListBoxAverage.Items.Add(item.Title);
                 }
- 
+                logger.Info("Чекбокслисты средних чеков заполнены");
+
                 if (db.Users.Find(userId) == null)
                 {
                     MessageBox.Show(res.GetString("AccessDenied"), res.GetString("Error"),
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Error(res.GetString("AccessDenied"));
                     this.Close();
                     return;
                 }
                 var user = db.Users.Find(userId);
+                logger.Trace($"Из базы данных получен пользователь {user.username}");
                 var questionnaire = db.Questionnaires
                     .Include(quest => quest.Est_Types)
                     .Include(quest => quest.Est_Categories)
                     .Include(quest => quest.Est_Foods)
                     .Include(quest => quest.Est_Average)
                     .First(quest => quest.User.user_Id == this.userId);
+                logger.Trace($"Из базы данных получена анкета");
 
                 this.textBoxName.Text = user.name;
+                logger.Trace($"Имя пользователя отображено");
                 this.textBoxLogin.Text = user.username;
+                logger.Trace($"Логин пользователя отображен");
 
                 if (questionnaire != null)
                 {
@@ -157,21 +178,29 @@ namespace RecsApp
                         checkedListBoxType.SetItemChecked(
                             this.checkedListBoxType.Items.IndexOf(type.Title), true);
                     }
+                    logger.Info("Чекбокслисты типов обновлены");
+
                     foreach (var cat in questionnaire.Est_Categories)
                     {
                         checkedListBoxCategory.SetItemChecked(
                             this.checkedListBoxCategory.Items.IndexOf(cat.Title), true);
                     }
+                    logger.Info("Чекбокслисты категорий обновлены");
+
                     foreach (var food in questionnaire.Est_Foods)
                     {
                         checkedListBoxFood.SetItemChecked(
                             this.checkedListBoxFood.Items.IndexOf(food.Title), true);
                     }
+                    logger.Info("Чекбокслисты кухонь обновлены");
+
                     foreach (var average in questionnaire.Est_Average)
                     {
                         checkedListBoxAverage.SetItemChecked(
                             this.checkedListBoxAverage.Items.IndexOf(average.Title), true);
                     }
+                    logger.Info("Чекбокслисты средних чеков обновлены");
+
                 }
 
                 this.Text = res.GetString("labelAccountText");
@@ -185,6 +214,8 @@ namespace RecsApp
                 this.labelFood.Text = res.GetString("labelFoodText");
                 this.labelAverage.Text = res.GetString("labelAverageText");
                 this.checkBoxRating.Text = res.GetString("checkBoxRatingText");
+
+                logger.Info("Локализация выполнена");
             }
         }
         private void buttonAccExit_Click(object sender, EventArgs e)
@@ -192,6 +223,7 @@ namespace RecsApp
             this.userId = Guid.Empty;
             this.mainForm.userId = Guid.Empty;
             this.mainForm.Close();
+            logger.Info("Форма очищена, аккаунт очищен");
         }
     }
 }

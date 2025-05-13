@@ -33,13 +33,16 @@ namespace RecsApp.forms
         /// </summary>
         private User GetUserByUsername(AppDbContext db, string username)
         {
+            logger.Info("Начат поиск пользователя по имени в базе данных");
             foreach (var user in db.Users)
             {
                 if (user.username == username)
                 {
+                    logger.Info($"Пользователь {user.user_Id} {user.username} найден");
                     return user;
                 }
             }
+            logger.Warn($"Пользователь {username} не найден");
             return null;
         }
 
@@ -122,22 +125,29 @@ namespace RecsApp.forms
         private void pictureBoxShowEntryPassword_Click(object sender, EventArgs e)
         {
             var textBoxEntryPassword = this.Controls["textBoxEntryPassword"] as TextBox;
+            logger.Trace("Нажата кнопка изменения видимости пароля");
             if (textBoxEntryPassword != null)
             {
                 if (isPasswordEntryVisible)
                 {
                     textBoxEntryPassword.UseSystemPasswordChar = false;
                     pictureBoxShowEntryPassword.BackgroundImage =
-                        Properties.Resources.visible_password_security_protect_icon; 
+                        Properties.Resources.visible_password_security_protect_icon;
+                    logger.Trace("Текущее состояние: видимый");
                 }
                 else
                 {
                     textBoxEntryPassword.UseSystemPasswordChar = true;
                     pictureBoxShowEntryPassword.BackgroundImage =
-                        Properties.Resources.eye_password_see_view_icon; 
+                        Properties.Resources.eye_password_see_view_icon;
+                    logger.Trace("Текущее состояние: скрытый");
                 }
 
                 isPasswordEntryVisible = !isPasswordEntryVisible;
+            }
+            else
+            {
+                logger.Info("Поле пароля пусто");
             }
         }
 

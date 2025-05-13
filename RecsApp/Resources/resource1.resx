@@ -132,4 +132,7 @@
   <data name="SheetDoesntFound" xml:space="preserve">
     <value>Лист не найден</value>
   </data>
+  <data name="UseDefFile" xml:space="preserve">
+    <value>Ваш файл некорректен. Будет использован файл по умолчанию</value>
+  </data>
 </root>

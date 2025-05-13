@@ -5,6 +5,7 @@ using System.Linq;
 using System.Resources;
 using System.Windows.Forms;
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Spreadsheet;
 using NLog;
 
 namespace RecsApp
@@ -15,6 +16,7 @@ namespace RecsApp
     public static class AddFromExcel
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
+        
         public static string fileName { get; set; }
         /// <summary>
         /// Метод загружает типы, категории, кухни и чеки заведений из Excel файла в базу данных
@@ -25,12 +27,14 @@ namespace RecsApp
                 $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resource1.resx"))
             {
                 var path = fileName;
-;
+;               logger.Info($"Имя файла с заведениями: {path}");
                 if (!File.Exists(path))
                 {
                     MessageBox.Show(res.GetString("ContactAdmin"),
                         res.GetString("FileDoesntExist"), 
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Error(res.GetString("FileDoesntExist") + $"| path={path}");
+                    
                     return;
                 }
 
@@ -47,7 +51,18 @@ namespace RecsApp
                 {
                     foreach (var sheet in sheets)
                     {
-                        var ws = wb.Worksheet(sheet).RowsUsed();
+                        if (!wb.TryGetWorksheet(sheet, out IXLWorksheet worksheet))
+                        {
+                            MessageBox.Show(res.GetString("UseDefFile"), 
+                                res.GetString("FileDoesntExist"),
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            fileName = $"{Directory.GetCurrentDirectory()}" +
+                                $"..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
+                            AddTypesCatsFoodsChecksToDB();
+                            return;
+                        }
+
+                        var ws = worksheet.RowsUsed();
 
                         foreach (var row in ws)
                         {
@@ -64,6 +79,7 @@ namespace RecsApp
                                     Id = guidType,
                                     Title = row.Cell(1).Value.ToString()
                                 });
+                                logger.Info($"Добавлен тип '{row.Cell(1).Value}'");
                             }
                             else if (sheet == "Категории"
                                 && Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidCat)
@@ -74,6 +90,7 @@ namespace RecsApp
                                     Id = guidCat,
                                     Title = row.Cell(1).Value.ToString()
                                 });
+                                logger.Info($"Добавлена категория '{row.Cell(1).Value}'");
                             }
                             else if (sheet == "Кухня"
                                 && Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidFood)
@@ -84,6 +101,7 @@ namespace RecsApp
                                     Id = guidFood,
                                     Title = row.Cell(1).Value.ToString()
                                 });
+                                logger.Info($"Добавлена кухня '{row.Cell(1).Value}'");
                             }
                             else if (sheet == "Средний чек"
                                 && Guid.TryParse(row.Cell(2).Value.ToString(), out Guid guidAv)
@@ -94,10 +112,12 @@ namespace RecsApp
                                     Id = guidAv,
                                     Title = row.Cell(1).Value.ToString()
                                 });
+                                logger.Info($"Добавлен средний чек '{row.Cell(1).Value}'");
                             }
                         }
                     }
                     db.SaveChanges();
+                    logger.Info("Изменения сохранены");
                 }
             }
         }
@@ -111,12 +131,14 @@ namespace RecsApp
             {
 
                 var path = fileName;
+                logger.Info($"Имя файла с заведениями: {path}");
 
                 if (!File.Exists(path))
                 {
                     MessageBox.Show(res.GetString("ContactAdmin"),
                         res.GetString("FileDoesntExist"),
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Error(res.GetString("FileDoesntExist") + $"| path={path}");
                     return;
                 }
 
@@ -125,8 +147,13 @@ namespace RecsApp
                 if (!wb.TryGetWorksheet("Заведения", out IXLWorksheet works))
                 {
                     MessageBox.Show(res.GetString("ContactAdmin"),
-                        res.GetString("SheetDoesntFound"),
+                        res.GetString("SheetDoesntFound") + "| name='Заведения'",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Error(res.GetString("SheetDoesntFound") + "| name='Заведения'");
+
+                    fileName = $"{Directory.GetCurrentDirectory()}" +
+                        $"..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
+                    AddEstablishmentsToDB();
                     return;
                 }
                 var ws = works.RowsUsed();
@@ -207,15 +234,17 @@ namespace RecsApp
                         establishment.Check = decimal.TryParse(row.Cell(10).Value.ToString(),
                             out decimal ch) ? ch : 0m;
                         establishment.Average = db.AverageChecks.Find(average[0]);
-
+                        logger.Trace($" Поля заведения заполнены");
                         db.Establishments.Add(establishment);
-
+                        logger.Info($"Добавлено заведение '{establishment.Name}'");
                     }
                     if (IsEmpty)
                     {
                         MessageBox.Show(res.GetString("DataDoesntFull") + "\n" +
                             res.GetString("ContactAdmin"), res.GetString("DataLost"),
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        logger.Warn(res.GetString("DataDoesntFull") + "\n" +
+                            res.GetString("ContactAdmin"));
                     }
                     db.SaveChanges();
                 }
@@ -239,10 +268,12 @@ namespace RecsApp
                     && new AppDbContext().Types.Find(
                         GetGuidFromString(row.Cell(2).Value.ToString())) != null)
                 {
+                    logger.Info($"Получен тип '{row.Cell(1).Value}' = " +
+                        $"{GetGuidFromString(row.Cell(2).Value.ToString())}");
                     return GetGuidFromString(row.Cell(2).Value.ToString());
                 }
             }
-
+            logger.Warn($"Тип {type} не найден");
             return Guid.Empty;
         }
         /// <summary>
@@ -261,6 +292,7 @@ namespace RecsApp
                 var dict = FillDict(wb, tableName);
                 if (tableName != "Средний чек")
                 {
+                    logger.Info($"Открыт лист {tableName}");
                     var spl = str.Split(';');
                     foreach (string smth in spl)
                     {
@@ -269,12 +301,14 @@ namespace RecsApp
                             ret.Add(g);
                         }
                     }
+                    logger.Info("Обработка закончена");
                 }
                 else
                 {
                     var check = decimal.TryParse(str, out decimal ch) ? ch : 0m;
                     try
                     {
+                        logger.Info("Открыт лист 'Средний чек'");
                         if (check > 0)
                         {
                             if (check <= 1000)
@@ -296,15 +330,18 @@ namespace RecsApp
                                 $":\n{check.GetType().Name} : {check}",
                                 res.GetString("DataLost"), 
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            logger.Warn($"Чек не может быть отрицательным числом = {check}");                                
                         }
                     }
                     catch (Exception exception)
                     {
                         MessageBox.Show(exception.Message, res.GetString("Error"),
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        logger.Error($"Ошибка: {exception.Message}");
                     }
                 }
-
+                logger.Info($"Возвращены значения " +
+                    $"{string.Join("|", ret.Select(guid => guid.ToString()))}");
                 return ret;
             }
         }
@@ -335,10 +372,11 @@ namespace RecsApp
         {
             if (Guid.TryParse(strGuid, out Guid guid))
             {
+                logger.Info($"Возвращено значение {guid.ToString()}");
                 return guid;
             }
-            return Guid.Empty;
-            
+            logger.Warn("Значение не найдено");
+            return Guid.Empty;            
         }
     }
 }
