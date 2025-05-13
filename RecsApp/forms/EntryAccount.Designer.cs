@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EntryAccount));
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.labelEntryAccount = new System.Windows.Forms.Label();
+            this.labelLogin = new System.Windows.Forms.Label();
+            this.labelPassword = new System.Windows.Forms.Label();
             this.buttonEntry = new System.Windows.Forms.Button();
             this.buttonBFEA = new System.Windows.Forms.Button();
             this.richTextBoxEntryLogin = new System.Windows.Forms.RichTextBox();
@@ -40,41 +40,41 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxShowEntryPassword)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // labelEntryAccount
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Verdana", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.label1.Location = new System.Drawing.Point(233, 186);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(594, 78);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Вход в аккаунт";
+            this.labelEntryAccount.AutoSize = true;
+            this.labelEntryAccount.BackColor = System.Drawing.Color.Transparent;
+            this.labelEntryAccount.Font = new System.Drawing.Font("Verdana", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelEntryAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.labelEntryAccount.Location = new System.Drawing.Point(233, 186);
+            this.labelEntryAccount.Name = "labelEntryAccount";
+            this.labelEntryAccount.Size = new System.Drawing.Size(594, 78);
+            this.labelEntryAccount.TabIndex = 0;
+            this.labelEntryAccount.Text = "Вход в аккаунт";
             // 
-            // label2
+            // labelLogin
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.label2.Location = new System.Drawing.Point(398, 308);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(128, 18);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Введите логин";
+            this.labelLogin.AutoSize = true;
+            this.labelLogin.BackColor = System.Drawing.Color.Transparent;
+            this.labelLogin.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.labelLogin.Location = new System.Drawing.Point(398, 308);
+            this.labelLogin.Name = "labelLogin";
+            this.labelLogin.Size = new System.Drawing.Size(128, 18);
+            this.labelLogin.TabIndex = 2;
+            this.labelLogin.Text = "Введите логин";
             // 
-            // label3
+            // labelPassword
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.label3.Location = new System.Drawing.Point(398, 394);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(142, 18);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Введите пароль";
+            this.labelPassword.AutoSize = true;
+            this.labelPassword.BackColor = System.Drawing.Color.Transparent;
+            this.labelPassword.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.labelPassword.Location = new System.Drawing.Point(398, 394);
+            this.labelPassword.Name = "labelPassword";
+            this.labelPassword.Size = new System.Drawing.Size(142, 18);
+            this.labelPassword.TabIndex = 4;
+            this.labelPassword.Text = "Введите пароль";
             // 
             // buttonEntry
             // 
@@ -152,15 +152,16 @@
             this.Controls.Add(this.textBoxEntryPassword);
             this.Controls.Add(this.buttonBFEA);
             this.Controls.Add(this.buttonEntry);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.labelPassword);
+            this.Controls.Add(this.labelLogin);
             this.Controls.Add(this.richTextBoxEntryLogin);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelEntryAccount);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "EntryAccount";
             this.Text = "Вход в аккаунт";
+            this.Load += new System.EventHandler(this.EntryAccount_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxShowEntryPassword)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -169,9 +170,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelEntryAccount;
+        private System.Windows.Forms.Label labelLogin;
+        private System.Windows.Forms.Label labelPassword;
         private System.Windows.Forms.Button buttonEntry;
         private System.Windows.Forms.Button buttonBFEA;
         private System.Windows.Forms.RichTextBox richTextBoxEntryLogin;

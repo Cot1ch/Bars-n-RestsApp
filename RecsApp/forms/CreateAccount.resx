@@ -1534,4 +1534,61 @@
         RK5CYII=
 </value>
   </data>
+  <data name="CreateAccountText" xml:space="preserve">
+    <value>Создание аккаунта</value>
+  </data>
+  <data name="labelCreateAccountText" xml:space="preserve">
+    <value>Создание аккаунта</value>
+  </data>
+  <data name="labelNameText" xml:space="preserve">
+    <value>Введите имя</value>
+  </data>
+  <data name="labelPasswordText" xml:space="preserve">
+    <value>Придумайте пароль (от 6 символов)</value>
+  </data>
+  <data name="labelLoginText" xml:space="preserve">
+    <value>Придумайте логин (от 6 символов)</value>
+  </data>
+  <data name="labelConfirmPasswordText" xml:space="preserve">
+    <value>Подтвердите пароль</value>
+  </data>
+  <data name="buttonCreateText" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="buttonBFCAText" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="FillTheFields" xml:space="preserve">
+    <value>Пожалуйста, заполните все поля.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="CheckLogin" xml:space="preserve">
+    <value>Логин должен содержать не менее 6 символов.</value>
+  </data>
+  <data name="CheckPassword" xml:space="preserve">
+    <value>Пароль должен содержать не менее 6 символов.</value>
+  </data>
+  <data name="PasswordMatch" xml:space="preserve">
+    <value>Пароли не совпадают.</value>
+  </data>
+  <data name="IsValidLogin" xml:space="preserve">
+    <value>Логин должен состоять только из английских букв и цифр.</value>
+  </data>
+  <data name="IsValidPassword" xml:space="preserve">
+    <value>Пароль должен состоять только из английских букв и цифр.</value>
+  </data>
+  <data name="LoginAlreadyUse" xml:space="preserve">
+    <value>Логин уже занят. Пожалуйста, выберите другой логин.</value>
+  </data>
+  <data name="AccountSuccess" xml:space="preserve">
+    <value>Аккаунт успешно создан.</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Успех</value>
+  </data>
+  <data name="HappenedError" xml:space="preserve">
+    <value>Произошла ошибка:</value>
+  </data>
 </root>

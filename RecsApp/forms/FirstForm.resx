@@ -1522,4 +1522,16 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAQA78D9m3UY2/I9I3AAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="FirstFormText" xml:space="preserve">
+    <value>Место для вас</value>
+  </data>
+  <data name="labelMainText" xml:space="preserve">
+    <value>Место для вас</value>
+  </data>
+  <data name="buttonCreateAccountText" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="buttonEntryAccountText" xml:space="preserve">
+    <value>Вход</value>
+  </data>
 </root>

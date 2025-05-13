@@ -5,7 +5,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -43,70 +45,70 @@ namespace RecsApp.forms
 
         private void buttonEntry_Click(object sender, EventArgs e)
         {
-            var login = richTextBoxEntryLogin.Text.Trim();
-            var password = textBoxEntryPassword.Text.Trim();
-
-            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
+            using (var res = new ResXResourceSet(
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\EntryAccount.resx"))
             {
-                MessageBox.Show("Пожалуйста, заполните все поля.",
-                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+                var login = richTextBoxEntryLogin.Text.Trim();
+                var password = textBoxEntryPassword.Text.Trim();
 
-            try
-            {
-                using (var db = new AppDbContext())
+                if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
                 {
-                    var user = GetUserByUsername(db, login);
+                    MessageBox.Show(res.GetString("FillTheFields"),
+                        res.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-                    if (user == null)
+                try
+                {
+                    using (var db = new AppDbContext())
                     {
-                        MessageBox.Show("Такого пользователя не существует.",
-                            "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+                        var user = GetUserByUsername(db, login);
 
-                    bool isPasswordValid = false;
-
-                    try
-                    {
-                        // Проверяем пароль
-                        isPasswordValid = BCrypt.Net.BCrypt.Verify(password, user.password_hash);
-                    }
-                    catch (Exception ex)
-                    {
-                        // Проверяем, является ли ошибка связанной с версией соли
-                        if (ex.Message.Contains("Invalid salt version"))
+                        if (user == null)
                         {
-                            // Перехэшируем пароль
-                            string newHashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
-                            user.password_hash = newHashedPassword;
-                            db.SaveChanges();
+                            MessageBox.Show(res.GetString("UserDoesNotExist"),
+                                res.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
 
-                            // Повторно проверяем пароль
+                        bool isPasswordValid = false;
+
+                        try
+                        {
                             isPasswordValid = BCrypt.Net.BCrypt.Verify(password, user.password_hash);
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            throw; 
+                            if (ex.Message.Contains("Invalid salt version"))
+                            {
+                                string newHashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
+                                user.password_hash = newHashedPassword;
+                                db.SaveChanges();
+
+                                isPasswordValid = BCrypt.Net.BCrypt.Verify(password, user.password_hash);
+                            }
+                            else
+                            {
+                                throw;
+                            }
                         }
-                    }
 
-                    if (!isPasswordValid)
-                    {
-                        MessageBox.Show("Пароль неверный.",
-                            "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+                        if (!isPasswordValid)
+                        {
+                            MessageBox.Show(res.GetString("WrongPassword"),
+                                res.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
 
-                    this.Hide(); 
-                    new MainForm(user.user_Id).Show(); 
+                        this.Hide();
+                        new MainForm(user.user_Id).Show();
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Произошла ошибка: {ex.Message}",
-                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"{res.GetString("HappenedError")} {ex.Message}",
+                        res.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -136,6 +138,20 @@ namespace RecsApp.forms
                 }
 
                 isPasswordEntryVisible = !isPasswordEntryVisible;
+            }
+        }
+
+        private void EntryAccount_Load(object sender, EventArgs e)
+        {
+            using (var res = new ResXResourceSet(
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\EntryAccount.resx"))
+            {
+                this.Text = res.GetString("EntryAccountText");
+                this.labelLogin.Text = res.GetString("labelLoginText");
+                this.labelPassword.Text = res.GetString("labelPasswordText");
+                this.labelEntryAccount.Text = res.GetString("labelEntryAccountText");
+                this.buttonBFEA.Text = res.GetString("buttonBFEAText");
+                this.buttonEntry.Text = res.GetString("buttonEntryText");
             }
         }
     }
