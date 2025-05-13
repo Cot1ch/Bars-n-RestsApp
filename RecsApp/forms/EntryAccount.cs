@@ -62,15 +62,37 @@ namespace RecsApp.forms
                         return;
                     }
 
-                    bool isPasswordValid = BCrypt.Net.BCrypt.Verify(password, user.password_hash);
+                    bool isPasswordValid = false;
+
+                    try
+                    {
+                        // Проверяем пароль
+                        isPasswordValid = BCrypt.Net.BCrypt.Verify(password, user.password_hash);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Проверяем, является ли ошибка связанной с версией соли
+                        if (ex.Message.Contains("Invalid salt version"))
+                        {
+                            // Перехэшируем пароль
+                            string newHashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
+                            user.password_hash = newHashedPassword;
+                            db.SaveChanges();
+
+                            // Повторно проверяем пароль
+                            isPasswordValid = BCrypt.Net.BCrypt.Verify(password, user.password_hash);
+                        }
+                        else
+                        {
+                            throw; // Передаем другую ошибку
+                        }
+                    }
 
                     if (!isPasswordValid)
                     {
                         MessageBox.Show("Пароль неверный.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-
-                    MessageBox.Show("Вход выполнен успешно.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     this.Hide(); 
                     new MainForm(user.user_Id).Show();
