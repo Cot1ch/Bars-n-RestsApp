@@ -172,8 +172,6 @@ namespace RecsApp
                     }
                 }
 
-
-
                 this.Text = res.GetString("labelAccountText");
                 this.labelName.Text = res.GetString("labelNameText");
                 this.labelLogin.Text = res.GetString("labelLoginText");
@@ -185,10 +183,8 @@ namespace RecsApp
                 this.labelFood.Text = res.GetString("labelFoodText");
                 this.labelAverage.Text = res.GetString("labelAverageText");
                 this.checkBoxRating.Text = res.GetString("checkBoxRatingText");
-
             }
         }
-
         private void buttonAccExit_Click(object sender, EventArgs e)
         {
             this.userId = Guid.Empty;

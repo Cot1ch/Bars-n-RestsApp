@@ -17,6 +17,7 @@ namespace RecsApp
         /// Заведение, информацию о котором отображает форма
         /// </summary>
         private Establishment est;
+        private Guid estId;
         /// <summary>
         /// Счетчик индекса отображаемого изображения
         /// </summary>
@@ -45,9 +46,9 @@ namespace RecsApp
                        Include(e => e.Foods).Include(e => e.Average)
                        where e.Id == EstId
                        select e).First();
+                estId = EstId;
                 Visits();
             }
-
         }
 
         private void InfoForm_Load(object sender, EventArgs e)
@@ -90,7 +91,8 @@ namespace RecsApp
                 this.textBoxEstAddress.Text = est.Address.ToString();
                 this.linkLabelToWebSite.Text = 
                     (est.Link != string.Empty) ? est.Link : res.GetString("linkLabelToWebSiteText");
-                this.checkBoxStarred.Checked = db.Users.Find(userId).Favourite.Contains(this.est);
+                this.checkBoxStarred.Checked = db.Users.Include(u => u.Favourite)
+                    .First(u => u.user_Id == userId).Favourite.Contains(this.est);
                 paths = est.PathsToPhoto == string.Empty ? 
                     new List<string>() { "notfound.png" } : est.PathsToPhoto.Split(';').ToList();
             }
@@ -177,15 +179,24 @@ namespace RecsApp
             using (var db = new AppDbContext())
             {
                 var user = (from u in db.Users
+                            .Include(u => u.Favourite)
                             where u.user_Id == this.userId
                             select u).First();
+
+                var establishment = (
+                    from est in db.Establishments
+                    .Include(est => est.Type).Include(est => est.Categories)
+                    .Include(est => est.Foods).Include(est => est.Average)
+                    where est.Id == this.estId
+                    select est).ToList().First();
+
                 if (this.checkBoxStarred.Checked)
                 {
                     if (user != null)
                     {
-                        if (!user.Favourite.Contains(this.est))
+                        if (!user.Favourite.Contains(establishment))
                         {
-                            user.Favourite.Add(this.est);
+                            user.Favourite.Add(establishment);
                             MessageBox.Show(res.GetString("EstablishmentAdded"), 
                                 res.GetString("Succsess"), 
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -207,9 +218,9 @@ namespace RecsApp
                 {
                     if (user != null)
                     {
-                        if (user.Favourite.Contains(this.est))
+                        if (user.Favourite.Contains(establishment))
                         {
-                            user.Favourite.Remove(this.est);
+                            user.Favourite.Remove(establishment);
                             MessageBox.Show(res.GetString("EstablishmentDeleted"),
                                 res.GetString("Succsess"),
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -227,6 +238,8 @@ namespace RecsApp
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+                db.Entry(user).State = EntityState.Modified;
+                this.mainForm.LoadForm();
                 db.SaveChanges();
             }
         }
@@ -236,21 +249,30 @@ namespace RecsApp
                 $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\InfoForm.resx"))
             { 
                 var result = MessageBox.Show(res.GetString("HideEstablishment"),
-                res.GetString("AreUSure"), 
-                MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    res.GetString("AreUSure"), 
+                    MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                 if (result == DialogResult.OK)
                 {
-                    //using (var db = new AppDbContext())
-                    //{
-                    //    var user = (from u in db.Users.Include(u => u.Hidden)
-                    //                where u.user_Id == this.userId
-                    //                select u).First();
-                    //    db.Establishments.Attach(this.est);
-                    //    user.Hidden.Add(this.est);
-                    //    db.SaveChanges();
+                    using (var db = new AppDbContext())
+                    {
+                        var establishment = (
+                            from est in db.Establishments
+                            .Include(est => est.Type).Include(est => est.Categories)
+                            .Include(est => est.Foods).Include(est => est.Average)
+                            where est.Id == this.estId
+                            select est).ToList().First();
 
-                    //}
+                        var user = (from u in db.Users
+                                    .Include(u => u.Hidden)
+                                    .Include(u => u.Favourite)
+                                    where u.user_Id == this.userId
+                                    select u).First();
+
+                        user.Hidden.Add(establishment);
+                        db.Entry(user).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
                     mainForm.LoadForm();
                     this.Close();
                 }

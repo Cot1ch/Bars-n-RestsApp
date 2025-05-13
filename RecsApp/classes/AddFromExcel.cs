@@ -13,6 +13,7 @@ namespace RecsApp
     /// </summary>
     public static class AddFromExcel
     {
+        public static string fileName { get; set; }
         /// <summary>
         /// Метод загружает типы, категории, кухни и чеки заведений из Excel файла в базу данных
         /// </summary>
@@ -21,8 +22,8 @@ namespace RecsApp
             using (var res = new ResXResourceSet(
                 $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resource1.resx"))
             {
-                var path = $"{Directory.GetCurrentDirectory()}" +
-                       $"..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
+                var path = fileName;
+;
                 if (!File.Exists(path))
                 {
                     MessageBox.Show(res.GetString("ContactAdmin"),
@@ -107,8 +108,7 @@ namespace RecsApp
                 $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resource1.resx"))
             {
 
-                var path = $"{Directory.GetCurrentDirectory()}" +
-                       $"..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
+                var path = fileName;
 
                 if (!File.Exists(path))
                 {

@@ -5,6 +5,7 @@ using System.Resources;
 using System.Windows.Forms;
 using System.Data.Entity;
 using System.IO;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace RecsApp
 {
@@ -25,6 +26,7 @@ namespace RecsApp
         /// Поле, задающее способ сортировки
         /// </summary>
         public string sortMode="visits";
+        private string fileName = $"{Directory.GetCurrentDirectory()}..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
         
         public MainForm(Guid usId)
         {
@@ -33,11 +35,25 @@ namespace RecsApp
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
+            AddFromExcel.fileName = this.fileName;
             AddFromExcel.AddTypesCatsFoodsChecksToDB();
             AddFromExcel.AddEstablishmentsToDB();
             this.radioBtnSortByVisits.Checked = true;
+            using (var db = new AppDbContext())
+            {
+                var user =
+                    (from u in db.Users
+                     .Include(u => u.Favourite)
+                     where u.user_Id == userId
+                     select u).First();
 
-            LoadForm();
+                if (user.username == "adminnn")
+                {
+                    this.btnChangeFile.Visible = true;
+                }
+            }
+
+                LoadForm();
 
             using (var res = new ResXResourceSet(
                 $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\MainForm.resx"))
@@ -91,72 +107,69 @@ namespace RecsApp
             using (var db = new AppDbContext())
             {
                 var user =
-                    (from u in db.Users.Include(u => u.Favourite)
+                    (from u in db.Users
+                     .Include(u => u.Favourite)
+                     .Include(u => u.Hidden)
                      where u.user_Id == userId
                      select u).First();
                 var ests = db.Establishments.
                     Include(e => e.Type).Include(e => e.Categories).
                     Include(e => e.Foods).Include(e => e.Average).ToList();
-                var questionnaire = db.Questionnaires
-                    .Include(quest => quest.Est_Types)
-                    .Include(quest => quest.Est_Categories)
-                    .Include(quest => quest.Est_Foods)
-                    .Include(quest => quest.Est_Average)
-                    .First(quest => quest.User.user_Id == this.userId);
-                    
-
-
-                if (questionnaire != null && !(
-                    questionnaire.Est_Average.Count == 0 && questionnaire.Est_Types.Count == 0 &&
-                    questionnaire.Est_Foods.Count == 0 && questionnaire.Est_Categories.Count == 0))
+                if (db.Questionnaires.Count() != 0)
                 {
-                    var types = questionnaire.Est_Types.Select(t => t.Id).ToList();
-                    var categories = questionnaire.Est_Categories.Select(c => c.Id).ToList();
-                    var foods = questionnaire.Est_Foods.Select(f => f.Id).ToList();
-                    var average = questionnaire.Est_Average.Select(a => a.Id).ToList();
+                    var questionnaire = db.Questionnaires
+                        .Include(quest => quest.Est_Types)
+                        .Include(quest => quest.Est_Categories)
+                        .Include(quest => quest.Est_Foods)
+                        .Include(quest => quest.Est_Average)
+                        .First(quest => quest.User.user_Id == this.userId);
 
-                    if (types != null && types.Count != 0)
+                    if (questionnaire != null && !(
+                        questionnaire.Est_Average.Count == 0 && questionnaire.Est_Types.Count == 0 &&
+                        questionnaire.Est_Foods.Count == 0 && questionnaire.Est_Categories.Count == 0))
                     {
-                        ests = (
-                            from est in ests
-                            where types.Contains(est.Type.Id)
-                            select est).ToList();
-                    }
-                    if (categories != null && categories.Count != 0)
-                    {
-                        ests = (
-                            from est in ests
-                            where est.Categories.Select(cat => cat.Id)
-                                .Any(c => categories.Contains(c))
-                            select est).ToList();
-                    }
-                    if (foods != null && foods.Count != 0)
-                    {
-                        ests = (
-                            from est in ests
-                            where est.Foods.Select(food => food.Id).Any(c => foods.Contains(c))
-                            select est).ToList();
-                    }
-                    if (average != null && average.Count != 0)
-                    {
-                        ests = (
-                            from est in ests
-                            where average.Contains(est.Average.Id)
-                            select est).ToList();
-                    }
-                    //ests = (
-                    //    from est in ests
-                    //    where !user.Hidden.Contains(est)
-                    //    select est).ToList();
+                        var types = questionnaire.Est_Types.Select(t => t.Id).ToList();
+                        var categories = questionnaire.Est_Categories.Select(c => c.Id).ToList();
+                        var foods = questionnaire.Est_Foods.Select(f => f.Id).ToList();
+                        var average = questionnaire.Est_Average.Select(a => a.Id).ToList();
 
-                    
-                    if (showOnlyFavourite)
-                    {
-                        ests = (
-                            from est in ests
-                            where user.Favourite.Contains(est)
-                            select est).ToList();
+                        if (types != null && types.Count != 0)
+                        {
+                            ests = (
+                                from est in ests
+                                where types.Contains(est.Type.Id)
+                                select est).ToList();
+                        }
+                        if (categories != null && categories.Count != 0)
+                        {
+                            ests = (
+                                from est in ests
+                                where est.Categories.Select(cat => cat.Id)
+                                    .Any(c => categories.Contains(c))
+                                select est).ToList();
+                        }
+                        if (foods != null && foods.Count != 0)
+                        {
+                            ests = (
+                                from est in ests
+                                where est.Foods.Select(food => food.Id).Any(c => foods.Contains(c))
+                                select est).ToList();
+                        }
+                        if (average != null && average.Count != 0)
+                        {
+                            ests = (
+                                from est in ests
+                                where average.Contains(est.Average.Id)
+                                select est).ToList();
+                        }                    
                     }
+                }
+                if (showOnlyFavourite)
+                {
+                    ests = (
+                        from est in ests
+                        where user.Favourite.Contains(est)
+                        select est).ToList();
                 }
                 if (isRatingEqualsFive)
                 {
@@ -165,6 +178,10 @@ namespace RecsApp
                         where est.Rating == 5.0
                         select est).ToList();
                 }
+                ests = (
+                    from est in ests
+                    where !user.Hidden.Contains(est)
+                    select est).ToList();
 
                 ests.Sort(new SortBySmth()
                 {
@@ -234,12 +251,13 @@ namespace RecsApp
             {
                 var user =
                     (from u in db.Users
+                     .Include(u => u.Favourite)
                      where u.user_Id == userId
                      select u).First();
                 var ests = db.Establishments.
                     Include(e => e.Type).Include(e => e.Categories).
                     Include(e => e.Foods).Include(e => e.Average).ToList();
-                var simEsts = new List<string>(); 
+                var simEsts = new List<string>();
 
                 if (user.Favourite.Count < 5)
                 {
@@ -254,7 +272,7 @@ namespace RecsApp
                         }
                     }
                 }
-                else 
+                else
                 {
                     var fEstablishments = (
                         from e in ests
@@ -269,15 +287,12 @@ namespace RecsApp
                         }
                     }
 
-                    if (user.Favourite.Count >= 7)
+                    while (simEsts.Count > 10)
                     {
-                        while (simEsts.Count > 10)
-                        {
-                            Random rnd = new Random();
-                            simEsts.RemoveAt(rnd.Next(simEsts.Count));
-                        }
+                        Random rnd = new Random();
+                        simEsts.RemoveAt(rnd.Next(simEsts.Count));
                     }
-                }                
+                }                              
 
                 var Ests = (
                     from e in db.Establishments
@@ -356,7 +371,7 @@ namespace RecsApp
 
         private void checkBoxFavorite_CheckedChanged(object sender, EventArgs e)
         {
-            LoadForm(this.checkBoxFavorite.Checked);
+            LoaddgvEstablishments(this.checkBoxFavorite.Checked);
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -397,6 +412,16 @@ namespace RecsApp
         {
             this.sortMode = "visits";
             LoaddgvEstablishments(true);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (openFDEstablishmentsFile.ShowDialog() == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            this.fileName = openFDEstablishmentsFile.FileName;
         }
     }
 }

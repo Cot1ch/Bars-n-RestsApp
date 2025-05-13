@@ -73,14 +73,14 @@ namespace RecsApp
         /// <summary>
         /// Навигационное свойство на пользователей, поместивших заведение в скрытые
         /// </summary>
-        //public ICollection<User> UsersH {  get; set; }
+        public ICollection<User> UsersH {  get; set; }
         public Establishment()
         {
             Id = Guid.NewGuid();
             Categories = new List<EstCategory>();
             Foods = new List<EstFood>();
             UsersF = new List<User>();
-            //UsersH = new List<User>();
+            UsersH = new List<User>();
         }
     }
 }

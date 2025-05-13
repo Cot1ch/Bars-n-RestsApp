@@ -14,13 +14,11 @@ namespace RecsApp
         public string password_hash { get; set; }
         public Questionnaire Questionnaire { get; set; }
         public ICollection<Establishment> Favourite { get; set; }
-        //public ICollection<Establishment> Hidden { get; set; }
-
+        public ICollection<Establishment> Hidden { get; set; }
         public User()
         {
-
             Favourite = new List<Establishment>();
-            //Hidden = new List<Establishment>();
+            Hidden = new List<Establishment>();
         }
     }
 }

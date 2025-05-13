@@ -34,6 +34,22 @@ namespace RecsApp.forms
             {
                 using (var db = new AppDbContext())
                 {
+                    if (!db.Users.Any(user => user.username == "adminnn"))
+                    {
+                        var pass = "adminnn";
+                        var adminPassword = BCrypt.Net.BCrypt.HashPassword(pass);
+
+                        db.Users.Add(new User()
+                        {
+                            name = "admin",
+                            username = "adminnn",
+                            password_hash =  pass
+                        });
+                        db.SaveChanges();
+                    }
+                }
+                using (var db = new AppDbContext())
+                {
                     var user = db.Users.FirstOrDefault(u => u.username == login);
 
                     if (user == null)
@@ -62,14 +78,14 @@ namespace RecsApp.forms
                         }
                         else
                         {
-                            throw; 
+                            throw;
                         }
                     }
 
                     MessageBox.Show("Вход выполнен успешно.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    this.Hide(); 
-                    new MainForm(user.user_Id).Show(); 
+                    this.Hide();
+                    new MainForm(user.user_Id).Show();
                 }
             }
             catch (Exception ex)
