@@ -120,6 +120,9 @@
   <data name="btnAccountText" xml:space="preserve">
     <value>Аккаунт</value>
   </data>
+  <data name="EmptyEsts" xml:space="preserve">
+    <value>Заведения не найдены</value>
+  </data>
   <data name="checkBoxFavoriteText" xml:space="preserve">
     <value>Отобразить избранное</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="dgvMayLikeColumns2HeaderText" xml:space="preserve">
     <value>Рейтинг</value>
+  </data>
+  <data name="EmptyEstList" xml:space="preserve">
+    <value>По вашему запросу ничего не найдено. Измените анкету</value>
   </data>
   <data name="labelEstsListText" xml:space="preserve">
     <value>Список заведений</value>
@@ -161,5 +167,8 @@
   </data>
   <data name="radioBtnSortByVisitsText" xml:space="preserve">
     <value>По популярности</value>
+  </data>
+  <data name="LoadFile" xml:space="preserve">
+    <value>Файл загружен</value>
   </data>
 </root>

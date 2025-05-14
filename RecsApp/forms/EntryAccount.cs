@@ -12,11 +12,17 @@ namespace RecsApp.forms
     /// </summary>
     public partial class EntryAccount : Form
     {
+        /// <summary>
+        /// Логгер
+        /// </summary>
         private static Logger logger = LogManager.GetCurrentClassLogger();
         /// <summary>
         /// Переменная для работы "глазика"
         /// </summary>
         private bool isPasswordEntryVisible = true;
+        /// <summary>
+        /// Конструктор EntryAccountForm
+        /// </summary>
         public EntryAccount()
         {
             InitializeComponent();
@@ -132,12 +138,10 @@ namespace RecsApp.forms
             }
         }
 
-
         private void buttonBFEA_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
 
         private void pictureBoxShowEntryPassword_Click(object sender, EventArgs e)
         {
@@ -179,6 +183,8 @@ namespace RecsApp.forms
                 this.labelEntryAccount.Text = res.GetString("labelEntryAccountText");
                 this.buttonBFEA.Text = res.GetString("buttonBFEAText");
                 this.buttonEntry.Text = res.GetString("buttonEntryText");
+
+                logger.Info("Локализация выполнена");
             }
         }
     }

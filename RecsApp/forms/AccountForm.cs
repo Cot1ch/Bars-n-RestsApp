@@ -15,6 +15,9 @@ namespace RecsApp
     /// </summary>
     public partial class AccountForm : Form
     {
+        /// <summary>
+        /// Логгер
+        /// </summary>
         private static Logger logger = LogManager.GetCurrentClassLogger();
         /// <summary>
         /// Идентификатор аккаунта пользователя
@@ -24,6 +27,11 @@ namespace RecsApp
         /// Ссылка на главную форму
         /// </summary>
         private MainForm mainForm;
+        /// <summary>
+        /// Конструктор AccountForm
+        /// </summary>
+        /// <param name="usId">Идентификатор пользователя</param>
+        /// <param name="mainForm">Главная форма</param>
         public AccountForm(Guid usId, MainForm mainForm)
         {
             InitializeComponent();
@@ -67,9 +75,9 @@ namespace RecsApp
                 questionnaire.Est_Types = new List<EstType>();
                 foreach (var checkedItem in this.checkedListBoxType.CheckedItems)
                 {
-                    var types = (from t in db.Types
-                                 where t.Title == checkedItem.ToString()
-                                 select t).ToList();
+                    var types = (from type in db.Types
+                                 where type.Title == checkedItem.ToString()
+                                 select type).ToList();
 
 
                     questionnaire.Est_Types.Add(types.First());
@@ -79,9 +87,9 @@ namespace RecsApp
                 questionnaire.Est_Categories = new List<EstCategory>();
                 foreach (var checkedItem in this.checkedListBoxCategory.CheckedItems)
                 {
-                    var categories = (from c in db.Categories
-                                      where c.Title == checkedItem.ToString()
-                                      select c).ToList();
+                    var categories = (from category in db.Categories
+                                      where category.Title == checkedItem.ToString()
+                                      select category).ToList();
 
                     questionnaire.Est_Categories.Add(categories.First());
                 }
@@ -90,21 +98,21 @@ namespace RecsApp
                 questionnaire.Est_Foods = new List<EstFood>();
                 foreach (var checkedItem in this.checkedListBoxFood.CheckedItems)
                 {
-                    var food = (from f in db.Foods
-                                where f.Title == checkedItem.ToString()
-                                select f).ToList();
+                    var foods = (from food in db.Foods
+                                where food.Title == checkedItem.ToString()
+                                select food).ToList();
 
 
-                    questionnaire.Est_Foods.Add(food.First());
+                    questionnaire.Est_Foods.Add(foods.First());
                 }
                 logger.Info("Кухни анкеты обновлены");
 
                 questionnaire.Est_Average = new List<EstAverageCheck>();
                 foreach (var checkedItem in this.checkedListBoxAverage.CheckedItems)
                 {
-                    var Average = (from ac in db.AverageChecks
-                                    where ac.Title == checkedItem.ToString()
-                                    select ac).ToList();
+                    var Average = (from averagecheck in db.AverageChecks
+                                    where averagecheck.Title == checkedItem.ToString()
+                                    select averagecheck).ToList();
 
                     questionnaire.Est_Average.Add(Average.First());
                 }
@@ -202,7 +210,6 @@ namespace RecsApp
                             this.checkedListBoxAverage.Items.IndexOf(average.Title), true);
                     }
                     logger.Info("Чекбокслисты средних чеков обновлены");
-
                 }
 
                 this.Text = res.GetString("labelAccountText");
@@ -228,7 +235,7 @@ namespace RecsApp
             logger.Info("Форма очищена, аккаунт очищен");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonReport_Click(object sender, EventArgs e)
         {
             var saveFileDialog = new SaveFileDialog
             {
@@ -268,55 +275,71 @@ namespace RecsApp
 
                     worksheet.Cell(2, 1).Value = user.username;
 
-                    string types = string.Empty;
+                    var types = string.Empty;
                     if (user.Questionnaire != null && questionnaire.Est_Types != null)
                     {
                         foreach (var type in questionnaire.Est_Types)
                         {
-                            if (types != string.Empty) types += ", ";
+                            if (types != string.Empty) 
+                            { 
+                                types += ", "; 
+                            }
                             types += type.Title;
                         }
-                    }                    worksheet.Cell(2, 2).Value = types;
+                    }                    
+                    worksheet.Cell(2, 2).Value = types;
 
-                    string categories = string.Empty;
+                    var categories = string.Empty;
                     if (user.Questionnaire != null && questionnaire.Est_Categories != null)
                     {
                         foreach (var category in questionnaire.Est_Categories)
                         {
-                            if (categories != string.Empty) categories += ", ";
+                            if (categories != string.Empty) 
+                            { 
+                                categories += ", "; 
+                            }
                             categories += category.Title;
                         }
                     }
                     worksheet.Cell(2, 3).Value = categories;
 
-                    string foods = string.Empty;
+                    var foods = string.Empty;
                     if (user.Questionnaire != null && questionnaire.Est_Foods != null)
                     {
                         foreach (var food in questionnaire.Est_Foods)
                         {
-                            if (foods != string.Empty) foods += ", ";
+                            if (foods != string.Empty) 
+                            { 
+                                foods += ", "; 
+                            }
                             foods += food.Title;
                         }
                     }
                     worksheet.Cell(2, 4).Value = foods;
 
-                    string averageCheck = string.Empty;
+                    var averageCheck = string.Empty;
                     if (user.Questionnaire != null && questionnaire.Est_Average != null)
                     {
                         foreach (var avg in questionnaire.Est_Average)
                         {
-                            if (averageCheck != string.Empty) averageCheck += ", ";
+                            if (averageCheck != string.Empty)
+                            {
+                                averageCheck += ", ";
+                            }
                             averageCheck += avg.Title;
                         }
                     }
                     worksheet.Cell(2, 5).Value = averageCheck;
 
-                    string favorites = string.Empty;
+                    var favorites = string.Empty;
                     if (user.Favourite != null)
                     {
                         foreach (var favorite in user.Favourite)
                         {
-                            if (favorites != string.Empty) favorites += ", ";
+                            if (favorites != string.Empty)
+                            {
+                                favorites += ", ";
+                            }
                             favorites += favorite.Name;
                         }
                     }

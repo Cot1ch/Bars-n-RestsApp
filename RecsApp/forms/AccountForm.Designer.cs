@@ -245,7 +245,7 @@
             this.btnSaveReport.TabIndex = 17;
             this.btnSaveReport.Text = "Скачать отчет";
             this.btnSaveReport.UseVisualStyleBackColor = false;
-            this.btnSaveReport.Click += new System.EventHandler(this.button1_Click);
+            this.btnSaveReport.Click += new System.EventHandler(this.buttonReport_Click);
             // 
             // AccountForm
             // 

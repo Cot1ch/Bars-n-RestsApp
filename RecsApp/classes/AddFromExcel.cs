@@ -5,7 +5,6 @@ using System.Linq;
 using System.Resources;
 using System.Windows.Forms;
 using ClosedXML.Excel;
-using DocumentFormat.OpenXml.Spreadsheet;
 using NLog;
 
 namespace RecsApp
@@ -15,8 +14,13 @@ namespace RecsApp
     /// </summary>
     public static class AddFromExcel
     {
+        /// <summary>
+        /// Логгер
+        /// </summary>
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        
+        /// <summary>
+        /// Путь к загружаемому файлу
+        /// </summary>
         public static string fileName { get; set; }
         /// <summary>
         /// Метод загружает типы, категории, кухни и чеки заведений из Excel файла в базу данных
@@ -129,7 +133,6 @@ namespace RecsApp
             using (var res = new ResXResourceSet(
                 $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resource1.resx"))
             {
-
                 var path = fileName;
                 logger.Info($"Имя файла с заведениями: {path}");
 

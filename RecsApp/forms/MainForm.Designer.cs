@@ -237,7 +237,7 @@
             this.btnChangeFile.Text = "Изменить файл заведений";
             this.btnChangeFile.UseVisualStyleBackColor = false;
             this.btnChangeFile.Visible = false;
-            this.btnChangeFile.Click += new System.EventHandler(this.button1_Click);
+            this.btnChangeFile.Click += new System.EventHandler(this.buttonAdmin_Click);
             // 
             // openFDEstablishmentsFile
             // 
