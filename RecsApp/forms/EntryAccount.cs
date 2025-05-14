@@ -58,6 +58,7 @@ namespace RecsApp.forms
                 {
                     using (var db = new AppDbContext())
                     {
+                        
                         if (!db.Users.Any(admin => admin.username == "adminnn"))
                         {
                             var pass = "adminnn";
@@ -78,7 +79,9 @@ namespace RecsApp.forms
                             db.Questionnaires.Add(questionnaire);
                             db.SaveChanges();
                         }
-
+                    }
+                    using (var db = new AppDbContext())
+                    {
                         var user = GetUserByUsername(db, login);
 
                         if (user == null)
