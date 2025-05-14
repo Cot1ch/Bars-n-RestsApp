@@ -139,7 +139,7 @@
             // 
             this.buttonAccExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAccExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.buttonAccExit.Font = new System.Drawing.Font("Verdana", 10F);
+            this.buttonAccExit.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonAccExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
             this.buttonAccExit.Location = new System.Drawing.Point(785, 35);
             this.buttonAccExit.Name = "buttonAccExit";
