@@ -38,11 +38,12 @@
             // 
             this.labelMain.AutoSize = true;
             this.labelMain.BackColor = System.Drawing.Color.Transparent;
-            this.labelMain.Font = new System.Drawing.Font("Verdana", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelMain.Font = new System.Drawing.Font("Verdana", 50F, System.Drawing.FontStyle.Bold);
             this.labelMain.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelMain.Location = new System.Drawing.Point(277, 207);
+            this.labelMain.Location = new System.Drawing.Point(165, 235);
+            this.labelMain.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelMain.Name = "labelMain";
-            this.labelMain.Size = new System.Drawing.Size(554, 78);
+            this.labelMain.Size = new System.Drawing.Size(728, 101);
             this.labelMain.TabIndex = 0;
             this.labelMain.Text = "Место для вас";
             // 
@@ -50,12 +51,12 @@
             // 
             this.buttonCreateAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.buttonCreateAccount.FlatAppearance.BorderSize = 0;
-            this.buttonCreateAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCreateAccount.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonCreateAccount.Font = new System.Drawing.Font("Verdana", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonCreateAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.buttonCreateAccount.Location = new System.Drawing.Point(459, 365);
+            this.buttonCreateAccount.Location = new System.Drawing.Point(408, 360);
+            this.buttonCreateAccount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonCreateAccount.Name = "buttonCreateAccount";
-            this.buttonCreateAccount.Size = new System.Drawing.Size(190, 42);
+            this.buttonCreateAccount.Size = new System.Drawing.Size(253, 52);
             this.buttonCreateAccount.TabIndex = 1;
             this.buttonCreateAccount.Text = "Регистрация";
             this.buttonCreateAccount.UseVisualStyleBackColor = false;
@@ -65,12 +66,12 @@
             // 
             this.buttonEntryAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.buttonEntryAccount.FlatAppearance.BorderSize = 0;
-            this.buttonEntryAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonEntryAccount.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonEntryAccount.Font = new System.Drawing.Font("Verdana", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonEntryAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.buttonEntryAccount.Location = new System.Drawing.Point(459, 456);
+            this.buttonEntryAccount.Location = new System.Drawing.Point(408, 438);
+            this.buttonEntryAccount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonEntryAccount.Name = "buttonEntryAccount";
-            this.buttonEntryAccount.Size = new System.Drawing.Size(190, 42);
+            this.buttonEntryAccount.Size = new System.Drawing.Size(253, 52);
             this.buttonEntryAccount.TabIndex = 2;
             this.buttonEntryAccount.Text = "Вход";
             this.buttonEntryAccount.UseVisualStyleBackColor = false;
@@ -78,17 +79,17 @@
             // 
             // FirstForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1084, 761);
+            this.ClientSize = new System.Drawing.Size(1082, 753);
             this.Controls.Add(this.buttonEntryAccount);
             this.Controls.Add(this.buttonCreateAccount);
             this.Controls.Add(this.labelMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "FirstForm";
             this.Text = "Место для вас";

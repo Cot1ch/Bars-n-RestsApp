@@ -252,5 +252,10 @@ namespace RecsApp.forms
                 logger.Info("Локализация выполнена");
             }
         }
+
+        private void CreateAccount_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
