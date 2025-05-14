@@ -117,4 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+ <data name="AccessDenied" xml:space="preserve">
+    <value>Доступ к аккаунту потерян</value>
+  </data>
+  <data name="btnSaveChangesText" xml:space="preserve">
+    <value>Сохранить заведения</value>
+  </data>
+  <data name="buttonAccExitText" xml:space="preserve">
+    <value>Выйти из аккаунта</value>
+  </data>
+  <data name="checkBoxRatingText" xml:space="preserve">
+    <value>Отобразить заведения с рейтингом 5.0</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="labelAccountText" xml:space="preserve">
+    <value>Личный кабинет</value>
+  </data>
+  <data name="labelAverageText" xml:space="preserve">
+    <value>Средний чек</value>
+  </data>
+  <data name="labelCategoryText" xml:space="preserve">
+    <value>Категория заведения</value>
+  </data>
+  <data name="labelFoodText" xml:space="preserve">
+    <value>Кухня заведения</value>
+  </data>
+  <data name="labelLoginText" xml:space="preserve">
+    <value>Логин</value>
+  </data>
+  <data name="labelNameText" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="labelTypeText" xml:space="preserve">
+    <value>Тип заведения</value>
+  </data>
+  <data name="NameIsEmpty" xml:space="preserve">
+    <value>Поле 'Имя' не может быть пустым</value>
+  </data>
 </root>

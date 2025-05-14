@@ -57,11 +57,11 @@
             this.checkBoxStarred.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxStarred.AutoSize = true;
             this.checkBoxStarred.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxStarred.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold);
+            this.checkBoxStarred.Font = new System.Drawing.Font("Verdana", 11F, System.Drawing.FontStyle.Bold);
             this.checkBoxStarred.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.checkBoxStarred.Location = new System.Drawing.Point(955, 23);
+            this.checkBoxStarred.Location = new System.Drawing.Point(928, 23);
             this.checkBoxStarred.Name = "checkBoxStarred";
-            this.checkBoxStarred.Size = new System.Drawing.Size(108, 22);
+            this.checkBoxStarred.Size = new System.Drawing.Size(135, 27);
             this.checkBoxStarred.TabIndex = 33;
             this.checkBoxStarred.Text = "Нравится";
             this.checkBoxStarred.UseVisualStyleBackColor = false;
@@ -74,21 +74,20 @@
             this.linkLabelToWebSite.AutoSize = true;
             this.linkLabelToWebSite.Font = new System.Drawing.Font("Verdana", 6.5F, System.Drawing.FontStyle.Bold);
             this.linkLabelToWebSite.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.linkLabelToWebSite.Location = new System.Drawing.Point(622, 716);
+            this.linkLabelToWebSite.Location = new System.Drawing.Point(727, 714);
             this.linkLabelToWebSite.Name = "linkLabelToWebSite";
             this.linkLabelToWebSite.Size = new System.Drawing.Size(0, 13);
             this.linkLabelToWebSite.TabIndex = 32;
-            this.linkLabelToWebSite.TabStop = true;
             this.linkLabelToWebSite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelToWebSite_LinkClicked);
             // 
             // labelAddress
             // 
             this.labelAddress.AutoSize = true;
-            this.labelAddress.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Bold);
+            this.labelAddress.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelAddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelAddress.Location = new System.Drawing.Point(497, 146);
+            this.labelAddress.Location = new System.Drawing.Point(522, 165);
             this.labelAddress.Name = "labelAddress";
-            this.labelAddress.Size = new System.Drawing.Size(136, 16);
+            this.labelAddress.Size = new System.Drawing.Size(169, 22);
             this.labelAddress.TabIndex = 31;
             this.labelAddress.Text = "Адрес заведения";
             this.labelAddress.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -96,11 +95,11 @@
             // labelRating
             // 
             this.labelRating.AutoSize = true;
-            this.labelRating.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Bold);
+            this.labelRating.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelRating.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelRating.Location = new System.Drawing.Point(497, 124);
+            this.labelRating.Location = new System.Drawing.Point(522, 143);
             this.labelRating.Name = "labelRating";
-            this.labelRating.Size = new System.Drawing.Size(65, 16);
+            this.labelRating.Size = new System.Drawing.Size(84, 22);
             this.labelRating.TabIndex = 30;
             this.labelRating.Text = "Рейтинг";
             this.labelRating.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -108,11 +107,11 @@
             // labelType
             // 
             this.labelType.AutoSize = true;
-            this.labelType.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Bold);
+            this.labelType.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelType.Location = new System.Drawing.Point(497, 102);
+            this.labelType.Location = new System.Drawing.Point(523, 112);
             this.labelType.Name = "labelType";
-            this.labelType.Size = new System.Drawing.Size(115, 16);
+            this.labelType.Size = new System.Drawing.Size(148, 22);
             this.labelType.TabIndex = 29;
             this.labelType.Text = "Тип заведения";
             this.labelType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -120,11 +119,11 @@
             // labelName
             // 
             this.labelName.AutoSize = true;
-            this.labelName.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Bold);
+            this.labelName.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelName.Location = new System.Drawing.Point(497, 57);
+            this.labelName.Location = new System.Drawing.Point(522, 56);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(36, 16);
+            this.labelName.Size = new System.Drawing.Size(48, 22);
             this.labelName.TabIndex = 28;
             this.labelName.Text = "Имя";
             this.labelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -133,11 +132,11 @@
             // 
             this.labelLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelLink.AutoSize = true;
-            this.labelLink.Font = new System.Drawing.Font("Verdana", 6.5F, System.Drawing.FontStyle.Bold);
+            this.labelLink.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelLink.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelLink.Location = new System.Drawing.Point(497, 716);
+            this.labelLink.Location = new System.Drawing.Point(526, 707);
             this.labelLink.Name = "labelLink";
-            this.labelLink.Size = new System.Drawing.Size(111, 13);
+            this.labelLink.Size = new System.Drawing.Size(159, 22);
             this.labelLink.TabIndex = 27;
             this.labelLink.Text = "Сайт заведения";
             // 
@@ -148,13 +147,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxEstDescription.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.textBoxEstDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxEstDescription.Font = new System.Drawing.Font("Verdana", 7.8F);
+            this.textBoxEstDescription.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxEstDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.textBoxEstDescription.Location = new System.Drawing.Point(500, 272);
+            this.textBoxEstDescription.Location = new System.Drawing.Point(526, 319);
             this.textBoxEstDescription.Multiline = true;
             this.textBoxEstDescription.Name = "textBoxEstDescription";
             this.textBoxEstDescription.ReadOnly = true;
-            this.textBoxEstDescription.Size = new System.Drawing.Size(563, 431);
+            this.textBoxEstDescription.Size = new System.Drawing.Size(537, 370);
             this.textBoxEstDescription.TabIndex = 26;
             this.textBoxEstDescription.TabStop = false;
             // 
@@ -164,12 +163,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxEstAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.textBoxEstAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxEstAddress.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxEstAddress.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxEstAddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.textBoxEstAddress.Location = new System.Drawing.Point(500, 165);
+            this.textBoxEstAddress.Location = new System.Drawing.Point(526, 190);
             this.textBoxEstAddress.Name = "textBoxEstAddress";
             this.textBoxEstAddress.ReadOnly = true;
-            this.textBoxEstAddress.Size = new System.Drawing.Size(563, 16);
+            this.textBoxEstAddress.Size = new System.Drawing.Size(537, 22);
             this.textBoxEstAddress.TabIndex = 25;
             this.textBoxEstAddress.TabStop = false;
             // 
@@ -177,12 +176,12 @@
             // 
             this.textBoxEstRating.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(147)))), ((int)(((byte)(119)))));
             this.textBoxEstRating.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxEstRating.Font = new System.Drawing.Font("Verdana", 10F);
+            this.textBoxEstRating.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxEstRating.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(26)))), ((int)(((byte)(29)))));
-            this.textBoxEstRating.Location = new System.Drawing.Point(596, 120);
+            this.textBoxEstRating.Location = new System.Drawing.Point(625, 140);
             this.textBoxEstRating.Name = "textBoxEstRating";
             this.textBoxEstRating.ReadOnly = true;
-            this.textBoxEstRating.Size = new System.Drawing.Size(74, 21);
+            this.textBoxEstRating.Size = new System.Drawing.Size(48, 22);
             this.textBoxEstRating.TabIndex = 24;
             this.textBoxEstRating.TabStop = false;
             // 
@@ -192,12 +191,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxEstType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.textBoxEstType.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxEstType.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxEstType.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxEstType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.textBoxEstType.Location = new System.Drawing.Point(641, 102);
+            this.textBoxEstType.Location = new System.Drawing.Point(677, 112);
             this.textBoxEstType.Name = "textBoxEstType";
             this.textBoxEstType.ReadOnly = true;
-            this.textBoxEstType.Size = new System.Drawing.Size(422, 16);
+            this.textBoxEstType.Size = new System.Drawing.Size(386, 22);
             this.textBoxEstType.TabIndex = 23;
             this.textBoxEstType.TabStop = false;
             // 
@@ -207,12 +206,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxEstName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.textBoxEstName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxEstName.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxEstName.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxEstName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.textBoxEstName.Location = new System.Drawing.Point(500, 77);
+            this.textBoxEstName.Location = new System.Drawing.Point(526, 84);
             this.textBoxEstName.Name = "textBoxEstName";
             this.textBoxEstName.ReadOnly = true;
-            this.textBoxEstName.Size = new System.Drawing.Size(563, 16);
+            this.textBoxEstName.Size = new System.Drawing.Size(537, 22);
             this.textBoxEstName.TabIndex = 22;
             this.textBoxEstName.TabStop = false;
             // 
@@ -221,7 +220,7 @@
             this.btnNextImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.btnNextImage.Font = new System.Drawing.Font("Verdana", 7.8F);
             this.btnNextImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.btnNextImage.Location = new System.Drawing.Point(253, 512);
+            this.btnNextImage.Location = new System.Drawing.Point(257, 552);
             this.btnNextImage.Name = "btnNextImage";
             this.btnNextImage.Size = new System.Drawing.Size(40, 40);
             this.btnNextImage.TabIndex = 21;
@@ -235,7 +234,7 @@
             this.btnPrevImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.btnPrevImage.Font = new System.Drawing.Font("Verdana", 7.8F);
             this.btnPrevImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.btnPrevImage.Location = new System.Drawing.Point(201, 512);
+            this.btnPrevImage.Location = new System.Drawing.Point(205, 552);
             this.btnPrevImage.Name = "btnPrevImage";
             this.btnPrevImage.Size = new System.Drawing.Size(40, 40);
             this.btnPrevImage.TabIndex = 20;
@@ -246,9 +245,9 @@
             // 
             // pictureBoxEstImage
             // 
-            this.pictureBoxEstImage.Location = new System.Drawing.Point(22, 56);
+            this.pictureBoxEstImage.Location = new System.Drawing.Point(12, 56);
             this.pictureBoxEstImage.Name = "pictureBoxEstImage";
-            this.pictureBoxEstImage.Size = new System.Drawing.Size(450, 450);
+            this.pictureBoxEstImage.Size = new System.Drawing.Size(500, 490);
             this.pictureBoxEstImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxEstImage.TabIndex = 19;
             this.pictureBoxEstImage.TabStop = false;
@@ -256,11 +255,11 @@
             // labelFood
             // 
             this.labelFood.AutoSize = true;
-            this.labelFood.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Bold);
+            this.labelFood.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelFood.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelFood.Location = new System.Drawing.Point(497, 186);
+            this.labelFood.Location = new System.Drawing.Point(523, 218);
             this.labelFood.Name = "labelFood";
-            this.labelFood.Size = new System.Drawing.Size(52, 16);
+            this.labelFood.Size = new System.Drawing.Size(66, 22);
             this.labelFood.TabIndex = 34;
             this.labelFood.Text = "Кухня";
             this.labelFood.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -268,11 +267,11 @@
             // labelAverageCheck
             // 
             this.labelAverageCheck.AutoSize = true;
-            this.labelAverageCheck.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Bold);
+            this.labelAverageCheck.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelAverageCheck.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelAverageCheck.Location = new System.Drawing.Point(497, 227);
+            this.labelAverageCheck.Location = new System.Drawing.Point(523, 261);
             this.labelAverageCheck.Name = "labelAverageCheck";
-            this.labelAverageCheck.Size = new System.Drawing.Size(99, 16);
+            this.labelAverageCheck.Size = new System.Drawing.Size(130, 22);
             this.labelAverageCheck.TabIndex = 35;
             this.labelAverageCheck.Text = "Средний чек";
             this.labelAverageCheck.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -283,13 +282,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxFood.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.textBoxFood.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxFood.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxFood.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxFood.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.textBoxFood.Location = new System.Drawing.Point(572, 190);
+            this.textBoxFood.Location = new System.Drawing.Point(598, 218);
             this.textBoxFood.Multiline = true;
             this.textBoxFood.Name = "textBoxFood";
             this.textBoxFood.ReadOnly = true;
-            this.textBoxFood.Size = new System.Drawing.Size(491, 31);
+            this.textBoxFood.Size = new System.Drawing.Size(465, 31);
             this.textBoxFood.TabIndex = 36;
             this.textBoxFood.TabStop = false;
             // 
@@ -297,23 +296,24 @@
             // 
             this.textBoxAverageCheck.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(147)))), ((int)(((byte)(119)))));
             this.textBoxAverageCheck.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxAverageCheck.Font = new System.Drawing.Font("Verdana", 10F);
+            this.textBoxAverageCheck.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxAverageCheck.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(26)))), ((int)(((byte)(29)))));
-            this.textBoxAverageCheck.Location = new System.Drawing.Point(625, 223);
+            this.textBoxAverageCheck.Location = new System.Drawing.Point(667, 255);
             this.textBoxAverageCheck.Name = "textBoxAverageCheck";
             this.textBoxAverageCheck.ReadOnly = true;
-            this.textBoxAverageCheck.Size = new System.Drawing.Size(111, 21);
+            this.textBoxAverageCheck.Size = new System.Drawing.Size(85, 22);
             this.textBoxAverageCheck.TabIndex = 37;
             this.textBoxAverageCheck.TabStop = false;
+            this.textBoxAverageCheck.TextChanged += new System.EventHandler(this.textBoxAverageCheck_TextChanged);
             // 
             // labelDescription
             // 
             this.labelDescription.AutoSize = true;
-            this.labelDescription.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Bold);
+            this.labelDescription.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelDescription.Location = new System.Drawing.Point(497, 253);
+            this.labelDescription.Location = new System.Drawing.Point(523, 294);
             this.labelDescription.Name = "labelDescription";
-            this.labelDescription.Size = new System.Drawing.Size(79, 16);
+            this.labelDescription.Size = new System.Drawing.Size(102, 22);
             this.labelDescription.TabIndex = 38;
             this.labelDescription.Text = "Описание";
             this.labelDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -322,15 +322,14 @@
             // 
             this.btnHide.FlatAppearance.BorderSize = 0;
             this.btnHide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHide.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold);
+            this.btnHide.Font = new System.Drawing.Font("Verdana", 11F, System.Drawing.FontStyle.Bold);
             this.btnHide.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.btnHide.Location = new System.Drawing.Point(22, 22);
+            this.btnHide.Location = new System.Drawing.Point(12, 12);
             this.btnHide.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.btnHide.Name = "btnHide";
-            this.btnHide.Size = new System.Drawing.Size(90, 28);
+            this.btnHide.Size = new System.Drawing.Size(114, 37);
             this.btnHide.TabIndex = 39;
             this.btnHide.Text = "Скрыть";
-            this.btnHide.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnHide.UseVisualStyleBackColor = false;
             this.btnHide.Click += new System.EventHandler(this.btnHide_Click);
             // 

@@ -337,5 +337,10 @@ namespace RecsApp
             }
             this.mainForm.LoadForm();
         }
+
+        private void textBoxAverageCheck_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

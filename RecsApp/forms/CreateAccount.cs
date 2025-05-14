@@ -244,5 +244,10 @@ namespace RecsApp.forms
                 this.buttonCreate.Text = res.GetString("buttonCreateText");
             }
         }
+
+        private void CreateAccount_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
