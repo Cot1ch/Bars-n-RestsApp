@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.IO;
-using System.Linq;
 using System.Resources;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using BCrypt.Net;
 using NLog;
 
 namespace RecsApp.forms
@@ -76,35 +72,11 @@ namespace RecsApp.forms
 
                 logger.Trace("Попытка создания аккаунта");
 
-                if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(login)
-                    || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword))
-                {
-                    MessageBox.Show(res.GetString("FillTheFields"), res.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    logger.Info("Не все поля заполнены");
-                    return;
-                }
-
                 if (login.Length < 6)
                 {
                     MessageBox.Show(res.GetString("CheckLogin"),
                         res.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     logger.Info("Логин должен содержать не менее 6 символов");
-                    return;
-                }
-
-                if (password.Length < 6)
-                {
-                    MessageBox.Show(res.GetString("CheckPassword"),
-                        res.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    logger.Info("Пароль должен содержать не менее 6 символов");
-                    return;
-                }
-
-                if (password != confirmPassword)
-                {
-                    MessageBox.Show(res.GetString("PasswordMatch"),
-                        res.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    logger.Info("Пароли не совпадают");
                     return;
                 }
 
@@ -116,6 +88,14 @@ namespace RecsApp.forms
                     return;
                 }
 
+                if (password.Length < 6)
+                {
+                    MessageBox.Show(res.GetString("CheckPassword"),
+                        res.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Info("Пароль должен содержать не менее 6 символов");
+                    return;
+                }
+
                 if (!IsValidLoginOrPassword(password))
                 {
                     MessageBox.Show(res.GetString("IsValidPassword"),
@@ -123,6 +103,24 @@ namespace RecsApp.forms
                     logger.Info("Пароль должен состоять только из английских букв и цифр.");
                     return;
                 }
+
+                if (password != confirmPassword)
+                {
+                    MessageBox.Show(res.GetString("PasswordMatch"),
+                        res.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Info("Пароли не совпадают");
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(login)
+                    || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword))
+                {
+                    MessageBox.Show(res.GetString("FillTheFields"), res.GetString("Error"), 
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Info("Не все поля заполнены");
+                    return;
+                }
+
                 try
                 {
                     using (var db = new AppDbContext())
@@ -144,7 +142,7 @@ namespace RecsApp.forms
                         }
 
                         var hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
-
+                        
                         var newUser = new User
                         {
                             user_Id = Guid.NewGuid(),
@@ -153,13 +151,19 @@ namespace RecsApp.forms
                             password_hash = password
                         };
 
-                        var questionnaire = new Questionnaire() { user_Id = newUser.user_Id };
+                        var questionnaire = new Questionnaire() 
+                        { 
+                            user_Id = newUser.user_Id, 
+                            User = newUser 
+                        };
+                        db.Questionnaires.Add(questionnaire);
+
                         userId = newUser.user_Id;
                         db.Users.Add(newUser);
-                        db.Questionnaires.Add(questionnaire);
+                        logger.Info($"Добавлен пользователь {newUser.username}");
                         db.SaveChanges();
 
-                        MessageBox.Show(res.GetString("AccountSucces"), res.GetString("Success"),
+                        MessageBox.Show(res.GetString("AccountSuccess"), res.GetString("Success"),
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                         logger.Info("Аккаунта успешно создан");
 
@@ -230,7 +234,7 @@ namespace RecsApp.forms
             using (var res = new ResXResourceSet(
                 $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\CreateAccount.resx"))
             {
-                this.Text = res.GetString("CreateAccountText");
+                this.Text = res.GetString("CreateAccountText");                
                 this.labelCreateAccount.Text = res.GetString("labelCreateAccountText");
                 this.labelName.Text = res.GetString("labelNameText");
                 this.labelLogin.Text = res.GetString("labelLoginText");

@@ -140,8 +140,8 @@ namespace RecsApp
                         .Include(quest => quest.Est_Types)
                         .Include(quest => quest.Est_Categories)
                         .Include(quest => quest.Est_Foods)
-                        .Include(quest => quest.Est_Average)
-                        .First(quest => quest.User.user_Id == this.userId);
+                        .Include(quest => quest.Est_Average).ToList()
+                        .First(quest => quest.user_Id == this.userId);
                     logger.Info("Получена анкета пользователя");
 
 
@@ -370,6 +370,7 @@ namespace RecsApp
                     select est).ToList();
             logger.Trace("Получен список рекомендованных заведений " +
                 "проверен на наличие скрытых и избранных");
+            logger.Trace($"длина списка - {establishments.Count}");
             if (establishments.Count < 10)
             {
                 logger.Info("В рекомендованном списке меньше 10 заведений");
@@ -389,7 +390,7 @@ namespace RecsApp
                             && !establishments.Contains(establishment))
                         {
                             establishments.Add(establishment);
-                            logger.Info($"В рекоендованный список добавлено " +
+                            logger.Info($"В список рекомендованных добавлено " +
                                 $"заведение '{establishment.Name}'");
                         }
                     }

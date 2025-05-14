@@ -136,7 +136,8 @@ namespace RecsApp
                     $"{Directory.GetCurrentDirectory()}\\..\\..\\images\\{paths[imageInd]}"))
                 {
                     pictureBoxEstImage.ImageLocation = 
-                        $"{Directory.GetCurrentDirectory()}\\..\\..\\images\\{paths[imageInd]}";
+                        $"{Directory.GetCurrentDirectory()}" +
+                        $"\\..\\..\\Resourses\\Изображения заведений\\{paths[imageInd]}";
                 }
                 else
                 {

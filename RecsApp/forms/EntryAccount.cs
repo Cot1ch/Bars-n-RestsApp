@@ -1,15 +1,8 @@
 ﻿using NLog;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RecsApp.forms
@@ -65,6 +58,27 @@ namespace RecsApp.forms
                 {
                     using (var db = new AppDbContext())
                     {
+                        if (!db.Users.Any(admin => admin.username == "adminnn"))
+                        {
+                            var pass = "adminnn";
+                            var adminPassword = BCrypt.Net.BCrypt.HashPassword(pass);
+
+                            var admin = new User()
+                            {
+                                name = "admin",
+                                username = "adminnn",
+                                password_hash = pass
+                            };
+                            db.Users.Add(admin);
+                            var questionnaire = new Questionnaire()
+                            {
+                                user_Id = admin.user_Id,
+                                User = admin
+                            };
+                            db.Questionnaires.Add(questionnaire);
+                            db.SaveChanges();
+                        }
+
                         var user = GetUserByUsername(db, login);
 
                         if (user == null)
