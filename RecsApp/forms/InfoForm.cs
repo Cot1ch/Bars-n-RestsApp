@@ -343,5 +343,10 @@ namespace RecsApp
         {
 
         }
+
+        private void textBoxEstRating_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

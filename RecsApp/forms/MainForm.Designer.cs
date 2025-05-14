@@ -75,7 +75,7 @@
             this.dgvEstablishments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 10F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(147)))), ((int)(((byte)(119)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
@@ -131,11 +131,11 @@
             // 
             this.radioBtnSortByName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radioBtnSortByName.AutoSize = true;
-            this.radioBtnSortByName.Font = new System.Drawing.Font("Verdana", 9F);
+            this.radioBtnSortByName.Font = new System.Drawing.Font("Verdana", 11F);
             this.radioBtnSortByName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.radioBtnSortByName.Location = new System.Drawing.Point(654, 118);
+            this.radioBtnSortByName.Location = new System.Drawing.Point(656, 118);
             this.radioBtnSortByName.Name = "radioBtnSortByName";
-            this.radioBtnSortByName.Size = new System.Drawing.Size(130, 22);
+            this.radioBtnSortByName.Size = new System.Drawing.Size(159, 27);
             this.radioBtnSortByName.TabIndex = 24;
             this.radioBtnSortByName.TabStop = true;
             this.radioBtnSortByName.Text = "По названию";
@@ -146,11 +146,11 @@
             // 
             this.radioBtnSortByType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radioBtnSortByType.AutoSize = true;
-            this.radioBtnSortByType.Font = new System.Drawing.Font("Verdana", 9F);
+            this.radioBtnSortByType.Font = new System.Drawing.Font("Verdana", 11F);
             this.radioBtnSortByType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.radioBtnSortByType.Location = new System.Drawing.Point(650, 174);
+            this.radioBtnSortByType.Location = new System.Drawing.Point(656, 184);
             this.radioBtnSortByType.Name = "radioBtnSortByType";
-            this.radioBtnSortByType.Size = new System.Drawing.Size(89, 22);
+            this.radioBtnSortByType.Size = new System.Drawing.Size(108, 27);
             this.radioBtnSortByType.TabIndex = 25;
             this.radioBtnSortByType.TabStop = true;
             this.radioBtnSortByType.Text = "По типу";
@@ -162,11 +162,11 @@
             // 
             this.radioBtnSortByRating.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radioBtnSortByRating.AutoSize = true;
-            this.radioBtnSortByRating.Font = new System.Drawing.Font("Verdana", 9F);
+            this.radioBtnSortByRating.Font = new System.Drawing.Font("Verdana", 11F);
             this.radioBtnSortByRating.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.radioBtnSortByRating.Location = new System.Drawing.Point(656, 146);
+            this.radioBtnSortByRating.Location = new System.Drawing.Point(656, 151);
             this.radioBtnSortByRating.Name = "radioBtnSortByRating";
-            this.radioBtnSortByRating.Size = new System.Drawing.Size(123, 22);
+            this.radioBtnSortByRating.Size = new System.Drawing.Size(152, 27);
             this.radioBtnSortByRating.TabIndex = 26;
             this.radioBtnSortByRating.TabStop = true;
             this.radioBtnSortByRating.Text = "По рейтингу";
@@ -183,7 +183,7 @@
             this.dgvMayLike.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 10F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(147)))), ((int)(((byte)(119)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
@@ -202,11 +202,11 @@
             // 
             this.labelMayLike.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelMayLike.AutoSize = true;
-            this.labelMayLike.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold);
+            this.labelMayLike.Font = new System.Drawing.Font("Verdana", 11F, System.Drawing.FontStyle.Bold);
             this.labelMayLike.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.labelMayLike.Location = new System.Drawing.Point(637, 219);
             this.labelMayLike.Name = "labelMayLike";
-            this.labelMayLike.Size = new System.Drawing.Size(205, 20);
+            this.labelMayLike.Size = new System.Drawing.Size(230, 23);
             this.labelMayLike.TabIndex = 28;
             this.labelMayLike.Text = "Может понравиться";
             // 
@@ -214,11 +214,11 @@
             // 
             this.radioBtnSortByVisits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radioBtnSortByVisits.AutoSize = true;
-            this.radioBtnSortByVisits.Font = new System.Drawing.Font("Verdana", 9F);
+            this.radioBtnSortByVisits.Font = new System.Drawing.Font("Verdana", 11F);
             this.radioBtnSortByVisits.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.radioBtnSortByVisits.Location = new System.Drawing.Point(656, 90);
+            this.radioBtnSortByVisits.Location = new System.Drawing.Point(656, 85);
             this.radioBtnSortByVisits.Name = "radioBtnSortByVisits";
-            this.radioBtnSortByVisits.Size = new System.Drawing.Size(162, 22);
+            this.radioBtnSortByVisits.Size = new System.Drawing.Size(201, 27);
             this.radioBtnSortByVisits.TabIndex = 29;
             this.radioBtnSortByVisits.TabStop = true;
             this.radioBtnSortByVisits.Text = "По популярности";
