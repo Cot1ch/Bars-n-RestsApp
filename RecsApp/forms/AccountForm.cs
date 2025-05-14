@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Resources;
 using NLog;
+using ClosedXML.Excel;
 
 namespace RecsApp
 {
@@ -51,14 +52,15 @@ namespace RecsApp
                 logger.Trace($"Из базы данных получен пользователь {user.username}");
 
                 var questionnaire = (
-                    db.Questionnaires.Count() != 0 &&
-                    db.Questionnaires.First(quest => quest.User.user_Id == this.userId) != null) ?
+                    db.Questionnaires != null &&
+                    db.Questionnaires.Count() != 0 &&                    
+                    db.Questionnaires.First(quest => quest.user_Id == this.userId) != null) ?
                     db.Questionnaires
                     .Include(quest => quest.Est_Types)
                     .Include(quest => quest.Est_Categories)
                     .Include(quest => quest.Est_Foods)
                     .Include(quest => quest.Est_Average)
-                    .First(quest => quest.User.user_Id == this.userId) :
+                    .First(quest => quest.user_Id == this.userId) :
                     new Questionnaire() { user_Id = this.userId };
                 logger.Trace("Из базы данных получена анкета");
 
@@ -224,6 +226,106 @@ namespace RecsApp
             this.mainForm.userId = Guid.Empty;
             this.mainForm.Close();
             logger.Info("Форма очищена, аккаунт очищен");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Excel файлы (*.xlsx)|*.xlsx",
+                FileName = "UserReport.xlsx"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                using (var db = new AppDbContext())
+                {
+                    var user = db.Users
+                        .Include(us => us.Favourite)
+                        .First(u => u.user_Id == this.userId);
+                    var questionnaire = db.Questionnaires
+                    .Include(quest => quest.Est_Types)
+                    .Include(quest => quest.Est_Categories)
+                    .Include(quest => quest.Est_Foods)
+                    .Include(quest => quest.Est_Average)
+                    .First(quest => quest.User.user_Id == this.userId);
+
+                    if (user == null)
+                    {
+                        MessageBox.Show("Пользователь не найден.");
+                        return;
+                    }
+
+                    var workbook = new XLWorkbook();
+                    var worksheet = workbook.Worksheets.Add("Отчет");
+
+                    worksheet.Cell(1, 1).Value = "Логин";
+                    worksheet.Cell(1, 2).Value = "Типы";
+                    worksheet.Cell(1, 3).Value = "Категории";
+                    worksheet.Cell(1, 4).Value = "Кухни";
+                    worksheet.Cell(1, 5).Value = "Средний чек";
+                    worksheet.Cell(1, 6).Value = "Избранные заведения";
+
+                    worksheet.Cell(2, 1).Value = user.username;
+
+                    string types = string.Empty;
+                    if (user.Questionnaire != null && questionnaire.Est_Types != null)
+                    {
+                        foreach (var type in questionnaire.Est_Types)
+                        {
+                            if (types != string.Empty) types += ", ";
+                            types += type.Title;
+                        }
+                    }                    worksheet.Cell(2, 2).Value = types;
+
+                    string categories = string.Empty;
+                    if (user.Questionnaire != null && questionnaire.Est_Categories != null)
+                    {
+                        foreach (var category in questionnaire.Est_Categories)
+                        {
+                            if (categories != string.Empty) categories += ", ";
+                            categories += category.Title;
+                        }
+                    }
+                    worksheet.Cell(2, 3).Value = categories;
+
+                    string foods = string.Empty;
+                    if (user.Questionnaire != null && questionnaire.Est_Foods != null)
+                    {
+                        foreach (var food in questionnaire.Est_Foods)
+                        {
+                            if (foods != string.Empty) foods += ", ";
+                            foods += food.Title;
+                        }
+                    }
+                    worksheet.Cell(2, 4).Value = foods;
+
+                    string averageCheck = string.Empty;
+                    if (user.Questionnaire != null && questionnaire.Est_Average != null)
+                    {
+                        foreach (var avg in questionnaire.Est_Average)
+                        {
+                            if (averageCheck != string.Empty) averageCheck += ", ";
+                            averageCheck += avg.Title;
+                        }
+                    }
+                    worksheet.Cell(2, 5).Value = averageCheck;
+
+                    string favorites = string.Empty;
+                    if (user.Favourite != null)
+                    {
+                        foreach (var favorite in user.Favourite)
+                        {
+                            if (favorites != string.Empty) favorites += ", ";
+                            favorites += favorite.Name;
+                        }
+                    }
+                    worksheet.Cell(2, 6).Value = favorites;
+
+                    workbook.SaveAs(saveFileDialog.FileName);
+                    MessageBox.Show("Отчёт сохранён!");
+                }
+            }
         }
     }
 }

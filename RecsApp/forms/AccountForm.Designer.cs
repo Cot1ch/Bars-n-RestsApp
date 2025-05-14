@@ -44,6 +44,7 @@
             this.labelAverage = new System.Windows.Forms.Label();
             this.checkBoxRating = new System.Windows.Forms.CheckBox();
             this.checkedListBoxFood = new System.Windows.Forms.CheckedListBox();
+            this.btnSaveReport = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelName
@@ -131,7 +132,7 @@
             this.checkedListBoxType.FormattingEnabled = true;
             this.checkedListBoxType.Location = new System.Drawing.Point(40, 225);
             this.checkedListBoxType.Name = "checkedListBoxType";
-            this.checkedListBoxType.Size = new System.Drawing.Size(485, 88);
+            this.checkedListBoxType.Size = new System.Drawing.Size(485, 76);
             this.checkedListBoxType.TabIndex = 8;
             // 
             // buttonAccExit
@@ -140,9 +141,9 @@
             this.buttonAccExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.buttonAccExit.Font = new System.Drawing.Font("Verdana", 10F);
             this.buttonAccExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.buttonAccExit.Location = new System.Drawing.Point(821, 35);
+            this.buttonAccExit.Location = new System.Drawing.Point(785, 35);
             this.buttonAccExit.Name = "buttonAccExit";
-            this.buttonAccExit.Size = new System.Drawing.Size(219, 30);
+            this.buttonAccExit.Size = new System.Drawing.Size(255, 30);
             this.buttonAccExit.TabIndex = 9;
             this.buttonAccExit.Text = "Выйти из аккаунта";
             this.buttonAccExit.UseVisualStyleBackColor = false;
@@ -154,9 +155,9 @@
             this.btnSaveChanges.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.btnSaveChanges.Font = new System.Drawing.Font("Verdana", 10F);
             this.btnSaveChanges.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.btnSaveChanges.Location = new System.Drawing.Point(821, 692);
+            this.btnSaveChanges.Location = new System.Drawing.Point(785, 692);
             this.btnSaveChanges.Name = "btnSaveChanges";
-            this.btnSaveChanges.Size = new System.Drawing.Size(219, 30);
+            this.btnSaveChanges.Size = new System.Drawing.Size(255, 30);
             this.btnSaveChanges.TabIndex = 10;
             this.btnSaveChanges.Text = "Сохранить изменения";
             this.btnSaveChanges.UseVisualStyleBackColor = false;
@@ -181,7 +182,7 @@
             this.checkedListBoxAverage.FormattingEnabled = true;
             this.checkedListBoxAverage.Location = new System.Drawing.Point(557, 225);
             this.checkedListBoxAverage.Name = "checkedListBoxAverage";
-            this.checkedListBoxAverage.Size = new System.Drawing.Size(485, 88);
+            this.checkedListBoxAverage.Size = new System.Drawing.Size(485, 76);
             this.checkedListBoxAverage.Sorted = true;
             this.checkedListBoxAverage.TabIndex = 12;
             // 
@@ -232,12 +233,27 @@
             this.checkedListBoxFood.Sorted = true;
             this.checkedListBoxFood.TabIndex = 13;
             // 
+            // btnSaveReport
+            // 
+            this.btnSaveReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(147)))), ((int)(((byte)(119)))));
+            this.btnSaveReport.Font = new System.Drawing.Font("Verdana", 10F);
+            this.btnSaveReport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
+            this.btnSaveReport.Location = new System.Drawing.Point(40, 692);
+            this.btnSaveReport.Name = "btnSaveReport";
+            this.btnSaveReport.Size = new System.Drawing.Size(178, 30);
+            this.btnSaveReport.TabIndex = 17;
+            this.btnSaveReport.Text = "Скачать отчет";
+            this.btnSaveReport.UseVisualStyleBackColor = false;
+            this.btnSaveReport.Click += new System.EventHandler(this.button1_Click);
+            // 
             // AccountForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(147)))), ((int)(((byte)(119)))));
             this.ClientSize = new System.Drawing.Size(1082, 753);
+            this.Controls.Add(this.btnSaveReport);
             this.Controls.Add(this.checkBoxRating);
             this.Controls.Add(this.labelAverage);
             this.Controls.Add(this.labelFood);
@@ -283,5 +299,6 @@
         private System.Windows.Forms.Label labelAverage;
         private System.Windows.Forms.CheckBox checkBoxRating;
         private System.Windows.Forms.CheckedListBox checkedListBoxFood;
+        private System.Windows.Forms.Button btnSaveReport;
     }
 }
