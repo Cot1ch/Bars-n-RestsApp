@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using System.Data.Entity;
 using System.IO;
 using NLog;
-using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace RecsApp
 {
@@ -32,6 +31,8 @@ namespace RecsApp
         /// Путь к файлу с заведениями
         /// </summary>
         private string fileName;
+        private string defFileName = $"{Directory.GetCurrentDirectory()}" +
+                $"..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
         
         public MainForm(Guid usId)
         {
@@ -39,6 +40,12 @@ namespace RecsApp
             userId = usId;
             this.fileName = $"{Directory.GetCurrentDirectory()}" +
                 $"..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
+            if (this.fileName != this.defFileName)
+            {
+                MessageBox.Show($"Загружен файл {this.fileName}",
+                    "файл загружен",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -141,7 +148,7 @@ namespace RecsApp
                         .Include(quest => quest.Est_Categories)
                         .Include(quest => quest.Est_Foods)
                         .Include(quest => quest.Est_Average).ToList()
-                        .First(quest => quest.user_Id == this.userId);
+                        .FirstOrDefault(quest => quest.user_Id == this.userId);
                     logger.Info("Получена анкета пользователя");
 
 

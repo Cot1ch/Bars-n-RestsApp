@@ -153,6 +153,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="forms\AccountForm.resx">
       <DependentUpon>AccountForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\CreateAccount.resx">
       <DependentUpon>CreateAccount.cs</DependentUpon>

@@ -131,14 +131,14 @@
             this.checkedListBoxType.FormattingEnabled = true;
             this.checkedListBoxType.Location = new System.Drawing.Point(40, 225);
             this.checkedListBoxType.Name = "checkedListBoxType";
-            this.checkedListBoxType.Size = new System.Drawing.Size(485, 88);
+            this.checkedListBoxType.Size = new System.Drawing.Size(485, 76);
             this.checkedListBoxType.TabIndex = 8;
             // 
             // buttonAccExit
             // 
             this.buttonAccExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAccExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.buttonAccExit.Font = new System.Drawing.Font("Verdana", 10F);
+            this.buttonAccExit.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonAccExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
             this.buttonAccExit.Location = new System.Drawing.Point(821, 35);
             this.buttonAccExit.Name = "buttonAccExit";
@@ -181,7 +181,7 @@
             this.checkedListBoxAverage.FormattingEnabled = true;
             this.checkedListBoxAverage.Location = new System.Drawing.Point(557, 225);
             this.checkedListBoxAverage.Name = "checkedListBoxAverage";
-            this.checkedListBoxAverage.Size = new System.Drawing.Size(485, 88);
+            this.checkedListBoxAverage.Size = new System.Drawing.Size(485, 76);
             this.checkedListBoxAverage.Sorted = true;
             this.checkedListBoxAverage.TabIndex = 12;
             // 

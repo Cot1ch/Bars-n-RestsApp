@@ -103,6 +103,7 @@ namespace RecsApp
                     .First(u => u.user_Id == userId).Favourite.Contains(this.est);
                 paths = est.PathsToPhoto == string.Empty ? 
                     new List<string>() { "notfound.png" } : est.PathsToPhoto.Split(';').ToList();
+                
                 logger.Info("Все тексовые поля заполнены");
             }
         }
@@ -133,11 +134,11 @@ namespace RecsApp
             if (paths != null)
             {
                 if (File.Exists(
-                    $"{Directory.GetCurrentDirectory()}\\..\\..\\images\\{paths[imageInd]}"))
+                    $"{Directory.GetCurrentDirectory()}\\..\\..\\Resources\\Изображения заведений\\{paths[imageInd]}"))
                 {
                     pictureBoxEstImage.ImageLocation = 
                         $"{Directory.GetCurrentDirectory()}" +
-                        $"\\..\\..\\Resourses\\Изображения заведений\\{paths[imageInd]}";
+                        $"\\..\\..\\Resources\\Изображения заведений\\{paths[imageInd]}";
                 }
                 else
                 {
