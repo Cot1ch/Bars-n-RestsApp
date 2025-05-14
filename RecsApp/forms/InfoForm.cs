@@ -67,7 +67,6 @@ namespace RecsApp
             {
                 this.Text = res.GetString("InfoFormText");
                 this.checkBoxStarred.Text = res.GetString("checkBoxStarredText");
-                this.linkLabelToWebSite.Text = res.GetString("linkLabelToWebSiteText");
                 this.labelAddress.Text = res.GetString("labelAddressText");
                 this.labelRating.Text = res.GetString("labelRatingText");
                 this.labelType.Text = res.GetString("labelTypeText");
@@ -99,7 +98,7 @@ namespace RecsApp
                 this.textBoxEstRating.Text = $"{est.Rating:F1}";
                 this.textBoxEstAddress.Text = est.Address.ToString();
                 this.linkLabelToWebSite.Text = 
-                    (est.Link != string.Empty) ? est.Link : res.GetString("linkLabelToWebSiteText");
+                    (est.Link != "ссылка отсутствует") ? est.Link : res.GetString("linkLabelToWebSiteText");
                 this.checkBoxStarred.Checked = db.Users.Include(u => u.Favourite)
                     .First(u => u.user_Id == userId).Favourite.Contains(this.est);
                 paths = est.PathsToPhoto == string.Empty ? 

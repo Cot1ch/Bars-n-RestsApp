@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using System.Data.Entity;
 using System.IO;
 using NLog;
-using DocumentFormat.OpenXml.Office2010.Excel;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace RecsApp
 {
@@ -301,6 +301,7 @@ namespace RecsApp
 
                 if (user.Favourite.Count < 5)
                 {
+                    logger.Trace("Начато формирования списка рекомендованных заведений");
                     foreach (var e in ests)
                     {
                         foreach (var sim in e.Similar.Split(';'))
@@ -308,6 +309,7 @@ namespace RecsApp
                             if (!simEsts.Contains(sim))
                             {
                                 simEsts.Add(sim);
+                                logger.Trace($"Добавлено заведение '{sim}'");
                             }
                         }
                     }
@@ -318,19 +320,22 @@ namespace RecsApp
                         from e in ests
                         where user.Favourite.Contains(e)
                         select e).ToList();
-
+                    logger.Trace("Начато формирования списка рекомендованных заведений");
                     foreach (var establishment in fEstablishments)
                     {
                         foreach (var sim in establishment.Similar.Split(';'))
                         {
                             simEsts.Add(sim);
+                            logger.Trace($"Добавлено заведение '{sim}'");
                         }
                     }
 
                     while (simEsts.Count > 10)
                     {
                         Random rnd = new Random();
-                        simEsts.RemoveAt(rnd.Next(simEsts.Count));
+                        var removeInd = rnd.Next(simEsts.Count);
+                        logger.Trace($"Из списка убрано заведение '{simEsts[removeInd]}'");
+                        simEsts.RemoveAt(removeInd);
                     }
                 }
                 var Ests = (
@@ -339,10 +344,7 @@ namespace RecsApp
                     select e).ToList();
                 logger.Info("Список рекомендованных заведений получен");
 
-                Ests = (
-                    from est in Ests
-                    where !user.Hidden.Contains(est) && !user.Favourite.Contains(est)
-                    select est).ToList();
+                LoadRecsList(Ests, user);
 
                 Ests.Sort(new SortBySmth() 
                 { 
@@ -358,6 +360,41 @@ namespace RecsApp
             }
             SetdgvMayLike();
             logger.Info("datagridview настроен");
+        }
+        private void LoadRecsList(List<Establishment> establishments, User user)
+        {
+            establishments = (
+                    from est in establishments
+                    where !user.Hidden.Contains(est) 
+                    && !user.Favourite.Contains(est)
+                    select est).ToList();
+            logger.Trace("Получен список рекомендованных заведений " +
+                "проверен на наличие скрытых и избранных");
+            if (establishments.Count < 10)
+            {
+                logger.Info("В рекомендованном списке меньше 10 заведений");
+                using (var db = new AppDbContext())
+                {
+                    var ests = db.Establishments.ToList();
+                    logger.Trace("Получен список всех заведений");
+                    ests.Sort(new SortBySmth() 
+                    { 
+                        SortMode = "visits"
+                    });
+                    logger.Trace("Cписок всех заведений отсортирован по популярности");
+                    foreach (var establishment in ests)
+                    {
+                        if (!user.Hidden.Contains(establishment)
+                            && !user.Favourite.Contains(establishment)
+                            && !establishments.Contains(establishment))
+                        {
+                            establishments.Add(establishment);
+                            logger.Info($"В рекоендованный список добавлено " +
+                                $"заведение '{establishment.Name}'");
+                        }
+                    }
+                }
+            }
         }
         /// <summary>
         /// Настройка отображения dataGridView рекомендованных заведений: 
