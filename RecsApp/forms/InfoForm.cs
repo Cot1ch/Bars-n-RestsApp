@@ -14,11 +14,14 @@ namespace RecsApp
     /// </summary>
     public partial class InfoForm : Form
     {
+        /// <summary>
+        /// Логгер
+        /// </summary>
         private static Logger logger = LogManager.GetCurrentClassLogger();
         /// <summary>
         /// Заведение, информацию о котором отображает форма
         /// </summary>
-        private Establishment est;
+        private Establishment establishment;
         /// <summary>
         /// Идентификатор отображаемого заведения
         /// </summary>
@@ -39,6 +42,12 @@ namespace RecsApp
         /// Ссылка на главную форму
         /// </summary>
         private MainForm mainForm;
+        /// <summary>
+        /// Конструктор InfoForm
+        /// </summary>
+        /// <param name="EstId">Идентификатор заведения</param>
+        /// <param name="UserId">Идентификатор пользователя</param>
+        /// <param name="main">Главная форма</param>
         public InfoForm(Guid EstId, Guid UserId, MainForm main)
         {
             InitializeComponent();
@@ -46,12 +55,15 @@ namespace RecsApp
             mainForm = main;
             using (var db = new AppDbContext())
             {
-                est = (from e in db.Establishments.
-                       Include(e => e.Type).Include(e => e.Categories).
-                       Include(e => e.Foods).Include(e => e.Average)
-                       where e.Id == EstId
-                       select e).First();
-                logger.Trace($"Заведение {est.Name} получено из базы данных");
+                establishment = (
+                    from establishment in db.Establishments
+                    .Include(establishment => establishment.Type)
+                    .Include(establishment => establishment.Categories)
+                    .Include(establishment => establishment.Foods)
+                    .Include(establishment => establishment.Average)
+                    where establishment.Id == EstId
+                    select establishment).First();
+                logger.Trace($"Заведение {establishment.Name} получено из базы данных");
                 estId = EstId;
                 Visits();
             }
@@ -90,19 +102,28 @@ namespace RecsApp
                 $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\InfoForm.resx"))
             using (var db = new AppDbContext())
             {
-                this.textBoxEstName.Text = est.Name;
-                this.textBoxEstDescription.Text = est.Description;
-                this.textBoxFood.Text = string.Join("; ", est.Foods.Select(f => f.Title).ToList());
-                this.textBoxEstType.Text = est.Type.Title;
-                this.textBoxAverageCheck.Text = $"{est.Check:F0} {res.GetString("Currency")}";
-                this.textBoxEstRating.Text = $"{est.Rating:F1}";
-                this.textBoxEstAddress.Text = est.Address.ToString();
+                this.textBoxEstName.Text = establishment.Name;
+                this.textBoxEstDescription.Text = establishment.Description;
+                this.textBoxFood.Text = string.Join("; ", establishment.Foods.Select(f => f.Title)
+                    .ToList());
+                this.textBoxEstType.Text = establishment.Type.Title;
+                this.textBoxAverageCheck.Text = $"{establishment.Check:F0} " +
+                    $"{res.GetString("Currency")}";
+                this.textBoxEstRating.Text = $"{establishment.Rating:F1}";
+                this.textBoxEstAddress.Text = establishment.Address.ToString();
                 this.linkLabelToWebSite.Text = 
-                    (est.Link != "ссылка отсутствует") ? est.Link : res.GetString("linkLabelToWebSiteText");
-                this.checkBoxStarred.Checked = db.Users.Include(u => u.Favourite)
-                    .First(u => u.user_Id == userId).Favourite.Contains(this.est);
-                paths = est.PathsToPhoto == string.Empty ? 
-                    new List<string>() { "notfound.png" } : est.PathsToPhoto.Split(';').ToList();
+                    (establishment.Link != "ссылка отсутствует") 
+                    ? establishment.Link 
+                    : res.GetString("linkLabelToWebSiteText");
+                this.checkBoxStarred.Checked = db.Users.Include(user => user.Favourite)
+                    .First(user => user.user_Id == userId).Favourite.Contains(this.establishment);
+
+                paths = establishment.PathsToPhoto == string.Empty 
+                    ? new List<string>() 
+                    { 
+                        "notfound.png" 
+                    } 
+                    : establishment.PathsToPhoto.Split(';').ToList();
                 
                 logger.Info("Все тексовые поля заполнены");
             }
@@ -134,7 +155,8 @@ namespace RecsApp
             if (paths != null)
             {
                 if (File.Exists(
-                    $"{Directory.GetCurrentDirectory()}\\..\\..\\Resources\\Изображения заведений\\{paths[imageInd]}"))
+                    $"{Directory.GetCurrentDirectory()}" +
+                    $"\\..\\..\\Resources\\Изображения заведений\\{paths[imageInd]}"))
                 {
                     pictureBoxEstImage.ImageLocation = 
                         $"{Directory.GetCurrentDirectory()}" +
@@ -194,10 +216,10 @@ namespace RecsApp
                 $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\InfoForm.resx"))
             using (var db = new AppDbContext())
             {
-                var user = (from u in db.Users
-                            .Include(u => u.Favourite)
-                            where u.user_Id == this.userId
-                            select u).First();
+                var user = (from us in db.Users
+                            .Include(us => us.Favourite)
+                            where us.user_Id == this.userId
+                            select us).First();
                 logger.Trace($"Пользователь {user.username} получен из базы данных");
 
                 var establishment = (
@@ -218,7 +240,7 @@ namespace RecsApp
                             MessageBox.Show(res.GetString("EstablishmentAdded"), 
                                 res.GetString("Succsess"),
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            logger.Trace($"Заведение {est.Name} добавлено в избранное " +
+                            logger.Trace($"Заведение {establishment.Name} добавлено в избранное " +
                                 $"пользователем {user.username}");
                         }
                         else
@@ -226,7 +248,7 @@ namespace RecsApp
                             MessageBox.Show(res.GetString("EstablishmentAlreadyInFavorite"),
                                 res.GetString("AlreadyAdd"), 
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            logger.Warn($"Заведение {est.Name} уже в избранном " +
+                            logger.Warn($"Заведение {establishment.Name} уже в избранном " +
                                 $"пользователя {user.username}, добавление невозможно");
                         }
                     }
@@ -247,7 +269,7 @@ namespace RecsApp
                             MessageBox.Show(res.GetString("EstablishmentDeleted"),
                                 res.GetString("Succsess"),
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            logger.Trace($"Заведение {est.Name} удалено из избранного " +
+                            logger.Trace($"Заведение {establishment.Name} удалено из избранного " +
                                 $"пользователем {user.username}");
                         }
                         else
@@ -255,7 +277,7 @@ namespace RecsApp
                             MessageBox.Show(res.GetString("EstablishmentNotInFavourite"),
                                 res.GetString("NotFound"), 
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            logger.Warn($"Заведение {est.Name} не в избранном " +
+                            logger.Warn($"Заведение {establishment.Name} не в избранном " +
                                 $"пользователя {user.username}, удаление невозможно");
                         }
                     }
@@ -318,8 +340,8 @@ namespace RecsApp
             using (var db = new AppDbContext())
             {
                 logger.Trace("Выполнена связь с контекстом");
-                db.Establishments.Attach(this.est);
-                if (this.est.CountVisits > long.MaxValue / 2)
+                db.Establishments.Attach(this.establishment);
+                if (this.establishment.CountVisits > long.MaxValue / 2)
                 {
 
                     foreach (var e in db.Establishments)
@@ -331,7 +353,7 @@ namespace RecsApp
                 }
                 else
                 {
-                    est.CountVisits++;
+                    establishment.CountVisits++;
                     logger.Trace("Счетчик обновлен");
                 }
                 db.SaveChanges();

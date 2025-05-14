@@ -14,6 +14,9 @@ namespace RecsApp
     /// </summary>
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Логгер
+        /// </summary>
         private static Logger logger = LogManager.GetCurrentClassLogger();
         /// <summary>
         /// Идентификатор аккаунта пользователя
@@ -31,20 +34,30 @@ namespace RecsApp
         /// Путь к файлу с заведениями
         /// </summary>
         private string fileName;
+        /// <summary>
+        /// Путь к файлу по умолчанию
+        /// </summary>
         private string defFileName = $"{Directory.GetCurrentDirectory()}" +
                 $"..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
-        
+        /// <summary>
+        /// Конструктор главной формы
+        /// </summary>
+        /// <param name="usId">Идентификатор пользователя</param>
         public MainForm(Guid usId)
         {
             InitializeComponent();
+
             userId = usId;
-            this.fileName = $"{Directory.GetCurrentDirectory()}" +
-                $"..\\..\\..\\docs\\Списки заведений, типов, категорий.xlsx";
+            this.fileName = this.defFileName;
             if (this.fileName != this.defFileName)
             {
-                MessageBox.Show($"Загружен файл {this.fileName}",
-                    "файл загружен",
+                using (var res = new ResXResourceSet(
+                    $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\MainForm.resx"))
+                {
+                    MessageBox.Show(res.GetString("LoadFile") + $": {this.fileName}",
+                    res.GetString("LoadFile"),
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
         private void MainForm_Load(object sender, EventArgs e)
@@ -60,20 +73,21 @@ namespace RecsApp
             {
                 logger.Trace("Выполняется проверка на администратора");
                 var user =
-                    (from u in db.Users
-                     .Include(u => u.Favourite)
-                     where u.user_Id == userId
-                     select u).First();
+                    (from us in db.Users.Include(us => us.Favourite)
+                     where us.user_Id == userId
+                     select us).First();
 
                 if (user.username == "adminnn")
                 {
                     this.btnChangeFile.Visible = true;
-                    logger.Info("Кнопка для администратора сделана видимой");
+                    logger.Info("Кнопка для смены файла сделана видимой");
                 }
             }
 
             LoadForm();
             logger.Trace("dataGridView's заполнены");
+            Application.OpenForms[0].Hide();
+            logger.Trace("Форма FirstForm скрыта");
 
             using (var res = new ResXResourceSet(
                 $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\MainForm.resx"))
@@ -129,16 +143,18 @@ namespace RecsApp
             using (var db = new AppDbContext())
             {
                 var user =
-                    (from u in db.Users
-                     .Include(u => u.Favourite)
-                     .Include(u => u.Hidden)
-                     where u.user_Id == userId
-                     select u).First();
+                    (from us in db.Users
+                     .Include(us => us.Favourite)
+                     .Include(us => us.Hidden)
+                     where us.user_Id == userId
+                     select us).First();
                 logger.Info($"Получен пользователь {user.username}");
 
-                var ests = db.Establishments.
-                    Include(e => e.Type).Include(e => e.Categories).
-                    Include(e => e.Foods).Include(e => e.Average).ToList();
+                var ests = db.Establishments
+                    .Include(establishment => establishment.Type)
+                    .Include(establishment => establishment.Categories)
+                    .Include(establishment => establishment.Foods)
+                    .Include(establishment => establishment.Average).ToList();
                 logger.Info("Получен список всех заведений");
 
                 if (db.Questionnaires.Count() != 0)
@@ -158,42 +174,47 @@ namespace RecsApp
                         questionnaire.Est_Foods.Count == 0 && 
                         questionnaire.Est_Categories.Count == 0))
                     {
-                        var types = questionnaire.Est_Types.Select(t => t.Id).ToList();
-                        var categories = questionnaire.Est_Categories.Select(c => c.Id).ToList();
-                        var foods = questionnaire.Est_Foods.Select(f => f.Id).ToList();
-                        var average = questionnaire.Est_Average.Select(a => a.Id).ToList();
+                        var types = questionnaire.Est_Types
+                            .Select(type => type.Id).ToList();
+                        var categories = questionnaire.Est_Categories
+                            .Select(category => category.Id).ToList();
+                        var foods = questionnaire.Est_Foods
+                            .Select(food => food.Id).ToList();
+                        var average = questionnaire.Est_Average
+                            .Select(averageCheck => averageCheck.Id).ToList();
 
                         if (types != null && types.Count != 0)
                         {
                             ests = (
-                                from est in ests
-                                where types.Contains(est.Type.Id)
-                                select est).ToList();
+                                from establishment in ests
+                                where types.Contains(establishment.Type.Id)
+                                select establishment).ToList();
                             logger.Info("Заведения отфильтрованы по типу");
                         }
                         if (categories != null && categories.Count != 0)
                         {
                             ests = (
-                                from est in ests
-                                where est.Categories.Select(cat => cat.Id)
+                                from establishment in ests
+                                where establishment.Categories.Select(category => category.Id)
                                     .Any(c => categories.Contains(c))
-                                select est).ToList();
+                                select establishment).ToList();
                             logger.Info("Заведения отфильтрованы по категориям");
                         }
                         if (foods != null && foods.Count != 0)
                         {
                             ests = (
-                                from est in ests
-                                where est.Foods.Select(food => food.Id).Any(c => foods.Contains(c))
-                                select est).ToList();
+                                from establishment in ests
+                                where establishment.Foods.Select(food => food.Id)
+                                .Any(c => foods.Contains(c))
+                                select establishment).ToList();
                             logger.Info("Заведения отфильтрованы по кухне");
                         }
                         if (average != null && average.Count != 0)
                         {
                             ests = (
-                                from est in ests
-                                where average.Contains(est.Average.Id)
-                                select est).ToList();
+                                from establishment in ests
+                                where average.Contains(establishment.Average.Id)
+                                select establishment).ToList();
                             logger.Info("Заведения отфильтрованы по среднему чеку");
                         }
                     }
@@ -201,23 +222,23 @@ namespace RecsApp
                 if (showOnlyFavourite)
                 {
                     ests = (
-                        from est in ests
-                        where user.Favourite.Contains(est)
-                        select est).ToList();
+                        from establishment in ests
+                        where user.Favourite.Contains(establishment)
+                        select establishment).ToList();
                     logger.Info("Выбраны только избранные");
                 }
                 if (isRatingEqualsFive)
                 {
                     ests = (
-                        from est in ests
-                        where est.Rating == 5.0
-                        select est).ToList();
+                        from establishment in ests
+                        where establishment.Rating == 5.0
+                        select establishment).ToList();
                     logger.Info("Выбраны только заведения с рейтингом 5.0");
                 }
                 ests = (
-                    from est in ests
-                    where !user.Hidden.Contains(est)
-                    select est).ToList();
+                    from establishment in ests
+                    where !user.Hidden.Contains(establishment)
+                    select establishment).ToList();
 
                 ests.Sort(new SortBySmth()
                 {
@@ -225,16 +246,25 @@ namespace RecsApp
                 });
                 logger.Info($"Заведения отсортированы, sortMode={sortMode}");
 
-                var finalEsts = from e in ests
-                                join t in db.Types on e.Type equals t
+                var finalEsts = from establishment in ests
+                                join type in db.Types on establishment.Type equals type
                                 select new
                                 {
-                                    e.Id,
-                                    Название = e.Name,
-                                    Тип = t.Title,
-                                    Рейтинг = e.Rating
+                                    establishment.Id,
+                                    Название = establishment.Name,
+                                    Тип = type.Title,
+                                    Рейтинг = establishment.Rating
                                 };
 
+                if (finalEsts.Count() == 0)
+                {
+                    using (var res = new ResXResourceSet(
+                        $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\MainForm.resx"))
+                    {
+                        MessageBox.Show(res.GetString("EmptyEstList"), res.GetString("EmptyEsts"),
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    }
+                }
                 dgvEstablishments.DataSource = finalEsts.ToList();
                 logger.Info("datagridview заполнен");
             }
@@ -289,16 +319,20 @@ namespace RecsApp
             using (var db = new AppDbContext())
             {
                 var user =
-                    (from u in db.Users
-                     .Include(u => u.Favourite)
-                     .Include(u => u.Hidden)                     
-                     where u.user_Id == userId
-                     select u).First();
+                    (from us in db.Users
+                     .Include(us => us.Favourite)
+                     .Include(us => us.Hidden)                     
+                     where us.user_Id == userId
+                     select us).First();
                 logger.Info($"Получен пользователь {user.username}");
-                var ests = db.Establishments.
-                    Include(e => e.Type).Include(e => e.Categories).
-                    Include(e => e.Foods).Include(e => e.Average).ToList();
+                var ests = db.Establishments
+                    .Include(establishment => establishment.Type)
+                    .Include(establishment => establishment.Categories)
+                    .Include(establishment => establishment.Foods)
+                    .Include(establishment => establishment.Average)
+                    .ToList();
                 logger.Info("Получен список всех заведений");
+
                 ests.Sort(new SortBySmth()
                 {
                     SortMode = "visits"
@@ -309,9 +343,9 @@ namespace RecsApp
                 if (user.Favourite.Count < 5)
                 {
                     logger.Trace("Начато формирования списка рекомендованных заведений");
-                    foreach (var e in ests)
+                    foreach (var establishment in ests)
                     {
-                        foreach (var sim in e.Similar.Split(';'))
+                        foreach (var sim in establishment.Similar.Split(';'))
                         {
                             if (!simEsts.Contains(sim))
                             {
@@ -324,9 +358,9 @@ namespace RecsApp
                 else
                 {
                     var fEstablishments = (
-                        from e in ests
-                        where user.Favourite.Contains(e)
-                        select e).ToList();
+                        from establishment in ests
+                        where user.Favourite.Contains(establishment)
+                        select establishment).ToList();
                     logger.Trace("Начато формирования списка рекомендованных заведений");
                     foreach (var establishment in fEstablishments)
                     {
@@ -346,9 +380,9 @@ namespace RecsApp
                     }
                 }
                 var Ests = (
-                    from e in db.Establishments
-                    where simEsts.Contains(e.Name)
-                    select e).ToList();
+                    from establishment in db.Establishments
+                    where simEsts.Contains(establishment.Name)
+                    select establishment).ToList();
                 logger.Info("Список рекомендованных заведений получен");
 
                 LoadRecsList(Ests, user);
@@ -360,21 +394,32 @@ namespace RecsApp
                 logger.Info("Список рекомендованных заведений отсортирован по популярности");
 
                 var finalEsts = (
-                    from e in Ests.Take(10)
-                    select new { e.Id, e.Name, e.Rating }).ToList();
+                    from establishment in Ests.Take(10)
+                    select new 
+                    { 
+                        establishment.Id,
+                        establishment.Name,
+                        establishment.Rating 
+                    }).ToList();
+
                 dgvMayLike.DataSource = finalEsts;
                 logger.Info("datagridview заполнен");
             }
             SetdgvMayLike();
             logger.Info("datagridview настроен");
         }
+        /// <summary>
+        /// Метод реализации алгоритма заполнения списка, если в нем меньше 10 элементов
+        /// </summary>
+        /// <param name="establishments"></param>
+        /// <param name="user"></param>
         private void LoadRecsList(List<Establishment> establishments, User user)
         {
             establishments = (
-                    from est in establishments
-                    where !user.Hidden.Contains(est) 
-                    && !user.Favourite.Contains(est)
-                    select est).ToList();
+                    from establishment in establishments
+                    where !user.Hidden.Contains(establishment) 
+                    && !user.Favourite.Contains(establishment)
+                    select establishment).ToList();
             logger.Trace("Получен список рекомендованных заведений " +
                 "проверен на наличие скрытых и избранных");
             logger.Trace($"длина списка - {establishments.Count}");
@@ -450,7 +495,6 @@ namespace RecsApp
         {
             logger.Info("Отображена форма аккаунта");
             new AccountForm(this.userId, this).Show();
-
         }
         private void dgvEstablishments_DoubleClick(object sender, EventArgs e)
         {
@@ -464,13 +508,11 @@ namespace RecsApp
             logger.Info($"Отображена форма с информацией о заведении {id}");
             new InfoForm(id, this.userId, this).Show();
         }
-
         private void checkBoxFavorite_CheckedChanged(object sender, EventArgs e)
         {
             logger.Info("datagridview всех заведений отсортирован по избранным");
             LoaddgvEstablishments(this.checkBoxFavorite.Checked);
         }
-
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             logger.Info("Форма Main закрыта");
@@ -484,41 +526,35 @@ namespace RecsApp
             logger.Info("Открыта первая форма");
             form1.Show();            
         }
-
         private void dgvMayLike_DoubleClick(object sender, EventArgs e)
         {
             ShowInfoForm((Guid)this.dgvMayLike.CurrentRow.Cells[0].Value);
         }
-
         private void radioBtnSortByName_CheckedChanged(object sender, EventArgs e)
         {
             this.sortMode = "name";
             logger.Info("Ввызвана сортировка по названию");
             LoaddgvEstablishments(this.checkBoxFavorite.Checked);
-        }
-
+        }                
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             this.sortMode = "type";
             logger.Info("Ввызвана сортировка по типу");
             LoaddgvEstablishments(this.checkBoxFavorite.Checked);
         }
-
         private void radioBtnSortByRating_CheckedChanged(object sender, EventArgs e)
         {
             this.sortMode = "rating";
             logger.Info("Ввызвана сортировка по рейтингу");
             LoaddgvEstablishments(this.checkBoxFavorite.Checked);
         }
-
         private void radioBtnSortByVisits_CheckedChanged(object sender, EventArgs e)
         {
             this.sortMode = "visits";
             logger.Info("Ввызвана сортировка по популярности");
             LoaddgvEstablishments(this.checkBoxFavorite.Checked);
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonAdmin_Click(object sender, EventArgs e)
         {
             if (openFDEstablishmentsFile.ShowDialog() == DialogResult.Cancel)
             {

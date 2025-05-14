@@ -12,6 +12,9 @@ namespace RecsApp.forms
     /// </summary>
     public partial class CreateAccount : Form
     {
+        /// <summary>
+        /// Логгер
+        /// </summary>
         private static Logger logger = LogManager.GetCurrentClassLogger();
         /// <summary>
         /// Идентификатор аккаунта пользователя
@@ -26,6 +29,9 @@ namespace RecsApp.forms
         /// Переменная для проверки свободного логина
         /// </summary>
         bool isUsernameTaken = false;
+        /// <summary>
+        /// Конструктор CreateAccountForm
+        /// </summary>
         public CreateAccount()
         {
             InitializeComponent();
@@ -242,6 +248,8 @@ namespace RecsApp.forms
                 this.labelPassword.Text = res.GetString("labelPasswordText");
                 this.labelConfirmPassword.Text = res.GetString("labelConfirmPasswordText");
                 this.buttonCreate.Text = res.GetString("buttonCreateText");
+
+                logger.Info("Локализация выполнена");
             }
         }
     }
