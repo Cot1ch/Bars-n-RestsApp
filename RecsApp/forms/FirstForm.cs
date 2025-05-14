@@ -4,6 +4,8 @@ using System.Drawing.Drawing2D;
 using System.Drawing;
 using RecsApp.forms;
 using NLog;
+using System.IO;
+using System.Resources;
 
 namespace RecsApp
 {
@@ -44,5 +46,27 @@ namespace RecsApp
 
         }
 
+        private void CreateAccount_FormClosed(object sender, EventArgs e)
+        {
+            this.ShowDialog();
+        }
+
+        private void EntryAccount_FormClosed(object sender, EventArgs e)
+        {
+            this.ShowDialog();
+        }
+
+        private void FirstForm_Load(object sender, EventArgs e)
+        {
+            using (var res = new ResXResourceSet(
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\FirstForm.resx"))
+            {
+                this.Text = res.GetString("FirstFormText");
+                this.labelMain.Text = res.GetString("labelMainText");
+                this.buttonCreateAccount.Text = res.GetString("buttonCreateAccountText");
+                this.buttonEntryAccount.Text = res.GetString("buttonEntryAccountText");
+            }
+            
+        }
     }
 }

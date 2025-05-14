@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateAccount));
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelCreateAccount = new System.Windows.Forms.Label();
+            this.labelName = new System.Windows.Forms.Label();
             this.richTextBoxCreateName = new System.Windows.Forms.RichTextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.labelLogin = new System.Windows.Forms.Label();
             this.richTextBoxCreateLogin = new System.Windows.Forms.RichTextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.labelPassword = new System.Windows.Forms.Label();
             this.buttonCreate = new System.Windows.Forms.Button();
             this.buttonBFCA = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
+            this.labelConfirmPassword = new System.Windows.Forms.Label();
             this.pbShowPassword = new System.Windows.Forms.PictureBox();
             this.textBoxCreatePassword = new System.Windows.Forms.TextBox();
             this.textBoxConfirmPassword = new System.Windows.Forms.TextBox();
@@ -46,29 +46,29 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbConfirmPassword)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // labelCreateAccount
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Verdana", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.label1.Location = new System.Drawing.Point(167, 116);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(742, 78);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Создание аккаунта";
+            this.labelCreateAccount.AutoSize = true;
+            this.labelCreateAccount.BackColor = System.Drawing.Color.Transparent;
+            this.labelCreateAccount.Font = new System.Drawing.Font("Verdana", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCreateAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.labelCreateAccount.Location = new System.Drawing.Point(167, 116);
+            this.labelCreateAccount.Name = "labelCreateAccount";
+            this.labelCreateAccount.Size = new System.Drawing.Size(742, 78);
+            this.labelCreateAccount.TabIndex = 0;
+            this.labelCreateAccount.Text = "Создание аккаунта";
             // 
-            // label2
+            // labelName
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.label2.Location = new System.Drawing.Point(406, 221);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 14);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Введите имя";
+            this.labelName.AutoSize = true;
+            this.labelName.BackColor = System.Drawing.Color.Transparent;
+            this.labelName.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.labelName.Location = new System.Drawing.Point(406, 221);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(92, 14);
+            this.labelName.TabIndex = 2;
+            this.labelName.Text = "Введите имя";
             // 
             // richTextBoxCreateName
             // 
@@ -81,17 +81,17 @@
             this.richTextBoxCreateName.TabIndex = 3;
             this.richTextBoxCreateName.Text = "";
             // 
-            // label3
+            // labelLogin
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.label3.Location = new System.Drawing.Point(406, 294);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(247, 14);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Придумайте логин (от 6 символов)";
+            this.labelLogin.AutoSize = true;
+            this.labelLogin.BackColor = System.Drawing.Color.Transparent;
+            this.labelLogin.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.labelLogin.Location = new System.Drawing.Point(406, 294);
+            this.labelLogin.Name = "labelLogin";
+            this.labelLogin.Size = new System.Drawing.Size(247, 14);
+            this.labelLogin.TabIndex = 4;
+            this.labelLogin.Text = "Придумайте логин (от 6 символов)";
             // 
             // richTextBoxCreateLogin
             // 
@@ -104,17 +104,17 @@
             this.richTextBoxCreateLogin.TabIndex = 5;
             this.richTextBoxCreateLogin.Text = "";
             // 
-            // label4
+            // labelPassword
             // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.label4.Location = new System.Drawing.Point(405, 373);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(257, 14);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Придумайте пароль (от 6 символов)";
+            this.labelPassword.AutoSize = true;
+            this.labelPassword.BackColor = System.Drawing.Color.Transparent;
+            this.labelPassword.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.labelPassword.Location = new System.Drawing.Point(405, 373);
+            this.labelPassword.Name = "labelPassword";
+            this.labelPassword.Size = new System.Drawing.Size(257, 14);
+            this.labelPassword.TabIndex = 6;
+            this.labelPassword.Text = "Придумайте пароль (от 6 символов)";
             // 
             // buttonCreate
             // 
@@ -146,17 +146,17 @@
             this.buttonBFCA.UseVisualStyleBackColor = false;
             this.buttonBFCA.Click += new System.EventHandler(this.buttonBFCA_Click);
             // 
-            // label5
+            // labelConfirmPassword
             // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.label5.Location = new System.Drawing.Point(405, 453);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(148, 14);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Подтвердите пароль";
+            this.labelConfirmPassword.AutoSize = true;
+            this.labelConfirmPassword.BackColor = System.Drawing.Color.Transparent;
+            this.labelConfirmPassword.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelConfirmPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.labelConfirmPassword.Location = new System.Drawing.Point(405, 453);
+            this.labelConfirmPassword.Name = "labelConfirmPassword";
+            this.labelConfirmPassword.Size = new System.Drawing.Size(148, 14);
+            this.labelConfirmPassword.TabIndex = 10;
+            this.labelConfirmPassword.Text = "Подтвердите пароль";
             // 
             // pbShowPassword
             // 
@@ -216,15 +216,15 @@
             this.Controls.Add(this.pbConfirmPassword);
             this.Controls.Add(this.textBoxConfirmPassword);
             this.Controls.Add(this.pbShowPassword);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.labelConfirmPassword);
             this.Controls.Add(this.buttonBFCA);
             this.Controls.Add(this.buttonCreate);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.labelPassword);
             this.Controls.Add(this.richTextBoxCreateLogin);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.labelLogin);
             this.Controls.Add(this.richTextBoxCreateName);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelName);
+            this.Controls.Add(this.labelCreateAccount);
             this.Controls.Add(this.textBoxCreatePassword);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -240,15 +240,15 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelCreateAccount;
+        private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.RichTextBox richTextBoxCreateName;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelLogin;
         private System.Windows.Forms.RichTextBox richTextBoxCreateLogin;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labelPassword;
         private System.Windows.Forms.Button buttonCreate;
         private System.Windows.Forms.Button buttonBFCA;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelConfirmPassword;
         private System.Windows.Forms.PictureBox pbShowPassword;
         private System.Windows.Forms.TextBox textBoxCreatePassword;
         private System.Windows.Forms.TextBox textBoxConfirmPassword;

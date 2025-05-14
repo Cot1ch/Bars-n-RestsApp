@@ -1535,4 +1535,37 @@
         RK5CYII=
 </value>
   </data>
+  <data name="EntryAccountText" xml:space="preserve">
+    <value>Вход в аккаунт</value>
+  </data>
+  <data name="labelEntryAccountText" xml:space="preserve">
+    <value>Вход в аккаунт</value>
+  </data>
+  <data name="labelLoginText" xml:space="preserve">
+    <value>Введите логин</value>
+  </data>
+  <data name="labelPasswordText" xml:space="preserve">
+    <value>Введите пароль</value>
+  </data>
+  <data name="buttonEntryText" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="buttonBFEAText" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="FillTheFields" xml:space="preserve">
+    <value>Пожалуйста, заполните все поля.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Ошибка.</value>
+  </data>
+  <data name="UserDoesNotExist" xml:space="preserve">
+    <value>Такого пользователя не существует</value>
+  </data>
+  <data name="WrongPassword" xml:space="preserve">
+    <value>Пароль неверный.</value>
+  </data>
+  <data name="HappenedError" xml:space="preserve">
+    <value>Произошла ошибка:</value>
+  </data>
 </root>

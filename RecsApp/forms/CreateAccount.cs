@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
+using System.Resources;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using BCrypt.Net;
@@ -64,117 +66,120 @@ namespace RecsApp.forms
 
         private void buttonCreate_Click(object sender, EventArgs e)
         {
-            var name = richTextBoxCreateName.Text.Trim();
-            var login = richTextBoxCreateLogin.Text.Trim();
-            var password = textBoxCreatePassword.Text.Trim();
-            var confirmPassword = textBoxConfirmPassword.Text.Trim();
-
-            logger.Trace("Попытка создания аккаунта");
-
-            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(login)
-                || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword))
+            using (var res = new ResXResourceSet(
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\CreateAccount.resx"))
             {
-                MessageBox.Show("Пожалуйста, заполните все поля.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                logger.Info("Не все поля заполнены");
-                return;
-            }
+                var name = richTextBoxCreateName.Text.Trim();
+                var login = richTextBoxCreateLogin.Text.Trim();
+                var password = textBoxCreatePassword.Text.Trim();
+                var confirmPassword = textBoxConfirmPassword.Text.Trim();
 
-            if (login.Length < 6)
-            {
-                MessageBox.Show($"Логин должен содержать не менее 6 символов.",
-                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                logger.Info("Логин должен содержать не менее 6 символов");
-                return;
-            }
+                logger.Trace("Попытка создания аккаунта");
 
-            if (password.Length < 6)
-            {
-                MessageBox.Show($"Пароль должен содержать не менее 6 символов.",
-                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                logger.Info("Пароль должен содержать не менее 6 символов");
-                return;
-            }
-
-            if (password != confirmPassword)
-            {
-                MessageBox.Show("Пароли не совпадают.",
-                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                logger.Info("Пароли не совпадают");
-                return;
-            }
-
-            if (!IsValidLoginOrPassword(login))
-            {
-                MessageBox.Show("Логин должен состоять только из английских букв и цифр.",
-                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                logger.Info("Логин должен состоять только из английских букв и цифр.");
-                return;
-            }
-
-            if (!IsValidLoginOrPassword(password))
-            {
-                MessageBox.Show("Пароль должен состоять только из английских букв и цифр.",
-                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                logger.Info("Пароль должен состоять только из английских букв и цифр.");
-                return;
-            }
-            try
-            {
-                using (var db = new AppDbContext())
+                if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(login)
+                    || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword))
                 {
-                    foreach (var user in db.Users)
-                    {
-                        if (user.username == login)
-                        {
-                            isUsernameTaken = true;
-                            break;
-                        }
-                    }
-                    if (isUsernameTaken)
-                    {
-                        MessageBox.Show("Логин уже занят. Пожалуйста, выберите другой логин.",
-                            "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        logger.Info("Логин уже занят");
-                        return;
-                    }
-
-                    var hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
-
-                    var newUser = new User
-                    {
-                        user_Id = Guid.NewGuid(),
-                        name = name,
-                        username = login,
-                        password_hash = password
-                    };
-
-                    var questionnaire = new Questionnaire() { user_Id = newUser.user_Id };
-                    userId = newUser.user_Id;
-                    db.Users.Add(newUser);
-                    db.Questionnaires.Add(questionnaire);
-                    db.SaveChanges();
-
-                    MessageBox.Show("Аккаунт успешно создан.", "Успех",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    logger.Info("Аккаунт успешно создан");
-
-                    richTextBoxCreateName.Clear();
-                    richTextBoxCreateLogin.Clear();
-                    textBoxCreatePassword.Clear();
-                    textBoxConfirmPassword.Clear(); 
-
-                    new MainForm(this.userId).Show();
-                    logger.Trace("Отображена главная форма");
-                    this.Hide();
-                    logger.Trace("Форма создания аккаунта закрыта");
+                    MessageBox.Show(res.GetString("FillTheFields"), res.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Info("Не все поля заполнены");
+                    return;
                 }
+
+                if (login.Length < 6)
+                {
+                    MessageBox.Show(res.GetString("CheckLogin"),
+                        res.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Info("Логин должен содержать не менее 6 символов");
+                    return;
+                }
+
+                if (password.Length < 6)
+                {
+                    MessageBox.Show(res.GetString("CheckPassword"),
+                        res.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Info("Пароль должен содержать не менее 6 символов");
+                    return;
+                }
+
+                if (password != confirmPassword)
+                {
+                    MessageBox.Show(res.GetString("PasswordMatch"),
+                        res.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Info("Пароли не совпадают");
+                    return;
+                }
+
+                if (!IsValidLoginOrPassword(login))
+                {
+                    MessageBox.Show(res.GetString("IsValidLogin"),
+                        res.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Info("Логин должен состоять только из английских букв и цифр.");
+                    return;
+                }
+
+                if (!IsValidLoginOrPassword(password))
+                {
+                    MessageBox.Show(res.GetString("IsValidPassword"),
+                        res.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Info("Пароль должен состоять только из английских букв и цифр.");
+                    return;
+                }
+                try
+                {
+                    using (var db = new AppDbContext())
+                    {
+                        foreach (var user in db.Users)
+                        {
+                            if (user.username == login)
+                            {
+                                isUsernameTaken = true;
+                                break;
+                            }
+                        }
+                        if (isUsernameTaken)
+                        {
+                            MessageBox.Show(res.GetString("LoginAlreadyUse"),
+                                res.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            logger.Info("Логин уже занят");
+                            return;
+                        }
+
+                        var hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
+
+                        var newUser = new User
+                        {
+                            user_Id = Guid.NewGuid(),
+                            name = name,
+                            username = login,
+                            password_hash = password
+                        };
+
+                        var questionnaire = new Questionnaire() { user_Id = newUser.user_Id };
+                        userId = newUser.user_Id;
+                        db.Users.Add(newUser);
+                        db.Questionnaires.Add(questionnaire);
+                        db.SaveChanges();
+
+                        MessageBox.Show(res.GetString("AccountSucces"), res.GetString("Success"),
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        logger.Info("Аккаунта успешно создан");
+
+                        richTextBoxCreateName.Clear();
+                        richTextBoxCreateLogin.Clear();
+                        textBoxCreatePassword.Clear();
+                        textBoxConfirmPassword.Clear();
+
+                        new MainForm(this.userId).Show();
+                        this.Hide();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"{res.GetString("HappenedError")} {ex.Message}",
+                        res.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Info($"Произошла ошибка: {ex.Message}");
+                }       
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Произошла ошибка: {ex.Message}",
-                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                logger.Info($"Произошла ошибка: {ex.Message}");
-            }
+            
         }
         /// <summary>
         /// Метод для проверки правильности пароля
@@ -217,6 +222,22 @@ namespace RecsApp.forms
             else
             {
                 logger.Info("Поле пароля пусто");
+            }
+        }
+
+        private void CreateAccount_Load(object sender, EventArgs e)
+        {
+            using (var res = new ResXResourceSet(
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\CreateAccount.resx"))
+            {
+                this.Text = res.GetString("CreateAccountText");
+                this.labelCreateAccount.Text = res.GetString("labelCreateAccountText");
+                this.labelName.Text = res.GetString("labelNameText");
+                this.labelLogin.Text = res.GetString("labelLoginText");
+                this.buttonBFCA.Text = res.GetString("buttonBFCAText");
+                this.labelPassword.Text = res.GetString("labelPasswordText");
+                this.labelConfirmPassword.Text = res.GetString("labelConfirmPasswordText");
+                this.buttonCreate.Text = res.GetString("buttonCreateText");
             }
         }
     }

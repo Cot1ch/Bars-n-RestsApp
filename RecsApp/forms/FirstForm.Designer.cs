@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FirstForm));
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelMain = new System.Windows.Forms.Label();
             this.buttonCreateAccount = new System.Windows.Forms.Button();
             this.buttonEntryAccount = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // labelMain
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Verdana", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.label1.Location = new System.Drawing.Point(277, 207);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(554, 78);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Место для вас";
+            this.labelMain.AutoSize = true;
+            this.labelMain.BackColor = System.Drawing.Color.Transparent;
+            this.labelMain.Font = new System.Drawing.Font("Verdana", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelMain.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
+            this.labelMain.Location = new System.Drawing.Point(277, 207);
+            this.labelMain.Name = "labelMain";
+            this.labelMain.Size = new System.Drawing.Size(554, 78);
+            this.labelMain.TabIndex = 0;
+            this.labelMain.Text = "Место для вас";
             // 
             // buttonCreateAccount
             // 
@@ -85,13 +85,14 @@
             this.ClientSize = new System.Drawing.Size(1084, 761);
             this.Controls.Add(this.buttonEntryAccount);
             this.Controls.Add(this.buttonCreateAccount);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "FirstForm";
             this.Text = "Место для вас";
+            this.Load += new System.EventHandler(this.FirstForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -99,7 +100,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelMain;
         private System.Windows.Forms.Button buttonCreateAccount;
         private System.Windows.Forms.Button buttonEntryAccount;
     }
