@@ -240,7 +240,7 @@ namespace RecsApp
             var saveFileDialog = new SaveFileDialog
             {
                 Filter = "Excel файлы (*.xlsx)|*.xlsx",
-                FileName = "UserReport.xlsx"
+                FileName = $"Отчет {DateTime.Now.ToShortDateString()}.xlsx"
             };
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)

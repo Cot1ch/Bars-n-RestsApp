@@ -238,7 +238,7 @@ namespace RecsApp.forms
         private void CreateAccount_Load(object sender, EventArgs e)
         {
             using (var res = new ResXResourceSet(
-                $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resource1.resx"))
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resources.resx"))
             {
                 this.Text = res.GetString("CreateAccountText");                
                 this.labelCreateAccount.Text = res.GetString("labelCreateAccountText");

@@ -131,7 +131,7 @@ namespace RecsApp
         public static void AddEstablishmentsToDB()
         {
             using (var res = new ResXResourceSet(
-                $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resource1.resx"))
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resources.resx"))
             {
                 var path = fileName;
                 logger.Info($"Имя файла с заведениями: {path}");
@@ -290,7 +290,7 @@ namespace RecsApp
         private static List<Guid> GetSmthFromTable(IXLWorkbook wb, string tableName, string str)
         {
             using (var res = new ResXResourceSet(
-                $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resource1.resx"))
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resources.resx"))
             {
                 var ret = new List<Guid>();
                 var dict = FillDict(wb, tableName);
