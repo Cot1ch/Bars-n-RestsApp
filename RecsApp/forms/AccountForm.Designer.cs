@@ -274,6 +274,7 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1100, 800);
             this.MinimumSize = new System.Drawing.Size(1100, 800);
+            this.Icon = Properties.Resources._326497_account_circle_icon;
             this.Name = "AccountForm";
             this.Text = "Личный кабинет";
             this.Load += new System.EventHandler(this.AccountForm_Load);

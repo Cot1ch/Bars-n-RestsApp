@@ -61,6 +61,26 @@ namespace RecsApp.Properties {
         }
         
         /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+        /// </summary>
+        internal static System.Drawing.Icon _326497_account_circle_icon {
+            get {
+                object obj = ResourceManager.GetObject("_326497_account_circle_icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+        /// </summary>
+        internal static System.Drawing.Icon _753929_restaurant_cooking_eating_food_kitchen_icon {
+            get {
+                object obj = ResourceManager.GetObject("_753929_restaurant_cooking_eating_food_kitchen_icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap BackImage {

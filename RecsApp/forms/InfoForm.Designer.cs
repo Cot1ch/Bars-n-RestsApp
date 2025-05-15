@@ -362,6 +362,7 @@
             this.Controls.Add(this.pictureBoxEstImage);
             this.KeyPreview = true;
             this.MinimumSize = new System.Drawing.Size(1100, 800);
+            this.Icon = Properties.Resources._753929_restaurant_cooking_eating_food_kitchen_icon;
             this.Name = "InfoForm";
             this.Text = "Информация о заведении";
             this.Load += new System.EventHandler(this.InfoForm_Load);

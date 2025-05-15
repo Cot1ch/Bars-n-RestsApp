@@ -350,7 +350,13 @@ namespace RecsApp
                     worksheet.Columns().AdjustToContents();
 
                     workbook.SaveAs(saveFileDialog.FileName);
-                    MessageBox.Show("Отчёт сохранён!");
+                    using (var res = new ResXResourceSet(
+                        $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resources.resx"))
+                    {
+                        MessageBox.Show(res.GetString("ReportSaved"),
+                            res.GetString("Success"), 
+                            MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    }
                 }
             }
         }
