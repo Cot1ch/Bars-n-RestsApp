@@ -51,7 +51,7 @@
             this.labelCreateAccount.BackColor = System.Drawing.Color.Transparent;
             this.labelCreateAccount.Font = new System.Drawing.Font("Verdana", 38F, System.Drawing.FontStyle.Bold);
             this.labelCreateAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelCreateAccount.Location = new System.Drawing.Point(162, 156);
+            this.labelCreateAccount.Location = new System.Drawing.Point(201, 154);
             this.labelCreateAccount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCreateAccount.Name = "labelCreateAccount";
             this.labelCreateAccount.Size = new System.Drawing.Size(742, 78);
@@ -64,7 +64,7 @@
             this.labelName.BackColor = System.Drawing.Color.Transparent;
             this.labelName.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelName.Location = new System.Drawing.Point(335, 248);
+            this.labelName.Location = new System.Drawing.Point(369, 249);
             this.labelName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(111, 18);
@@ -76,7 +76,7 @@
             this.richTextBoxCreateName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.richTextBoxCreateName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBoxCreateName.Font = new System.Drawing.Font("Verdana", 11F);
-            this.richTextBoxCreateName.Location = new System.Drawing.Point(338, 270);
+            this.richTextBoxCreateName.Location = new System.Drawing.Point(372, 271);
             this.richTextBoxCreateName.Margin = new System.Windows.Forms.Padding(4);
             this.richTextBoxCreateName.Multiline = false;
             this.richTextBoxCreateName.Name = "richTextBoxCreateName";
@@ -90,7 +90,7 @@
             this.labelLogin.BackColor = System.Drawing.Color.Transparent;
             this.labelLogin.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelLogin.Location = new System.Drawing.Point(335, 324);
+            this.labelLogin.Location = new System.Drawing.Point(369, 325);
             this.labelLogin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLogin.Name = "labelLogin";
             this.labelLogin.Size = new System.Drawing.Size(299, 18);
@@ -102,7 +102,7 @@
             this.richTextBoxCreateLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.richTextBoxCreateLogin.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBoxCreateLogin.Font = new System.Drawing.Font("Verdana", 11F);
-            this.richTextBoxCreateLogin.Location = new System.Drawing.Point(338, 346);
+            this.richTextBoxCreateLogin.Location = new System.Drawing.Point(372, 347);
             this.richTextBoxCreateLogin.Margin = new System.Windows.Forms.Padding(4);
             this.richTextBoxCreateLogin.Multiline = false;
             this.richTextBoxCreateLogin.Name = "richTextBoxCreateLogin";
@@ -116,7 +116,7 @@
             this.labelPassword.BackColor = System.Drawing.Color.Transparent;
             this.labelPassword.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelPassword.Location = new System.Drawing.Point(335, 400);
+            this.labelPassword.Location = new System.Drawing.Point(369, 401);
             this.labelPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPassword.Name = "labelPassword";
             this.labelPassword.Size = new System.Drawing.Size(313, 18);
@@ -129,7 +129,7 @@
             this.buttonCreate.FlatAppearance.BorderSize = 0;
             this.buttonCreate.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonCreate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.buttonCreate.Location = new System.Drawing.Point(421, 570);
+            this.buttonCreate.Location = new System.Drawing.Point(455, 571);
             this.buttonCreate.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCreate.Name = "buttonCreate";
             this.buttonCreate.Size = new System.Drawing.Size(200, 40);
@@ -159,7 +159,7 @@
             this.labelConfirmPassword.BackColor = System.Drawing.Color.Transparent;
             this.labelConfirmPassword.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelConfirmPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelConfirmPassword.Location = new System.Drawing.Point(335, 479);
+            this.labelConfirmPassword.Location = new System.Drawing.Point(369, 480);
             this.labelConfirmPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelConfirmPassword.Name = "labelConfirmPassword";
             this.labelConfirmPassword.Size = new System.Drawing.Size(181, 18);
@@ -171,7 +171,7 @@
             this.pbShowPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.pbShowPassword.BackgroundImage = global::RecsApp.Properties.Resources.visible_password_security_protect_icon;
             this.pbShowPassword.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbShowPassword.Location = new System.Drawing.Point(679, 422);
+            this.pbShowPassword.Location = new System.Drawing.Point(713, 423);
             this.pbShowPassword.Margin = new System.Windows.Forms.Padding(4);
             this.pbShowPassword.Name = "pbShowPassword";
             this.pbShowPassword.Size = new System.Drawing.Size(38, 38);
@@ -184,7 +184,7 @@
             this.textBoxCreatePassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.textBoxCreatePassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxCreatePassword.Font = new System.Drawing.Font("Verdana", 11F);
-            this.textBoxCreatePassword.Location = new System.Drawing.Point(338, 422);
+            this.textBoxCreatePassword.Location = new System.Drawing.Point(372, 423);
             this.textBoxCreatePassword.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxCreatePassword.Multiline = true;
             this.textBoxCreatePassword.Name = "textBoxCreatePassword";
@@ -197,7 +197,7 @@
             this.textBoxConfirmPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.textBoxConfirmPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxConfirmPassword.Font = new System.Drawing.Font("Verdana", 11F);
-            this.textBoxConfirmPassword.Location = new System.Drawing.Point(338, 501);
+            this.textBoxConfirmPassword.Location = new System.Drawing.Point(372, 502);
             this.textBoxConfirmPassword.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxConfirmPassword.Multiline = true;
             this.textBoxConfirmPassword.Name = "textBoxConfirmPassword";
@@ -210,7 +210,7 @@
             this.pbConfirmPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.pbConfirmPassword.BackgroundImage = global::RecsApp.Properties.Resources.visible_password_security_protect_icon;
             this.pbConfirmPassword.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbConfirmPassword.Location = new System.Drawing.Point(679, 501);
+            this.pbConfirmPassword.Location = new System.Drawing.Point(713, 502);
             this.pbConfirmPassword.Margin = new System.Windows.Forms.Padding(4);
             this.pbConfirmPassword.Name = "pbConfirmPassword";
             this.pbConfirmPassword.Size = new System.Drawing.Size(38, 38);
@@ -224,7 +224,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImage = Properties.Resources.BackImage;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1924, 1175);
+            this.ClientSize = new System.Drawing.Size(1082, 753);
             this.Controls.Add(this.pbConfirmPassword);
             this.Controls.Add(this.textBoxConfirmPassword);
             this.Controls.Add(this.pbShowPassword);
@@ -238,14 +238,12 @@
             this.Controls.Add(this.labelName);
             this.Controls.Add(this.labelCreateAccount);
             this.Controls.Add(this.textBoxCreatePassword);
-            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "CreateAccount";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Создание аккаунта";
             this.Load += new System.EventHandler(this.CreateAccount_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbShowPassword)).EndInit();

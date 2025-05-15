@@ -135,7 +135,7 @@
             this.labelLink.AutoSize = true;
             this.labelLink.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelLink.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelLink.Location = new System.Drawing.Point(522, 707);
+            this.labelLink.Location = new System.Drawing.Point(522, 717);
             this.labelLink.Name = "labelLink";
             this.labelLink.Size = new System.Drawing.Size(176, 25);
             this.labelLink.TabIndex = 27;
