@@ -151,6 +151,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Resources\2216360_google map_location_map_navigation_position_icon.ico" />
     <None Include="Resources\753929_restaurant_cooking_eating_food_kitchen_icon.ico" />
     <None Include="Resources\326497_account_circle_icon.ico" />
     <None Include="Resources\photo_2025-04-26_22-37-15.jpg" />

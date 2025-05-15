@@ -111,7 +111,8 @@ namespace RecsApp.forms
                                 user.password_hash = newHashedPassword;
                                 db.SaveChanges();
 
-                                isPasswordValid = BCrypt.Net.BCrypt.Verify(password, user.password_hash);
+                                isPasswordValid = 
+                                    BCrypt.Net.BCrypt.Verify(password, user.password_hash);
                             }
                             else
                             {
@@ -122,9 +123,14 @@ namespace RecsApp.forms
                         if (!isPasswordValid)
                         {
                             MessageBox.Show(res.GetString("WrongPassword"),
-                                res.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                res.GetString("Error"), 
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
+
+                        MessageBox.Show(res.GetString("EntrySuccess"),
+                            res.GetString("Success"), 
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         this.Hide();
                         new MainForm(user.user_Id).Show();
@@ -133,7 +139,8 @@ namespace RecsApp.forms
                 catch (Exception ex)
                 {
                     MessageBox.Show($"{res.GetString("HappenedError")} {ex.Message}",
-                        res.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        res.GetString("Error"), 
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

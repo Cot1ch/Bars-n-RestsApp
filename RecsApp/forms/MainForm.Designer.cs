@@ -30,7 +30,6 @@ namespace RecsApp
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FirstForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnAccount = new System.Windows.Forms.Button();
@@ -69,6 +68,7 @@ namespace RecsApp
             // 
             // dgvEstablishments
             // 
+            this.dgvEstablishments.AllowUserToResizeRows = false;
             this.dgvEstablishments.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -178,6 +178,7 @@ namespace RecsApp
             // 
             // dgvMayLike
             // 
+            this.dgvMayLike.AllowUserToResizeRows = false;
             this.dgvMayLike.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvMayLike.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -264,8 +265,8 @@ namespace RecsApp
             this.Controls.Add(this.labelEstsList);
             this.Controls.Add(this.dgvEstablishments);
             this.Controls.Add(this.btnAccount);
+            this.Icon = global::RecsApp.Properties.Resources._2216360_google_map_location_map_navigation_position_icon;
             this.MinimumSize = new System.Drawing.Size(1100, 800);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Главная форма";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);

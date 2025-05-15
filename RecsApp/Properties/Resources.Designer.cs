@@ -63,6 +63,16 @@ namespace RecsApp.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
         /// </summary>
+        internal static System.Drawing.Icon _2216360_google_map_location_map_navigation_position_icon {
+            get {
+                object obj = ResourceManager.GetObject("_2216360_google_map_location_map_navigation_position_icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+        /// </summary>
         internal static System.Drawing.Icon _326497_account_circle_icon {
             get {
                 object obj = ResourceManager.GetObject("_326497_account_circle_icon", resourceCulture);

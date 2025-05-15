@@ -127,6 +127,9 @@
   <data name="visible_password_security_protect_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\7148754_visible_password_security_protect_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="_2216360_google_map_location_map_navigation_position_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2216360_google map_location_map_navigation_position_icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="_326497_account_circle_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\326497_account_circle_icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

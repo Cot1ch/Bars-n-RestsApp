@@ -242,7 +242,7 @@ namespace RecsApp.forms
             {
                 this.Text = res.GetString("CreateAccountText");                
                 this.labelCreateAccount.Text = res.GetString("labelCreateAccountText");
-                this.labelName.Text = res.GetString("labelNameText");
+                this.labelName.Text = res.GetString("labelCreateNameText");
                 this.labelLogin.Text = res.GetString("labelLoginText");
                 this.buttonBFCA.Text = res.GetString("buttonBFCAText");
                 this.labelPassword.Text = res.GetString("labelPasswordText");

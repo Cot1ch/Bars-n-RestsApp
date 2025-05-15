@@ -237,12 +237,13 @@
             // 
             this.btnSaveReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSaveReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(147)))), ((int)(((byte)(119)))));
+            this.btnSaveReport.FlatAppearance.BorderSize = 0;
             this.btnSaveReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveReport.Font = new System.Drawing.Font("Verdana", 11F);
             this.btnSaveReport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.btnSaveReport.Location = new System.Drawing.Point(40, 697);
+            this.btnSaveReport.Location = new System.Drawing.Point(41, 695);
             this.btnSaveReport.Name = "btnSaveReport";
-            this.btnSaveReport.Size = new System.Drawing.Size(200, 35);
+            this.btnSaveReport.Size = new System.Drawing.Size(157, 35);
             this.btnSaveReport.TabIndex = 17;
             this.btnSaveReport.Text = "Скачать отчет";
             this.btnSaveReport.UseVisualStyleBackColor = false;
@@ -271,10 +272,10 @@
             this.Controls.Add(this.labelCategory);
             this.Controls.Add(this.labelLogin);
             this.Controls.Add(this.labelName);
+            this.Icon = global::RecsApp.Properties.Resources._326497_account_circle_icon;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1100, 800);
             this.MinimumSize = new System.Drawing.Size(1100, 800);
-            this.Icon = Properties.Resources._326497_account_circle_icon;
             this.Name = "AccountForm";
             this.Text = "Личный кабинет";
             this.Load += new System.EventHandler(this.AccountForm_Load);
