@@ -62,12 +62,12 @@
             // 
             this.labelName.AutoSize = true;
             this.labelName.BackColor = System.Drawing.Color.Transparent;
-            this.labelName.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelName.Font = new System.Drawing.Font("Verdana", 11F, System.Drawing.FontStyle.Bold);
             this.labelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelName.Location = new System.Drawing.Point(369, 249);
+            this.labelName.Location = new System.Drawing.Point(369, 244);
             this.labelName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(111, 18);
+            this.labelName.Size = new System.Drawing.Size(150, 23);
             this.labelName.TabIndex = 2;
             this.labelName.Text = "Введите имя";
             // 
@@ -88,12 +88,12 @@
             // 
             this.labelLogin.AutoSize = true;
             this.labelLogin.BackColor = System.Drawing.Color.Transparent;
-            this.labelLogin.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelLogin.Font = new System.Drawing.Font("Verdana", 11F, System.Drawing.FontStyle.Bold);
             this.labelLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelLogin.Location = new System.Drawing.Point(369, 325);
+            this.labelLogin.Location = new System.Drawing.Point(369, 320);
             this.labelLogin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLogin.Name = "labelLogin";
-            this.labelLogin.Size = new System.Drawing.Size(299, 18);
+            this.labelLogin.Size = new System.Drawing.Size(399, 23);
             this.labelLogin.TabIndex = 4;
             this.labelLogin.Text = "Придумайте логин (от 6 символов)";
             // 
@@ -114,12 +114,12 @@
             // 
             this.labelPassword.AutoSize = true;
             this.labelPassword.BackColor = System.Drawing.Color.Transparent;
-            this.labelPassword.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPassword.Font = new System.Drawing.Font("Verdana", 11F, System.Drawing.FontStyle.Bold);
             this.labelPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelPassword.Location = new System.Drawing.Point(369, 401);
+            this.labelPassword.Location = new System.Drawing.Point(368, 396);
             this.labelPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(313, 18);
+            this.labelPassword.Size = new System.Drawing.Size(413, 23);
             this.labelPassword.TabIndex = 6;
             this.labelPassword.Text = "Придумайте пароль (от 6 символов)";
             // 
@@ -147,7 +147,7 @@
             this.buttonBFCA.Location = new System.Drawing.Point(17, 16);
             this.buttonBFCA.Margin = new System.Windows.Forms.Padding(4);
             this.buttonBFCA.Name = "buttonBFCA";
-            this.buttonBFCA.Size = new System.Drawing.Size(100, 30);
+            this.buttonBFCA.Size = new System.Drawing.Size(100, 35);
             this.buttonBFCA.TabIndex = 9;
             this.buttonBFCA.Text = "Назад";
             this.buttonBFCA.UseVisualStyleBackColor = false;
@@ -157,12 +157,12 @@
             // 
             this.labelConfirmPassword.AutoSize = true;
             this.labelConfirmPassword.BackColor = System.Drawing.Color.Transparent;
-            this.labelConfirmPassword.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelConfirmPassword.Font = new System.Drawing.Font("Verdana", 11F, System.Drawing.FontStyle.Bold);
             this.labelConfirmPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelConfirmPassword.Location = new System.Drawing.Point(369, 480);
+            this.labelConfirmPassword.Location = new System.Drawing.Point(369, 471);
             this.labelConfirmPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelConfirmPassword.Name = "labelConfirmPassword";
-            this.labelConfirmPassword.Size = new System.Drawing.Size(181, 18);
+            this.labelConfirmPassword.Size = new System.Drawing.Size(236, 23);
             this.labelConfirmPassword.TabIndex = 10;
             this.labelConfirmPassword.Text = "Подтвердите пароль";
             // 
@@ -197,7 +197,7 @@
             this.textBoxConfirmPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.textBoxConfirmPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxConfirmPassword.Font = new System.Drawing.Font("Verdana", 11F);
-            this.textBoxConfirmPassword.Location = new System.Drawing.Point(372, 502);
+            this.textBoxConfirmPassword.Location = new System.Drawing.Point(372, 498);
             this.textBoxConfirmPassword.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxConfirmPassword.Multiline = true;
             this.textBoxConfirmPassword.Name = "textBoxConfirmPassword";
@@ -210,7 +210,7 @@
             this.pbConfirmPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.pbConfirmPassword.BackgroundImage = global::RecsApp.Properties.Resources.visible_password_security_protect_icon;
             this.pbConfirmPassword.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbConfirmPassword.Location = new System.Drawing.Point(713, 502);
+            this.pbConfirmPassword.Location = new System.Drawing.Point(713, 498);
             this.pbConfirmPassword.Margin = new System.Windows.Forms.Padding(4);
             this.pbConfirmPassword.Name = "pbConfirmPassword";
             this.pbConfirmPassword.Size = new System.Drawing.Size(38, 38);
@@ -222,7 +222,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackgroundImage = Properties.Resources.BackImage;
+            this.BackgroundImage = global::RecsApp.Properties.Resources.BackImage;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1082, 753);
             this.Controls.Add(this.pbConfirmPassword);

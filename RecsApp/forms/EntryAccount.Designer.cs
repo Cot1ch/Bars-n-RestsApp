@@ -46,7 +46,7 @@
             this.labelEntryAccount.BackColor = System.Drawing.Color.Transparent;
             this.labelEntryAccount.Font = new System.Drawing.Font("Verdana", 40F, System.Drawing.FontStyle.Bold);
             this.labelEntryAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelEntryAccount.Location = new System.Drawing.Point(225, 205);
+            this.labelEntryAccount.Location = new System.Drawing.Point(232, 208);
             this.labelEntryAccount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelEntryAccount.Name = "labelEntryAccount";
             this.labelEntryAccount.Size = new System.Drawing.Size(621, 80);
@@ -103,7 +103,7 @@
             this.buttonBFEA.Location = new System.Drawing.Point(17, 16);
             this.buttonBFEA.Margin = new System.Windows.Forms.Padding(4);
             this.buttonBFEA.Name = "buttonBFEA";
-            this.buttonBFEA.Size = new System.Drawing.Size(120, 30);
+            this.buttonBFEA.Size = new System.Drawing.Size(120, 35);
             this.buttonBFEA.TabIndex = 6;
             this.buttonBFEA.Text = "Назад";
             this.buttonBFEA.UseVisualStyleBackColor = false;
@@ -152,7 +152,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = Properties.Resources.BackImage;
+            this.BackgroundImage = global::RecsApp.Properties.Resources.BackImage;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1082, 753);
             this.Controls.Add(this.pictureBoxShowEntryPassword);

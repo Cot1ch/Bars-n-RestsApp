@@ -235,7 +235,7 @@
             // 
             // btnSaveReport
             // 
-            this.btnSaveReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSaveReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(147)))), ((int)(((byte)(119)))));
             this.btnSaveReport.FlatAppearance.BorderSize = 0;
             this.btnSaveReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
