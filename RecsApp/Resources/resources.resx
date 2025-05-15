@@ -135,7 +135,7 @@
   <data name="UseDefFile" xml:space="preserve">
     <value>Ваш файл некорректен. Будет использован файл по умолчанию</value>
   </data>
-    <data name="AccessDenied" xml:space="preserve">
+  <data name="AccessDenied" xml:space="preserve">
     <value>Доступ к аккаунту потерян</value>
   </data>
   <data name="btnSaveChangesText" xml:space="preserve">
@@ -160,13 +160,13 @@
     <value>Категория заведения</value>
   </data>
   <data name="labelFoodText" xml:space="preserve">
-    <value>Кухня заведения</value>
+    <value>Кухня</value>
   </data>
   <data name="labelLoginText" xml:space="preserve">
-    <value>Логин</value>
+    <value>Придумайте логин (от 6 символов)</value>
   </data>
   <data name="labelNameText" xml:space="preserve">
-    <value>Имя</value>
+    <value>Название</value>
   </data>
   <data name="labelTypeText" xml:space="preserve">
     <value>Тип заведения</value>
@@ -180,14 +180,8 @@
   <data name="labelCreateAccountText" xml:space="preserve">
     <value>Создание аккаунта</value>
   </data>
-  <data name="labelNameText" xml:space="preserve">
-    <value>Введите имя</value>
-  </data>
   <data name="labelPasswordText" xml:space="preserve">
     <value>Придумайте пароль (от 6 символов)</value>
-  </data>
-  <data name="labelLoginText" xml:space="preserve">
-    <value>Придумайте логин (от 6 символов)</value>
   </data>
   <data name="labelConfirmPasswordText" xml:space="preserve">
     <value>Подтвердите пароль</value>
@@ -200,9 +194,6 @@
   </data>
   <data name="FillTheFields" xml:space="preserve">
     <value>Пожалуйста, заполните все поля.</value>
-  </data>
-  <data name="Error" xml:space="preserve">
-    <value>Ошибка</value>
   </data>
   <data name="CheckLogin" xml:space="preserve">
     <value>Логин должен содержать не менее 6 символов.</value>
@@ -243,7 +234,7 @@
   <data name="buttonEntryAccountText" xml:space="preserve">
     <value>Вход</value>
   </data>
-    <data name="AccsessDenied" xml:space="preserve">
+  <data name="AccsessDenied" xml:space="preserve">
     <value>Доступ к аккаунту потерян</value>
   </data>
   <data name="AlreadyAdd" xml:space="preserve">
@@ -260,9 +251,6 @@
   </data>
   <data name="Currency" xml:space="preserve">
     <value>руб.</value>
-  </data>
-  <data name="Error" xml:space="preserve">
-    <value>Ошибка</value>
   </data>
   <data name="EstablishmentAdded" xml:space="preserve">
     <value>Заведение добавлено</value>
@@ -285,20 +273,11 @@
   <data name="labelDescriptionText" xml:space="preserve">
     <value>Описание</value>
   </data>
-  <data name="labelFoodText" xml:space="preserve">
-    <value>Кухня</value>
-  </data>
   <data name="labelLinkText" xml:space="preserve">
     <value>Сайт заведения</value>
   </data>
-  <data name="labelNameText" xml:space="preserve">
-    <value>Название</value>
-  </data>
   <data name="labelRatingText" xml:space="preserve">
     <value>Оценка</value>
-  </data>
-  <data name="labelTypeText" xml:space="preserve">
-    <value>Тип заведения</value>
   </data>
   <data name="linkLabelToWebSiteText" xml:space="preserve">
     <value>Ссылка отсутствует</value>
@@ -318,7 +297,7 @@
   <data name="InfoFormText" xml:space="preserve">
     <value>Информация о заведении</value>
   </data>
-    <data name="btnAccountText" xml:space="preserve">
+  <data name="btnAccountText" xml:space="preserve">
     <value>Аккаунт</value>
   </data>
   <data name="EmptyEsts" xml:space="preserve">
@@ -371,5 +350,8 @@
   </data>
   <data name="LoadFile" xml:space="preserve">
     <value>Файл загружен</value>
+  </data>
+  <data name="UserDoesNotExist" xml:space="preserve">
+    <value>Пользователь не найден</value>
   </data>
 </root>
