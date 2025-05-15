@@ -98,7 +98,7 @@
             this.textBoxName.Font = new System.Drawing.Font("Verdana", 11F);
             this.textBoxName.Location = new System.Drawing.Point(40, 105);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(287, 23);
+            this.textBoxName.Size = new System.Drawing.Size(485, 23);
             this.textBoxName.TabIndex = 5;
             // 
             // textBoxLogin
@@ -109,7 +109,7 @@
             this.textBoxLogin.Location = new System.Drawing.Point(40, 165);
             this.textBoxLogin.Name = "textBoxLogin";
             this.textBoxLogin.ReadOnly = true;
-            this.textBoxLogin.Size = new System.Drawing.Size(287, 23);
+            this.textBoxLogin.Size = new System.Drawing.Size(485, 23);
             this.textBoxLogin.TabIndex = 6;
             // 
             // checkedListBoxCategory
@@ -240,9 +240,9 @@
             this.btnSaveReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveReport.Font = new System.Drawing.Font("Verdana", 11F);
             this.btnSaveReport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.btnSaveReport.Location = new System.Drawing.Point(40, 692);
+            this.btnSaveReport.Location = new System.Drawing.Point(40, 697);
             this.btnSaveReport.Name = "btnSaveReport";
-            this.btnSaveReport.Size = new System.Drawing.Size(200, 40);
+            this.btnSaveReport.Size = new System.Drawing.Size(200, 35);
             this.btnSaveReport.TabIndex = 17;
             this.btnSaveReport.Text = "Скачать отчет";
             this.btnSaveReport.UseVisualStyleBackColor = false;
