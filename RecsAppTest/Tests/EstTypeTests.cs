@@ -1,8 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RecsApp;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+
 
 namespace RecsAppTest
 {

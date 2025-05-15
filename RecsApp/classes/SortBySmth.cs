@@ -2,7 +2,7 @@
 
 namespace RecsApp
 {
-    internal class SortBySmth : IComparer<Establishment>
+    public class SortBySmth : IComparer<Establishment>
     {
         /// <summary>
         /// Значение, задающее тип сортировки
