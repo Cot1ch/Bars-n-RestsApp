@@ -183,7 +183,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Resources\resources.resx" />
+    <EmbeddedResource Include="Resources\resources.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

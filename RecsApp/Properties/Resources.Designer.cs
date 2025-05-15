@@ -63,9 +63,9 @@ namespace RecsApp.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap eye_password_see_view_icon {
+        internal static System.Drawing.Bitmap BackImage {
             get {
-                object obj = ResourceManager.GetObject("eye_password_see_view_icon", resourceCulture);
+                object obj = ResourceManager.GetObject("BackImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace RecsApp.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap photo_2025_04_26_22_37_15 {
+        internal static System.Drawing.Bitmap eye_password_see_view_icon {
             get {
-                object obj = ResourceManager.GetObject("photo_2025_04_26_22_37_15", resourceCulture);
+                object obj = ResourceManager.GetObject("eye_password_see_view_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

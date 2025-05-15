@@ -185,7 +185,6 @@
             this.textBoxEstRating.Size = new System.Drawing.Size(66, 22);
             this.textBoxEstRating.TabIndex = 24;
             this.textBoxEstRating.TabStop = false;
-            this.textBoxEstRating.TextChanged += new System.EventHandler(this.textBoxEstRating_TextChanged);
             // 
             // textBoxEstType
             // 
