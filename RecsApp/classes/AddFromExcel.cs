@@ -28,7 +28,7 @@ namespace RecsApp
         public static void AddTypesCatsFoodsChecksToDB()
         {
             using (var res = new ResXResourceSet(
-                $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resource1.resx"))
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resources.resx"))
             {
                 var path = fileName;
 ;               logger.Info($"Имя файла с заведениями: {path}");
@@ -193,7 +193,8 @@ namespace RecsApp
                         var stringSimilar = row.Cell(11).Value.ToString();
 
 
-                        if (string.IsNullOrWhiteSpace(name) || string.IsNullOrEmpty(description) ||
+                        if (string.IsNullOrWhiteSpace(name) || 
+                            string.IsNullOrEmpty(description) ||
                             type == Guid.Empty ||
                             categories.Count == 0 || categories.Any(c => c == Guid.Empty)
                             || food.Count == 0 || food.Any(f => f == Guid.Empty)

@@ -48,7 +48,7 @@ namespace RecsApp.forms
         private void buttonEntry_Click(object sender, EventArgs e)
         {
             using (var res = new ResXResourceSet(
-                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\EntryAccount.resx"))
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resources.resx"))
             {
                 var login = richTextBoxEntryLogin.Text.Trim();
                 var password = textBoxEntryPassword.Text.Trim();
@@ -175,7 +175,7 @@ namespace RecsApp.forms
         private void EntryAccount_Load(object sender, EventArgs e)
         {
             using (var res = new ResXResourceSet(
-                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\EntryAccount.resx"))
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resources.resx"))
             {
                 this.Text = res.GetString("EntryAccountText");
                 this.labelLogin.Text = res.GetString("labelLoginText");

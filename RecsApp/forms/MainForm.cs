@@ -52,7 +52,7 @@ namespace RecsApp
             if (this.fileName != this.defFileName)
             {
                 using (var res = new ResXResourceSet(
-                    $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\MainForm.resx"))
+                    $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resources.resx"))
                 {
                     MessageBox.Show(res.GetString("LoadFile") + $": {this.fileName}",
                     res.GetString("LoadFile"),
@@ -90,7 +90,7 @@ namespace RecsApp
             logger.Trace("Форма FirstForm скрыта");
 
             using (var res = new ResXResourceSet(
-                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\MainForm.resx"))
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resources.resx"))
             {
                 this.Text = res.GetString("MainFormText");
                 this.radioBtnSortByVisits.Text = res.GetString("radioBtnSortByVisitsText");
@@ -256,10 +256,10 @@ namespace RecsApp
                                     Рейтинг = establishment.Rating
                                 };
 
-                if (finalEsts.Count() == 0)
+                if (!finalEsts.Any())
                 {
                     using (var res = new ResXResourceSet(
-                        $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\MainForm.resx"))
+                        $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resources.resx"))
                     {
                         MessageBox.Show(res.GetString("EmptyEstList"), res.GetString("EmptyEsts"),
                             MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -278,38 +278,9 @@ namespace RecsApp
         /// </summary>
         private void SetdgvEstablishments()
         {
-            for (int i = 0; i < dgvEstablishments.Rows.Count; i++)
-            {
-                dgvEstablishments.Rows[i].DefaultCellStyle.BackColor =
-                    System.Drawing.Color.FromArgb(
-                        ((int)(((byte)(247)))), 
-                        ((int)(((byte)(246)))), 
-                        ((int)(((byte)(227))))
-                        );
-                dgvEstablishments.Rows[i].DefaultCellStyle.ForeColor = 
-                    System.Drawing.Color.FromArgb(
-                        ((int)(((byte)(103)))), 
-                        ((int)(((byte)(72)))), 
-                        ((int)(((byte)(49)))));
-                dgvEstablishments.Rows[i].DefaultCellStyle.Font = 
-                    new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, 
-                    System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            }
             dgvEstablishments.Columns[0].Visible = false;
             dgvEstablishments.RowHeadersVisible = false;
             dgvEstablishments.EnableHeadersVisualStyles = false;
-            dgvEstablishments.ColumnHeadersDefaultCellStyle.BackColor =
-                    System.Drawing.Color.FromArgb(
-                        ((int)(((byte)(247)))), 
-                        ((int)(((byte)(246)))), 
-                        ((int)(((byte)(227)))));
-            dgvEstablishments.ColumnHeadersDefaultCellStyle.Font = 
-                new System.Drawing.Font("Verdana", 8, System.Drawing.FontStyle.Bold);
-            dgvEstablishments.ColumnHeadersDefaultCellStyle.ForeColor = 
-                System.Drawing.Color.FromArgb(
-                        ((int)(((byte)(103)))), 
-                        ((int)(((byte)(72)))), 
-                        ((int)(((byte)(49)))));
         }
         /// <summary>
         /// Загрузка dataGridView с рекомендованными заведениями
@@ -458,38 +429,6 @@ namespace RecsApp
             dgvMayLike.Columns[0].Visible = false;
             dgvMayLike.RowHeadersVisible = false;
             dgvMayLike.EnableHeadersVisualStyles = false;
-            dgvMayLike.ColumnHeadersDefaultCellStyle.BackColor =
-                    System.Drawing.Color.FromArgb(
-                        ((int)(((byte)(247)))), 
-                        ((int)(((byte)(246)))), 
-                        ((int)(((byte)(227))))
-                        );
-            dgvMayLike.ColumnHeadersDefaultCellStyle.Font = 
-                new System.Drawing.Font("Verdana", 8, System.Drawing.FontStyle.Bold);
-            dgvMayLike.ColumnHeadersDefaultCellStyle.ForeColor = 
-                System.Drawing.Color.FromArgb(
-                        ((int)(((byte)(103)))), 
-                        ((int)(((byte)(72)))), 
-                        ((int)(((byte)(49))))
-                        );
-            for (int i = 0; i < dgvMayLike.Rows.Count; i++)
-            {
-                dgvMayLike.Rows[i].DefaultCellStyle.BackColor =
-                    System.Drawing.Color.FromArgb(
-                        ((int)(((byte)(247)))), 
-                        ((int)(((byte)(246)))), 
-                        ((int)(((byte)(227))))
-                        );
-                dgvMayLike.Rows[i].DefaultCellStyle.ForeColor = 
-                    System.Drawing.Color.FromArgb(
-                        ((int)(((byte)(103)))), 
-                        ((int)(((byte)(72)))), 
-                        ((int)(((byte)(49))))
-                        );
-                dgvMayLike.Rows[i].DefaultCellStyle.Font = 
-                    new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, 
-                    System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            }
         }
         private void btnAccount_Click(object sender, EventArgs e)
         {

@@ -222,7 +222,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackgroundImage = global::RecsApp.Properties.Resources.photo_2025_04_26_22_37_15;
+            this.BackgroundImage = Properties.Resources.BackImage;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1082, 753);
             this.Controls.Add(this.pbConfirmPassword);

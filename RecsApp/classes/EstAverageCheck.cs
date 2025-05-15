@@ -19,9 +19,12 @@ namespace RecsApp
         /// </summary>
         public string Title { get; set; }
         /// <summary>
-        /// Навигационное свойство на заведения с таким средним чеком
+        /// Заведения с этоим чеком
         /// </summary>
         public ICollection<Establishment> Ests { get; set; }
+        /// <summary>
+        /// Анкеты с этим чеком
+        /// </summary>
         public ICollection<Questionnaire> Questionnaires { get; set; }
         public EstAverageCheck()
         {
