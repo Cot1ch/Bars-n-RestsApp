@@ -105,7 +105,7 @@ namespace RecsApp.forms
                         {
                             isPasswordValid = BCrypt.Net.BCrypt.Verify(password, user.password_hash);
                         }
-                        catch (SaltParseException ex)
+                        catch (SaltParseException)
                         {           
                             var newHashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
                             user.password_hash = newHashedPassword;
