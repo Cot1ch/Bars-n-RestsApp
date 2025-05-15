@@ -281,18 +281,6 @@ namespace RecsApp
             dgvEstablishments.Columns[0].Visible = false;
             dgvEstablishments.RowHeadersVisible = false;
             dgvEstablishments.EnableHeadersVisualStyles = false;
-            dgvEstablishments.ColumnHeadersDefaultCellStyle.BackColor =
-                System.Drawing.Color.FromArgb(
-                        ((int)(((byte)(247)))),
-                        ((int)(((byte)(246)))),
-                        ((int)(((byte)(227)))));
-            dgvEstablishments.ColumnHeadersDefaultCellStyle.Font =
-                new System.Drawing.Font("Verdana", 8, System.Drawing.FontStyle.Bold);
-            dgvEstablishments.ColumnHeadersDefaultCellStyle.ForeColor =
-                System.Drawing.Color.FromArgb(
-                        ((int)(((byte)(103)))),
-                        ((int)(((byte)(72)))),
-                        ((int)(((byte)(49)))));
         }
         /// <summary>
         /// Загрузка dataGridView с рекомендованными заведениями
@@ -441,21 +429,6 @@ namespace RecsApp
             dgvMayLike.Columns[0].Visible = false;
             dgvMayLike.RowHeadersVisible = false;
             dgvMayLike.EnableHeadersVisualStyles = false;
-
-            dgvMayLike.ColumnHeadersDefaultCellStyle.BackColor =
-                System.Drawing.Color.FromArgb(
-                        ((int)(((byte)(247)))),
-                        ((int)(((byte)(246)))),
-                        ((int)(((byte)(227))))
-                        );
-            dgvMayLike.ColumnHeadersDefaultCellStyle.Font =
-                new System.Drawing.Font("Verdana", 8, System.Drawing.FontStyle.Bold);
-            dgvMayLike.ColumnHeadersDefaultCellStyle.ForeColor =
-                System.Drawing.Color.FromArgb(
-                        ((int)(((byte)(103)))),
-                        ((int)(((byte)(72)))),
-                        ((int)(((byte)(49))))
-                        );
         }
         private void btnAccount_Click(object sender, EventArgs e)
         {
