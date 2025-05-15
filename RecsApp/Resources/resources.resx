@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ContactAdmin" xml:space="preserve">
+    <value>Обратитесь к администратору</value>
+  </data>
+  <data name="DataDoesntFull" xml:space="preserve">
+    <value>Отображенные данные не будут полными</value>
+  </data>
+  <data name="DataLost" xml:space="preserve">
+    <value>Данные утеряны</value>
+  </data>
+  <data name="FileDoesntExist" xml:space="preserve">
+    <value>Файл не найден</value>
+  </data>
+  <data name="SheetDoesntFound" xml:space="preserve">
+    <value>Лист не найден</value>
+  </data>
+  <data name="UseDefFile" xml:space="preserve">
+    <value>Ваш файл некорректен. Будет использован файл по умолчанию</value>
+  </data>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>Доступ к аккаунту потерян</value>
+  </data>
+  <data name="btnSaveChangesText" xml:space="preserve">
+    <value>Сохранить изменения</value>
+  </data>
+  <data name="buttonAccExitText" xml:space="preserve">
+    <value>Выйти из аккаунта</value>
+  </data>
+  <data name="checkBoxRatingText" xml:space="preserve">
+    <value>Отобразить заведения с рейтингом 5.0</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="labelAccountText" xml:space="preserve">
+    <value>Личный кабинет</value>
+  </data>
+  <data name="labelAverageText" xml:space="preserve">
+    <value>Средний чек</value>
+  </data>
+  <data name="labelCategoryText" xml:space="preserve">
+    <value>Категория заведения</value>
+  </data>
+  <data name="labelFoodText" xml:space="preserve">
+    <value>Кухня</value>
+  </data>
+  <data name="labelLoginText" xml:space="preserve">
+    <value>Придумайте логин (от 6 символов)</value>
+  </data>
+  <data name="labelEntryLoginText" xml:space="preserve">
+    <value>Логин</value>
+  </data>
+  <data name="labelCreateNameText" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="labelTypeText" xml:space="preserve">
+    <value>Тип заведения</value>
+  </data>
+  <data name="NameIsEmpty" xml:space="preserve">
+    <value>Поле 'Имя' не может быть пустым</value>
+  </data>
+  <data name="CreateAccountText" xml:space="preserve">
+    <value>Создание аккаунта</value>
+  </data>
+  <data name="labelCreateAccountText" xml:space="preserve">
+    <value>Создание аккаунта</value>
+  </data>
+  <data name="labelPasswordText" xml:space="preserve">
+    <value>Придумайте пароль (от 6 символов)</value>
+  </data>
+  <data name="labelEntryPasswordText" xml:space="preserve">
+    <value>Введите пароль</value>
+  </data>
+  <data name="labelConfirmPasswordText" xml:space="preserve">
+    <value>Подтвердите пароль</value>
+  </data>
+  <data name="buttonCreateText" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="buttonBFCAText" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="FillTheFields" xml:space="preserve">
+    <value>Пожалуйста, заполните все поля.</value>
+  </data>
+  <data name="CheckLogin" xml:space="preserve">
+    <value>Логин должен содержать не менее 6 символов.</value>
+  </data>
+  <data name="CheckPassword" xml:space="preserve">
+    <value>Пароль должен содержать не менее 6 символов.</value>
+  </data>
+  <data name="PasswordMatch" xml:space="preserve">
+    <value>Пароли не совпадают.</value>
+  </data>
+  <data name="IsValidLogin" xml:space="preserve">
+    <value>Логин должен состоять только из английских букв и цифр.</value>
+  </data>
+  <data name="IsValidPassword" xml:space="preserve">
+    <value>Пароль должен состоять только из английских букв и цифр.</value>
+  </data>
+  <data name="LoginAlreadyUse" xml:space="preserve">
+    <value>Логин уже занят. Пожалуйста, выберите другой логин.</value>
+  </data>
+  <data name="AccountSuccess" xml:space="preserve">
+    <value>Аккаунт успешно создан. Главная форма сейчас загрузится</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Успех</value>
+  </data>
+  <data name="HappenedError" xml:space="preserve">
+    <value>Произошла ошибка:</value>
+  </data>
+  <data name="FirstFormText" xml:space="preserve">
+    <value>Место для вас</value>
+  </data>
+  <data name="labelMainText" xml:space="preserve">
+    <value>Место для вас</value>
+  </data>
+  <data name="buttonCreateAccountText" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="buttonEntryAccountText" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="EntryAccountText" xml:space="preserve">
+    <value>Вход в аккаунт</value>
+  </data>
+  <data name="labelEntryAccountText" xml:space="preserve">
+    <value>Вход в аккаунт</value>
+  </data>
+  <data name="buttonEntryText" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="buttonBFEAText" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="UserDoesNotExist" xml:space="preserve">
+    <value>Пользователь не найден</value>
+  </data>
+  <data name="WrongPassword" xml:space="preserve">
+    <value>Пароль неверный.</value>
+  </data>
+  <data name="AlreadyAdd" xml:space="preserve">
+    <value>Уже добавлено</value>
+  </data>
+  <data name="AreUSure" xml:space="preserve">
+    <value>Вы уверены?</value>
+  </data>
+  <data name="btnHideText" xml:space="preserve">
+    <value>Скрыть</value>
+  </data>
+  <data name="checkBoxStarredText" xml:space="preserve">
+    <value>Нравится</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>руб.</value>
+  </data>
+  <data name="EstablishmentAdded" xml:space="preserve">
+    <value>Заведение добавлено</value>
+  </data>
+  <data name="EstablishmentAlreadyInFavorite" xml:space="preserve">
+    <value>Заведение уже добавлено</value>
+  </data>
+  <data name="EstablishmentDeleted" xml:space="preserve">
+    <value>Заведение удалено</value>
+  </data>
+  <data name="HideEstablishment" xml:space="preserve">
+    <value>Вы больше не увидите это заведение! Хотите продолжить?</value>
+  </data>
+  <data name="labelAddressText" xml:space="preserve">
+    <value>Адрес</value>
+  </data>
+  <data name="labelAverageCheckText" xml:space="preserve">
+    <value>Средний чек</value>
+  </data>
+  <data name="labelDescriptionText" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="labelLinkText" xml:space="preserve">
+    <value>Сайт заведения</value>
+  </data>
+  <data name="labelRatingText" xml:space="preserve">
+    <value>Оценка</value>
+  </data>
+  <data name="linkLabelToWebSiteText" xml:space="preserve">
+    <value>Ссылка отсутствует</value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>Не найдено</value>
+  </data>
+  <data name="EstablishmentNotInFavourite" xml:space="preserve">
+    <value>Заведение отсутствует в избранном</value>
+  </data>
+  <data name="WebSiteDoesntExists" xml:space="preserve">
+    <value>У данного заведения отсутствует сайт :(</value>
+  </data>
+  <data name="InfoFormText" xml:space="preserve">
+    <value>Информация о заведении</value>
+  </data>
+  <data name="btnAccountText" xml:space="preserve">
+    <value>Аккаунт</value>
+  </data>
+  <data name="EmptyEsts" xml:space="preserve">
+    <value>Заведения не найдены</value>
+  </data>
+  <data name="checkBoxFavoriteText" xml:space="preserve">
+    <value>Отобразить избранное</value>
+  </data>
+  <data name="dgvEstablishmentsColumns1HeaderText" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="dgvEstablishmentsColumns2HeaderText" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="dgvEstablishmentsColumns3HeaderText" xml:space="preserve">
+    <value>Рейтинг</value>
+  </data>
+  <data name="dgvMayLikeColumns1HeaderText" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="dgvMayLikeColumns2HeaderText" xml:space="preserve">
+    <value>Рейтинг</value>
+  </data>
+  <data name="EmptyEstList" xml:space="preserve">
+    <value>По вашему запросу ничего не найдено. Измените анкету</value>
+  </data>
+  <data name="labelEstsListText" xml:space="preserve">
+    <value>Список заведений</value>
+  </data>
+  <data name="labelMayLikeText" xml:space="preserve">
+    <value>Вам может понравиться:</value>
+  </data>
+  <data name="labelSortingText" xml:space="preserve">
+    <value>Сортировка заведений</value>
+  </data>
+  <data name="MainFormText" xml:space="preserve">
+    <value>Главная форма</value>
+  </data>
+  <data name="radioBtnSortByNameText" xml:space="preserve">
+    <value>По названию</value>
+  </data>
+  <data name="radioBtnSortByRatingText" xml:space="preserve">
+    <value>По рейтингу</value>
+  </data>
+  <data name="radioBtnSortByTypeText" xml:space="preserve">
+    <value>По типу</value>
+  </data>
+  <data name="radioBtnSortByVisitsText" xml:space="preserve">
+    <value>По популярности</value>
+  </data>
+  <data name="LoadFile" xml:space="preserve">
+    <value>Файл загружен</value>
+  </data>
+  <data name="ReportSaved" xml:space="preserve">
+    <value>Отчёт сохранён!</value>
+  </data>
+  <data name="EntrySuccess" xml:space="preserve">
+    <value>Вход совершен. Главная форма сейчас загрузится</value>
+  </data>
+</root>
