@@ -73,6 +73,16 @@ namespace RecsApp.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap photo_2025_04_26_22_37_15 {
+            get {
+                object obj = ResourceManager.GetObject("photo_2025_04_26_22_37_15", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap visible_password_security_protect_icon {
             get {
                 object obj = ResourceManager.GetObject("visible_password_security_protect_icon", resourceCulture);

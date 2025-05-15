@@ -85,7 +85,7 @@
             this.buttonEntry.FlatAppearance.BorderSize = 0;
             this.buttonEntry.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold);
             this.buttonEntry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.buttonEntry.Location = new System.Drawing.Point(474, 496);
+            this.buttonEntry.Location = new System.Drawing.Point(450, 499);
             this.buttonEntry.Margin = new System.Windows.Forms.Padding(4);
             this.buttonEntry.Name = "buttonEntry";
             this.buttonEntry.Size = new System.Drawing.Size(200, 40);
