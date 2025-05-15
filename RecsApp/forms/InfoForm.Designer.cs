@@ -59,7 +59,7 @@
             this.checkBoxStarred.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.checkBoxStarred.Font = new System.Drawing.Font("Verdana", 11F, System.Drawing.FontStyle.Bold);
             this.checkBoxStarred.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.checkBoxStarred.Location = new System.Drawing.Point(928, 23);
+            this.checkBoxStarred.Location = new System.Drawing.Point(924, 23);
             this.checkBoxStarred.Name = "checkBoxStarred";
             this.checkBoxStarred.Size = new System.Drawing.Size(135, 27);
             this.checkBoxStarred.TabIndex = 33;
@@ -74,11 +74,10 @@
             this.linkLabelToWebSite.AutoSize = true;
             this.linkLabelToWebSite.Font = new System.Drawing.Font("Verdana", 6.5F, System.Drawing.FontStyle.Bold);
             this.linkLabelToWebSite.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.linkLabelToWebSite.Location = new System.Drawing.Point(716, 717);
+            this.linkLabelToWebSite.Location = new System.Drawing.Point(712, 710);
             this.linkLabelToWebSite.Name = "linkLabelToWebSite";
-            this.linkLabelToWebSite.Size = new System.Drawing.Size(135, 13);
+            this.linkLabelToWebSite.Size = new System.Drawing.Size(0, 13);
             this.linkLabelToWebSite.TabIndex = 32;
-            this.linkLabelToWebSite.TabStop = true;
             this.linkLabelToWebSite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelToWebSite_LinkClicked);
             // 
             // labelAddress
@@ -86,7 +85,7 @@
             this.labelAddress.AutoSize = true;
             this.labelAddress.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelAddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelAddress.Location = new System.Drawing.Point(522, 165);
+            this.labelAddress.Location = new System.Drawing.Point(534, 168);
             this.labelAddress.Name = "labelAddress";
             this.labelAddress.Size = new System.Drawing.Size(169, 22);
             this.labelAddress.TabIndex = 31;
@@ -98,7 +97,7 @@
             this.labelRating.AutoSize = true;
             this.labelRating.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelRating.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelRating.Location = new System.Drawing.Point(522, 143);
+            this.labelRating.Location = new System.Drawing.Point(534, 143);
             this.labelRating.Name = "labelRating";
             this.labelRating.Size = new System.Drawing.Size(84, 22);
             this.labelRating.TabIndex = 30;
@@ -110,7 +109,7 @@
             this.labelType.AutoSize = true;
             this.labelType.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelType.Location = new System.Drawing.Point(523, 112);
+            this.labelType.Location = new System.Drawing.Point(534, 112);
             this.labelType.Name = "labelType";
             this.labelType.Size = new System.Drawing.Size(148, 22);
             this.labelType.TabIndex = 29;
@@ -122,7 +121,7 @@
             this.labelName.AutoSize = true;
             this.labelName.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelName.Location = new System.Drawing.Point(522, 56);
+            this.labelName.Location = new System.Drawing.Point(534, 56);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(48, 22);
             this.labelName.TabIndex = 28;
@@ -133,11 +132,11 @@
             // 
             this.labelLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelLink.AutoSize = true;
-            this.labelLink.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelLink.Font = new System.Drawing.Font("Verdana", 11F);
             this.labelLink.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelLink.Location = new System.Drawing.Point(522, 717);
+            this.labelLink.Location = new System.Drawing.Point(534, 710);
             this.labelLink.Name = "labelLink";
-            this.labelLink.Size = new System.Drawing.Size(176, 25);
+            this.labelLink.Size = new System.Drawing.Size(163, 23);
             this.labelLink.TabIndex = 27;
             this.labelLink.Text = "Сайт заведения";
             // 
@@ -150,11 +149,11 @@
             this.textBoxEstDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxEstDescription.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxEstDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.textBoxEstDescription.Location = new System.Drawing.Point(526, 319);
+            this.textBoxEstDescription.Location = new System.Drawing.Point(538, 319);
             this.textBoxEstDescription.Multiline = true;
             this.textBoxEstDescription.Name = "textBoxEstDescription";
             this.textBoxEstDescription.ReadOnly = true;
-            this.textBoxEstDescription.Size = new System.Drawing.Size(537, 370);
+            this.textBoxEstDescription.Size = new System.Drawing.Size(521, 370);
             this.textBoxEstDescription.TabIndex = 26;
             this.textBoxEstDescription.TabStop = false;
             // 
@@ -166,10 +165,10 @@
             this.textBoxEstAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxEstAddress.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxEstAddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.textBoxEstAddress.Location = new System.Drawing.Point(526, 190);
+            this.textBoxEstAddress.Location = new System.Drawing.Point(538, 193);
             this.textBoxEstAddress.Name = "textBoxEstAddress";
             this.textBoxEstAddress.ReadOnly = true;
-            this.textBoxEstAddress.Size = new System.Drawing.Size(537, 22);
+            this.textBoxEstAddress.Size = new System.Drawing.Size(521, 22);
             this.textBoxEstAddress.TabIndex = 25;
             this.textBoxEstAddress.TabStop = false;
             // 
@@ -179,10 +178,10 @@
             this.textBoxEstRating.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxEstRating.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxEstRating.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(26)))), ((int)(((byte)(29)))));
-            this.textBoxEstRating.Location = new System.Drawing.Point(637, 143);
+            this.textBoxEstRating.Location = new System.Drawing.Point(649, 143);
             this.textBoxEstRating.Name = "textBoxEstRating";
             this.textBoxEstRating.ReadOnly = true;
-            this.textBoxEstRating.Size = new System.Drawing.Size(66, 22);
+            this.textBoxEstRating.Size = new System.Drawing.Size(50, 22);
             this.textBoxEstRating.TabIndex = 24;
             this.textBoxEstRating.TabStop = false;
             // 
@@ -194,10 +193,10 @@
             this.textBoxEstType.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxEstType.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxEstType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.textBoxEstType.Location = new System.Drawing.Point(689, 112);
+            this.textBoxEstType.Location = new System.Drawing.Point(701, 112);
             this.textBoxEstType.Name = "textBoxEstType";
             this.textBoxEstType.ReadOnly = true;
-            this.textBoxEstType.Size = new System.Drawing.Size(374, 22);
+            this.textBoxEstType.Size = new System.Drawing.Size(358, 22);
             this.textBoxEstType.TabIndex = 23;
             this.textBoxEstType.TabStop = false;
             // 
@@ -209,10 +208,10 @@
             this.textBoxEstName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxEstName.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxEstName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.textBoxEstName.Location = new System.Drawing.Point(526, 84);
+            this.textBoxEstName.Location = new System.Drawing.Point(538, 84);
             this.textBoxEstName.Name = "textBoxEstName";
             this.textBoxEstName.ReadOnly = true;
-            this.textBoxEstName.Size = new System.Drawing.Size(537, 22);
+            this.textBoxEstName.Size = new System.Drawing.Size(521, 22);
             this.textBoxEstName.TabIndex = 22;
             this.textBoxEstName.TabStop = false;
             // 
@@ -221,7 +220,7 @@
             this.btnNextImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.btnNextImage.Font = new System.Drawing.Font("Verdana", 7.8F);
             this.btnNextImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.btnNextImage.Location = new System.Drawing.Point(257, 552);
+            this.btnNextImage.Location = new System.Drawing.Point(275, 625);
             this.btnNextImage.Name = "btnNextImage";
             this.btnNextImage.Size = new System.Drawing.Size(40, 40);
             this.btnNextImage.TabIndex = 21;
@@ -235,7 +234,7 @@
             this.btnPrevImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
             this.btnPrevImage.Font = new System.Drawing.Font("Verdana", 7.8F);
             this.btnPrevImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.btnPrevImage.Location = new System.Drawing.Point(205, 552);
+            this.btnPrevImage.Location = new System.Drawing.Point(229, 625);
             this.btnPrevImage.Name = "btnPrevImage";
             this.btnPrevImage.Size = new System.Drawing.Size(40, 40);
             this.btnPrevImage.TabIndex = 20;
@@ -248,7 +247,7 @@
             // 
             this.pictureBoxEstImage.Location = new System.Drawing.Point(12, 56);
             this.pictureBoxEstImage.Name = "pictureBoxEstImage";
-            this.pictureBoxEstImage.Size = new System.Drawing.Size(500, 490);
+            this.pictureBoxEstImage.Size = new System.Drawing.Size(516, 563);
             this.pictureBoxEstImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxEstImage.TabIndex = 19;
             this.pictureBoxEstImage.TabStop = false;
@@ -258,7 +257,7 @@
             this.labelFood.AutoSize = true;
             this.labelFood.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelFood.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelFood.Location = new System.Drawing.Point(523, 218);
+            this.labelFood.Location = new System.Drawing.Point(534, 218);
             this.labelFood.Name = "labelFood";
             this.labelFood.Size = new System.Drawing.Size(66, 22);
             this.labelFood.TabIndex = 34;
@@ -270,7 +269,7 @@
             this.labelAverageCheck.AutoSize = true;
             this.labelAverageCheck.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelAverageCheck.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelAverageCheck.Location = new System.Drawing.Point(523, 272);
+            this.labelAverageCheck.Location = new System.Drawing.Point(534, 272);
             this.labelAverageCheck.Name = "labelAverageCheck";
             this.labelAverageCheck.Size = new System.Drawing.Size(130, 22);
             this.labelAverageCheck.TabIndex = 35;
@@ -285,11 +284,11 @@
             this.textBoxFood.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxFood.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxFood.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.textBoxFood.Location = new System.Drawing.Point(598, 218);
+            this.textBoxFood.Location = new System.Drawing.Point(610, 221);
             this.textBoxFood.Multiline = true;
             this.textBoxFood.Name = "textBoxFood";
             this.textBoxFood.ReadOnly = true;
-            this.textBoxFood.Size = new System.Drawing.Size(465, 48);
+            this.textBoxFood.Size = new System.Drawing.Size(449, 48);
             this.textBoxFood.TabIndex = 36;
             this.textBoxFood.TabStop = false;
             // 
@@ -299,10 +298,10 @@
             this.textBoxAverageCheck.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxAverageCheck.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxAverageCheck.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(26)))), ((int)(((byte)(29)))));
-            this.textBoxAverageCheck.Location = new System.Drawing.Point(672, 272);
+            this.textBoxAverageCheck.Location = new System.Drawing.Point(684, 272);
             this.textBoxAverageCheck.Name = "textBoxAverageCheck";
             this.textBoxAverageCheck.ReadOnly = true;
-            this.textBoxAverageCheck.Size = new System.Drawing.Size(123, 22);
+            this.textBoxAverageCheck.Size = new System.Drawing.Size(107, 22);
             this.textBoxAverageCheck.TabIndex = 37;
             this.textBoxAverageCheck.TabStop = false;
             // 
@@ -311,7 +310,7 @@
             this.labelDescription.AutoSize = true;
             this.labelDescription.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelDescription.Location = new System.Drawing.Point(523, 294);
+            this.labelDescription.Location = new System.Drawing.Point(534, 294);
             this.labelDescription.Name = "labelDescription";
             this.labelDescription.Size = new System.Drawing.Size(102, 22);
             this.labelDescription.TabIndex = 38;
