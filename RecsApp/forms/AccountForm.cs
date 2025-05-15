@@ -43,7 +43,7 @@ namespace RecsApp
         private void btnSaveChanges_Click(object sender, EventArgs e)
         {
             using (var res = new ResXResourceSet(
-                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\AccountForm.resx"))
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resources.resx"))
             {
                 if (string.IsNullOrEmpty(this.textBoxName.Text))
                 {
@@ -134,7 +134,7 @@ namespace RecsApp
         private void AccountForm_Load(object sender, EventArgs e)
         {
             using (var res = new ResXResourceSet(
-                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\AccountForm.resx"))
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resources.resx"))
             using (var db = new AppDbContext())
             {
                 foreach (var item in db.Types.ToList())
@@ -273,6 +273,9 @@ namespace RecsApp
                     worksheet.Cell(1, 5).Value = "Средний чек";
                     worksheet.Cell(1, 6).Value = "Избранные заведения";
 
+                    worksheet.Row(1).Style.Fill.BackgroundColor = XLColor.AliceBlue;
+                    worksheet.Row(1).Style.Font.Bold = true;
+
                     worksheet.Cell(2, 1).Value = user.username;
 
                     var types = string.Empty;
@@ -344,6 +347,7 @@ namespace RecsApp
                         }
                     }
                     worksheet.Cell(2, 6).Value = favorites;
+                    worksheet.Columns().AdjustToContents();
 
                     workbook.SaveAs(saveFileDialog.FileName);
                     MessageBox.Show("Отчёт сохранён!");

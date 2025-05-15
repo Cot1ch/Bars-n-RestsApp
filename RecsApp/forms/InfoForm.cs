@@ -75,7 +75,7 @@ namespace RecsApp
             logger.Trace("Форма загружена");
             ShowImage();
             using (var res = new ResXResourceSet(
-                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\InfoForm.resx"))
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resources.resx"))
             {
                 this.Text = res.GetString("InfoFormText");
                 this.checkBoxStarred.Text = res.GetString("checkBoxStarredText");
@@ -99,7 +99,7 @@ namespace RecsApp
         public void LoadInfoForm()
         {
             using (var res = new ResXResourceSet(
-                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\InfoForm.resx"))
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resources.resx"))
             using (var db = new AppDbContext())
             {
                 this.textBoxEstName.Text = establishment.Name;
@@ -112,7 +112,7 @@ namespace RecsApp
                 this.textBoxEstRating.Text = $"{establishment.Rating:F1}";
                 this.textBoxEstAddress.Text = establishment.Address.ToString();
                 this.linkLabelToWebSite.Text = 
-                    (establishment.Link != "ссылка отсутствует") 
+                    (establishment.Link != res.GetString("linkLabelToWebSiteText")) 
                     ? establishment.Link 
                     : res.GetString("linkLabelToWebSiteText");
                 this.checkBoxStarred.Checked = db.Users.Include(user => user.Favourite)
@@ -138,7 +138,7 @@ namespace RecsApp
             catch
             {
                 using (var res = new ResXResourceSet(
-                    $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\InfoForm.resx"))
+                    $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resources.resx"))
                 {
                     MessageBox.Show(res.GetString("WebSiteDoesntExists"),
                         res.GetString("linkLabelToWebSiteText"), 
@@ -213,7 +213,7 @@ namespace RecsApp
         private void checkBoxStarred_CheckedChanged(object sender, EventArgs e)
         {
             using (var res = new ResXResourceSet(
-                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\InfoForm.resx"))
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resources.resx"))
             using (var db = new AppDbContext())
             {
                 var user = (from us in db.Users
@@ -296,7 +296,7 @@ namespace RecsApp
         private void btnHide_Click(object sender, EventArgs e)
         {
             using (var res = new ResXResourceSet(
-                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\InfoForm.resx"))
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resources.resx"))
             {
                 logger.Trace("Пользователь нажал на кнопку 'скрыть'");
                 var result = MessageBox.Show(res.GetString("HideEstablishment"),
@@ -359,11 +359,6 @@ namespace RecsApp
                 db.SaveChanges();
             }
             this.mainForm.LoadForm();
-        }
-
-        private void textBoxAverageCheck_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -19,10 +19,14 @@ namespace RecsApp
         /// Название кухни заведения
         /// </summary>
         public string Title { get; set; }
+
         /// <summary>
-        /// Навигационное свойство на заведения с этой кухней
+        /// Заведения с этой кухней
         /// </summary>
         public ICollection<Establishment> Ests { get; set; }
+        /// <summary>
+        /// Анкеты с этой кухней
+        /// </summary>
         public ICollection<Questionnaire> Questionnaires { get; set; }
 
 

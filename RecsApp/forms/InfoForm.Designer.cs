@@ -304,7 +304,6 @@
             this.textBoxAverageCheck.Size = new System.Drawing.Size(85, 22);
             this.textBoxAverageCheck.TabIndex = 37;
             this.textBoxAverageCheck.TabStop = false;
-            this.textBoxAverageCheck.TextChanged += new System.EventHandler(this.textBoxAverageCheck_TextChanged);
             // 
             // labelDescription
             // 

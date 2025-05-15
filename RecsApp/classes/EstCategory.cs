@@ -19,9 +19,12 @@ namespace RecsApp
         /// </summary>
         public string Title { get; set; }
         /// <summary>
-        /// Навигационное свойство на заведения с этой категорией
+        /// Заведения с этой категорией
         /// </summary>
         public ICollection<Establishment> Ests { get; set; }
+        /// <summary>
+        /// Анкеты с этой категорией
+        /// </summary>
         public ICollection<Questionnaire> Questionnaires { get; set; }
 
 

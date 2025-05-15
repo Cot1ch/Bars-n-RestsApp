@@ -18,7 +18,13 @@ namespace RecsApp
         /// Название типа
         /// </summary>
         public string Title { get; set; }
+        /// <summary>
+        /// Заведения с этим типом
+        /// </summary>
         public ICollection<Establishment> Ests { get; set; }
+        /// <summary>
+        /// Анкеты с этим типом
+        /// </summary>
         public ICollection<Questionnaire> Questionnaires { get; set; }
 
         public EstType()

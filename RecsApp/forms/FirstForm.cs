@@ -42,7 +42,7 @@ namespace RecsApp
         private void FirstForm_Load(object sender, EventArgs e)
         {
             using (var res = new ResXResourceSet(
-                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\FirstForm.resx"))
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resources.resx"))
             {
                 this.Text = res.GetString("FirstFormText");
                 this.labelMain.Text = res.GetString("labelMainText");

@@ -69,7 +69,7 @@ namespace RecsApp.forms
         private void buttonCreate_Click(object sender, EventArgs e)
         {
             using (var res = new ResXResourceSet(
-                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\CreateAccount.resx"))
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resources.resx"))
             {
                 var name = richTextBoxCreateName.Text.Trim();
                 var login = richTextBoxCreateLogin.Text.Trim();
@@ -238,7 +238,7 @@ namespace RecsApp.forms
         private void CreateAccount_Load(object sender, EventArgs e)
         {
             using (var res = new ResXResourceSet(
-                $"{Directory.GetCurrentDirectory()}..\\..\\..\\forms\\CreateAccount.resx"))
+                $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resource1.resx"))
             {
                 this.Text = res.GetString("CreateAccountText");                
                 this.labelCreateAccount.Text = res.GetString("labelCreateAccountText");
@@ -251,11 +251,6 @@ namespace RecsApp.forms
 
                 logger.Info("Локализация выполнена");
             }
-        }
-
-        private void CreateAccount_Load_1(object sender, EventArgs e)
-        {
-
         }
     }
 }
