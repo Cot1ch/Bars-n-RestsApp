@@ -151,6 +151,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Resources\photo_2025-04-26_22-37-15.jpg" />
     <EmbeddedResource Include="forms\AccountForm.resx">
       <DependentUpon>AccountForm.cs</DependentUpon>
       <SubType>Designer</SubType>

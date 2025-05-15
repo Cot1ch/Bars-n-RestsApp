@@ -74,10 +74,11 @@
             this.linkLabelToWebSite.AutoSize = true;
             this.linkLabelToWebSite.Font = new System.Drawing.Font("Verdana", 6.5F, System.Drawing.FontStyle.Bold);
             this.linkLabelToWebSite.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.linkLabelToWebSite.Location = new System.Drawing.Point(726, 719);
+            this.linkLabelToWebSite.Location = new System.Drawing.Point(716, 717);
             this.linkLabelToWebSite.Name = "linkLabelToWebSite";
-            this.linkLabelToWebSite.Size = new System.Drawing.Size(0, 13);
+            this.linkLabelToWebSite.Size = new System.Drawing.Size(135, 13);
             this.linkLabelToWebSite.TabIndex = 32;
+            this.linkLabelToWebSite.TabStop = true;
             this.linkLabelToWebSite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelToWebSite_LinkClicked);
             // 
             // labelAddress
@@ -134,7 +135,7 @@
             this.labelLink.AutoSize = true;
             this.labelLink.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelLink.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.labelLink.Location = new System.Drawing.Point(510, 712);
+            this.labelLink.Location = new System.Drawing.Point(522, 707);
             this.labelLink.Name = "labelLink";
             this.labelLink.Size = new System.Drawing.Size(176, 25);
             this.labelLink.TabIndex = 27;

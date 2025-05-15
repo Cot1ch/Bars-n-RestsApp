@@ -117,11 +117,11 @@
             // 
             this.checkBoxFavorite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxFavorite.AutoSize = true;
-            this.checkBoxFavorite.Font = new System.Drawing.Font("Verdana", 9F);
+            this.checkBoxFavorite.Font = new System.Drawing.Font("Verdana", 11F);
             this.checkBoxFavorite.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.checkBoxFavorite.Location = new System.Drawing.Point(855, 719);
+            this.checkBoxFavorite.Location = new System.Drawing.Point(804, 714);
             this.checkBoxFavorite.Name = "checkBoxFavorite";
-            this.checkBoxFavorite.Size = new System.Drawing.Size(205, 22);
+            this.checkBoxFavorite.Size = new System.Drawing.Size(256, 27);
             this.checkBoxFavorite.TabIndex = 23;
             this.checkBoxFavorite.Text = "Отобразить избранное";
             this.checkBoxFavorite.UseVisualStyleBackColor = true;
