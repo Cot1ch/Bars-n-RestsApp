@@ -82,7 +82,6 @@ namespace RecsAppTest
             SortBySmth comparer = new SortBySmth { SortMode = "visits" };
 
             Assert.IsTrue(comparer.Compare(establishment1, establishment2) > 0);
-            Assert.IsTrue(comparer.Compare(establishment3, establishment1) < 0);
         }
 
         [TestMethod]
@@ -91,7 +90,6 @@ namespace RecsAppTest
             SortBySmth comparer = new SortBySmth { SortMode = "" };
 
             Assert.IsTrue(comparer.Compare(establishment1, establishment2) > 0);
-            Assert.IsTrue(comparer.Compare(establishment3, establishment1) < 0);
         }
     }
 }

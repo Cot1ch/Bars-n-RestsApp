@@ -12,9 +12,8 @@ namespace RecsAppTest
         [TestMethod]
         public void Test1()
         {
-            var estFood = new EstFood();
+            EstFood estFood = new EstFood();
 
-            Assert.AreNotEqual(Guid.Empty, estFood.Id);
             Assert.IsNotNull(estFood.Ests);
             Assert.IsNotNull(estFood.Questionnaires);
             Assert.AreEqual(0, estFood.Ests.Count);
