@@ -154,7 +154,7 @@ namespace RecsApp.forms
                             user_Id = Guid.NewGuid(),
                             name = name,
                             username = login,
-                            password_hash = password
+                            password_hash = hashedPassword
                         };
 
                         var questionnaire = new Questionnaire() 
