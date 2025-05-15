@@ -375,4 +375,13 @@
   <data name="EntrySuccess" xml:space="preserve">
     <value>Вход совершен. Главная форма сейчас загрузится</value>
   </data>
+  <data name="labelLogin" xml:space="preserve">
+    <value>Логин</value>
+  </data>
+  <data name="labelName" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="labelNameText" xml:space="preserve">
+    <value>Название</value>
+  </data>
 </root>

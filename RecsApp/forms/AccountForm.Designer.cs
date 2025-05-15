@@ -241,9 +241,9 @@
             this.btnSaveReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveReport.Font = new System.Drawing.Font("Verdana", 11F);
             this.btnSaveReport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(72)))), ((int)(((byte)(49)))));
-            this.btnSaveReport.Location = new System.Drawing.Point(41, 695);
+            this.btnSaveReport.Location = new System.Drawing.Point(28, 695);
             this.btnSaveReport.Name = "btnSaveReport";
-            this.btnSaveReport.Size = new System.Drawing.Size(157, 35);
+            this.btnSaveReport.Size = new System.Drawing.Size(193, 35);
             this.btnSaveReport.TabIndex = 17;
             this.btnSaveReport.Text = "Скачать отчет";
             this.btnSaveReport.UseVisualStyleBackColor = false;

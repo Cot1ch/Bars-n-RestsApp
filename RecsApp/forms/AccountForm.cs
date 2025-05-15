@@ -213,8 +213,8 @@ namespace RecsApp
                 }
 
                 this.Text = res.GetString("labelAccountText");
-                this.labelName.Text = res.GetString("labelNameText");
-                this.labelLogin.Text = res.GetString("labelLoginText");
+                this.labelName.Text = res.GetString("labelName");
+                this.labelLogin.Text = res.GetString("labelLogin");
                 this.labelCategory.Text = res.GetString("labelCategoryText");
                 this.labelType.Text = res.GetString("labelTypeText");
                 this.buttonAccExit.Text = res.GetString("buttonAccExitText");
