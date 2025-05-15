@@ -178,8 +178,8 @@ namespace RecsApp.forms
                 $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resources.resx"))
             {
                 this.Text = res.GetString("EntryAccountText");
-                this.labelLogin.Text = res.GetString("labelLoginText");
-                this.labelPassword.Text = res.GetString("labelPasswordText");
+                this.labelLogin.Text = res.GetString("labelEntryLoginText");
+                this.labelPassword.Text = res.GetString("labelEntryPasswordText");
                 this.labelEntryAccount.Text = res.GetString("labelEntryAccountText");
                 this.buttonBFEA.Text = res.GetString("buttonBFEAText");
                 this.buttonEntry.Text = res.GetString("buttonEntryText");

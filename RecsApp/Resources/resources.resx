@@ -165,6 +165,12 @@
   <data name="labelLoginText" xml:space="preserve">
     <value>Придумайте логин (от 6 символов)</value>
   </data>
+	<data name="labelEntryLoginText" xml:space="preserve">
+    <value>Введите логин</value>
+  </data>
+	<data name="labelEntryLoginText" xml:space="preserve">
+    <value>Логин</value>
+  </data>
   <data name="labelNameText" xml:space="preserve">
     <value>Название</value>
   </data>
@@ -182,6 +188,9 @@
   </data>
   <data name="labelPasswordText" xml:space="preserve">
     <value>Придумайте пароль (от 6 символов)</value>
+  </data>
+	<data name="labelEntryPasswordText" xml:space="preserve">
+    <value>Введите пароль</value>
   </data>
   <data name="labelConfirmPasswordText" xml:space="preserve">
     <value>Подтвердите пароль</value>
@@ -234,8 +243,23 @@
   <data name="buttonEntryAccountText" xml:space="preserve">
     <value>Вход</value>
   </data>
-  <data name="AccsessDenied" xml:space="preserve">
-    <value>Доступ к аккаунту потерян</value>
+  <data name="EntryAccountText" xml:space="preserve">
+    <value>Вход в аккаунт</value>
+  </data>
+  <data name="labelEntryAccountText" xml:space="preserve">
+    <value>Вход в аккаунт</value>
+  </data>
+  <data name="buttonEntryText" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="buttonBFEAText" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="UserDoesNotExist" xml:space="preserve">
+    <value>Такого пользователя не существует</value>
+  </data>
+  <data name="WrongPassword" xml:space="preserve">
+    <value>Пароль неверный.</value>
   </data>
   <data name="AlreadyAdd" xml:space="preserve">
     <value>Уже добавлено</value>
@@ -287,9 +311,6 @@
   </data>
   <data name="EstablishmentNotInFavourite" xml:space="preserve">
     <value>Заведение отсутствует в избранном</value>
-  </data>
-  <data name="Succsess" xml:space="preserve">
-    <value>Успех</value>
   </data>
   <data name="WebSiteDoesntExists" xml:space="preserve">
     <value>У данного заведения отсутствует сайт :(</value>
@@ -353,5 +374,8 @@
   </data>
   <data name="UserDoesNotExist" xml:space="preserve">
     <value>Пользователь не найден</value>
+  </data>
+  <data name="ReportSaved" xml:space="preserve">
+    <value>Отчёт сохранён!</value>
   </data>
 </root>

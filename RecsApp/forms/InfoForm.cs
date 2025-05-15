@@ -254,7 +254,7 @@ namespace RecsApp
                     }
                     else
                     {
-                        MessageBox.Show(res.GetString("AccsessDenied"), res.GetString("Error"), 
+                        MessageBox.Show(res.GetString("AccessDenied"), res.GetString("Error"), 
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                         logger.Error("Доступ к аккаунту потерян");
                     }
@@ -283,7 +283,7 @@ namespace RecsApp
                     }
                     else
                     {
-                        MessageBox.Show(res.GetString("AccsessDenied"), res.GetString("Error"),
+                        MessageBox.Show(res.GetString("AccessDenied"), res.GetString("Error"),
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                         logger.Error("Доступ к аккаунту потерян");
                     }

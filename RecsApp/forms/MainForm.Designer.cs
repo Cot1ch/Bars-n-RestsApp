@@ -1,4 +1,6 @@
-﻿namespace RecsApp
+﻿using RecsApp.Properties;
+
+namespace RecsApp
 {
     partial class MainForm
     {
@@ -28,6 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FirstForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnAccount = new System.Windows.Forms.Button();
@@ -262,6 +265,7 @@
             this.Controls.Add(this.dgvEstablishments);
             this.Controls.Add(this.btnAccount);
             this.MinimumSize = new System.Drawing.Size(1100, 800);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Главная форма";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);

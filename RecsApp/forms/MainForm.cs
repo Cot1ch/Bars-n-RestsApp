@@ -262,7 +262,7 @@ namespace RecsApp
                         $"{Directory.GetCurrentDirectory()}..\\..\\..\\Resources\\resources.resx"))
                     {
                         MessageBox.Show(res.GetString("EmptyEstList"), res.GetString("EmptyEsts"),
-                            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            MessageBoxButtons.OK, MessageBoxIcon.Question);
                     }
                 }
                 dgvEstablishments.DataSource = finalEsts.ToList();
@@ -472,25 +472,25 @@ namespace RecsApp
         private void radioBtnSortByName_CheckedChanged(object sender, EventArgs e)
         {
             this.sortMode = "name";
-            logger.Info("Ввызвана сортировка по названию");
+            logger.Info("Вызвана сортировка по названию");
             LoaddgvEstablishments(this.checkBoxFavorite.Checked);
         }                
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             this.sortMode = "type";
-            logger.Info("Ввызвана сортировка по типу");
+            logger.Info("Вызвана сортировка по типу");
             LoaddgvEstablishments(this.checkBoxFavorite.Checked);
         }
         private void radioBtnSortByRating_CheckedChanged(object sender, EventArgs e)
         {
             this.sortMode = "rating";
-            logger.Info("Ввызвана сортировка по рейтингу");
+            logger.Info("Вызвана сортировка по рейтингу");
             LoaddgvEstablishments(this.checkBoxFavorite.Checked);
         }
         private void radioBtnSortByVisits_CheckedChanged(object sender, EventArgs e)
         {
             this.sortMode = "visits";
-            logger.Info("Ввызвана сортировка по популярности");
+            logger.Info("Вызвана сортировка по популярности");
             LoaddgvEstablishments(this.checkBoxFavorite.Checked);
         }
         private void buttonAdmin_Click(object sender, EventArgs e)
