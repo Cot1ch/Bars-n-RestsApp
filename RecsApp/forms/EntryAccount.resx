@@ -1535,7 +1535,7 @@
         RK5CYII=
 </value>
   </data>
-<data name="CreateAccountText" xml:space="preserve">
+  <data name="CreateAccountText" xml:space="preserve">
     <value>Создание аккаунта</value>
   </data>
   <data name="labelCreateAccountText" xml:space="preserve">
@@ -1591,5 +1591,8 @@
   </data>
   <data name="HappenedError" xml:space="preserve">
     <value>Произошла ошибка:</value>
+  </data>
+  <data name="UserDoesNotExist" xml:space="preserve">
+    <value>Пользователь не найден</value>
   </data>
 </root>

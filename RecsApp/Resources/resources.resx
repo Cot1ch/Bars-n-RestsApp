@@ -163,7 +163,13 @@
     <value>Кухня</value>
   </data>
   <data name="labelLoginText" xml:space="preserve">
+    <value>Придумайте логин (от 6 символов)</value>
+  </data>
+	<data name="labelEntryLoginText" xml:space="preserve">
     <value>Введите логин</value>
+  </data>
+	<data name="labelEntryLoginText" xml:space="preserve">
+    <value>Логин</value>
   </data>
   <data name="labelNameText" xml:space="preserve">
     <value>Название</value>
@@ -181,6 +187,9 @@
     <value>Создание аккаунта</value>
   </data>
   <data name="labelPasswordText" xml:space="preserve">
+    <value>Придумайте пароль (от 6 символов)</value>
+  </data>
+	<data name="labelEntryPasswordText" xml:space="preserve">
     <value>Введите пароль</value>
   </data>
   <data name="labelConfirmPasswordText" xml:space="preserve">
@@ -362,6 +371,9 @@
   </data>
   <data name="LoadFile" xml:space="preserve">
     <value>Файл загружен</value>
+  </data>
+  <data name="UserDoesNotExist" xml:space="preserve">
+    <value>Пользователь не найден</value>
   </data>
   <data name="ReportSaved" xml:space="preserve">
     <value>Отчёт сохранён!</value>
