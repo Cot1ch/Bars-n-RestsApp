@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using BCrypt.Net;
+using NLog;
 using System;
 using System.IO;
 using System.Linq;
@@ -33,14 +34,15 @@ namespace RecsApp.forms
         private User GetUserByUsername(AppDbContext db, string username)
         {
             logger.Info("Начат поиск пользователя по имени в базе данных");
-            foreach (var user in db.Users)
+
+            var user = db.Users.FirstOrDefault(u => u.username == username);
+
+            if (user != null)
             {
-                if (user.username == username)
-                {
-                    logger.Info($"Пользователь {user.user_Id} {user.username} найден");
-                    return user;
-                }
+                logger.Info($"Пользователь {user.user_Id} {user.username} найден");
+                return user;
             }
+
             logger.Warn($"Пользователь {username} не найден");
             return null;
         }
@@ -97,26 +99,19 @@ namespace RecsApp.forms
                             return;
                         }
 
-                        bool isPasswordValid = false;
+                        var isPasswordValid = false;
 
                         try
                         {
                             isPasswordValid = BCrypt.Net.BCrypt.Verify(password, user.password_hash);
                         }
-                        catch (Exception ex)
-                        {
-                            if (ex.Message.Contains("Invalid salt version"))
-                            {
-                                string newHashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
-                                user.password_hash = newHashedPassword;
-                                db.SaveChanges();
+                        catch (SaltParseException ex)
+                        {           
+                            var newHashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
+                            user.password_hash = newHashedPassword;
+                            db.SaveChanges();
 
-                                isPasswordValid = BCrypt.Net.BCrypt.Verify(password, user.password_hash);
-                            }
-                            else
-                            {
-                                throw;
-                            }
+                            isPasswordValid = BCrypt.Net.BCrypt.Verify(password, user.password_hash);                    
                         }
 
                         if (!isPasswordValid)
@@ -134,6 +129,7 @@ namespace RecsApp.forms
                 {
                     MessageBox.Show($"{res.GetString("HappenedError")} {ex.Message}",
                         res.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 }
             }
         }
