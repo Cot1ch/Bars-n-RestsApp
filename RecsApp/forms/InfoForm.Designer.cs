@@ -74,8 +74,9 @@
             this.linkLabelToWebSite.AutoSize = true;
             this.linkLabelToWebSite.Font = new System.Drawing.Font("Verdana", 6.5F, System.Drawing.FontStyle.Bold);
             this.linkLabelToWebSite.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(227)))));
-            this.linkLabelToWebSite.Location = new System.Drawing.Point(712, 710);
+            this.linkLabelToWebSite.Location = new System.Drawing.Point(712, 714);
             this.linkLabelToWebSite.Name = "linkLabelToWebSite";
+            //this.linkLabelToWebSite.Text = 
             this.linkLabelToWebSite.Size = new System.Drawing.Size(0, 13);
             this.linkLabelToWebSite.TabIndex = 32;
             this.linkLabelToWebSite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelToWebSite_LinkClicked);

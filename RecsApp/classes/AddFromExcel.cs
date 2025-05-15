@@ -173,7 +173,8 @@ namespace RecsApp
                         var name = row.Cell(1).Value.ToString();
                         var description = row.Cell(2).Value.ToString();
                         var type = GetTypeFromTable(wb, row.Cell(3).Value.ToString());
-                        var categories = GetSmthFromTable(wb, "Категории", row.Cell(4).Value.ToString());
+                        var categories = 
+                            GetSmthFromTable(wb, "Категории", row.Cell(4).Value.ToString());
                         var address = row.Cell(5).Value.ToString();
                         var rating = double.TryParse(
                             row.Cell(6).Value.ToString().Replace('.', ','),
@@ -189,20 +190,18 @@ namespace RecsApp
                         var link = row.Cell(7).Value.ToString();
                         var pathsToPhoto = row.Cell(8).Value.ToString();
                         var food = GetSmthFromTable(wb, "Кухня", row.Cell(9).Value.ToString());
-                        var average = GetSmthFromTable(wb, "Средний чек", row.Cell(10).Value.ToString());
+                        var average = 
+                            GetSmthFromTable(wb, "Средний чек", row.Cell(10).Value.ToString());
                         var stringSimilar = row.Cell(11).Value.ToString();
 
+                        IsEmpty = string.IsNullOrWhiteSpace(name)
+                                || string.IsNullOrEmpty(description)
+                                || type == Guid.Empty
+                                || !categories.Any() || categories.Any(c => c == Guid.Empty)
+                                || !food.Any() || food.Any(f => f == Guid.Empty)
+                                || !average.Any() || average.Any(a => a == Guid.Empty)
+                                || string.IsNullOrEmpty(address);
 
-                        if (string.IsNullOrWhiteSpace(name) || 
-                            string.IsNullOrEmpty(description) ||
-                            type == Guid.Empty ||
-                            categories.Count == 0 || categories.Any(c => c == Guid.Empty)
-                            || food.Count == 0 || food.Any(f => f == Guid.Empty)
-                            || average.Count == 0 || average.Any(a => a == Guid.Empty)
-                            || string.IsNullOrEmpty(address))
-                        {
-                            IsEmpty = true;
-                        }
 
                         if ((from est in db.Establishments
                              where est.Name == name
@@ -364,7 +363,8 @@ namespace RecsApp
                 {
                     continue;
                 }
-                guids[row.Cell(1).Value.ToString()] = GetGuidFromString(row.Cell(2).Value.ToString());                    
+                guids[row.Cell(1).Value.ToString()] = 
+                    GetGuidFromString(row.Cell(2).Value.ToString());                    
             }
 
             return guids;
